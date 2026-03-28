@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -76,3 +73,58 @@
     ];
 
     let selections = new Set();
+    const main = document.getElementById('master-accordion');
+
+    sections.forEach(sec => {
+        const sTitle = document.createElement('div');
+        sTitle.className = 'section-title';
+        sTitle.innerText = sec.label;
+        main.appendChild(sTitle);
+        sec.cats.forEach(cat => {
+            const cDiv = document.createElement('div');
+            cDiv.className = 'category';
+            cDiv.innerHTML = `<div class="category-header" onclick="this.parentElement.classList.toggle('active')">${cat.title} <span>+</span></div><div class="category-content"></div>`;
+            main.appendChild(cDiv);
+            const grid = cDiv.querySelector('.category-content');
+            cat.opts.forEach(opt => {
+                const b = document.createElement('button');
+                b.className = 'option-btn'; b.innerText = opt;
+                b.onclick = () => {
+                    if (selections.has(opt)) { selections.delete(opt); b.classList.remove('active'); }
+                    else { selections.add(opt); b.classList.add('active'); }
+                    update();
+                };
+                grid.appendChild(b);
+            });
+        });
+    });
+
+    function update() {
+        const p = Array.from(selections).join(", ");
+        document.getElementById('display-prompt').innerText = p || "Selecciona los elementos de tu visión estratégica...";
+    }
+
+    function copyMJ() {
+        const t = document.getElementById('display-prompt').innerText;
+        let p = `${t} --v 6.1 --ar 4:5 --stylize 250 --quality 2`;
+        if(t.includes("3D Animación")) p = "high-end 3D luxury animation style, elegant features, refined textures, sub-surface scattering, fashion editorial rendering, " + p;
+        if(t.includes("Poros Reales")) p = "highly detailed skin texture, pores visible, " + p;
+        if(t.includes("Suela Roja")) p = "luxury red bottom soles on shoes, " + p;
+        navigator.clipboard.writeText(p); alert("🚀 ¡TODO FUSIONADO: Midjourney Copiado!");
+    }
+
+    function copyGPT() {
+        const t = document.getElementById('display-prompt').innerText;
+        navigator.clipboard.writeText(`High-end professional image with these attributes: ${t}. Professional editorial style.`);
+        alert("🎨 ChatGPT Copiado");
+    }
+
+    function resetAll() {
+        selections.clear();
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+        update();
+    }
+</script>
+</body>
+</html>
+

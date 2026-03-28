@@ -3,72 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Vision Studio | Consola Maestra Total</title>
+    <title>Arbelo Vision Studio | Consola Maestra Recuperada</title>
     <style>
         :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; --gpt: #10a37f; }
-        body { font-family: 'Inter', sans-serif; background: var(--crema); margin:0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 1000px; width: 100%; background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-top: 15px solid var(--verde); text-align: center; }
-        h1 { color: var(--verde); font-size: 2.2rem; margin-bottom: 5px; }
+        body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--oscuro); margin:0; padding: 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .container { max-width: 900px; width: 100%; background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-top: 15px solid var(--verde); text-align: center; margin-bottom: 120px; }
+        h1 { color: var(--verde); margin-bottom: 5px; font-size: 2.2rem; }
+        .subtitle { font-size: 0.8rem; color: #999; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; }
         .section-title { background: #eee; color: #666; padding: 10px; border-radius: 10px; font-size: 0.75rem; font-weight: 900; margin-top: 30px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
         .category { margin-bottom: 10px; border: 1px solid #eee; border-radius: 15px; overflow: hidden; text-align: left; }
         .category-header { background: #fff; padding: 15px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.9rem; color: var(--verde); }
-        .category-content { display: none; padding: 20px; background: #fafafa; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; border-top: 1px solid #eee; }
+        .category-content { display: none; padding: 20px; background: #fafafa; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; border-top: 1px solid #eee; }
         .category.active .category-content { display: grid; }
         .option-btn { background: white; border: 1px solid #ddd; padding: 10px; border-radius: 10px; cursor: pointer; font-size: 0.7rem; transition: 0.2s; color: #555; }
         .option-btn.active { background: var(--verde); color: white; border-color: var(--verde); font-weight: 700; }
-        .result-area { margin-top: 50px; padding: 25px; background: var(--oscuro); color: #eee; border-radius: 25px; text-align: left; position: sticky; bottom: 20px; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
-        .prompt-text { font-family: 'Courier New', monospace; font-size: 0.82rem; color: #90ee90; line-height: 1.4; }
-        .copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 20px; }
-        .btn-ia { padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; color: white; transition: 0.3s; }
+        .result-area { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 860px; width: 90%; background: var(--oscuro); color: #eee; padding: 20px 25px; border-radius: 25px; text-align: left; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+        .prompt-text { font-family: 'Courier New', monospace; font-size: 0.8rem; display: block; color: #90ee90; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; }
+        .copy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .btn-ia { padding: 10px; border: none; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; color: white; transition: 0.3s; }
+        .btn-reset { background: #444; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Arbelo Vision Studio</h1>
-    <div style="color:#999; letter-spacing:3px; font-weight:700; font-size:0.7rem;">CONSOLA DE INGENIERÍA TOTAL (FOTO, NEGOCIOS & 3D)</div>
+    <div class="subtitle">Consola Maestra de Ingeniería Total</div>
 
     <div id="master-accordion"></div>
+</div>
 
-    <div class="result-area">
-        <span style="color:var(--oro); font-size:0.7rem; font-weight:900;">CONFIGURACIÓN MAESTRA:</span>
-        <span id="display-prompt" class="prompt-text">Selecciona los elementos de tu visión estratégica...</span>
-        
-        <div class="copy-grid">
-            <button class="btn-ia" style="background:var(--verde)" onclick="copyMJ()">Midjourney</button>
-            <button class="btn-ia" style="background:var(--gpt)" onclick="copyGPT()">ChatGPT</button>
-            <button class="btn-ia" style="background:#444" onclick="resetAll()">Limpiar Todo</button>
-        </div>
+<div class="result-area">
+    <span style="color:var(--oro); font-size:0.65rem; font-weight:900;">CONFIGURACIÓN VISUAL MAESTRA:</span>
+    <span id="display-prompt" class="prompt-text">Armando tu visión con coherencia estratégica...</span>
+    
+    <div class="copy-grid">
+        <button class="btn-ia" style="background:var(--verde)" onclick="copyMJ()">Midjourney</button>
+        <button class="btn-ia" style="background:var(--gpt)" onclick="copyGPT()">ChatGPT</button>
+        <button class="btn-ia btn-reset" onclick="resetAll()">Limpiar Todo</button>
     </div>
 </div>
 
 <script>
     const sections = [
-        { label: "BLOQUE 0: ESTRATEGIA & ADN", cats: [
-            { title: "Nicho de Negocio", key: "biz", opts: ["Marketing Digital", "Real Estate", "Salud/Bienestar", "Finanzas", "Estética Pro", "Consultoría", "E-commerce"] },
-            { title: "Identidad & Edad", key: "idn", opts: ["Mujer Latina", "Elegancia Europea", "25-35 años", "35-45 años", "45-55 años", "60+ años"] },
-            { title: "Paleta Branding", key: "col", opts: ["Old Money (Beige)", "Poder (Azul)", "Barbie Core (Rosa)", "Pure White", "Luxury Noir", "Royal (Oro)", "Pasteles Suaves"] }
+        { label: "BLOQUE 0: ADN DE MARCA & NEGOCIOS", cats: [
+            { title: "Nicho de Servicio", key: "biz", opts: ["Marketing Digital", "Real Estate", "Salud/Bienestar", "Finanzas", "Estética Pro", "Consultoría"] },
+            { title: "Identidad & Edad", key: "idn", opts: ["Mujer Latina", "Elegancia Europea", "25-35 años", "35-45 años", "45-55 años"] },
+            { title: "Paleta Branding", key: "col", opts: ["Old Money", "Poder", "Barbie Core", "Pure White", "Luxury Noir"] }
         ]},
         { label: "BLOQUE 1: PERSONAJE & CABELLO", cats: [
-            { title: "Arquetipo", key: "sub", opts: ["CEO Visionaria", "Mentora Zen", "Influencer de Lujo", "Líder de Opinión", "Creativa Rebelde"] },
-            { title: "Tipo de Pelo", key: "ht", opts: ["Pelo Rizo", "Pelo Ondulado", "Pelo Liso", "Cabello Afro", "Media Melena", "Pixie Cut"] },
-            { title: "Color de Pelo", key: "hc", opts: ["Negro Azabache", "Rubio Platino", "Rojo Vibrante", "Castaño Chocolate", "Cobrizo Editorial", "Mechas Balayage"] },
-            { title: "Peinado", key: "hs", opts: ["Moño Pulido", "Coleta Alta", "Ondas al Agua", "Efecto Wet", "Suelto con Volumen", "Raya al Medio"] }
+            { title: "Arquetipo", key: "sub", opts: ["CEO Visionaria", "Mentora Zen", "Influencer de Lujo", "Líder Inspiradora"] },
+            { title: "Tipo de Cabello", key: "ht", opts: ["Pelo Rizo", "Pelo Ondulado", "Pelo Liso", "Afro Chic"] },
+            { title: "Color Cabello", key: "hc", opts: ["Rubio Platino", "Rojo Vibrante", "Negro Azabache", "Balayage"] }
         ]},
-        { label: "BLOQUE 2: MAQUILLAJE & PIEL (LOS 20 PUNTOS)", cats: [
-            { title: "Maquillaje", key: "mk", opts: ["No-Makeup Look", "Labios Rojos", "Mate Editorial", "Piel Glowy", "Pestañas Infinitas", "Labios Nude Glossy"] },
-            { title: "Detalle de Piel", key: "skn", opts: ["Poros Reales", "Piel Satinada", "Piel de Vidrio", "Textura Natural", "Pecas Sutiles", "HD Detail"] }
+        { label: "BLOQUE 2: MAQUILLAJE & SKINCARE", cats: [
+            { title: "Maquillaje", key: "mk", opts: ["No-Makeup Look", "Labios Rojos", "Mate Editorial", "Piel Glowy"] },
+            { title: "Textura Piel", key: "sk", opts: ["Poros Reales", "Satinada", "Vidrio", "Pecas Sutiles"] }
         ]},
         { label: "BLOQUE 3: ATUENDO & CALZADO", cats: [
-            { title: "Vestimenta", key: "out", opts: ["Total White Look", "Blazer Sastre", "Camisa de Seda", "Abrigo Cashmere", "Estilo Old Money", "Seda Italiana"] },
-            { title: "Estilo Zapato", key: "st", opts: ["Stilettos (Tacón)", "Mocasines Lujo", "Botas Altas Piel", "Sneakers High-End", "Sandalias Joya"] },
-            { title: "Detalle Zapato", key: "sc", opts: ["Suela Roja", "Negro Charol", "Nude Elegante", "Oro Metalizado", "Cuero de Cocodrilo"] }
+            { title: "Vestimenta", key: "out", opts: ["Total White Look", "Blazer Sastre", "Seda Italiana", "Estilo Old Money"] },
+            { title: "Zapato", key: "st", opts: ["Stilettos (Tacón)", "Mocasines Lujo", "Botas de Piel", "Sandalias Joya"] }
         ]},
         { label: "BLOQUE 4: ESCENA, LUZ & MOTOR VISUAL", cats: [
-            { title: "Ubicación", key: "env", opts: ["Calle de París", "Penthouse NYC", "Terraza Mediterráneo", "Oficina High-Tech", "Jet Privado", "Lobby Hotel 5*"] },
-            { title: "Acción & Objetos", key: "act", opts: ["Mirada de Poder", "Tomando Café", "Analizando Datos", "Grabando Podcast", "MacBook Pro", "iPhone 15 Pro"] },
-            { title: "Iluminación & Lente", key: "lit", opts: ["Golden Hour", "Luz Rembrandt", "Luz Natural Ventana", "Softbox Estudio", "85mm Portrait", "Shot on iPhone"] },
-            { title: "MOTOR VISUAL", key: "mot", opts: ["Fotografía Realista", "3D Animación de Lujo", "Render Hiper-Realista", "Acabado Mate (Clay)", "Render Glossy"] }
+            { title: "Ubicación", key: "env", opts: ["Calle de París", "Penthouse NYC", "Terraza Mediterráneo", "Oficina High-Tech"] },
+            { title: "Acción & Objetos", key: "act", opts: ["Mirada de Poder", "Tomando Café", "Analizando Datos", "iPhone 15 Pro"] },
+            { title: "Motor Visual", key: "mot", opts: ["Fotografía Realista", "3D Animación Lujo", "Acabado Mate (Clay)"] }
         ]}
     ];
 
@@ -101,22 +100,18 @@
 
     function update() {
         const p = Array.from(selections).join(", ");
-        document.getElementById('display-prompt').innerText = p || "Selecciona los elementos de tu visión estratégica...";
+        document.getElementById('display-prompt').innerText = p || "Armando tu visión estratégica...";
     }
 
     function copyMJ() {
         const t = document.getElementById('display-prompt').innerText;
-        let p = `${t} --v 6.1 --ar 4:5 --stylize 250 --quality 2`;
-        if(t.includes("3D Animación")) p = "high-end 3D luxury animation style, elegant features, refined textures, sub-surface scattering, fashion editorial rendering, " + p;
-        if(t.includes("Poros Reales")) p = "highly detailed skin texture, pores visible, " + p;
-        if(t.includes("Suela Roja")) p = "luxury red bottom soles on shoes, " + p;
-        navigator.clipboard.writeText(p); alert("🚀 ¡TODO FUSIONADO: Midjourney Copiado!");
+        let p = `${t} --v 6.1 --ar 4:5 --stylize 250`;
+        navigator.clipboard.writeText(p); alert("Midjourney Copiado");
     }
 
     function copyGPT() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`High-end professional image with these attributes: ${t}. Professional editorial style.`);
-        alert("🎨 ChatGPT Copiado");
+        navigator.clipboard.writeText(`Create a prompt based on these attributes: ${document.getElementById('display-prompt').innerText}`);
+        alert("ChatGPT Copiado");
     }
 
     function resetAll() {
@@ -127,4 +122,3 @@
 </script>
 </body>
 </html>
-

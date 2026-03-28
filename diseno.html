@@ -3,118 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital Studio | Luxe Edition</title>
+    <title>Arbelo Digital Studio | Tactile SaaS v6.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
             --pink: #ffdae9; --teal: #e0f2f1; --gold: #d4af37; 
             --text: #5d4037; --white: #ffffff; --accent: #ff8a80;
+            --shadow: rgba(194,24,91,0.1);
         }
         * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; }
         body { margin: 0; display: flex; height: 100vh; background: #fffaf0; color: var(--text); overflow: hidden; }
 
-        /* Sidebar Estética */
-        .sidebar { width: 280px; background: var(--teal); padding: 40px 20px; display: flex; flex-direction: column; border-right: 5px solid var(--white); transition: 0.3s; z-index: 2000; }
-        .logo-area h1 { font-size: 1.8rem; color: #00796b; margin: 0; text-align: center; font-weight: 700; }
-        .logo-area p { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin-bottom: 40px; color: #4db6ac; }
+        /* Sidebar Chic */
+        .sidebar { width: 300px; background: var(--teal); padding: 40px 20px; display: flex; flex-direction: column; border-right: 5px solid var(--white); transition: 0.3s; z-index: 2000; overflow-y: auto; }
+        .logo-area { text-align: center; margin-bottom: 40px; }
+        .logo-area h1 { font-size: 1.8rem; color: #00796b; margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .logo-area p { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; color: #4db6ac; }
         
-        .nav-link { background: var(--white); border: none; color: #00796b; padding: 15px; text-align: left; cursor: pointer; font-size: 0.85rem; font-weight: 700; border-radius: 20px; margin-bottom: 10px; transition: 0.3s; box-shadow: 0 4px 0px rgba(0,0,0,0.05); }
-        .nav-link.active { background: var(--pink); color: #c2185b; transform: scale(1.05); box-shadow: 0 6px 15px rgba(194,24,91,0.1); }
+        .nav-link { 
+            background: var(--white); border: none; color: #00796b; padding: 18px; 
+            text-align: left; cursor: pointer; font-size: 0.85rem; font-weight: 700; 
+            border-radius: 25px; margin-bottom: 12px; transition: 0.2s;
+            box-shadow: 0 5px 0 var(--shadow); width: 100%;
+        }
+        .nav-link.active { background: var(--pink); color: #c2185b; transform: scale(1.05); box-shadow: 0 8px 20px var(--shadow); }
 
-        /* Workspace */
-        .main-content { flex: 1; overflow-y: auto; padding: 40px; position: relative; }
-        .section-header { font-size: 1.4rem; font-weight: 700; color: #00796b; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
-        .section-header::before { content: '✨'; }
+        /* Workspace Principal */
+        .main-content { flex: 1; overflow-y: auto; padding: 40px; padding-bottom: 250px; position: relative; }
+        .view-content { display: none; animation: slideUp 0.4s ease; }
+        .view-content.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 150px; }
+        .section-header { font-size: 1.6rem; font-weight: 700; color: #00796b; margin-bottom: 30px; border-bottom: 3px solid var(--teal); padding-bottom: 10px; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border-radius: 35px; padding: 25px; border: 2px solid var(--teal); box-shadow: 0 10px 25px rgba(0,0,0,0.02); }
+        .card h3 { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-left: 4px solid var(--pink); padding-left: 10px; }
         
-        /* Tarjetas y Botones Estilo "Caramelo" */
-        .card { background: var(--white); border-radius: 30px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); border: 2px solid var(--teal); }
-        .card h3 { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        
+        /* BOTONES TÁCTILES "CARAMELO" QUE SE HUNDEN */
         .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .opt-btn { 
-            background: #fff; border: 2px solid var(--teal); padding: 12px; border-radius: 20px; 
-            cursor: pointer; font-size: 0.75rem; font-weight: 700; transition: 0.3s; color: #00796b;
-            box-shadow: 0 4px 0 var(--teal);
+            background: #fff; border: 2px solid var(--teal); padding: 14px; border-radius: 22px; 
+            cursor: pointer; font-size: 0.75rem; font-weight: 700; transition: 0.2s; color: #00796b;
+            box-shadow: 0 6px 0 var(--teal); text-align: left;
         }
-        .opt-btn:active { transform: translateY(4px); box-shadow: none; }
-        .opt-btn.active { background: var(--pink); border-color: #f8bbd0; color: #c2185b; box-shadow: 0 4px 0 #f8bbd0; }
+        .opt-btn.active { 
+            background: var(--pink); border-color: #f8bbd0; color: #c2185b; 
+            box-shadow: inset 0 6px 10px rgba(194,24,91,0.15); /* Efecto hundido */
+            transform: translateY(6px); /* Movimiento físico */
+        }
 
-        /* Consola Flotante Mágica */
-        .output-panel { position: fixed; bottom: 20px; left: 300px; right: 20px; background: var(--white); border-radius: 30px; padding: 25px; border: 3px solid var(--pink); box-shadow: 0 15px 40px rgba(0,0,0,0.08); z-index: 1500; }
-        .prompt-box { color: #5d4037; font-family: 'Quicksand', sans-serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; border-bottom: 2px dashed var(--pink); padding-bottom: 15px; min-height: 40px; }
+        /* Consola de Control Arbelo */
+        .output-panel { 
+            position: fixed; bottom: 20px; left: 320px; right: 20px; 
+            background: var(--white); border-radius: 35px; padding: 25px; 
+            border: 4px solid var(--pink); box-shadow: 0 20px 60px var(--shadow); 
+        }
+        .prompt-box { font-weight: 600; color: var(--text); border-bottom: 2px dashed var(--pink); padding-bottom: 15px; margin-bottom: 15px; min-height: 40px; font-size: 0.9rem; }
         
-        .app-connect { display: flex; gap: 10px; overflow-x: auto; }
-        .app-btn { padding: 12px 20px; border: none; border-radius: 20px; color: white; font-weight: 800; font-size: 0.65rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-        .app-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .app-connect { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .app-btn { padding: 12px 20px; border: none; border-radius: 20px; color: white; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 0 rgba(0,0,0,0.1); }
+        .app-btn:active { transform: translateY(3px); box-shadow: none; }
 
-        /* Responsivo */
         @media (max-width: 768px) {
             .sidebar { position: fixed; left: -100%; }
-            .output-panel { left: 20px; }
+            .output-panel { left: 20px; bottom: 10px; padding: 15px; }
             .btn-group { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar">
         <div class="logo-area">
             <h1>ARBELO</h1>
             <p>Digital Studio ✨</p>
         </div>
         <button class="nav-link active" onclick="showView(this, 'view-marca')">🌸 Persona & Autoridad</button>
-        <button class="nav-link" onclick="showView(this, 'view-ecommerce')">🛍️ E-commerce & Mockups</button>
-        <button class="nav-link" onclick="showView(this, 'view-video')">🎬 Video & 3D Pixar</button>
+        <button class="nav-link" onclick="showView(this, 'view-eco')">🛍️ E-commerce & Mockups</button>
+        <button class="nav-link" onclick="showView(this, 'view-lux')">💎 Materiales & Lujo</button>
+        <button class="nav-link" onclick="showView(this, 'view-tech')">🎬 Motor Video & 3D</button>
     </div>
 
     <div class="main-content">
-        <div id="view-marca" class="view-content active" style="display:block;">
-            <div class="section-header">Esencia de Marca</div>
+        <div id="view-marca" class="view-content active">
+            <div class="section-header">Persona & Autoridad</div>
             <div class="grid-container">
                 <div class="card">
-                    <h3>ADN Visual</h3>
+                    <h3>ADN ESTRATÉGICO</h3>
                     <div class="btn-group">
                         <button class="opt-btn" onclick="toggle(this)">Old Money 💎</button>
-                        <button class="opt-btn" onclick="toggle(this)">Modern Luxe ✨</button>
-                        <button class="opt-btn" onclick="toggle(this)">Barbie Luxe 🎀</button>
+                        <button class="opt-btn" onclick="toggle(this)">Poder Ejecutivo 💼</button>
+                        <button class="opt-btn" onclick="toggle(this)">Coach Luxe ⚖️</button>
+                        <button class="opt-btn" onclick="toggle(this)">Barbie Core 🎀</button>
                     </div>
                 </div>
                 <div class="card">
-                    <h3>Identidad Pro</h3>
+                    <h3>CABELLO & IDENTIDAD</h3>
                     <div class="btn-group">
                         <button class="opt-btn" onclick="toggle(this)">Pelo Rizo 🌀</button>
                         <button class="opt-btn" onclick="toggle(this)">Moño Pulido 👱‍♀️</button>
                         <button class="opt-btn" onclick="toggle(this)">Ondas al Agua 🌊</button>
+                        <button class="opt-btn" onclick="toggle(this)">Rubio Platino 👩🏼</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="view-eco" class="view-content">
+            <div class="section-header">Showcase de Productos</div>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>MOCKUPS (POD)</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Libro 3D 📖</button>
+                        <button class="opt-btn" onclick="toggle(this)">Gorra Luxe 🧢</button>
+                        <button class="opt-btn" onclick="toggle(this)">Agenda Cuero 📓</button>
+                        <button class="opt-btn" onclick="toggle(this)">Lentes Sol 🕶️</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>CALZADO & MODA</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Suela Roja Iconic 👠</button>
+                        <button class="opt-btn" onclick="toggle(this)">Mocasines Lujo 👞</button>
+                        <button class="opt-btn" onclick="toggle(this)">Perfume Pro 🧪</button>
+                        <button class="opt-btn" onclick="toggle(this)">Joyas Diamante 💍</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <div id="view-lux" class="view-content">
+            <div class="section-header">Texturas & Fondos Luxe</div>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>SUPERFICIES</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Mármol Carrara 🏛️</button>
+                        <button class="opt-btn" onclick="toggle(this)">Seda Ondulada 🎀</button>
+                        <button class="opt-btn" onclick="toggle(this)">Piedra Travertino 🪨</button>
+                        <button class="opt-btn" onclick="toggle(this)">Cristal Esmerilado 🧊</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>ILUMINACIÓN</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Golden Hour 🌅</button>
+                        <button class="opt-btn" onclick="toggle(this)">Luz Rembrandt 🎭</button>
+                        <button class="opt-btn" onclick="toggle(this)">Softbox Studio 💡</button>
+                        <button class="opt-btn" onclick="toggle(this)">Shot on iPhone 📱</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-tech" class="view-content">
+            <div class="section-header">Motor Video & 3D</div>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>ESTILOS RENDER</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">3D Pixar Style 🎬</button>
+                        <button class="opt-btn" onclick="toggle(this)">Unreal Engine 5 🎮</button>
+                        <button class="opt-btn" onclick="toggle(this)">Acuarela Pro 🎨</button>
+                        <button class="opt-btn" onclick="toggle(this)">Holographic FX 🌌</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>DINÁMICA VIDEO AI</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Cinemagraph 📸</button>
+                        <button class="opt-btn" onclick="toggle(this)">Slow Motion 🐢</button>
+                        <button class="opt-btn" onclick="toggle(this)">Drone FPV View 🛸</button>
+                        <button class="opt-btn" onclick="toggle(this)">Zoom In Suave 🔍</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="output-panel">
-        <div id="prompt-output" class="prompt-box">Selecciona tu magia visual...</div>
+        <div id="prompt-output" class="prompt-box">Tu ingeniería visual aparecerá aquí... ✨</div>
         <div class="app-connect">
             <button class="app-btn" style="background:#4db6ac" onclick="copy('Freepik')">Freepik</button>
             <button class="app-btn" style="background:#ff8a80" onclick="copy('Higgsfield')">Higgsfield</button>
             <button class="app-btn" style="background:#81d4fa" onclick="copy('Dalle')">DALL-E 3</button>
-            <button class="app-btn" style="background:#ce93d8" onclick="copy('Gemini')">Gemini</button>
+            <button class="app-btn" style="background:#ce93d8" onclick="copy('Gemini')">Gemini Pro</button>
+            <button class="app-btn" style="background:#3d3d3d" onclick="resetAll()">Limpiar</button>
         </div>
     </div>
 
     <script>
         let selections = new Set();
+
         function toggle(btn) {
             btn.classList.toggle('active');
             if(btn.classList.contains('active')) selections.add(btn.innerText);
             else selections.delete(btn.innerText);
-            document.getElementById('prompt-output').innerText = Array.from(selections).join(", ") || "Selecciona tu magia visual...";
+            document.getElementById('prompt-output').innerText = Array.from(selections).join(", ") || "Tu ingeniería visual aparecerá aquí... ✨";
         }
+
+        function showView(btn, viewId) {
+            document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            btn.classList.add('active');
+        }
+
         function copy(app) {
             const t = document.getElementById('prompt-output').innerText;
             navigator.clipboard.writeText(`[ARBELO ${app.toUpperCase()}]: ${t}`);
-            alert("✨ ¡Copiado con éxito para " + app + "!");
+            alert("✨ ¡Copiado para " + app + " con efecto táctil!");
+        }
+
+        function resetAll() {
+            selections.clear();
+            document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('prompt-output').innerText = "Tu ingeniería visual aparecerá aquí... ✨";
         }
     </script>
 </body>

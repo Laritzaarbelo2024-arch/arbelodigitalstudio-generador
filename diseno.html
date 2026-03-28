@@ -2,210 +2,137 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital Studio | Luxe & Complete Edition v6.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Arbelo Full-Access v9.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --pink: #ffdae9; /* Rosa Pastel Imagen 3 */
-            --teal: #e0f2f1; /* Verde Teal Pastel Imagen 3 */
-            --gold: #d4af37; /* Oro Detalles */
-            --text: #5d4037; /* Marrón Texto Imagen 3 */
-            --white: #ffffff;
-            --accent: #ff8a80; /* Acento Coral Imagen 3 */
-            --border: #e0f2f1; /* Borde Suave */
-        }
-        * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; }
-        body { margin: 0; display: flex; height: 100vh; background: #fffaf0; color: var(--text); overflow: hidden; }
+        :root { --verde: #1a4314; --oro: #bfa145; --crema: #fffdf9; --white: #ffffff; }
+        * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { margin: 0; background: var(--crema); color: var(--verde); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 
-        /* Sidebar Estética y Completa - Imagen 3 style */
-        .sidebar { width: 300px; background: var(--teal); padding: 40px 20px; display: flex; flex-direction: column; border-right: 5px solid var(--white); transition: 0.3s; z-index: 2000; overflow-y: auto; }
-        .logo-area { text-align: center; margin-bottom: 40px; }
-        .logo-area h1 { font-size: 1.8rem; color: #00796b; margin: 0; font-weight: 700; }
-        .logo-area p { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; margin-top: 5px; color: #4db6ac; }
+        /* Header Compacto */
+        .header { background: var(--white); padding: 12px; text-align: center; border-bottom: 3px solid var(--oro); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .header h1 { font-size: 1.2rem; margin: 0; color: var(--verde); letter-spacing: 1px; }
+
+        /* Contenedor con Scroll */
+        .content { flex: 1; overflow-y: auto; padding: 10px 10px 180px 10px; }
+
+        /* Secciones Compactas */
+        .section { background: var(--white); border-radius: 15px; border: 1.5px solid var(--verde); margin-bottom: 10px; overflow: hidden; }
+        .sec-header { background: var(--verde); color: white; padding: 10px 15px; font-size: 0.75rem; font-weight: 700; display: flex; justify-content: space-between; cursor: pointer; }
         
-        .nav-link { background: var(--white); border: none; color: #00796b; padding: 18px 20px; text-align: left; cursor: pointer; font-size: 0.85rem; font-weight: 700; border-radius: 25px; margin-bottom: 12px; transition: 0.3s; box-shadow: 0 4px 0px rgba(0,0,0,0.05); }
-        .nav-link:hover { transform: scale(1.02); background: #fdfdfd; }
-        .nav-link.active { background: var(--pink); color: #c2185b; transform: scale(1.05); box-shadow: 0 8px 20px rgba(194,24,91,0.15); }
-
-        /* Workspace Principal - Imagen 3 layout */
-        .main-content { flex: 1; overflow-y: auto; padding: 40px; position: relative; padding-bottom: 200px; }
-        .view-content { display: none; animation: fadeIn 0.4s ease; max-width: 1100px; margin: 0 auto; width: 100%; }
-        .view-content.active { display: block; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .section-header { font-size: 1.5rem; font-weight: 700; color: #00796b; margin-bottom: 35px; border-bottom: 3px solid var(--teal); padding-bottom: 15px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .section-header::before { content: '✨'; font-size: 1.2rem; }
-
-        /* Tarjetas Estilo Imagen 3 */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card { background: var(--white); border-radius: 35px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 2px solid var(--border); transition: 0.3s; }
-        .card:hover { border-color: var(--pink); box-shadow: 0 15px 40px rgba(194,24,91,0.05); }
-        .card h3 { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; border-left: 4px solid var(--verde); padding-left: 12px; }
+        .btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 10px; }
         
-        /* Botones Estilo Imagen 3 - "Cute & Luxe" */
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        /* BOTONES MINI-TÁCTILES (Para que quepan todos) */
         .opt-btn { 
-            background: #fff; border: 2px solid var(--teal); padding: 15px; border-radius: 25px; 
-            cursor: pointer; font-size: 0.75rem; font-weight: 700; transition: 0.3s; color: #00796b;
-            box-shadow: 0 5px 0 var(--teal); text-align: left;
+            background: #fff; border: 1px solid #ddd; padding: 8px 4px; border-radius: 12px; 
+            font-size: 0.6rem; font-weight: 700; color: var(--verde); text-align: center;
+            box-shadow: 0 3px 0 #ddd; transition: 0.1s;
         }
-        .opt-btn:hover { border-color: var(--gold); color: #00796b; }
-        .opt-btn:active { transform: translateY(4px); box-shadow: none; }
-        .opt-btn.active { background: var(--pink); border-color: #f8bbd0; color: #c2185b; box-shadow: 0 5px 0 #f8bbd0; }
+        .opt-btn.active { 
+            background: #fdf2f5; border-color: var(--oro); color: var(--verde); 
+            box-shadow: inset 0 3px 5px rgba(191,161,69,0.3); transform: translateY(3px);
+        }
 
-        /* Consola Flotante Mágica v2.0 - Adaptada Imagen 3 */
-        .output-panel { position: fixed; bottom: 25px; left: 330px; right: 25px; background: var(--white); border-radius: 35px; padding: 30px; border: 4px solid var(--pink); box-shadow: 0 20px 60px rgba(194,24,91,0.1); z-index: 1500; }
-        .prompt-box { color: var(--text); font-family: 'Quicksand', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 20px; border-bottom: 2px dashed var(--pink); padding-bottom: 18px; min-height: 45px; overflow-wrap: break-word; }
+        /* Consola de Control Inferior */
+        .console { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: var(--verde); padding: 15px; border-radius: 20px 20px 0 0; 
+            border-top: 3px solid var(--oro); box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+        #prompt { color: var(--crema); font-size: 0.7rem; margin-bottom: 10px; min-height: 30px; text-align: center; border-bottom: 1px dashed var(--oro); padding-bottom: 8px; }
         
-        .app-connect { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 5px; justify-content: center; }
-        .app-btn { padding: 14px 25px; border: none; border-radius: 22px; color: white; font-weight: 800; font-size: 0.65rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; white-space: nowrap; }
-        .app-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .apps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+        .app-btn { padding: 8px; border: none; border-radius: 8px; color: white; font-size: 0.5rem; font-weight: 800; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar" id="sidebar">
-        <div class="logo-area">
-            <h1>ARBELO</h1>
-            <p>Digital Studio ✨</p>
-        </div>
-        <button class="nav-link active" onclick="showView(this, 'view-marca')">🌸 Persona & Autoridad</button>
-        <button class="nav-link" onclick="showView(this, 'view-ecommerce')">🛍️ E-commerce & Mockups</button>
-        <button class="nav-link" onclick="showView(this, 'view-video')">🎬 Video, 3D & Pixar</button>
-        <div style="margin-top: auto; font-size: 0.6rem; opacity: 0.5; text-align: center; color: #fff;">SOFTWARE v6.0 COMPLETE</div>
+    <div class="header">
+        <h1>ARBELO DIGITAL STUDIO</h1>
     </div>
 
-    <div class="main-content">
-        <div id="view-marca" class="view-content active">
-            <div class="section-header">Persona & Autoridad Pro <span>Retratos de Lujo</span></div>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>ADN ESTRATÉGICO</h3>
-                    <div class="btn-group">
-                        <button class="opt-btn" onclick="toggle(this)">Old Money 💎</button>
-                        <button class="opt-btn" onclick="toggle(this)">Coach Luxe ⚖️</button>
-                        <button class="opt-btn" onclick="toggle(this)">Poder Ejecutivo 💼</button>
-                        <button class="opt-btn" onclick="toggle(this)">Barbie Luxe 🎀</button>
-                        <button class="opt-btn" onclick="toggle(this)">Modern Luxe ✨</button>
-                        <button class="opt-btn" onclick="toggle(this)">Mujer Latina 💃</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>IDENTIDAD: PELO & COLOR</h3>
-                    <div class="btn-group">
-                        <button class="opt-btn" onclick="toggle(this)">Pelo Rizo 🌀</button>
-                        <button class="opt-btn" onclick="toggle(this)">Pelo Liso 💇‍♀️</button>
-                        <button class="opt-btn" onclick="toggle(this)">Moño Pulido 👱‍♀️</button>
-                        <button class="opt-btn" onclick="toggle(this)">Afro Chic ✊🏿</button>
-                        <button class="opt-btn" onclick="toggle(this)">Rubio Platino 👩🏼</button>
-                        <button class="opt-btn" onclick="toggle(this)">Negro Azabache 👩🏿</button>
-                    </div>
-                </div>
+    <div class="content">
+        <div class="section">
+            <div class="sec-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'">🌸 AUTORIDAD & MARCA <span>▼</span></div>
+            <div class="btn-grid">
+                <button class="opt-btn" onclick="tg(this)">Old Money</button>
+                <button class="opt-btn" onclick="tg(this)">Modern Luxe</button>
+                <button class="opt-btn" onclick="tg(this)">Ejecutiva</button>
+                <button class="opt-btn" onclick="tg(this)">Pelo Rizo</button>
+                <button class="opt-btn" onclick="tg(this)">Ondas Pro</button>
+                <button class="opt-btn" onclick="tg(this)">Moño Pulido</button>
+                <button class="opt-btn" onclick="tg(this)">Latina</button>
+                <button class="opt-btn" onclick="tg(this)">Empresaria</button>
+                <button class="opt-btn" onclick="tg(this)">Glowy HD</button>
             </div>
         </div>
 
-        <div id="view-ecommerce" class="view-content">
-            <div class="section-header">E-commerce & Mockups Pro <span>Productos Digitales</span></div>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>MOCKUPS POD (Impresión)</h3>
-                    <div class="btn-group">
-                        <button class="opt-btn" onclick="toggle(this)">Portada Libro 3D 📖</button>
-                        <button class="opt-btn" onclick="toggle(this)">Agenda Cuero 📓</button>
-                        <button class="opt-btn" onclick="toggle(this)">Taza Cerámica ☕</button>
-                        <button class="opt-btn" onclick="toggle(this)">Caja Envío VIP 📦</button>
-                        <button class="opt-btn" onclick="toggle(this)">Gorra Luxe 🧢</button>
-                        <button class="opt-btn" onclick="toggle(this)">Lentes de Sol 🕶️</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>BELLEZA & JOYAS</h3>
-                    <div class="btn-group">
-                        <button class="opt-btn" onclick="toggle(this)">Envase Skincare 🧴</button>
-                        <button class="opt-btn" onclick="toggle(this)">Frasco Perfume 🧪</button>
-                        <button class="opt-btn" onclick="toggle(this)">Joyas Diamante 💍</button>
-                        <button class="opt-btn" onclick="toggle(this)">Vela Aromática 🕯️</button>
-                        <button class="opt-btn" onclick="toggle(this)">Mocasin Lujo 👞</button>
-                        <button class="opt-btn" onclick="toggle(this)">Suela Roja Iconic 👠</button>
-                    </div>
-                </div>
+        <div class="section">
+            <div class="sec-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'">👠 MODA & LUXE <span>▼</span></div>
+            <div class="btn-grid" style="display:none">
+                <button class="opt-btn" onclick="tg(this)">Suela Roja</button>
+                <button class="opt-btn" onclick="tg(this)">Mocasin</button>
+                <button class="opt-btn" onclick="tg(this)">Diamantes</button>
+                <button class="opt-btn" onclick="tg(this)">Reloj Oro</button>
+                <button class="opt-btn" onclick="tg(this)">Perfume Pro</button>
+                <button class="opt-btn" onclick="tg(this)">Crema Luxe</button>
+                <button class="opt-btn" onclick="tg(this)">Bolso Piel</button>
+                <button class="opt-btn" onclick="tg(this)">Maquillaje</button>
+                <button class="opt-btn" onclick="tg(this)">Seda Pro</button>
             </div>
         </div>
 
-        <div id="view-video" class="view-content">
-            <div class="section-header">Motor de Video & 3D <span>Animación & CGI</span></div>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>ESTILOS TECH & RENDER</h3>
-                    <div class="btn-group">
-                        <button class="opt-btn" onclick="toggle(this)">3D Pixar Style 🎬</button>
-                        <button class="opt-btn" onclick="toggle(this)">Unreal Engine 5 🎮</button>
-                        <button class="opt-btn" onclick="toggle(this)">Octane Render 🌟</button>
-                        <button class="opt-btn" onclick="toggle(this)">Holographic FX 🌌</button>
-                        <button class="opt-btn" onclick="toggle(this)">Acuarela Pro 🎨</button>
-                        <button class="opt-btn" onclick="toggle(this)">Render Mate (Clay) 🧱</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>DINÁMICA VIDEO AI</h3>
-                    <div class="btn-group">
-                        <button class="opt-btn" onclick="toggle(this)">Cinemagraph 📸</button>
-                        <button class="opt-btn" onclick="toggle(this)">Slow Motion Luxe 🐢</button>
-                        <button class="opt-btn" onclick="toggle(this)">Drone FPV View 🛸</button>
-                        <button class="opt-btn" onclick="toggle(this)">FPV Camera Pan 🎥</button>
-                        <button class="opt-btn" onclick="toggle(this)">Zoom In Suave 🔍</button>
-                        <button class="opt-btn" onclick="toggle(this)">Piel Glowy HD ✨</button>
-                    </div>
-                </div>
+        <div class="section">
+            <div class="sec-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'">📓 PRODUCTOS & POD <span>▼</span></div>
+            <div class="btn-grid" style="display:none">
+                <button class="opt-btn" onclick="tg(this)">Libro 3D</button>
+                <button class="opt-btn" onclick="tg(this)">Agenda</button>
+                <button class="opt-btn" onclick="tg(this)">Gorra Luxe</button>
+                <button class="opt-btn" onclick="tg(this)">Vela Luxe</button>
+                <button class="opt-btn" onclick="tg(this)">Caja VIP</button>
+                <button class="opt-btn" onclick="tg(this)">Taza Pro</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="sec-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'">🎬 VIDEO & RENDER <span>▼</span></div>
+            <div class="btn-grid" style="display:none">
+                <button class="opt-btn" onclick="tg(this)">3D Pixar</button>
+                <button class="opt-btn" onclick="tg(this)">Unreal 5</button>
+                <button class="opt-btn" onclick="tg(this)">Octane</button>
+                <button class="opt-btn" onclick="tg(this)">Slow Mo</button>
+                <button class="opt-btn" onclick="tg(this)">Drone View</button>
+                <button class="opt-btn" onclick="tg(this)">FPV Zoom</button>
             </div>
         </div>
     </div>
 
-    <div class="output-panel">
-        <div id="prompt-output" class="prompt-box">Selecciona tu ingeniería visual...</div>
-        <div class="app-connect">
-            <button class="app-btn" style="background:#4db6ac" onclick="copy('Flow')">G. Flow</button>
-            <button class="app-btn" style="background:#ff8a80" onclick="copy('Freepik')">Freepik</button>
-            <button class="app-btn" style="background:#ffcc80; color:#5d4037" onclick="copy('Higgsfield')">Higgsfield</button>
-            <button class="app-btn" style="background:#81d4fa" onclick="copy('Dalle')">DALL-E 3</button>
-            <button class="app-btn" style="background:#ce93d8" onclick="copy('Gemini')">Gemini</button>
-            <button class="app-btn" style="background:#3d3d3d" onclick="resetAll()">Limpiar</button>
+    <div class="console">
+        <div id="prompt">Selecciona opciones... ✨</div>
+        <div class="apps">
+            <button class="app-btn" style="background:#4db6ac" onclick="cp('Frp')">Freepik</button>
+            <button class="app-btn" style="background:#ff8a80" onclick="cp('Hgs')">Higgs</button>
+            <button class="app-btn" style="background:#81d4fa; color:#1a" onclick="cp('Dle')">Dalle</button>
+            <button class="app-btn" style="background:#bfa145; color:#1a" onclick="res()">Reset</button>
         </div>
     </div>
 
     <script>
-        let selections = new Set();
-
-        function toggle(btn) {
-            btn.classList.toggle('active');
-            if(btn.classList.contains('active')) selections.add(btn.innerText);
-            else selections.delete(btn.innerText);
-            document.getElementById('prompt-output').innerText = Array.from(selections).join(", ") || "Selecciona tu ingeniería visual...";
+        let s = new Set();
+        function tg(b) {
+            b.classList.toggle('active');
+            if(b.classList.contains('active')) s.add(b.innerText); else s.delete(b.innerText);
+            document.getElementById('prompt').innerText = Array.from(s).join(", ") || "Selecciona opciones... ✨";
         }
-
-        function showView(btn, viewId) {
-            document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-            btn.classList.add('active');
+        function cp(a) {
+            navigator.clipboard.writeText(`[ARBELO]: ${document.getElementById('prompt').innerText}`);
+            alert("Copiado!");
         }
-
-        function copy(app) {
-            const t = document.getElementById('prompt-output').innerText;
-            if(!t || t === "Selecciona tu ingeniería visual...") { alert("¡Selecciona algo primero!"); return; }
-            let final = `[ARBELO V6 - ${app.toUpperCase()}]: ${t}`;
-            if(app === 'Higgsfield') final += ", realistic video animation, fluid character motion, 4k cinematic";
-            if(app === 'Dalle') final = `Create a professional high-end visual for Arbelo Studio: ${t}. Editorial photography style.`;
-            navigator.clipboard.writeText(final);
-            alert("✨ ¡Copiado con éxito para " + app + "!");
-        }
-
-        function resetAll() {
-            selections.clear();
+        function res() {
+            s.clear();
             document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('prompt-output').innerText = "Selecciona tu ingeniería visual...";
+            document.getElementById('prompt').innerText = "Selecciona opciones... ✨";
         }
     </script>
 </body>

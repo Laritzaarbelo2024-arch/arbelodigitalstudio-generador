@@ -5,16 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Vision Studio | Consola Cromática & 3D Pro</title>
+    <title>Arbelo Vision Studio | Consola Total (Foto & 3D)</title>
     <style>
-        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; --gpt: #10a37f; --higgs: #ff4d4d; }
+        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; --gpt: #10a37f; --higgs: #ff4d4d; --google: #4285f4; --free: #00aaff; }
         body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--oscuro); margin:0; padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 900px; width: 100%; background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-top: 15px solid var(--verde); text-align: center; }
         h1 { color: var(--verde); margin-bottom: 5px; font-size: 2.2rem; }
         .subtitle { font-size: 0.8rem; color: #999; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; }
-        .section-title { background: var(--oro); color: white; padding: 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 900; margin-top: 35px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px; }
+        .section-title { background: #eee; color: #666; padding: 10px; border-radius: 10px; font-size: 0.75rem; font-weight: 900; margin-top: 30px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
         .category { margin-bottom: 10px; border: 1px solid #eee; border-radius: 15px; overflow: hidden; text-align: left; }
-        .category-header { background: #fff; padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.9rem; color: var(--verde); }
+        .category-header { background: #fff; padding: 15px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.9rem; color: var(--verde); }
         .category-content { display: none; padding: 20px; background: #fafafa; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; border-top: 1px solid #eee; }
         .category.active .category-content { display: grid; }
         .option-btn { background: white; border: 1px solid #ddd; padding: 10px; border-radius: 10px; cursor: pointer; font-size: 0.75rem; transition: 0.2s; color: #555; }
@@ -23,26 +23,27 @@
         .prompt-text { font-family: 'Courier New', monospace; font-size: 0.85rem; min-height: 40px; display: block; color: #90ee90; line-height: 1.4; }
         .copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 20px; }
         .btn-ia { padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; color: white; transition: 0.3s; }
-        .btn-mj { background: var(--verde); } .btn-gpt { background: var(--gpt); } .btn-higgs { background: var(--higgs); } .btn-reset { background: #444; }
-        .btn-ia:hover { transform: translateY(-3px); }
+        .btn-mj { background: var(--verde); } .btn-gpt { background: var(--gpt); } .btn-higgs { background: var(--higgs); } .btn-flow { background: var(--google); } .btn-free { background: var(--free); } .btn-reset { background: #444; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Arbelo Vision Studio</h1>
-    <div class="subtitle">Consola de Ingeniería Multi-Estilo & 3D</div>
+    <div class="subtitle">Consola de Ingeniería Total | Foto, Negocios & 3D</div>
 
     <div id="master-accordion"></div>
 
     <div class="result-area">
-        <span style="color:var(--oro); font-size:0.7rem; font-weight:900;">ADN & MOTOR DE RENDER:</span>
-        <span id="display-prompt" class="prompt-text">Define la identidad, colores y estilo (Foto o 3D)...</span>
+        <span style="color:var(--oro); font-size:0.7rem; font-weight:900;">PROMPT DE ALTA PRECISIÓN:</span>
+        <span id="display-prompt" class="prompt-text">Armando tu visión con coherencia...</span>
         
         <div class="copy-grid">
             <button class="btn-ia btn-mj" onclick="copyMJ()">Midjourney</button>
             <button class="btn-ia btn-gpt" onclick="copyGPT()">ChatGPT</button>
             <button class="btn-ia btn-higgs" onclick="copyHiggs()">Higgsfield</button>
+            <button class="btn-ia btn-flow" onclick="copyFlow()">Google Flow</button>
+            <button class="btn-ia btn-free" onclick="copyFree()">Freepik</button>
             <button class="btn-ia btn-reset" onclick="resetAll()">Limpiar</button>
         </div>
     </div>
@@ -50,100 +51,35 @@
 
 <script>
     const sections = [
-        { label: "BLOQUE 0: IDENTIDAD & ESTRATEGIA", cats: [
-            { title: "Nicho de Servicio", key: "biz", opts: ["Consultoría", "Real Estate", "Salud/Bienestar", "Educación", "Estética", "Finanzas", "Marketing Digital"] },
-            { title: "ADN Visual", key: "age", opts: ["Mujer Latina", "25-35 años", "35-45 años", "45-55 años", "60+ años", "Elegancia Europea"] }
+        { label: "BLOQUE 0: ESTRATEGIA & ADN (RECUPERADO)", cats: [
+            { title: "Tipo de Negocio", key: "biz", opts: ["Servicios", "Real Estate", "Salud/Bienestar", "Educación", "Estética", "Finanzas", "Marketing Digital"] },
+            { title: "ADN Identidad", key: "idn", opts: ["Mujer Latina", "25-35 años", "35-45 años", "45-55 años", "60+ años", "Elegancia Europea"] },
+            { title: "Paleta Branding", key: "col", opts: ["Old Money (Beige)", "Poder (Azul)", "Barbie Core (Rosa)", "Luxury Noir", "Boho Tierra", "Royal (Oro)"] }
         ]},
-        { label: "BLOQUE 1: BRANDING CROMÁTICO", cats: [
-            { title: "Paleta Principal", key: "col", opts: ["Old Money (Beige/Crema)", "Poder (Azul Marino/Gris)", "Barbie Core (Fucsia/Rosa)", "Luxury Noir (Negro/Plata)", "Boho Tierra (Ocre/Verde)", "Pure White (Blanco Puro)", "Royal (Azul/Oro)"] },
-            { title: "Acentos de Metal", key: "met", opts: ["Detalles en Oro", "Detalles en Plata", "Oro Rosa", "Bronce Mate", "Sin Metales"] },
-            { title: "Vibe Cromática", key: "vib", opts: ["Pasteles Suaves", "Monocromático", "Contraste Alto", "Tonos Desaturados", "Colores Vibrantes"] }
+        { label: "BLOQUE 1: PERSONAJE & LOOK (TODO RECUPERADO)", cats: [
+            { title: "1. Arquetipo", key: "sub", opts: ["CEO Visionaria", "Mentora Zen", "Creativa Rebelde", "Líder de Opinión", "Influencer de Lujo"] },
+            { title: "2. Atuendo", key: "out", opts: ["Total White Look", "Blazer Sastre", "Camisa Seda", "Lana Cashmere", "Estilo Old Money"] },
+            { title: "3. Accesorios", key: "acc", opts: ["Gafas de Lujo", "Joyas de Oro", "Reloj Alta Gama", "Bolso de Piel", "Pañuelo Seda"] },
+            { title: "4. Maquillaje", key: "mk", opts: ["No-Makeup Look", "Labios Rojos", "Piel Glowy", "Mate Editorial", "Piel Hidratada"] },
+            { title: "5. Peinado", key: "hair", opts: ["Moño Pulido", "Ondas al Agua", "Liso Extremo", "Coleta Alta", "Cabello al Aire"] }
         ]},
-        { label: "BLOQUE 2: PERSONAJE & ESCENA", cats: [
-            { title: "Arquetipo Arbelo", key: "sub", opts: ["CEO Visionaria", "Mentora Zen", "Influencer de Lujo", "Estratega", "Líder Inspiradora"] },
-            { title: "Escenario", key: "env", opts: ["Oficina Moderna", "Calle de París", "Terraza Mar Mediterráneo", "Estudio Minimalista", "Lobby Hotel 5*"] },
-            { title: "Acción", key: "act", opts: ["Tomando Café", "Mirada de Poder", "Grabando Podcast", "Risa Genuina", "Analizando Datos"] }
+        { label: "BLOQUE 2: ESCENA & CONTEXTO (RECUPERADO)", cats: [
+            { title: "6. Ubicación", key: "env", opts: ["Penthouse NYC", "Calle de París", "Terraza Mediterráneo", "Lobby Hotel 5*", "Oficina High-Tech"] },
+            { title: "7. Acción", key: "act", opts: ["Analizando Estrategia", "Tomando Café", "Risa Natural", "Caminando Decidida", "Grabando Podcast"] },
+            { title: "8. Tecnología", key: "obj", opts: ["MacBook Pro", "iPhone 15 Pro", "Copa Cristal", "Flores Blancas", "Revista Vogue"] }
         ]},
         { label: "BLOQUE 3: FOTOGRAFÍA (Si eliges Foto)", cats: [
-            { title: "Iluminación", key: "lit", opts: ["Luz Ventana Natural", "Golden Hour", "Softbox Estudio", "Luz Invierno Fría"] },
-            { title: "Lente & Calidad", key: "len", opts: ["85mm Portrait", "Shot on iPhone", "Poros Reales", "8K Cinematic"] }
+            { title: "9. Ángulo", key: "ang", opts: ["Primer Plano", "Plano Medio", "Ángulo Bajo", "Perfil Candid"] },
+            { title: "10. Lente", key: "len", opts: ["85mm Portrait", "Shot on iPhone", "35mm Street", "Wide Angle"] },
+            { title: "11. Iluminación", key: "lit", opts: ["Golden Hour", "Luz Ventana Natural", "Softbox Estudio", "Luz Invierno Fría"] },
+            { title: "12. Textura Piel", key: "skn", opts: ["Poros Reales", "Porcelana", "Natural", "Satinada"] }
         ]},
-        { label: "BLOQUE 4: MOTOR VISUAL (FOTO vs 3D)", cats: [
-            { title: "Estilo Motor", key: "mot", opts: ["Fotografía Realista", "Render 3D Hiper-Realista", "3D Animación de Lujo", "CGI Professional"] },
-            { title: "Acabado de Render", key: "ren", opts: ["Acabado Mate (Clay)", "Acabado Glossy (Brillo)", "Textura Vinilo", "Sub-surface Scattering"] }
+        { label: "BLOQUE 4: MOTOR VISUAL (¡NUEVO BLOQUE FUSIONADO!)", cats: [
+            { title: "13. Estilo Motor", key: "mot", opts: ["Fotografía Realista", "Render 3D Hiper-Realista", "3D Animación de Lujo", "CGI Professional"] },
+            { title: "14. Acabado Render", key: "ren", opts: ["Mate (Clay)", "Glossy (Brillo)", "Textura Vinilo", "Sub-surface Scattering"] },
+            { title: "15. Formato", key: "siz", opts: ["Vertical 9:16", "Post 4:5", "Cuadrado 1:1", "Panorámico 16:9"] }
         ]}
     ];
 
     let selections = new Set();
-    const main = document.getElementById('master-accordion');
-
-    sections.forEach(sec => {
-        const sTitle = document.createElement('div');
-        sTitle.className = 'section-title';
-        sTitle.innerText = sec.label;
-        main.appendChild(sTitle);
-
-        sec.cats.forEach(cat => {
-            const cDiv = document.createElement('div');
-            cDiv.className = 'category';
-            cDiv.innerHTML = `<div class="category-header" onclick="this.parentElement.classList.toggle('active')">${cat.title} <span>+</span></div>
-                             <div class="category-content"></div>`;
-            main.appendChild(cDiv);
-            const grid = cDiv.querySelector('.category-content');
-            cat.opts.forEach(opt => {
-                const b = document.createElement('button');
-                b.className = 'option-btn';
-                b.innerText = opt;
-                b.onclick = () => {
-                    if (selections.has(opt)) { selections.delete(opt); b.classList.remove('active'); }
-                    else { selections.add(opt); b.classList.add('active'); }
-                    update();
-                };
-                grid.appendChild(b);
-            });
-        });
-    });
-
-    function update() {
-        const p = Array.from(selections).join(", ");
-        document.getElementById('display-prompt').innerText = p || "Define tu marca, colores y estilo (Foto o 3D)...";
-    }
-
-    function copyMJ() {
-        const t = document.getElementById('display-prompt').innerText;
-        let p = `${t} --v 6.1 --ar 4:5 --stylize 250 --quality 2`;
-        // Inteligencia Cromática
-        if(t.includes("Old Money")) p = "soft neutral beige color palette, quiet luxury aesthetic, " + p;
-        if(t.includes("Barbie Core")) p = "vibrant pink and fuchsia tones, high-fashion glam, " + p;
-        if(t.includes("Luxury Noir")) p = "deep black and dark charcoal tones, moody luxury, " + p;
-        
-        // Inteligencia 3D & Motor de Render (Pulido Especial)
-        if(t.includes("Render 3D Hiper-Realista") || t.includes("3D Animación") || t.includes("CGI Professional")) {
-            p = "octane render, redshift, sub-surface scattering, highly detailed 3d render, stylized character design, " + p;
-        }
-        if(t.includes("3D Animación de Lujo")) p = "Pixar style, animation, high-end production, " + p;
-        if(t.includes("CGI Professional")) p = "computer generated imagery, highly detailed 3d character, " + p;
-        
-        // Inteligencia de Acabado de Render
-        if(t.includes("Acabado Mate")) p = "clay rendering, matte finish, soft lighting, " + p;
-        if(t.includes("Acabado Glossy")) p = "glossy finish, reflections, studio lighting, " + p;
-        if(t.includes("Textura Vinilo")) p = "vinyl material texture, " + p;
-
-        if(t.includes("Tomando Café")) p = "steaming coffee cup, " + p;
-        navigator.clipboard.writeText(p); alert("✨ Midjourney: ¡Marca & 3D Motor Copiado!");
-    }
-
-    function copyGPT() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`High-end professional image with a ${t} color palette. Style: photorealistic or 3d render as selected.`);
-        alert("🎨 ChatGPT: ¡Prompt Copiado!");
-    }
-
-    function resetAll() {
-        selections.clear();
-        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-        update();
-    }
-</script>
-</body>
-</html>
+    const main = document.getElementById('master-accordion

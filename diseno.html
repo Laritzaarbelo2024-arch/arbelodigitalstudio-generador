@@ -27,178 +27,209 @@
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-top: 20px;
+            margin-bottom: 20px;
         }
 
         .header h1 {
             color: #e59a8d;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        .header p {
-            color: #d1a18d;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        /* CONTENEDOR QUE SE DESLIZA */
+        /* CONTENEDOR DE SCROLL */
         .scroll-container {
             width: 100%;
-            max-width: 500px; /* Ancho ideal para lectura y móvil */
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 15px;
         }
 
         .category-block {
             background: white;
-            padding: 20px;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            border: 4px solid white;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 3px solid white;
         }
 
         .column-title {
-            background: var(--mint);
-            color: white;
-            padding: 10px;
-            border-radius: 20px;
+            color: var(--texto-marron);
+            padding: 5px;
             text-align: center;
             font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 1rem;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--fondo);
         }
 
+        /* GRID DE BOTONES MÁS PEQUEÑOS */
         .options-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Dos botones por fila */
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr); /* 3 botones por fila para ahorrar espacio */
+            gap: 8px;
         }
 
         .btn-option {
             border: none;
-            padding: 15px;
-            border-radius: 20px;
+            padding: 10px 5px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* Botón más pequeño */
             font-weight: bold;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.05);
             transition: 0.2s;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.05);
         }
 
-        .btn-option:active { transform: translateY(3px); box-shadow: none; }
+        .btn-option:active { transform: translateY(2px); box-shadow: none; }
+        .btn-option.selected { outline: 2px solid var(--texto-marron); transform: scale(0.95); }
 
-        /* Colores exactos de tu imagen */
         .btn-pink { background: var(--pink); color: #d66d75; }
         .btn-mint { background: var(--mint); color: #5b8c7d; }
         .btn-lavender { background: var(--lavender); color: #7d8cc4; }
         .btn-peach { background: var(--peach); color: #c49c7d; }
 
-        /* AREA DE RESULTADO (FIJA O AL FINAL) */
+        /* AREA DE RESULTADO FIJA AL FINAL */
         .prompt-box {
             background: #fff;
             border: 3px dashed #e5ccac;
             border-radius: 25px;
             padding: 20px;
             margin-top: 20px;
-            text-align: center;
+            position: sticky; /* Se queda a la vista al llegar abajo */
+            bottom: 10px;
             width: 100%;
-            max-width: 460px;
+            max-width: 440px;
+            box-sizing: border-box;
         }
 
-        .actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+        #result {
+            background: #fffcf5;
+            padding: 10px;
+            border-radius: 10px;
+            min-height: 50px;
+            font-size: 0.85rem;
+            color: var(--texto-marron);
+            margin-bottom: 10px;
         }
 
+        .actions { display: flex; justify-content: center; gap: 10px; }
         .btn-action {
-            padding: 15px 30px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             border: none;
             color: white;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
         }
-
         .btn-copy { background: #f08a70; }
         .btn-clear { background: #8ba3f0; }
 
-        .back-link {
-            margin-bottom: 20px;
-            text-decoration: none;
-            color: #d1a18d;
-            font-weight: bold;
-        }
+        .back-link { margin-bottom: 15px; text-decoration: none; color: #d1a18d; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← Volver al Menú</a>
+    <a href="index.html" class="back-link">← Volver al Menú Principal</a>
 
     <div class="header">
-        <h1>Arbelo DIGITAL STUDIO</h1>
-        <p>PROMPTING SOFTWARE FOR MENTORS</p>
+        <h1>Arbelo STUDIO</h1>
+        <p>PROMPTING SOFTWARE</p>
     </div>
 
     <div class="scroll-container">
         
         <div class="category-block">
-            <div class="column-title" style="background: var(--pink);">Categoría</div>
+            <div class="column-title">🌸 CATEGORÍA</div>
             <div class="options-grid">
-                <button class="btn-option btn-pink">Negocios 🌸</button>
-                <button class="btn-option btn-pink">Old Money 💎</button>
-                <button class="btn-option btn-pink">Servicios 🌷</button>
-                <button class="btn-option btn-pink">Lifestyle ✨</button>
+                <button class="btn-option btn-pink" onclick="addText('Negocios')">Negocios</button>
+                <button class="btn-option btn-pink" onclick="addText('Servicios')">Servicios</button>
+                <button class="btn-option btn-pink" onclick="addText('E-commerce')">E-com</button>
+                <button class="btn-option btn-pink" onclick="addText('Lifestyle')">Lifestyle</button>
+                <button class="btn-option btn-pink" onclick="addText('Educación')">Educación</button>
+                <button class="btn-option btn-pink" onclick="addText('Moda')">Moda</button>
             </div>
         </div>
 
         <div class="category-block">
-            <div class="column-title" style="background: var(--mint);">Material</div>
+            <div class="column-title">🎨 MATERIAL</div>
             <div class="options-grid">
-                <button class="btn-option btn-mint">Color 🎨</button>
-                <button class="btn-option btn-mint">Brillo ✨</button>
-                <button class="btn-option btn-mint">Mate ☁️</button>
-                <button class="btn-option btn-mint">Vidrio 🔮</button>
+                <button class="btn-option btn-mint" onclick="addText('Textura Seda')">Seda</button>
+                <button class="btn-option btn-mint" onclick="addText('Mate Suave')">Mate</button>
+                <button class="btn-option btn-mint" onclick="addText('Brillo Lujoso')">Brillo</button>
+                <button class="btn-option btn-mint" onclick="addText('Vidrio')">Vidrio</button>
+                <button class="btn-option btn-mint" onclick="addText('Mármol')">Mármol</button>
+                <button class="btn-option btn-mint" onclick="addText('Oro')">Oro</button>
             </div>
         </div>
 
         <div class="category-block">
-            <div class="column-title" style="background: var(--lavender);">Iluminación</div>
+            <div class="column-title">💡 ILUMINACIÓN</div>
             <div class="options-grid">
-                <button class="btn-option btn-lavender">Suave ☁️</button>
-                <button class="btn-option btn-lavender">Estudio 💡</button>
-                <button class="btn-option btn-lavender">Natural ☀️</button>
-                <button class="btn-option btn-lavender">Golden Hour 🌅</button>
+                <button class="btn-option btn-lavender" onclick="addText('Luz Natural')">Natural</button>
+                <button class="btn-option btn-lavender" onclick="addText('Soft Box')">Soft</button>
+                <button class="btn-option btn-lavender" onclick="addText('Golden Hour')">Golden</button>
+                <button class="btn-option btn-lavender" onclick="addText('Estudio')">Estudio</button>
+                <button class="btn-option btn-lavender" onclick="addText('Neon')">Neon</button>
+                <button class="btn-option btn-lavender" onclick="addText('Sombras Cine')">Cine</button>
             </div>
         </div>
 
         <div class="category-block">
-            <div class="column-title" style="background: var(--peach);">Estilo Render</div>
+            <div class="column-title">📸 ESTILO RENDER</div>
             <div class="options-grid">
-                <button class="btn-option btn-peach">Editorial</button>
-                <button class="btn-option btn-peach">High-End</button>
-                <button class="btn-option btn-peach">Minimal</button>
-                <button class="btn-option btn-peach">Realista</button>
+                <button class="btn-option btn-peach" onclick="addText('Editorial')">Editorial</button>
+                <button class="btn-option btn-peach" onclick="addText('High-End')">High-End</button>
+                <button class="btn-option btn-peach" onclick="addText('Minimalista')">Minimal</button>
+                <button class="btn-option btn-peach" onclick="addText('4k Realista')">4K Real</button>
+                <button class="btn-option btn-peach" onclick="addText('Vogue Style')">Vogue</button>
+                <button class="btn-option btn-peach" onclick="addText('Macro')">Macro</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title">✨ ATMÓSFERA</div>
+            <div class="options-grid">
+                <button class="btn-option btn-pink" onclick="addText('Elegante')">Elegante</button>
+                <button class="btn-option btn-mint" onclick="addText('Moderna')">Moderna</button>
+                <button class="btn-option btn-lavender" onclick="addText('Zen')">Zen</button>
+                <button class="btn-option btn-peach" onclick="addText('Dinámica')">Dinámica</button>
+                <button class="btn-option btn-pink" onclick="addText('Vintage')">Vintage</button>
+                <button class="btn-option btn-mint" onclick="addText('Lujo')">Lujo</button>
             </div>
         </div>
 
         <div class="prompt-box">
-            <p style="color: var(--texto-marron); font-weight: bold;">Tu Prompt Resultante:</p>
-            <div id="result" style="color: #aaa; font-style: italic;">Selecciona opciones arriba...</div>
+            <div id="result">Tu prompt aparecerá aquí...</div>
             <div class="actions">
-                <button class="btn-action btn-copy">♥ Copiar</button>
-                <button class="btn-action btn-clear">Limpiar 🪶</button>
+                <button class="btn-action btn-copy" onclick="copyPrompt()">♥ Copiar</button>
+                <button class="btn-action btn-clear" onclick="clearPrompt()">Limpiar 🪶</button>
             </div>
         </div>
 
-        <div style="height: 50px;"></div> </div>
+        <div style="height: 40px;"></div>
+    </div>
+
+    <script>
+        let promptList = [];
+
+        function addText(text) {
+            promptList.push(text);
+            document.getElementById('result').innerText = promptList.join(", ") + " --ar 16:9 --v 6.0";
+        }
+
+        function clearPrompt() {
+            promptList = [];
+            document.getElementById('result').innerText = "Tu prompt aparecerá aquí...";
+        }
+
+        function copyPrompt() {
+            const text = document.getElementById('result').innerText;
+            navigator.clipboard.writeText(text);
+            alert("¡Prompt copiado al portapapeles!");
+        }
+    </script>
 
 </body>
 </html>

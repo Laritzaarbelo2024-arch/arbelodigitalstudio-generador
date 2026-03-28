@@ -3,146 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo | Creador de Sugerencias Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <title>Arbelo | Multi-Page Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;800&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --verde: #1a4314; --oro: #bfa145; --crema: #fff9f0; 
-            --white: #ffffff; --pink: #fce4ec; --blue: #e3f2fd; --orange: #fff3e0;
-        }
+        :root { --verde: #1a4314; --oro: #bfa145; --white: #ffffff; --bg: #f8f9fa; }
         * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; }
-        body { 
-            margin: 0; padding: 20px 10px;
-            background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 100%);
-            display: flex; justify-content: center;
+        body { margin: 0; background: var(--bg); display: flex; justify-content: center; height: 100vh; overflow: hidden; }
+
+        .canva-frame { 
+            background: var(--white); width: 100%; max-width: 500px; 
+            display: flex; flex-direction: column; position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
         }
 
-        /* Contenedor Principal Estilo App */
-        .app-card { 
-            background: var(--white); width: 100%; max-width: 600px; 
-            border-radius: 40px; padding: 30px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        /* Barra de Progreso */
+        .progress-bar { display: flex; height: 6px; background: #eee; }
+        .progress-fill { height: 100%; background: var(--verde); transition: 0.5s; width: 25%; }
+
+        /* Páginas */
+        .page { flex: 1; padding: 30px 20px; overflow-y: auto; display: none; animation: slide 0.4s ease; }
+        .page.active { display: block; }
+        @keyframes slide { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: translateX(0); } }
+
+        h2 { color: var(--verde); font-size: 1.2rem; border-left: 5px solid var(--oro); padding-left: 10px; margin-bottom: 25px; }
+
+        /* Botones de Píldora (Estilo el video que enviaste) */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 30px; }
+        .opt-btn { 
+            background: #fff; border: 2.5px solid #eee; padding: 15px; border-radius: 20px; 
+            font-size: 0.75rem; font-weight: 700; cursor: pointer; text-align: center;
+            transition: 0.2s; box-shadow: 0 4px 0 #eee;
+        }
+        .opt-btn.active { 
+            background: var(--verde); color: white; border-color: var(--verde); 
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.3); transform: translateY(4px);
         }
 
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { color: var(--verde); font-size: 1.8rem; margin: 0; }
-        .header p { color: #888; font-size: 0.8rem; margin-top: 5px; }
+        /* Navegación Inferior Estilo Canva */
+        .nav-controls { padding: 15px; display: flex; justify-content: space-between; background: var(--white); border-top: 1px solid #eee; }
+        .nav-btn { background: var(--oro); color: white; border: none; padding: 12px 25px; border-radius: 15px; font-weight: 800; cursor: pointer; }
+        .nav-btn.disabled { opacity: 0.3; pointer-events: none; }
 
-        /* Estilo de Secciones */
-        .section { margin-bottom: 35px; }
-        .section h2 { 
-            font-size: 0.9rem; color: var(--verde); margin-bottom: 15px; 
-            border-bottom: 2px solid #eee; padding-bottom: 8px;
-        }
-
-        /* Botones Tipo Píldora (Igual al video) */
-        .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-        .pill-btn { 
-            border: none; padding: 10px 18px; border-radius: 25px; 
-            font-size: 0.75rem; font-weight: 700; cursor: pointer;
-            background: var(--pink); color: #c2185b; transition: 0.2s;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.05);
-        }
-        .pill-btn.active { background: var(--verde); color: white; transform: translateY(3px); box-shadow: none; }
-
-        /* Tarjetas de Personajes/Estilos (Grid de 2) */
-        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .item-card { 
-            border: 2px solid #eee; border-radius: 20px; padding: 15px; 
-            text-align: center; cursor: pointer; transition: 0.3s;
-        }
-        .item-card:hover { border-color: var(--oro); background: #fffdf5; }
-        .item-card.active { border-color: var(--verde); background: #f1f8f1; }
-        .item-card span { font-size: 2rem; display: block; margin-bottom: 10px; }
-        .item-card h4 { font-size: 0.8rem; margin: 0; color: var(--verde); }
-        .item-card p { font-size: 0.6rem; color: #777; margin-top: 5px; line-height: 1.2; }
-
-        /* Consola de Resultado Final */
+        /* Consola Flotante (Siempre Visible) */
         .console { 
-            background: #fafafa; border: 2px dashed var(--oro); 
-            border-radius: 20px; padding: 20px; text-align: center; margin-top: 20px;
+            background: var(--verde); color: white; padding: 20px; 
+            border-radius: 25px 25px 0 0; border-top: 4px solid var(--oro);
         }
-        #result { font-weight: 700; color: var(--verde); font-size: 0.85rem; margin-bottom: 20px; }
-
-        /* Botones de Acción Gigantes */
-        .action-group { display: flex; flex-direction: column; gap: 10px; }
-        .main-btn { 
-            border: none; padding: 18px; border-radius: 20px; 
-            font-weight: 800; text-transform: uppercase; cursor: pointer; font-size: 0.9rem;
-        }
+        #result { font-size: 0.8rem; min-height: 40px; margin-bottom: 10px; text-align: center; font-style: italic; opacity: 0.9; }
+        .copy-group { display: flex; gap: 8px; justify-content: center; }
+        .copy-btn { padding: 8px 12px; border: none; border-radius: 10px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-<div class="app-card">
-    <div class="header">
-        <h1>✨ Arbelo Studio ✨</h1>
-        <p>Generador de Estrategia Visual</p>
-    </div>
+<div class="canva-frame">
+    <div class="progress-bar"><div class="progress-fill" id="p-bar"></div></div>
 
-    <div class="section">
-        <h2>ADN de Marca Personal</h2>
-        <div class="pill-grid">
-            <button class="pill-btn" onclick="tg(this)">Old Money 💎</button>
-            <button class="pill-btn" onclick="tg(this)" style="background:var(--blue); color:#0277bd">Modern Luxe ✨</button>
-            <button class="pill-btn" onclick="tg(this)" style="background:var(--orange); color:#e65100">Barbie Core 🎀</button>
-            <button class="pill-btn" onclick="tg(this)">Coach Luxe ⚖️</button>
+    <div class="page active" id="page1">
+        <h2>Página 1: ADN & Estrategia</h2>
+        <div class="grid">
+            <button class="opt-btn" onclick="tg(this)">Old Money 💎</button>
+            <button class="opt-btn" onclick="tg(this)">Modern Luxe ✨</button>
+            <button class="opt-btn" onclick="tg(this)">Barbie Core 🎀</button>
+            <button class="opt-btn" onclick="toggle(this)">Poder Ejecutivo 💼</button>
+            <button class="opt-btn" onclick="tg(this)">Coach Luxe ⚖️</button>
+            <button class="opt-btn" onclick="tg(this)">Mujer Latina 💃</button>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Selecciona tu Perfil</h2>
-        <div class="card-grid">
-            <div class="item-card" onclick="tg(this)">
-                <span>👠</span>
-                <h4>Suela Roja Iconic</h4>
-                <p>Estilo Christian Louboutin, lujo absoluto y poder.</p>
-            </div>
-            <div class="item-card" onclick="tg(this)">
-                <span>👔</span>
-                <h4>Jefe Caballero</h4>
-                <p>Traje a medida, profesionalismo y elegancia clásica.</p>
-            </div>
+    <div class="page" id="page2">
+        <h2>Página 2: Rostro & Cabello</h2>
+        <div class="grid">
+            <button class="opt-btn" onclick="tg(this)">Pelo Rizo 🌀</button>
+            <button class="opt-btn" onclick="tg(this)">Moño Pulido 👱‍♀️</button>
+            <button class="opt-btn" onclick="tg(this)">Ondas Pro 🌊</button>
+            <button class="opt-btn" onclick="tg(this)">Rubio Platino 👩🏼</button>
+            <button class="opt-btn" onclick="tg(this)">Afro Chic ✊🏿</button>
+            <button class="opt-btn" onclick="tg(this)">Glowy HD ✨</button>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Identidad Visual</h2>
-        <div class="pill-grid">
-            <button class="pill-btn" onclick="tg(this)">Pelo Rizo 🌀</button>
-            <button class="pill-btn" onclick="tg(this)">Moño Pulido 👱‍♀️</button>
-            <button class="pill-btn" onclick="tg(this)">Ondas Pro 🌊</button>
-            <button class="pill-btn" onclick="tg(this)">Rubio Platino 👩🏼</button>
+    <div class="page" id="page3">
+        <h2>Página 3: Productos & Lujo</h2>
+        <div class="grid">
+            <button class="opt-btn" onclick="tg(this)">Suela Roja 👠</button>
+            <button class="opt-btn" onclick="tg(this)">Mocasin Lujo 👞</button>
+            <button class="opt-btn" onclick="tg(this)">Libro 3D 📖</button>
+            <button class="opt-btn" onclick="tg(this)">Agenda Cuero 📓</button>
+            <button class="opt-btn" onclick="tg(this)">Perfume Pro 🧪</button>
+            <button class="opt-btn" onclick="tg(this)">Joyas Diamante 💍</button>
         </div>
+    </div>
+
+    <div id="page4" class="page">
+        <h2>Página 4: Magia & Video</h2>
+        <div class="grid">
+            <button class="opt-btn" onclick="tg(this)">3D Pixar 🎬</button>
+            <button class="opt-btn" onclick="tg(this)">Unreal Engine 5 🎮</button>
+            <button class="opt-btn" onclick="tg(this)">Slow Motion 🐢</button>
+            <button class="opt-btn" onclick="tg(this)">Octane Render 🌟</button>
+            <button class="opt-btn" onclick="tg(this)">Holographic FX 🌌</button>
+            <button class="opt-btn" onclick="tg(this)">Drone FPV 🛸</button>
+        </div>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" class="disabled">Atrás</button>
+        <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Siguiente</button>
     </div>
 
     <div class="console">
-        <div id="result">Selecciona los elementos de tu marca...</div>
-        <div class="action-group">
-            <button class="main-btn" style="background:var(--verde); color:white" onclick="cp()">GENERAR INSTRUCCIÓN</button>
-            <button class="main-btn" style="background:var(--oro); color:white" onclick="res()">LIMPIAR TODO</button>
+        <div id="result">Selecciona tu magia visual...</div>
+        <div class="copy-group">
+            <button class="copy-btn" style="background:#4db6ac" onclick="cp()">Freepik</button>
+            <button class="copy-btn" style="background:#ff8a80" onclick="cp()">Higgsfield</button>
+            <button class="copy-btn" style="background:#81d4fa; color:black" onclick="cp()">Dalle 3</button>
+            <button class="copy-btn" style="background:#3d3d3d" onclick="res()">Reset</button>
         </div>
     </div>
 </div>
 
 <script>
     let s = new Set();
+    let cur = 1;
+
     function tg(el) {
         el.classList.toggle('active');
-        let text = el.querySelector('h4') ? el.querySelector('h4').innerText : el.innerText;
-        if(el.classList.contains('active')) s.add(text); else s.delete(text);
-        document.getElementById('result').innerText = Array.from(s).join(" + ") || "Selecciona los elementos de tu marca...";
+        if(el.classList.contains('active')) s.add(el.innerText); else s.delete(el.innerText);
+        document.getElementById('result').innerText = Array.from(s).join(" + ") || "Selecciona tu magia visual...";
     }
+
+    function changePage(dir) {
+        document.getElementById(`page${cur}`).classList.remove('active');
+        cur += dir;
+        document.getElementById(`page${cur}`).classList.add('active');
+        
+        document.getElementById('p-bar').style.width = (cur * 25) + "%";
+        document.getElementById('prevBtn').style.opacity = cur === 1 ? "0.3" : "1";
+        document.getElementById('nextBtn').innerText = cur === 4 ? "Finalizar" : "Siguiente";
+    }
+
     function cp() {
         navigator.clipboard.writeText(document.getElementById('result').innerText);
-        alert("¡Copiado al portapapeles! 🚀");
+        alert("¡Prompt Arbelo Copiado! 🚀");
     }
+
     function res() {
         s.clear();
-        document.querySelectorAll('.pill-btn, .item-card').forEach(x => x.classList.remove('active'));
-        document.getElementById('result').innerText = "Selecciona los elementos de tu marca...";
+        document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('result').innerText = "Selecciona tu magia visual...";
     }
 </script>
-
 </body>
 </html>

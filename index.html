@@ -1,94 +1,41 @@
-
-         <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arbelo Digital Studio | Centro de Herramientas IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --arbelo-green-dark: #1b5e20; /* Verde Bosque */
-            --arbelo-green-main: #2e7d32; /* Verde Éxito */
-            --arbelo-green-bright: #4caf50; /* Verde Vibrante */
-            --bg-light-green: #f1f8e9; /* Fondo Menta Suave */
-        }
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-light-green); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 50px rgba(27, 94, 32, 0.1); max-width: 600px; width: 100%; text-align: center; border-top: 8px solid var(--arbelo-green-main); }
-        
-        h1 { color: var(--arbelo-green-dark); font-size: 30px; margin-bottom: 5px; font-weight: 800; }
-        .subtitle { color: var(--arbelo-green-bright); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; margin-bottom: 35px; font-weight: bold; }
-
-        .hub-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-
-        .btn-hub {
-            display: flex;
-            align-items: center;
-            padding: 22px;
-            border-radius: 20px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid #e8f5e9;
-            cursor: pointer;
-            text-align: left;
-            background-color: white;
-        }
-
-        .btn-hub:hover { 
-            transform: scale(1.02); 
-            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.15); 
-            border-color: var(--arbelo-green-bright);
-            background-color: #f9fff9;
-        }
-
-        /* Variaciones de Verde para cada botón */
-        .btn-content { border-left: 6px solid #81c784; }
-        .btn-design { border-left: 6px solid #4caf50; }
-        .btn-amazon { border-left: 6px solid #2e7d32; }
-
-        .icon { font-size: 38px; margin-right: 25px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.05)); }
-        .btn-text h3 { margin: 0; color: var(--arbelo-green-dark); font-size: 19px; }
-        .btn-text p { margin: 5px 0 0; color: #555; font-size: 14px; line-height: 1.4; }
-
-        .footer { margin-top: 40px; font-size: 12px; color: #888; border-top: 1px solid #e8f5e9; padding-top: 20px; }
-        .badge { background: var(--arbelo-green-main); color: white; padding: 3px 10px; border-radius: 50px; font-size: 10px; vertical-align: middle; margin-left: 5px; text-transform: uppercase; }
+        :root { --verde: #2d5a27; --fondo: #f4f9f1; --blanco: #ffffff; }
+        body { font-family: 'Inter', sans-serif; background: var(--fondo); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: var(--blanco); padding: 3rem; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); max-width: 450px; text-align: center; border-top: 8px solid var(--verde); }
+        h1 { color: var(--verde); margin-bottom: 5px; }
+        .subtitle { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: #666; margin-bottom: 40px; }
+        .btn-card { display: flex; align-items: center; text-decoration: none; background: #fff; border: 1px solid #eee; padding: 20px; margin-bottom: 15px; border-radius: 15px; transition: 0.3s; text-align: left; }
+        .btn-card:hover { transform: translateY(-3px); border-color: var(--verde); box-shadow: 0 5px 15px rgba(45, 90, 39, 0.1); }
+        .icon { font-size: 1.8rem; margin-right: 20px; }
+        .info h3 { margin: 0; font-size: 1.1rem; color: var(--verde); }
+        .info p { margin: 5px 0 0; font-size: 0.85rem; color: #777; }
+        .disabled { opacity: 0.5; pointer-events: none; }
     </style>
 </head>
 <body>
-
 <div class="container">
     <h1>Arbelo Digital Studio</h1>
-    <div class="subtitle">Estrategia, Marketing & IA</div>
+    <div class="subtitle">ESTRATEGIA, MARKETING & IA</div>
 
-    <div class="hub-grid">
-        <a href="https://laritzaarbelo2024-arch.github.io/arbelodigitalstudio-generador/index.html" class="btn-hub btn-content">
-            <div class="icon">📈</div>
-            <div class="btn-text">
-                <h3>Generador de Contenido <span class="badge">Pro</span></h3>
-                <p>Crea guiones y posts virales que impulsan tus ventas.</p>
-            </div>
-        </a>
+    <a href="diseno.html" class="btn-card">
+        <span class="icon">🌿</span>
+        <div class="info">
+            <h3>Diseño Aesthetic & Canva</h3>
+            <p>Prompts para imágenes de lujo y estilo editorial premium.</p>
+        </div>
+    </a>
 
-        <a href="https://laritzaarbelo2024-arch.github.io/arbelodigitalstudio-generador/diseno.html" class="btn-hub btn-design">
-            <div class="icon">🌿</div>
-            <div class="btn-text">
-                <h3>Diseño Aesthetic & Canva</h3>
-                <p>Prompts para imágenes de lujo y estilo editorial premium.</p>
-            </div>
-        </a>
-
-        <a href="#" class="btn-hub btn-amazon">
-            <div class="icon">💰</div>
-            <div class="btn-text">
-                <h3>Amazon Influencer Master</h3>
-                <p>Optimiza tus ingresos con Shoppable Videos estratégicos.</p>
-            </div>
-        </a>
-    </div>
-
-    <div class="footer">
-        © 2026 Arbelo Digital Studio - <b>El Futuro es Verde y Digital</b>
+    <div class="btn-card disabled">
+        <span class="icon">📈</span>
+        <div class="info"><h3>Generador de Contenido</h3><p>Próximamente...</p></div>
     </div>
 </div>
-
 </body>
-</html>
+</html>        

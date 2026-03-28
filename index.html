@@ -1,53 +1,94 @@
-<!DOCTYPE html>
+
+         <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador Arbelo Digital</title>
+    <title>Arbelo Digital Studio | Centro de Herramientas IA</title>
     <style>
-        :root { --rosa: #f06292; --fondo: #fdf6f9; }
-        body { font-family: Arial; background: var(--fondo); text-align: center; padding: 20px; }
-        .card { background: white; border-radius: 25px; padding: 20px; max-width: 500px; margin: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .btn-tag { background: #fce4ec; border: none; padding: 10px; border-radius: 15px; margin: 5px; cursor: pointer; }
-        .btn-tag.active { background: var(--rosa); color: white; }
-        .btn-main { background: var(--rosa); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; margin-top: 20px; font-weight: bold; }
-        #resultado { margin-top: 20px; padding: 15px; background: #fff3f8; border: 2px dashed var(--rosa); border-radius: 10px; display: none; }
+        :root {
+            --arbelo-green-dark: #1b5e20; /* Verde Bosque */
+            --arbelo-green-main: #2e7d32; /* Verde Éxito */
+            --arbelo-green-bright: #4caf50; /* Verde Vibrante */
+            --bg-light-green: #f1f8e9; /* Fondo Menta Suave */
+        }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-light-green); margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 50px rgba(27, 94, 32, 0.1); max-width: 600px; width: 100%; text-align: center; border-top: 8px solid var(--arbelo-green-main); }
+        
+        h1 { color: var(--arbelo-green-dark); font-size: 30px; margin-bottom: 5px; font-weight: 800; }
+        .subtitle { color: var(--arbelo-green-bright); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; margin-bottom: 35px; font-weight: bold; }
+
+        .hub-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+        .btn-hub {
+            display: flex;
+            align-items: center;
+            padding: 22px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #e8f5e9;
+            cursor: pointer;
+            text-align: left;
+            background-color: white;
+        }
+
+        .btn-hub:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.15); 
+            border-color: var(--arbelo-green-bright);
+            background-color: #f9fff9;
+        }
+
+        /* Variaciones de Verde para cada botón */
+        .btn-content { border-left: 6px solid #81c784; }
+        .btn-design { border-left: 6px solid #4caf50; }
+        .btn-amazon { border-left: 6px solid #2e7d32; }
+
+        .icon { font-size: 38px; margin-right: 25px; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.05)); }
+        .btn-text h3 { margin: 0; color: var(--arbelo-green-dark); font-size: 19px; }
+        .btn-text p { margin: 5px 0 0; color: #555; font-size: 14px; line-height: 1.4; }
+
+        .footer { margin-top: 40px; font-size: 12px; color: #888; border-top: 1px solid #e8f5e9; padding-top: 20px; }
+        .badge { background: var(--arbelo-green-main); color: white; padding: 3px 10px; border-radius: 50px; font-size: 10px; vertical-align: middle; margin-left: 5px; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>✨ Creador de Sugerencias ✨</h1>
-        <p>Selecciona las opciones para tu prompt</p>
-        
-        <div id="secciones">
-            <p><strong>Producto:</strong></p>
-            <button class="btn-tag" onclick="sel(this, 'Cuaderno')">Cuaderno</button>
-            <button class="btn-tag" onclick="sel(this, 'Camiseta')">Camiseta</button>
-            
-            <p><strong>Estilo:</strong></p>
-            <button class="btn-tag" onclick="sel(this, 'Acuarela')">Acuarela</button>
-            <button class="btn-tag" onclick="sel(this, 'Kawaii')">Kawaii</button>
-        </div>
 
-        <button class="btn-main" onclick="generar()">GENERAR INSTRUCCIÓN</button>
-        <div id="resultado" onclick="copiar()"><strong>Haz clic aquí para copiar:</strong><br><span id="txt"></span></div>
+<div class="container">
+    <h1>Arbelo Digital Studio</h1>
+    <div class="subtitle">Estrategia, Marketing & IA</div>
+
+    <div class="hub-grid">
+        <a href="https://laritzaarbelo2024-arch.github.io/arbelodigitalstudio-generador/index.html" class="btn-hub btn-content">
+            <div class="icon">📈</div>
+            <div class="btn-text">
+                <h3>Generador de Contenido <span class="badge">Pro</span></h3>
+                <p>Crea guiones y posts virales que impulsan tus ventas.</p>
+            </div>
+        </a>
+
+        <a href="https://laritzaarbelo2024-arch.github.io/arbelodigitalstudio-generador/diseno.html" class="btn-hub btn-design">
+            <div class="icon">🌿</div>
+            <div class="btn-text">
+                <h3>Diseño Aesthetic & Canva</h3>
+                <p>Prompts para imágenes de lujo y estilo editorial premium.</p>
+            </div>
+        </a>
+
+        <a href="#" class="btn-hub btn-amazon">
+            <div class="icon">💰</div>
+            <div class="btn-text">
+                <h3>Amazon Influencer Master</h3>
+                <p>Optimiza tus ingresos con Shoppable Videos estratégicos.</p>
+            </div>
+        </a>
     </div>
 
-    <script>
-        let selecciones = [];
-        function sel(btn, valor) {
-            btn.classList.toggle('active');
-            if(btn.classList.contains('active')) selecciones.push(valor);
-            else selecciones = selecciones.filter(v => v !== valor);
-        }
-        function generar() {
-            document.getElementById('txt').innerText = selecciones.join(", ") + ", alta calidad, 8k.";
-            document.getElementById('resultado').style.display = 'block';
-        }
-        function copiar() {
-            navigator.clipboard.writeText(document.getElementById('txt').innerText);
-            alert("¡Copiado! 📋");
-        }
-    </script>
+    <div class="footer">
+        © 2026 Arbelo Digital Studio - <b>El Futuro es Verde y Digital</b>
+    </div>
+</div>
+
 </body>
 </html>

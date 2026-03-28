@@ -4,156 +4,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo | Multi-Page Engine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;800&display=swap" rel="stylesheet">
+    <title>Arbelo | Vertical Impact v12.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --verde: #1a4314; --oro: #bfa145; --white: #ffffff; --bg: #f8f9fa; }
-        * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; }
-        body { margin: 0; background: var(--bg); display: flex; justify-content: center; height: 100vh; overflow: hidden; }
-
-        .canva-frame { 
-            background: var(--white); width: 100%; max-width: 500px; 
-            display: flex; flex-direction: column; position: relative;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        :root { 
+            --verde-deep: #0a2208; --oro-fuerte: #d4af37; --white: #ffffff; 
+            --verde-boton: #1a4314; --rojo-luxe: #8b0000;
+        }
+        * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            margin: 0; background: var(--verde-deep); color: var(--white); 
+            height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory;
         }
 
-        /* Barra de Progreso */
-        .progress-bar { display: flex; height: 6px; background: #eee; }
-        .progress-fill { height: 100%; background: var(--verde); transition: 0.5s; width: 25%; }
+        /* Secciones de Pantalla Completa Vertical */
+        section { 
+            height: 100vh; width: 100%; display: flex; flex-direction: column; 
+            justify-content: center; padding: 20px; scroll-snap-align: start;
+            border-bottom: 2px solid var(--oro-fuerte);
+        }
 
-        /* Páginas */
-        .page { flex: 1; padding: 30px 20px; overflow-y: auto; display: none; animation: slide 0.4s ease; }
-        .page.active { display: block; }
-        @keyframes slide { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: translateX(0); } }
+        .header-main { text-align: center; margin-bottom: 30px; }
+        .header-main h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--oro-fuerte); margin: 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
+        .header-main p { font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; color: var(--white); opacity: 0.8; }
 
-        h2 { color: var(--verde); font-size: 1.2rem; border-left: 5px solid var(--oro); padding-left: 10px; margin-bottom: 25px; }
+        h2 { font-size: 1.2rem; color: var(--oro-fuerte); text-transform: uppercase; margin-bottom: 20px; border-left: 5px solid var(--white); padding-left: 15px; }
 
-        /* Botones de Píldora (Estilo el video que enviaste) */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 30px; }
+        /* Grilla de Botones Llamativos */
+        .btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .opt-btn { 
-            background: #fff; border: 2.5px solid #eee; padding: 15px; border-radius: 20px; 
-            font-size: 0.75rem; font-weight: 700; cursor: pointer; text-align: center;
-            transition: 0.2s; box-shadow: 0 4px 0 #eee;
+            background: var(--verde-boton); border: 3px solid var(--oro-fuerte); 
+            padding: 20px 10px; border-radius: 15px; color: var(--white); 
+            font-weight: 800; font-size: 0.8rem; cursor: pointer;
+            box-shadow: 0 8px 0 #000; transition: 0.1s;
         }
-        .opt-btn.active { 
-            background: var(--verde); color: white; border-color: var(--verde); 
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.3); transform: translateY(4px);
+        .opt-btn:active, .opt-btn.active { 
+            background: var(--oro-fuerte); color: var(--verde-deep); 
+            transform: translateY(6px); box-shadow: 0 2px 0 #000;
         }
 
-        /* Navegación Inferior Estilo Canva */
-        .nav-controls { padding: 15px; display: flex; justify-content: space-between; background: var(--white); border-top: 1px solid #eee; }
-        .nav-btn { background: var(--oro); color: white; border: none; padding: 12px 25px; border-radius: 15px; font-weight: 800; cursor: pointer; }
-        .nav-btn.disabled { opacity: 0.3; pointer-events: none; }
-
-        /* Consola Flotante (Siempre Visible) */
-        .console { 
-            background: var(--verde); color: white; padding: 20px; 
-            border-radius: 25px 25px 0 0; border-top: 4px solid var(--oro);
+        /* Consola de Control Persistente (Abajo) */
+        .console-fixed { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: var(--white); padding: 20px; border-radius: 30px 30px 0 0;
+            border-top: 5px solid var(--oro-fuerte); z-index: 10000;
         }
-        #result { font-size: 0.8rem; min-height: 40px; margin-bottom: 10px; text-align: center; font-style: italic; opacity: 0.9; }
-        .copy-group { display: flex; gap: 8px; justify-content: center; }
-        .copy-btn { padding: 8px 12px; border: none; border-radius: 10px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
+        #prompt-res { color: var(--verde-deep); font-weight: 800; font-size: 0.85rem; text-align: center; margin-bottom: 15px; min-height: 40px; }
+        
+        .ia-apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .ia-btn { 
+            padding: 12px; border: none; border-radius: 10px; color: white; 
+            font-size: 0.6rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
+        }
+
+        /* Flecha de "Desliza para abajo" */
+        .scroll-down { text-align: center; color: var(--oro-fuerte); font-size: 0.7rem; margin-top: 20px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
     </style>
 </head>
 <body>
 
-<div class="canva-frame">
-    <div class="progress-bar"><div class="progress-fill" id="p-bar"></div></div>
-
-    <div class="page active" id="page1">
-        <h2>Página 1: ADN & Estrategia</h2>
-        <div class="grid">
+    <section>
+        <div class="header-main">
+            <h1>ARBELO</h1>
+            <p>Digital Studio ✨</p>
+        </div>
+        <h2>01. ADN & Autoridad</h2>
+        <div class="btn-grid">
             <button class="opt-btn" onclick="tg(this)">Old Money 💎</button>
             <button class="opt-btn" onclick="tg(this)">Modern Luxe ✨</button>
-            <button class="opt-btn" onclick="tg(this)">Barbie Core 🎀</button>
-            <button class="opt-btn" onclick="toggle(this)">Poder Ejecutivo 💼</button>
             <button class="opt-btn" onclick="tg(this)">Coach Luxe ⚖️</button>
-            <button class="opt-btn" onclick="tg(this)">Mujer Latina 💃</button>
+            <button class="opt-btn" onclick="tg(this)">Poder Ejecutivo 💼</button>
         </div>
-    </div>
+        <div class="scroll-down">DESLIZA PARA CONTINUAR ▼</div>
+    </section>
 
-    <div class="page" id="page2">
-        <h2>Página 2: Rostro & Cabello</h2>
-        <div class="grid">
+    <section>
+        <h2>02. Identidad Visual</h2>
+        <div class="btn-grid">
             <button class="opt-btn" onclick="tg(this)">Pelo Rizo 🌀</button>
             <button class="opt-btn" onclick="tg(this)">Moño Pulido 👱‍♀️</button>
-            <button class="opt-btn" onclick="tg(this)">Ondas Pro 🌊</button>
+            <button class="opt-btn" onclick="tg(this)">Ondas al Agua 🌊</button>
             <button class="opt-btn" onclick="tg(this)">Rubio Platino 👩🏼</button>
-            <button class="opt-btn" onclick="tg(this)">Afro Chic ✊🏿</button>
-            <button class="opt-btn" onclick="tg(this)">Glowy HD ✨</button>
         </div>
-    </div>
+        <div class="scroll-down">SIGUE BAJANDO ▼</div>
+    </section>
 
-    <div class="page" id="page3">
-        <h2>Página 3: Productos & Lujo</h2>
-        <div class="grid">
-            <button class="opt-btn" onclick="tg(this)">Suela Roja 👠</button>
-            <button class="opt-btn" onclick="tg(this)">Mocasin Lujo 👞</button>
+    <section>
+        <h2>03. Productos & Lujo</h2>
+        <div class="btn-grid">
+            <button class="opt-btn" onclick="tg(this)" style="border-color:var(--rojo-luxe)">Suela Roja 👠</button>
             <button class="opt-btn" onclick="tg(this)">Libro 3D 📖</button>
             <button class="opt-btn" onclick="tg(this)">Agenda Cuero 📓</button>
-            <button class="opt-btn" onclick="tg(this)">Perfume Pro 🧪</button>
             <button class="opt-btn" onclick="tg(this)">Joyas Diamante 💍</button>
         </div>
-    </div>
+        <div class="scroll-down">ÚLTIMO PASO ▼</div>
+    </section>
 
-    <div id="page4" class="page">
-        <h2>Página 4: Magia & Video</h2>
-        <div class="grid">
+    <section>
+        <h2>04. Motor Video & 3D</h2>
+        <div class="btn-grid">
             <button class="opt-btn" onclick="tg(this)">3D Pixar 🎬</button>
             <button class="opt-btn" onclick="tg(this)">Unreal Engine 5 🎮</button>
-            <button class="opt-btn" onclick="tg(this)">Slow Motion 🐢</button>
+            <button class="opt-btn" onclick="tg(this)">Higgsfield Mov 🎞️</button>
             <button class="opt-btn" onclick="tg(this)">Octane Render 🌟</button>
-            <button class="opt-btn" onclick="tg(this)">Holographic FX 🌌</button>
-            <button class="opt-btn" onclick="tg(this)">Drone FPV 🛸</button>
+        </div>
+    </section>
+
+    <div class="console-fixed">
+        <div id="prompt-res">Configura tu ingeniería visual... 🚀</div>
+        <div class="ia-apps">
+            <button class="ia-btn" style="background:#4285F4" onclick="cp('G. Flow')">G. Flow</button>
+            <button class="ia-btn" style="background:#0062ff" onclick="cp('Freepik')">Freepik</button>
+            <button class="ia-btn" style="background:#ff0055" onclick="cp('Higgsfield')">Higgsfield</button>
+            <button class="ia-btn" style="background:#10a37f" onclick="cp('DALL-E 3')">DALL-E 3</button>
+            <button class="ia-btn" style="background:#c5a059; color:black" onclick="cp('Gemini')">Gemini</button>
+            <button class="ia-btn" style="background:#333" onclick="res()">Limpiar</button>
         </div>
     </div>
 
-    <div class="nav-controls">
-        <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" class="disabled">Atrás</button>
-        <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Siguiente</button>
-    </div>
-
-    <div class="console">
-        <div id="result">Selecciona tu magia visual...</div>
-        <div class="copy-group">
-            <button class="copy-btn" style="background:#4db6ac" onclick="cp()">Freepik</button>
-            <button class="copy-btn" style="background:#ff8a80" onclick="cp()">Higgsfield</button>
-            <button class="copy-btn" style="background:#81d4fa; color:black" onclick="cp()">Dalle 3</button>
-            <button class="copy-btn" style="background:#3d3d3d" onclick="res()">Reset</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    let s = new Set();
-    let cur = 1;
-
-    function tg(el) {
-        el.classList.toggle('active');
-        if(el.classList.contains('active')) s.add(el.innerText); else s.delete(el.innerText);
-        document.getElementById('result').innerText = Array.from(s).join(" + ") || "Selecciona tu magia visual...";
-    }
-
-    function changePage(dir) {
-        document.getElementById(`page${cur}`).classList.remove('active');
-        cur += dir;
-        document.getElementById(`page${cur}`).classList.add('active');
-        
-        document.getElementById('p-bar').style.width = (cur * 25) + "%";
-        document.getElementById('prevBtn').style.opacity = cur === 1 ? "0.3" : "1";
-        document.getElementById('nextBtn').innerText = cur === 4 ? "Finalizar" : "Siguiente";
-    }
-
-    function cp() {
-        navigator.clipboard.writeText(document.getElementById('result').innerText);
-        alert("¡Prompt Arbelo Copiado! 🚀");
-    }
-
-    function res() {
-        s.clear();
-        document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('result').innerText = "Selecciona tu magia visual...";
-    }
-</script>
+    <script>
+        let s = new Set();
+        function tg(el) {
+            el.classList.toggle('active');
+            if(el.classList.contains('active')) s.add(el.innerText); else s.delete(el.innerText);
+            document.getElementById('prompt-res').innerText = Array.from(s).join(" + ") || "Configura tu ingeniería visual... 🚀";
+        }
+        function cp(app) {
+            const p = document.getElementById('prompt-res').innerText;
+            navigator.clipboard.writeText(`[ARBELO - ${app.toUpperCase()}]: ${p}`);
+            alert("✨ Copiado para " + app);
+        }
+        function res() {
+            s.clear();
+            document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('prompt-res').innerText = "Configura tu ingeniería visual... 🚀";
+        }
+    </script>
 </body>
 </html>

@@ -4,143 +4,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo | Vertical Impact v12.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <title>Arbelo Studio | Prompting Software</title>
     <style>
-        :root { 
-            --verde-deep: #0a2208; --oro-fuerte: #d4af37; --white: #ffffff; 
-            --verde-boton: #1a4314; --rojo-luxe: #8b0000;
-        }
-        * { box-sizing: border-box; font-family: 'Quicksand', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            margin: 0; background: var(--verde-deep); color: var(--white); 
-            height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory;
+        :root {
+            --fondo: #fff5e6;
+            --mint: #b9e5d8;
+            --pink: #ffcfd2;
+            --peach: #fde4cf;
+            --lavender: #cfd9fd;
+            --texto-marron: #8c7d6b;
         }
 
-        /* Secciones de Pantalla Completa Vertical */
-        section { 
-            height: 100vh; width: 100%; display: flex; flex-direction: column; 
-            justify-content: center; padding: 20px; scroll-snap-align: start;
-            border-bottom: 2px solid var(--oro-fuerte);
+        body {
+            background-color: var(--fondo);
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .header-main { text-align: center; margin-bottom: 30px; }
-        .header-main h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--oro-fuerte); margin: 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
-        .header-main p { font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; color: var(--white); opacity: 0.8; }
-
-        h2 { font-size: 1.2rem; color: var(--oro-fuerte); text-transform: uppercase; margin-bottom: 20px; border-left: 5px solid var(--white); padding-left: 15px; }
-
-        /* Grilla de Botones Llamativos */
-        .btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .opt-btn { 
-            background: var(--verde-boton); border: 3px solid var(--oro-fuerte); 
-            padding: 20px 10px; border-radius: 15px; color: var(--white); 
-            font-weight: 800; font-size: 0.8rem; cursor: pointer;
-            box-shadow: 0 8px 0 #000; transition: 0.1s;
-        }
-        .opt-btn:active, .opt-btn.active { 
-            background: var(--oro-fuerte); color: var(--verde-deep); 
-            transform: translateY(6px); box-shadow: 0 2px 0 #000;
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
         }
 
-        /* Consola de Control Persistente (Abajo) */
-        .console-fixed { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: var(--white); padding: 20px; border-radius: 30px 30px 0 0;
-            border-top: 5px solid var(--oro-fuerte); z-index: 10000;
-        }
-        #prompt-res { color: var(--verde-deep); font-weight: 800; font-size: 0.85rem; text-align: center; margin-bottom: 15px; min-height: 40px; }
-        
-        .ia-apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .ia-btn { 
-            padding: 12px; border: none; border-radius: 10px; color: white; 
-            font-size: 0.6rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
+        .header h1 {
+            color: #e59a8d;
+            font-size: 2.2rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Flecha de "Desliza para abajo" */
-        .scroll-down { text-align: center; color: var(--oro-fuerte); font-size: 0.7rem; margin-top: 20px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+        .header p {
+            color: #d1a18d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* CONTENEDOR QUE SE DESLIZA */
+        .scroll-container {
+            width: 100%;
+            max-width: 500px; /* Ancho ideal para lectura y móvil */
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .category-block {
+            background: white;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 4px solid white;
+        }
+
+        .column-title {
+            background: var(--mint);
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dos botones por fila */
+            gap: 10px;
+        }
+
+        .btn-option {
+            border: none;
+            padding: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .btn-option:active { transform: translateY(3px); box-shadow: none; }
+
+        /* Colores exactos de tu imagen */
+        .btn-pink { background: var(--pink); color: #d66d75; }
+        .btn-mint { background: var(--mint); color: #5b8c7d; }
+        .btn-lavender { background: var(--lavender); color: #7d8cc4; }
+        .btn-peach { background: var(--peach); color: #c49c7d; }
+
+        /* AREA DE RESULTADO (FIJA O AL FINAL) */
+        .prompt-box {
+            background: #fff;
+            border: 3px dashed #e5ccac;
+            border-radius: 25px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            padding: 15px 30px;
+            border-radius: 25px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-copy { background: #f08a70; }
+        .btn-clear { background: #8ba3f0; }
+
+        .back-link {
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #d1a18d;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <section>
-        <div class="header-main">
-            <h1>ARBELO</h1>
-            <p>Digital Studio ✨</p>
-        </div>
-        <h2>01. ADN & Autoridad</h2>
-        <div class="btn-grid">
-            <button class="opt-btn" onclick="tg(this)">Old Money 💎</button>
-            <button class="opt-btn" onclick="tg(this)">Modern Luxe ✨</button>
-            <button class="opt-btn" onclick="tg(this)">Coach Luxe ⚖️</button>
-            <button class="opt-btn" onclick="tg(this)">Poder Ejecutivo 💼</button>
-        </div>
-        <div class="scroll-down">DESLIZA PARA CONTINUAR ▼</div>
-    </section>
+    <a href="index.html" class="back-link">← Volver al Menú</a>
 
-    <section>
-        <h2>02. Identidad Visual</h2>
-        <div class="btn-grid">
-            <button class="opt-btn" onclick="tg(this)">Pelo Rizo 🌀</button>
-            <button class="opt-btn" onclick="tg(this)">Moño Pulido 👱‍♀️</button>
-            <button class="opt-btn" onclick="tg(this)">Ondas al Agua 🌊</button>
-            <button class="opt-btn" onclick="tg(this)">Rubio Platino 👩🏼</button>
-        </div>
-        <div class="scroll-down">SIGUE BAJANDO ▼</div>
-    </section>
-
-    <section>
-        <h2>03. Productos & Lujo</h2>
-        <div class="btn-grid">
-            <button class="opt-btn" onclick="tg(this)" style="border-color:var(--rojo-luxe)">Suela Roja 👠</button>
-            <button class="opt-btn" onclick="tg(this)">Libro 3D 📖</button>
-            <button class="opt-btn" onclick="tg(this)">Agenda Cuero 📓</button>
-            <button class="opt-btn" onclick="tg(this)">Joyas Diamante 💍</button>
-        </div>
-        <div class="scroll-down">ÚLTIMO PASO ▼</div>
-    </section>
-
-    <section>
-        <h2>04. Motor Video & 3D</h2>
-        <div class="btn-grid">
-            <button class="opt-btn" onclick="tg(this)">3D Pixar 🎬</button>
-            <button class="opt-btn" onclick="tg(this)">Unreal Engine 5 🎮</button>
-            <button class="opt-btn" onclick="tg(this)">Higgsfield Mov 🎞️</button>
-            <button class="opt-btn" onclick="tg(this)">Octane Render 🌟</button>
-        </div>
-    </section>
-
-    <div class="console-fixed">
-        <div id="prompt-res">Configura tu ingeniería visual... 🚀</div>
-        <div class="ia-apps">
-            <button class="ia-btn" style="background:#4285F4" onclick="cp('G. Flow')">G. Flow</button>
-            <button class="ia-btn" style="background:#0062ff" onclick="cp('Freepik')">Freepik</button>
-            <button class="ia-btn" style="background:#ff0055" onclick="cp('Higgsfield')">Higgsfield</button>
-            <button class="ia-btn" style="background:#10a37f" onclick="cp('DALL-E 3')">DALL-E 3</button>
-            <button class="ia-btn" style="background:#c5a059; color:black" onclick="cp('Gemini')">Gemini</button>
-            <button class="ia-btn" style="background:#333" onclick="res()">Limpiar</button>
-        </div>
+    <div class="header">
+        <h1>Arbelo DIGITAL STUDIO</h1>
+        <p>PROMPTING SOFTWARE FOR MENTORS</p>
     </div>
 
-    <script>
-        let s = new Set();
-        function tg(el) {
-            el.classList.toggle('active');
-            if(el.classList.contains('active')) s.add(el.innerText); else s.delete(el.innerText);
-            document.getElementById('prompt-res').innerText = Array.from(s).join(" + ") || "Configura tu ingeniería visual... 🚀";
-        }
-        function cp(app) {
-            const p = document.getElementById('prompt-res').innerText;
-            navigator.clipboard.writeText(`[ARBELO - ${app.toUpperCase()}]: ${p}`);
-            alert("✨ Copiado para " + app);
-        }
-        function res() {
-            s.clear();
-            document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('prompt-res').innerText = "Configura tu ingeniería visual... 🚀";
-        }
-    </script>
+    <div class="scroll-container">
+        
+        <div class="category-block">
+            <div class="column-title" style="background: var(--pink);">Categoría</div>
+            <div class="options-grid">
+                <button class="btn-option btn-pink">Negocios 🌸</button>
+                <button class="btn-option btn-pink">Old Money 💎</button>
+                <button class="btn-option btn-pink">Servicios 🌷</button>
+                <button class="btn-option btn-pink">Lifestyle ✨</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title" style="background: var(--mint);">Material</div>
+            <div class="options-grid">
+                <button class="btn-option btn-mint">Color 🎨</button>
+                <button class="btn-option btn-mint">Brillo ✨</button>
+                <button class="btn-option btn-mint">Mate ☁️</button>
+                <button class="btn-option btn-mint">Vidrio 🔮</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title" style="background: var(--lavender);">Iluminación</div>
+            <div class="options-grid">
+                <button class="btn-option btn-lavender">Suave ☁️</button>
+                <button class="btn-option btn-lavender">Estudio 💡</button>
+                <button class="btn-option btn-lavender">Natural ☀️</button>
+                <button class="btn-option btn-lavender">Golden Hour 🌅</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title" style="background: var(--peach);">Estilo Render</div>
+            <div class="options-grid">
+                <button class="btn-option btn-peach">Editorial</button>
+                <button class="btn-option btn-peach">High-End</button>
+                <button class="btn-option btn-peach">Minimal</button>
+                <button class="btn-option btn-peach">Realista</button>
+            </div>
+        </div>
+
+        <div class="prompt-box">
+            <p style="color: var(--texto-marron); font-weight: bold;">Tu Prompt Resultante:</p>
+            <div id="result" style="color: #aaa; font-style: italic;">Selecciona opciones arriba...</div>
+            <div class="actions">
+                <button class="btn-action btn-copy">♥ Copiar</button>
+                <button class="btn-action btn-clear">Limpiar 🪶</button>
+            </div>
+        </div>
+
+        <div style="height: 50px;"></div> </div>
+
 </body>
 </html>

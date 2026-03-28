@@ -4,263 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Studio | AI Prompting</title>
+    <title>Arbelo Creator Studio | Personajes & IA</title>
     <style>
-        :root {
-            --fondo: #fcebd5; /* Color de fondo un poco más intenso */
-            --mint: #b9e5d8;
-            --pink: #ffcfd2;
-            --peach: #fde4cf;
-            --lavender: #cfd9fd;
-            --texto-marron: #6b5e4c;
+        :root { 
+            --verde: #2d5a27; --verde-os: #1e3d1a; --oro: #c5a059; --oscuro: #0d0624;
+            --gpt: #10a37f; --google: #4285f4; --free: #00aaff; --higgs: #ff4d4d;
+            --acento: #7c3aed; --rosa: #db2777;
         }
 
-        body {
-            background-color: var(--fondo);
-            font-family: 'Verdana', sans-serif;
-            margin: 0;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(180deg, #0d0624 0%, #07021a 100%); 
+            color: #e9d5ff; margin:0; padding: 20px; display: flex; justify-content: center; 
         }
 
-        .header {
-            text-align: center;
-            margin: 20px 0;
+        .container { 
+            max-width: 800px; width: 100%; background: #1a0940; padding: 30px; 
+            border-radius: 40px; border-top: 10px solid var(--verde); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
         }
 
-        .header h1 {
-            color: #d48374;
-            font-size: 1.4rem;
-            margin: 0;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        h1 { color: #fde68a; font-size: 1.8rem; text-align: center; margin-bottom: 5px; }
+        .subtitle { text-align: center; font-size: 0.8rem; color: #a78bfa; margin-bottom: 30px; letter-spacing: 2px; }
+
+        /* Estilo Secciones */
+        .section-title { 
+            font-size: 0.8rem; font-weight: 800; color: var(--oro); 
+            text-transform: uppercase; margin: 25px 0 12px; border-bottom: 1px solid #3b0764; padding-bottom: 5px;
         }
 
-        .scroll-container {
-            width: 100%;
-            max-width: 430px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+
+        /* BOTONES 3D PILL */
+        .pill-btn {
+            border-radius: 999px; border: 1.5px solid #3f2d5c; padding: 8px 16px;
+            font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.1s;
+            background: #1e1040; color: #a78bfa;
+            border-bottom: 4px solid #000;
         }
 
-        .category-block {
-            background: white;
-            padding: 12px;
-            border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        .pill-btn:hover { background: #2a165a; transform: translateY(-1px); }
+
+        .pill-btn.active {
+            background: linear-gradient(135deg, var(--acento), var(--rosa));
+            color: white; border-color: #e879f9; border-bottom: 4px solid #5b21b6;
+            box-shadow: 0 0 10px rgba(232, 121, 249, 0.4);
         }
 
-        .column-title {
-            color: var(--texto-marron);
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
+        .pill-btn:active { transform: translateY(2px); border-bottom-width: 1px; }
+
+        /* Consola de Salida */
+        .result-area { 
+            margin-top: 40px; padding: 25px; background: var(--oscuro); 
+            border-radius: 30px; border: 2px solid var(--acento); position: sticky; bottom: 20px;
         }
 
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
+        .prompt-box { 
+            font-family: 'Courier New', monospace; font-size: 0.85rem; color: #86efac; 
+            background: #0a0520; padding: 15px; border-radius: 15px; min-height: 50px; margin-bottom: 20px;
         }
 
-        .btn-option {
-            border: none;
-            padding: 6px 2px; /* Botones más pequeños */
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.68rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            box-shadow: 0 2px 0 rgba(0,0,0,0.02);
+        .copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+        
+        .btn-ia {
+            border-radius: 999px; border: none; padding: 12px; font-weight: 800; font-size: 0.6rem;
+            text-transform: uppercase; cursor: pointer; color: white; border-bottom: 4px solid rgba(0,0,0,0.3);
         }
 
-        .btn-option:active { transform: translateY(1px); }
-        .btn-option.active { outline: 2px solid var(--texto-marron); filter: brightness(0.95); }
+        .btn-mj { background: var(--verde); } .btn-gpt { background: var(--gpt); }
+        .btn-higgs { background: var(--higgs); } .btn-flow { background: var(--google); }
+        .btn-free { background: var(--free); } .btn-reset { background: #444; }
 
-        .btn-pink { background: var(--pink); color: #c45a61; }
-        .btn-mint { background: var(--mint); color: #4a7a6c; }
-        .btn-lavender { background: var(--lavender); color: #6675b0; }
-        .btn-peach { background: var(--peach); color: #b08a66; }
-
-        /* CAJA DE TEXTO BONITA (Glassmorphism style) */
-        .prompt-box {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid #e5ccac;
-            border-radius: 22px;
-            padding: 15px;
-            margin-top: 15px;
-            position: sticky;
-            bottom: 10px;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        #result {
-            background: #fffcf0;
-            padding: 10px;
-            border-radius: 12px;
-            min-height: 40px;
-            font-size: 0.75rem;
-            color: var(--texto-marron);
-            margin-bottom: 10px;
-            border: 1px inset #f3e5d0;
-            line-height: 1.3;
-        }
-
-        .actions { display: flex; justify-content: center; gap: 8px; }
-        .btn-action {
-            padding: 8px 18px;
-            border-radius: 12px;
-            border: none;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        .btn-copy { background: #f08a70; }
-        .btn-clear { background: #8ba3f0; }
-
-        .back-link { text-decoration: none; color: #b08a66; font-size: 0.7rem; margin-bottom: 10px; }
+        .btn-ia:active { transform: translateY(2px); border-bottom-width: 1px; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← VOLVER AL ESTUDIO</a>
+<div class="container">
+    <h1>Arbelo Creator Studio</h1>
+    <div class="subtitle">DISEÑO DE PERSONAJES & OUTFITS IA</div>
 
-    <div class="header">
-        <h1>ARBELO STUDIO</h1>
-    </div>
+    <div id="ui-builder"></div>
 
-    <div class="scroll-container">
+    <div class="result-area">
+        <div style="color: var(--oro); font-size: 0.7rem; font-weight: 900; margin-bottom: 10px;">PROMPT GENERADO:</div>
+        <div id="final-prompt" class="prompt-box">Selecciona opciones para crear...</div>
         
-        <div class="category-block">
-            <div class="column-title">🌸 Categoría</div>
-            <div class="options-grid">
-                <button class="btn-option btn-pink" onclick="addText(this, 'Negocios')">Negocios</button>
-                <button class="btn-option btn-pink" onclick="addText(this, 'Servicios')">Servicios</button>
-                <button class="btn-option btn-pink" onclick="addText(this, 'Lifestyle')">Lifestyle</button>
-            </div>
+        <div class="copy-grid">
+            <button class="btn-ia btn-mj" onclick="copyPrompt('mj')">Midjourney</button>
+            <button class="btn-ia btn-gpt" onclick="copyPrompt('gpt')">ChatGPT</button>
+            <button class="btn-ia btn-higgs" onclick="copyPrompt('higgs')">Higgsfield</button>
+            <button class="btn-ia btn-flow" onclick="copyPrompt('flow')">Google Flow</button>
+            <button class="btn-ia btn-free" onclick="copyPrompt('free')">Freepik</button>
+            <button class="btn-ia btn-reset" onclick="resetAll()">Limpiar</button>
         </div>
-
-        <div class="category-block">
-            <div class="column-title">🎨 Material</div>
-            <div class="options-grid">
-                <button class="btn-option btn-mint" onclick="addText(this, 'Seda')">Seda</button>
-                <button class="btn-option btn-mint" onclick="addText(this, 'Mármol')">Mármol</button>
-                <button class="btn-option btn-mint" onclick="addText(this, 'Vidrio')">Vidrio</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">💡 Iluminación</div>
-            <div class="options-grid">
-                <button class="btn-option btn-lavender" onclick="addText(this, 'Natural')">Natural</button>
-                <button class="btn-option btn-lavender" onclick="addText(this, 'Studio')">Studio</button>
-                <button class="btn-option btn-lavender" onclick="addText(this, 'Golden')">Golden</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">☁️ Atmósfera</div>
-            <div class="options-grid">
-                <button class="btn-option btn-peach" onclick="addText(this, 'Zen')">Zen</button>
-                <button class="btn-option btn-peach" onclick="addText(this, 'Lujo')">Lujo</button>
-                <button class="btn-option btn-peach" onclick="addText(this, 'Vintage')">Vintage</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">📷 Ángulo</div>
-            <div class="options-grid">
-                <button class="btn-option btn-pink" onclick="addText(this, 'Frontal')">Frontal</button>
-                <button class="btn-option btn-pink" onclick="addText(this, 'Cenital')">Cenital</button>
-                <button class="btn-option btn-pink" onclick="addText(this, 'Detalle')">Detalle</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">👗 Estilo Social</div>
-            <div class="options-grid">
-                <button class="btn-option btn-mint" onclick="addText(this, 'Old Money')">Old Money</button>
-                <button class="btn-option btn-mint" onclick="addText(this, 'Minimal')">Minimal</button>
-                <button class="btn-option btn-mint" onclick="addText(this, 'Chic')">Chic</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">🌆 Escenario</div>
-            <div class="options-grid">
-                <button class="btn-option btn-lavender" onclick="addText(this, 'Oficina')">Oficina</button>
-                <button class="btn-option btn-lavender" onclick="addText(this, 'Exterior')">Exterior</button>
-                <button class="btn-option btn-lavender" onclick="addText(this, 'Mansión')">Mansión</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">🖼️ Formato</div>
-            <div class="options-grid">
-                <button class="btn-option btn-peach" onclick="addText(this, 'Portrait')">Vertical</button>
-                <button class="btn-option btn-peach" onclick="addText(this, 'Square')">Cuadrado</button>
-                <button class="btn-option btn-peach" onclick="addText(this, 'Cinema')">Cine</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">✨ Acabado</div>
-            <div class="options-grid">
-                <button class="btn-option btn-pink" onclick="addText(this, 'Grainy')">Grano</button>
-                <button class="btn-option btn-pink" onclick="addText(this, 'Clean')">Limpio</button>
-                <button class="btn-option btn-pink" onclick="addText(this, 'Soft Focus')">Suave</button>
-            </div>
-        </div>
-
-        <div class="prompt-box">
-            <div id="result">Generando tu visión...</div>
-            <div class="actions">
-                <button class="btn-action btn-copy" onclick="copyPrompt()">♥ COPIAR</button>
-                <button class="btn-action btn-clear" onclick="clearPrompt()">BORRAR</button>
-            </div>
-        </div>
-
-        <div style="height: 20px;"></div>
     </div>
+</div>
 
-    <script>
-        let promptParts = [];
+<script>
+    // Datos integrados de tu código React
+    const SECTIONS = [
+        { label: "Producto", key: "prod", opts: ["3D Render", "Cuaderno", "Coloring Page", "Camiseta"] },
+        { label: "Estilo Visual", key: "style", opts: ["Chibi 3D Brillante", "Muñeca Hiperreal", "Render Octane", "Figura Vinilo", "Plastilina Suave"] },
+        { label: "Personaje", key: "char", opts: ["Chica", "Chico", "Mujer", "Hombre", "Hada", "Sirena", "Unicornio", "Panda"] },
+        { label: "Tono de Piel", key: "skin", opts: ["Latina Caramelo", "Asiática Porcelana", "Europea Clara", "Africana Melanin", "Árabe Dorada"] },
+        { label: "Outfit Preset", key: "outfit", opts: ["Jefa Poderosa", "Diva Glam", "Estilo Urbano", "Kawaii Tierno", "Sporty Star"] },
+        { label: "Calzado", key: "shoes", opts: ["Tenis Jordan", "Tacones Elegantes", "Botas Altas", "Mary Jane", "Pantuflas Peludas"] },
+        { label: "Peinado", key: "hair", opts: ["Largo Liso", "Ondas Sueltas", "Afro Voluminoso", "Trenzas Box", "Space Buns"] },
+        { label: "Pose", key: "pose", opts: ["Sassy Stand", "Saludando Feliz", "Beso Corazón", "Brazos Cruzados", "Sentada Barbilla"] },
+        { label: "Fondo", key: "bg", opts: ["PNG Transparente", "Blanco Sólido", "Degradado Pastel", "Glitter Sparkling"] }
+    ];
 
-        function addText(element, text) {
-            element.classList.toggle('active');
-            if(promptParts.includes(text)) {
-                promptParts = promptParts.filter(item => item !== text);
-            } else {
-                promptParts.push(text);
-            }
-            updateDisplay();
-        }
+    let state = {};
 
-        function updateDisplay() {
-            const res = document.getElementById('result');
-            res.innerText = promptParts.length > 0 ? promptParts.join(", ") + " --v 6.0" : "Generando tu visión...";
-        }
+    function init() {
+        const builder = document.getElementById('ui-builder');
+        SECTIONS.forEach(sec => {
+            const title = document.createElement('div');
+            title.className = 'section-title';
+            title.innerText = sec.label;
+            builder.appendChild(title);
 
-        function clearPrompt() {
-            promptParts = [];
-            updateDisplay();
-            document.querySelectorAll('.btn-option').forEach(b => b.classList.remove('active'));
-        }
+            const grid = document.createElement('div');
+            grid.className = 'chip-grid';
+            sec.opts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'pill-btn';
+                btn.innerText = opt;
+                btn.onclick = () => {
+                    grid.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state[sec.key] = opt;
+                    update();
+                };
+                grid.appendChild(btn);
+            });
+            builder.appendChild(grid);
+        });
+    }
 
-        function copyPrompt() {
-            if(promptParts.length === 0) return;
-            navigator.clipboard.writeText(document.getElementById('result').innerText);
-            alert("♥ Guardado en el portapapeles");
-        }
-    </script>
+    function update() {
+        const p = Object.values(state).join(", ");
+        document.getElementById('final-prompt').innerText = p || "Selecciona opciones...";
+    }
+
+    function copyPrompt(type) {
+        const text = document.getElementById('final-prompt').innerText;
+        let final = text;
+        if(type === 'mj') final = `${text} --v 6.1 --ar 4:5 --stylize 250`;
+        if(type === 'gpt') final = `A high-end 3D character design of: ${text}. Editorial style, 8k.`;
+        
+        navigator.clipboard.writeText(final);
+        alert(`✨ Prompt copiado para ${type.toUpperCase()}`);
+    }
+
+    function resetAll() {
+        state = {};
+        document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+        update();
+    }
+
+    init();
+</script>
 </body>
 </html>

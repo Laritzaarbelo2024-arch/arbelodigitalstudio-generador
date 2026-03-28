@@ -4,36 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital Studio | Consola de Autoridad</title>
+    <title>Arbelo Digital Studio | All-Stars AI Connect</title>
     <style>
-        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; }
+        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; --google: #4285F4; --freepik: #0062ff; --higgs: #ff0055; }
         body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--oscuro); margin:0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 1000px; width: 100%; background: white; padding: 50px; border-radius: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); border-top: 20px solid var(--verde); text-align: center; margin-bottom: 160px; position: relative; }
-        
-        /* Encabezado de Marca */
-        h1 { color: var(--verde); margin-bottom: 0px; font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; }
-        .studio-tag { color: var(--oro); font-weight: 800; font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; }
-        .subtitle { font-size: 0.75rem; color: #aaa; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
-        
-        .section-title { background: var(--verde); color: white; padding: 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 900; margin-top: 45px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 8px solid var(--oro); }
-        
-        .category { margin-bottom: 12px; border: 1px solid #eee; border-radius: 18px; overflow: hidden; text-align: left; transition: 0.3s; }
-        .category:hover { border-color: var(--oro); }
-        .category-header { background: #fff; padding: 20px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.95rem; color: var(--verde); }
-        .category-content { display: none; padding: 25px; background: #fafafa; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; border-top: 1px solid #eee; }
+        .container { max-width: 1100px; width: 100%; background: white; padding: 50px; border-radius: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); border-top: 20px solid var(--verde); text-align: center; margin-bottom: 240px; }
+        h1 { color: var(--verde); margin-bottom: 0px; font-size: 3rem; font-weight: 900; letter-spacing: -1px; }
+        .studio-tag { color: var(--oro); font-weight: 800; font-size: 1.2rem; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 40px; }
+        .section-title { background: var(--verde); color: white; padding: 15px; border-radius: 12px; font-size: 0.85rem; font-weight: 900; margin-top: 45px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 10px solid var(--oro); text-align: left; }
+        .category { margin-bottom: 15px; border: 1px solid #e0eadd; border-radius: 20px; overflow: hidden; text-align: left; }
+        .category-header { padding: 20px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: var(--verde); }
+        .category-content { display: none; padding: 25px; background: #fdfdfd; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; border-top: 1px solid #eee; }
         .category.active .category-content { display: grid; }
-        
-        .option-btn { background: white; border: 1.5px solid #ddd; padding: 12px; border-radius: 12px; cursor: pointer; font-size: 0.75rem; transition: 0.2s; color: #555; font-weight: 500; }
-        .option-btn:hover { border-color: var(--oro); background: #fff9f0; color: var(--verde); }
-        .option-btn.active { background: var(--verde); color: white; border-color: var(--verde); font-weight: 700; box-shadow: 0 5px 15px rgba(45, 90, 39, 0.2); }
+        .option-btn { background: white; border: 1.5px solid #d1d9cf; padding: 12px; border-radius: 12px; cursor: pointer; font-size: 0.75rem; color: #444; font-weight: 600; }
+        .option-btn.active { background: var(--verde); color: white; border-color: var(--verde); font-weight: 800; }
 
-        /* Área de Resultados Pro */
-        .result-area { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); max-width: 940px; width: 92%; background: var(--oscuro); color: #eee; padding: 25px; border-radius: 30px; text-align: left; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .prompt-text { font-family: 'Courier New', monospace; font-size: 0.85rem; display: block; color: #90ee90; line-height: 1.5; white-space: pre-wrap; margin-bottom: 20px; border-left: 3px solid var(--oro); padding-left: 15px; }
-        .copy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .btn-ia { padding: 14px; border: none; border-radius: 15px; cursor: pointer; font-weight: 900; font-size: 0.7rem; text-transform: uppercase; color: white; transition: 0.3s; letter-spacing: 1px; }
+        /* Mega Consola de Herramientas IA */
+        .result-area { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 1040px; width: 95%; background: var(--oscuro); color: #eee; padding: 25px; border-radius: 35px; text-align: left; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        .prompt-text { font-family: 'Courier New', monospace; font-size: 0.8rem; color: #a2f9a2; line-height: 1.4; white-space: pre-wrap; margin-bottom: 20px; padding-left: 15px; border-left: 4px solid var(--oro); display: block; max-height: 80px; overflow-y: auto; }
         
-        .footer-brand { margin-top: 60px; font-size: 0.65rem; color: #bbb; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+        .copy-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+        .btn-ia { padding: 10px 5px; border: none; border-radius: 10px; cursor: pointer; font-weight: 900; font-size: 0.55rem; text-transform: uppercase; color: white; transition: 0.2s; text-align: center; }
+        .btn-ia:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -41,48 +33,39 @@
 <div class="container">
     <h1>ARBELO</h1>
     <div class="studio-tag">Digital Studio</div>
-    <div class="subtitle">Ingeniería Visual de Autoridad para Mentoras High-Ticket</div>
-
     <div id="master-accordion"></div>
-
-    <div class="footer-brand">Arbelo Digital Studio © 2026 | Proprietary Technology</div>
+    <div style="margin-top: 40px; font-size: 0.65rem; color: #bbb; letter-spacing: 2px; font-weight: 800;">CONECTAR CON ECOSISTEMA IA</div>
 </div>
 
 <div class="result-area">
-    <span style="color:var(--oro); font-size:0.7rem; font-weight:900; text-transform:uppercase; margin-bottom:10px; display:block;">Prompt de Ingeniería Arbelo:</span>
-    <span id="display-prompt" class="prompt-text">Define tu ADN de marca...</span>
+    <div id="display-prompt" class="prompt-text">Selecciona elementos para activar la ingeniería de prompts...</div>
     <div class="copy-grid">
-        <button class="btn-ia" style="background:var(--verde)" onclick="copyMJ()">Midjourney</button>
-        <button class="btn-ia" style="background:var(--oro); color:var(--oscuro)" onclick="copyGPT()">ChatGPT</button>
-        <button class="btn-ia" style="background:#333" onclick="resetAll()">Limpiar</button>
+        <button class="btn-ia" style="background:var(--google)" onclick="copyFlow()">Google Flow</button>
+        <button class="btn-ia" style="background:var(--freepik)" onclick="copyFreepik()">Freepik</button>
+        <button class="btn-ia" style="background:var(--higgs)" onclick="copyHiggs()">Higgsfield</button>
+        <button class="btn-ia" style="background:#10a37f" onclick="copyDalle()">DALL-E 3</button>
+        <button class="btn-ia" style="background:var(--oro); color:var(--oscuro)" onclick="copyGemini()">Gemini Pro</button>
     </div>
+    <div style="text-align:center; margin-top:10px;"><button onclick="resetAll()" style="background:none; border:none; color:#777; cursor:pointer; font-size:0.5rem; text-decoration:underline;">Limpiar Consola</button></div>
 </div>
 
 <script>
     const sections = [
-        { label: "BLOQUE 0: ADN DE AUTORIDAD & NICHO", cats: [
-            { title: "Nicho de Mentoría", key: "biz", opts: ["Mentora de Negocios", "Coach Luxe", "Consultora Estratégica", "Speaker Internacional", "Estratega de Marca"] },
-            { title: "Identidad & ADN", key: "idn", opts: ["Mujer Latina", "Elegancia Europea", "25-35 años", "35-45 años", "45-55 años", "60+ Longevidad Vital"] },
-            { title: "Psicología de Color", key: "col", opts: ["Old Money", "Poder Ejecutivo", "Barbie Core Luxe", "Pure White", "Luxury Noir", "Pasteles Suaves"] }
+        { label: "BLOQUE 0: ADN & INDUSTRIA", cats: [
+            { title: "Nicho de Negocio", key: "ind", opts: ["Mentoría Luxe", "Real Estate Pro", "Beauty & Wellness", "Joyería Fina", "E-commerce Moda", "Artesanía Luxe"] },
+            { title: "Estilo Visual", key: "st", opts: ["Old Money", "Modern Luxe", "Barbie Core", "Minimalista", "3D Pixar Style", "Acuarela Luxe"] }
         ]},
-        { label: "BLOQUE 1: PERSONAJE & CABELLO VIP", cats: [
-            { title: "Tipo de Pelo", key: "ht", opts: ["Pelo Rizo", "Pelo Ondulado", "Pelo Liso", "Afro Chic", "Pixie Cut"] },
-            { title: "Color de Pelo", key: "hc", opts: ["Negro Azabache", "Rubio Platino", "Rojo Vibrante", "Rubio Miel", "Castaño Chocolate", "Mechas Balayage"] },
-            { title: "Peinado de Poder", key: "hs", opts: ["Moño Pulido", "Coleta Alta XXL", "Ondas al Agua", "Efecto Wet", "Suelto con Volumen"] }
+        { label: "BLOQUE 1: MOCKUPS & PRODUCTO", cats: [
+            { title: "Mockups (POD)", key: "pod", opts: ["Camiseta (T-shirt)", "Gorra Luxe", "Lentes de Sol", "Portada Libro 3D", "Agenda Luxe", "Botella Perfume"] },
+            { title: "Accesorios", key: "acc", opts: ["Joyas de Diamante", "Vela Aromática", "Suela Roja Iconic", "Bolso de Piel"] }
         ]},
-        { label: "BLOQUE 2: MAQUILLAJE & SKINCARE PRO", cats: [
-            { title: "Maquillaje", key: "mk", opts: ["No-Makeup Look", "Labios Rojos", "Mate Editorial", "Piel Glowy", "Labios Nude Glossy", "Ojos Cat-Eye"] },
-            { title: "Textura de Piel", key: "sk", opts: ["Poros Reales HD", "Piel Satinada", "Piel de Vidrio", "Natural Textura"] }
+        { label: "BLOQUE 2: PERSONAJE & CABELLO", cats: [
+            { title: "Identidad", key: "id", opts: ["Mujer Latina", "Elegancia Europea", "25-35 años", "45-55 años"] },
+            { title: "Textura & Color", key: "ht", opts: ["Pelo Rizo", "Pelo Liso", "Pelo Ondulado", "Rubio Platino", "Rojo Vibrante", "Negro Azabache"] }
         ]},
-        { label: "BLOQUE 3: ATUENDO & CALZADO HIGH-TICKET", cats: [
-            { title: "Moda Arbelo", key: "out", opts: ["Total White Look", "Blazer de Lana", "Seda Italiana", "Traje Monocromo", "Abrigo Cashmere"] },
-            { title: "Calzado de Estatus", key: "st", opts: ["Stilettos (Tacón)", "Mocasines Lujo", "Botas de Piel", "Sandalias de Tiras", "Suela Roja Iconic"] }
-        ]},
-        { label: "BLOQUE 4: ESCENARIOS & MOTOR VISUAL", cats: [
-            { title: "Escenario / Contexto", key: "env", opts: ["Escenario / Conferencia", "Estudio de Podcast", "Oficina High-Tech", "Penthouse NYC", "Calle de París"] },
-            { title: "Objetos de Autoridad", key: "act", opts: ["Mirada de Poder", "Grabando Podcast", "Tomando Café", "iPad Pro", "MacBook Pro", "iPhone 15 Pro"] },
-            { title: "Iluminación / Lente", key: "lit", opts: ["Golden Hour", "Luz de Ventana", "85mm Portrait", "Shot on iPhone"] },
-            { title: "MOTOR DE RENDER", key: "mot", opts: ["Fotografía Realista", "3D Animación de Lujo", "Render Mate (Clay)"] }
+        { label: "BLOQUE 3: ESCENARIO & LUZ", cats: [
+            { title: "Ubicación", key: "env", opts: ["Oficina de Cristal", "Spa Minimalista", "Calle de París", "Estudio Podcast", "Mansión Moderna"] },
+            { title: "Iluminación", key: "lit", opts: ["Golden Hour", "Luz Rembrandt", "Softbox Estudio", "Shot on iPhone"] }
         ]}
     ];
 
@@ -94,7 +77,7 @@
         sec.cats.forEach(cat => {
             const cDiv = document.createElement('div');
             cDiv.className = 'category';
-            cDiv.innerHTML = `<div class="category-header" onclick="this.parentElement.classList.toggle('active')">${cat.title} <span>+</span></div><div class="category-content"></div>`;
+            cDiv.innerHTML = `<div class="category-header" onclick="this.parentElement.classList.toggle('active')">${cat.title} <span>▼</span></div><div class="category-content"></div>`;
             main.appendChild(cDiv);
             const grid = cDiv.querySelector('.category-content');
             cat.opts.forEach(opt => {
@@ -110,24 +93,43 @@
     });
 
     function update() {
-        const p = Array.from(selections).join(", ");
-        document.getElementById('display-prompt').innerText = p || "Define tu ADN de marca...";
+        document.getElementById('display-prompt').innerText = Array.from(selections).join(", ") || "Selecciona elementos...";
     }
 
-    function copyMJ() {
+    function copyFlow() {
         const t = document.getElementById('display-prompt').innerText;
-        let p = `[ARBELO DIGITAL STUDIO]: ${t} --v 6.1 --ar 4:5 --stylize 250 --quality 2`;
-        if(t.includes("3D Animación")) p = "[ARBELO 3D RENDER]: luxury animation style, elegant character, fashion editorial rendering, " + p;
-        navigator.clipboard.writeText(p); alert("🚀 ¡Prompt Arbelo Copiado!");
+        navigator.clipboard.writeText(`Google Vids/Flow Presentation Structure: Create a high-end corporate deck based on: ${t}. Style: Arbelo Professional.`);
+        alert("Google Flow Copiado 💼");
     }
 
-    function copyGPT() {
-        navigator.clipboard.writeText(`Create an editorial professional photo for Arbelo Digital Studio: ${document.getElementById('display-prompt').innerText}`);
-        alert("🎨 ChatGPT Copiado");
+    function copyFreepik() {
+        const t = document.getElementById('display-prompt').innerText;
+        navigator.clipboard.writeText(`High-quality stock photography, ${t}, detailed, 8k, commercially licensed style`);
+        alert("Freepik Copiado 📸");
+    }
+
+    function copyHiggs() {
+        const t = document.getElementById('display-prompt').innerText;
+        navigator.clipboard.writeText(`Character video animation: ${t}, fluid movement, realistic facial expressions, cinematic lighting`);
+        alert("Higgsfield Copiado 🎬");
+    }
+
+    function copyDalle() {
+        const t = document.getElementById('display-prompt').innerText;
+        navigator.clipboard.writeText(`Create an editorial professional photo: ${t}. High-end photography style, DALL-E 3.`);
+        alert("DALL-E 3 Copiado 🎨");
+    }
+
+    function copyGemini() {
+        const t = document.getElementById('display-prompt').innerText;
+        navigator.clipboard.writeText(`Act as a brand strategist for Arbelo Studio. Analyze and create a visual concept based on these attributes: ${t}`);
+        alert("Gemini Pro Copiado 💎");
     }
 
     function resetAll() {
-        selections.clear(); document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active')); update();
+        selections.clear();
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+        update();
     }
 </script>
 </body>

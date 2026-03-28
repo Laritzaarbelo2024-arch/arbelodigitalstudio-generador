@@ -1,27 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Vision Studio | Consola Maestra Recuperada</title>
+    <title>Arbelo Vision Studio | Consola Recuperada V2</title>
     <style>
-        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; --gpt: #10a37f; }
-        body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--oscuro); margin:0; padding: 20px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; }
+        body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--oscuro); margin:0; padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 900px; width: 100%; background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-top: 15px solid var(--verde); text-align: center; margin-bottom: 120px; }
         h1 { color: var(--verde); margin-bottom: 5px; font-size: 2.2rem; }
         .subtitle { font-size: 0.8rem; color: #999; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; }
-        .section-title { background: #eee; color: #666; padding: 10px; border-radius: 10px; font-size: 0.75rem; font-weight: 900; margin-top: 30px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .section-title { background: var(--verde); color: white; padding: 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 900; margin-top: 35px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px; }
+        
         .category { margin-bottom: 10px; border: 1px solid #eee; border-radius: 15px; overflow: hidden; text-align: left; }
-        .category-header { background: #fff; padding: 15px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.9rem; color: var(--verde); }
+        .category-header { background: #fff; padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 0.9rem; color: var(--verde); }
         .category-content { display: none; padding: 20px; background: #fafafa; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; border-top: 1px solid #eee; }
         .category.active .category-content { display: grid; }
         .option-btn { background: white; border: 1px solid #ddd; padding: 10px; border-radius: 10px; cursor: pointer; font-size: 0.7rem; transition: 0.2s; color: #555; }
+        .option-btn:hover { border-color: var(--oro); background: #fff9f0; }
         .option-btn.active { background: var(--verde); color: white; border-color: var(--verde); font-weight: 700; }
-        .result-area { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 860px; width: 90%; background: var(--oscuro); color: #eee; padding: 20px 25px; border-radius: 25px; text-align: left; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+
+        .result-area { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 860px; width: 90%; background: var(--oscuro); color: #eee; padding: 25px; border-radius: 25px; text-align: left; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
         .prompt-text { font-family: 'Courier New', monospace; font-size: 0.8rem; display: block; color: #90ee90; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; }
-        .copy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
-        .btn-ia { padding: 10px; border: none; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; color: white; transition: 0.3s; }
-        .btn-reset { background: #444; }
+        .copy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .btn-ia { padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; color: white; }
     </style>
 </head>
 <body>
@@ -39,14 +43,14 @@
     
     <div class="copy-grid">
         <button class="btn-ia" style="background:var(--verde)" onclick="copyMJ()">Midjourney</button>
-        <button class="btn-ia" style="background:var(--gpt)" onclick="copyGPT()">ChatGPT</button>
-        <button class="btn-ia btn-reset" onclick="resetAll()">Limpiar Todo</button>
+        <button class="btn-ia" style="background:var(--oro)" onclick="copyGPT()">ChatGPT</button>
+        <button class="btn-ia" style="background:#444" onclick="resetAll()">Limpiar Todo</button>
     </div>
 </div>
 
 <script>
     const sections = [
-        { label: "BLOQUE 0: ADN DE MARCA & NEGOCIOS", cats: [
+        { label: "BLOQUE 0: ADN DE NEGOCIOS & MARCA", cats: [
             { title: "Nicho de Servicio", key: "biz", opts: ["Marketing Digital", "Real Estate", "Salud/Bienestar", "Finanzas", "Estética Pro", "Consultoría"] },
             { title: "Identidad & Edad", key: "idn", opts: ["Mujer Latina", "Elegancia Europea", "25-35 años", "35-45 años", "45-55 años"] },
             { title: "Paleta Branding", key: "col", opts: ["Old Money", "Poder", "Barbie Core", "Pure White", "Luxury Noir"] }
@@ -104,13 +108,12 @@
     }
 
     function copyMJ() {
-        const t = document.getElementById('display-prompt').innerText;
-        let p = `${t} --v 6.1 --ar 4:5 --stylize 250`;
-        navigator.clipboard.writeText(p); alert("Midjourney Copiado");
+        navigator.clipboard.writeText(document.getElementById('display-prompt').innerText);
+        alert("Midjourney Copiado");
     }
 
     function copyGPT() {
-        navigator.clipboard.writeText(`Create a prompt based on these attributes: ${document.getElementById('display-prompt').innerText}`);
+        navigator.clipboard.writeText(`Create a prompt based on: ${document.getElementById('display-prompt').innerText}`);
         alert("ChatGPT Copiado");
     }
 

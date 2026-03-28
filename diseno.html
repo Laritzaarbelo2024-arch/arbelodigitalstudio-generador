@@ -1,136 +1,180 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital Studio | All-Stars AI Connect</title>
+    <title>Arbelo Digital Studio | Dashboard v5.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --verde: #2d5a27; --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; --google: #4285F4; --freepik: #0062ff; --higgs: #ff0055; }
-        body { font-family: 'Inter', sans-serif; background: var(--crema); color: var(--oscuro); margin:0; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 1100px; width: 100%; background: white; padding: 50px; border-radius: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); border-top: 20px solid var(--verde); text-align: center; margin-bottom: 240px; }
-        h1 { color: var(--verde); margin-bottom: 0px; font-size: 3rem; font-weight: 900; letter-spacing: -1px; }
-        .studio-tag { color: var(--oro); font-weight: 800; font-size: 1.2rem; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 40px; }
-        .section-title { background: var(--verde); color: white; padding: 15px; border-radius: 12px; font-size: 0.85rem; font-weight: 900; margin-top: 45px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; border-left: 10px solid var(--oro); text-align: left; }
-        .category { margin-bottom: 15px; border: 1px solid #e0eadd; border-radius: 20px; overflow: hidden; text-align: left; }
-        .category-header { padding: 20px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: var(--verde); }
-        .category-content { display: none; padding: 25px; background: #fdfdfd; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; border-top: 1px solid #eee; }
-        .category.active .category-content { display: grid; }
-        .option-btn { background: white; border: 1.5px solid #d1d9cf; padding: 12px; border-radius: 12px; cursor: pointer; font-size: 0.75rem; color: #444; font-weight: 600; }
-        .option-btn.active { background: var(--verde); color: white; border-color: var(--verde); font-weight: 800; }
+        :root { --verde: #2d5a27; --oro: #c5a059; --crema: #f4f9f1; --oscuro: #121212; --border: #eef2ed; }
+        * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { margin: 0; display: flex; height: 100vh; background-color: var(--crema); overflow: hidden; }
 
-        /* Mega Consola de Herramientas IA */
-        .result-area { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 1040px; width: 95%; background: var(--oscuro); color: #eee; padding: 25px; border-radius: 35px; text-align: left; z-index: 1000; border: 2px solid var(--oro); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
-        .prompt-text { font-family: 'Courier New', monospace; font-size: 0.8rem; color: #a2f9a2; line-height: 1.4; white-space: pre-wrap; margin-bottom: 20px; padding-left: 15px; border-left: 4px solid var(--oro); display: block; max-height: 80px; overflow-y: auto; }
+        /* Sidebar - Menú Lateral Profresional */
+        .sidebar { width: 260px; background: var(--verde); color: white; display: flex; flex-direction: column; padding: 30px 20px; }
+        .logo-area { text-align: center; margin-bottom: 50px; }
+        .logo-area h1 { font-size: 1.5rem; margin: 0; letter-spacing: 2px; }
+        .logo-area span { color: var(--oro); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 4px; }
         
-        .copy-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-        .btn-ia { padding: 10px 5px; border: none; border-radius: 10px; cursor: pointer; font-weight: 900; font-size: 0.55rem; text-transform: uppercase; color: white; transition: 0.2s; text-align: center; }
-        .btn-ia:hover { transform: scale(1.05); }
+        .nav-link { background: none; border: none; color: #b5c7b3; padding: 15px; text-align: left; cursor: pointer; font-size: 0.8rem; font-weight: 600; border-radius: 12px; transition: 0.3s; margin-bottom: 5px; }
+        .nav-link:hover { background: rgba(255,255,255,0.05); color: white; }
+        .nav-link.active { background: white; color: var(--verde); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+        /* Main Workspace */
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 40px; }
+        .view-content { display: none; animation: fadeIn 0.4s ease; }
+        .view-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-header { font-size: 1.2rem; font-weight: 800; color: var(--verde); margin-bottom: 30px; border-bottom: 2px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+        
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 24px; padding: 25px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .card h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--oro); letter-spacing: 2px; margin-bottom: 20px; border-left: 3px solid var(--verde); padding-left: 10px; }
+        
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .opt-btn { background: #fdfdfd; border: 1px solid #eee; padding: 12px; border-radius: 12px; cursor: pointer; font-size: 0.7rem; font-weight: 600; text-align: left; transition: 0.2s; }
+        .opt-btn:hover { border-color: var(--oro); background: var(--crema); }
+        .opt-btn.active { background: var(--verde); color: white; border-color: var(--verde); }
+
+        /* Consola Inferior (Output SaaS) */
+        .output-panel { position: fixed; bottom: 20px; left: 280px; right: 20px; background: var(--oscuro); border-radius: 24px; padding: 25px; border: 2px solid var(--oro); box-shadow: 0 20px 50px rgba(0,0,0,0.4); z-index: 1000; }
+        .prompt-box { color: #a2f9a2; font-family: 'Courier New', monospace; font-size: 0.85rem; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 15px; min-height: 40px; }
+        .app-connect { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
+        .app-btn { padding: 10px 20px; border: none; border-radius: 10px; color: white; font-weight: 800; font-size: 0.6rem; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+        .app-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>ARBELO</h1>
-    <div class="studio-tag">Digital Studio</div>
-    <div id="master-accordion"></div>
-    <div style="margin-top: 40px; font-size: 0.65rem; color: #bbb; letter-spacing: 2px; font-weight: 800;">CONECTAR CON ECOSISTEMA IA</div>
-</div>
-
-<div class="result-area">
-    <div id="display-prompt" class="prompt-text">Selecciona elementos para activar la ingeniería de prompts...</div>
-    <div class="copy-grid">
-        <button class="btn-ia" style="background:var(--google)" onclick="copyFlow()">Google Flow</button>
-        <button class="btn-ia" style="background:var(--freepik)" onclick="copyFreepik()">Freepik</button>
-        <button class="btn-ia" style="background:var(--higgs)" onclick="copyHiggs()">Higgsfield</button>
-        <button class="btn-ia" style="background:#10a37f" onclick="copyDalle()">DALL-E 3</button>
-        <button class="btn-ia" style="background:var(--oro); color:var(--oscuro)" onclick="copyGemini()">Gemini Pro</button>
+    <div class="sidebar">
+        <div class="logo-area">
+            <h1>ARBELO</h1>
+            <span>Digital Studio</span>
+        </div>
+        <button class="nav-link active" onclick="showView(this, 'view-marca')">Persona & Autoridad</button>
+        <button class="nav-link" onclick="showView(this, 'view-ecommerce')">E-commerce & Mockups</button>
+        <button class="nav-link" onclick="showView(this, 'view-video')">Motor de Video & 3D</button>
+        <div style="margin-top: auto; font-size: 0.6rem; opacity: 0.5; text-align: center;">V5.0 SOFTWARE SYSTEM © 2026</div>
     </div>
-    <div style="text-align:center; margin-top:10px;"><button onclick="resetAll()" style="background:none; border:none; color:#777; cursor:pointer; font-size:0.5rem; text-decoration:underline;">Limpiar Consola</button></div>
-</div>
 
-<script>
-    const sections = [
-        { label: "BLOQUE 0: ADN & INDUSTRIA", cats: [
-            { title: "Nicho de Negocio", key: "ind", opts: ["Mentoría Luxe", "Real Estate Pro", "Beauty & Wellness", "Joyería Fina", "E-commerce Moda", "Artesanía Luxe"] },
-            { title: "Estilo Visual", key: "st", opts: ["Old Money", "Modern Luxe", "Barbie Core", "Minimalista", "3D Pixar Style", "Acuarela Luxe"] }
-        ]},
-        { label: "BLOQUE 1: MOCKUPS & PRODUCTO", cats: [
-            { title: "Mockups (POD)", key: "pod", opts: ["Camiseta (T-shirt)", "Gorra Luxe", "Lentes de Sol", "Portada Libro 3D", "Agenda Luxe", "Botella Perfume"] },
-            { title: "Accesorios", key: "acc", opts: ["Joyas de Diamante", "Vela Aromática", "Suela Roja Iconic", "Bolso de Piel"] }
-        ]},
-        { label: "BLOQUE 2: PERSONAJE & CABELLO", cats: [
-            { title: "Identidad", key: "id", opts: ["Mujer Latina", "Elegancia Europea", "25-35 años", "45-55 años"] },
-            { title: "Textura & Color", key: "ht", opts: ["Pelo Rizo", "Pelo Liso", "Pelo Ondulado", "Rubio Platino", "Rojo Vibrante", "Negro Azabache"] }
-        ]},
-        { label: "BLOQUE 3: ESCENARIO & LUZ", cats: [
-            { title: "Ubicación", key: "env", opts: ["Oficina de Cristal", "Spa Minimalista", "Calle de París", "Estudio Podcast", "Mansión Moderna"] },
-            { title: "Iluminación", key: "lit", opts: ["Golden Hour", "Luz Rembrandt", "Softbox Estudio", "Shot on iPhone"] }
-        ]}
-    ];
+    <div class="main-content">
+        <div id="view-marca" class="view-content active">
+            <div class="section-header">Persona & Autoridad <span>Retratos de Lujo</span></div>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>ADN & Estética</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Old Money</button>
+                        <button class="opt-btn" onclick="toggle(this)">Modern Luxe</button>
+                        <button class="opt-btn" onclick="toggle(this)">Poder Ejecutivo</button>
+                        <button class="opt-btn" onclick="toggle(this)">Barbie Core Luxe</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Atributos Faciales</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Pelo Rizo</button>
+                        <button class="opt-btn" onclick="toggle(this)">Ondas al Agua</button>
+                        <button class="opt-btn" onclick="toggle(this)">Moño Pulido</button>
+                        <button class="opt-btn" onclick="toggle(this)">Piel Glowy HD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    let selections = new Set();
-    const main = document.getElementById('master-accordion');
+        <div id="view-ecommerce" class="view-content">
+            <div class="section-header">E-commerce & Mockups <span>Productos Digitales</span></div>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Mockups POD</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Gorra Luxe</button>
+                        <button class="opt-btn" onclick="toggle(this)">Libro 3D</button>
+                        <button class="opt-btn" onclick="toggle(this)">Agenda Cuero</button>
+                        <button class="opt-btn" onclick="toggle(this)">Camiseta Blanca</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Belleza & Joyas</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Perfume Pro</button>
+                        <button class="opt-btn" onclick="toggle(this)">Crema Facial</button>
+                        <button class="opt-btn" onclick="toggle(this)">Diamantes Luxe</button>
+                        <button class="opt-btn" onclick="toggle(this)">Lentes de Sol</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    sections.forEach(sec => {
-        const sTitle = document.createElement('div'); sTitle.className = 'section-title'; sTitle.innerText = sec.label; main.appendChild(sTitle);
-        sec.cats.forEach(cat => {
-            const cDiv = document.createElement('div');
-            cDiv.className = 'category';
-            cDiv.innerHTML = `<div class="category-header" onclick="this.parentElement.classList.toggle('active')">${cat.title} <span>▼</span></div><div class="category-content"></div>`;
-            main.appendChild(cDiv);
-            const grid = cDiv.querySelector('.category-content');
-            cat.opts.forEach(opt => {
-                const b = document.createElement('button'); b.className = 'option-btn'; b.innerText = opt;
-                b.onclick = () => {
-                    if (selections.has(opt)) { selections.delete(opt); b.classList.remove('active'); }
-                    else { selections.add(opt); b.classList.add('active'); }
-                    update();
-                };
-                grid.appendChild(b);
-            });
-        });
-    });
+        <div id="view-video" class="view-content">
+            <div class="section-header">Motor de Video & 3D <span>Animación Avanzada</span></div>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Estilos Tech</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">3D Pixar Style</button>
+                        <button class="opt-btn" onclick="toggle(this)">Unreal Engine 5</button>
+                        <button class="opt-btn" onclick="toggle(this)">Holographic FX</button>
+                        <button class="opt-btn" onclick="toggle(this)">Octane Render</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Dinámica Video</h3>
+                    <div class="btn-group">
+                        <button class="opt-btn" onclick="toggle(this)">Cinemagraph</button>
+                        <button class="opt-btn" onclick="toggle(this)">Slow Motion</button>
+                        <button class="opt-btn" onclick="toggle(this)">Drone FPV View</button>
+                        <button class="opt-btn" onclick="toggle(this)">Zoom In Suave</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    function update() {
-        document.getElementById('display-prompt').innerText = Array.from(selections).join(", ") || "Selecciona elementos...";
-    }
+    <div class="output-panel">
+        <div id="prompt-output" class="prompt-box">Configurando ingeniería visual...</div>
+        <div class="app-connect">
+            <button class="app-btn" style="background:#4285F4" onclick="copy('Flow')">G. Flow</button>
+            <button class="app-btn" style="background:#0062ff" onclick="copy('Freepik')">Freepik</button>
+            <button class="app-btn" style="background:#ff0055" onclick="copy('Higgsfield')">Higgsfield</button>
+            <button class="app-btn" style="background:#10a37f" onclick="copy('Dalle')">DALL-E 3</button>
+            <button class="app-btn" style="background:#c5a059; color:black" onclick="copy('Gemini')">Gemini Pro</button>
+            <button class="app-btn" style="background:#3d3d3d" onclick="resetAll()">Limpiar</button>
+        </div>
+    </div>
 
-    function copyFlow() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`Google Vids/Flow Presentation Structure: Create a high-end corporate deck based on: ${t}. Style: Arbelo Professional.`);
-        alert("Google Flow Copiado 💼");
-    }
+    <script>
+        let selections = new Set();
 
-    function copyFreepik() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`High-quality stock photography, ${t}, detailed, 8k, commercially licensed style`);
-        alert("Freepik Copiado 📸");
-    }
+        function toggle(btn) {
+            btn.classList.toggle('active');
+            if(btn.classList.contains('active')) selections.add(btn.innerText);
+            else selections.delete(btn.innerText);
+            document.getElementById('prompt-output').innerText = Array.from(selections).join(", ") || "Configurando ingeniería visual...";
+        }
 
-    function copyHiggs() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`Character video animation: ${t}, fluid movement, realistic facial expressions, cinematic lighting`);
-        alert("Higgsfield Copiado 🎬");
-    }
+        function showView(btn, viewId) {
+            document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            btn.classList.add('active');
+        }
 
-    function copyDalle() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`Create an editorial professional photo: ${t}. High-end photography style, DALL-E 3.`);
-        alert("DALL-E 3 Copiado 🎨");
-    }
+        function copy(app) {
+            const t = document.getElementById('prompt-output').innerText;
+            let final = `[ARBELO V5 - ${app.toUpperCase()}]: ${t}`;
+            if(app === 'Higgsfield') final += ", realistic video animation, 4k fluid motion";
+            navigator.clipboard.writeText(final);
+            alert("Listo para " + app);
+        }
 
-    function copyGemini() {
-        const t = document.getElementById('display-prompt').innerText;
-        navigator.clipboard.writeText(`Act as a brand strategist for Arbelo Studio. Analyze and create a visual concept based on these attributes: ${t}`);
-        alert("Gemini Pro Copiado 💎");
-    }
-
-    function resetAll() {
-        selections.clear();
-        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-        update();
-    }
-</script>
+        function resetAll() {
+            selections.clear();
+            document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('prompt-output').innerText = "Configurando ingeniería visual...";
+        }
+    </script>
 </body>
 </html>

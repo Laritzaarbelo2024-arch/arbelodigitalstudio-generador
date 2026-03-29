@@ -4,167 +4,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Creator Studio | Personajes & IA</title>
+    <title>Arbelo Vision Studio | 3D Control Panel</title>
     <style>
         :root { 
-            --verde: #2d5a27; --verde-os: #1e3d1a; --oro: #c5a059; --oscuro: #0d0624;
-            --gpt: #10a37f; --google: #4285f4; --free: #00aaff; --higgs: #ff4d4d;
-            --acento: #7c3aed; --rosa: #db2777;
+            --verde: #2d5a27; --verde-os: #1e3d1a; 
+            --gpt: #10a37f; --gpt-os: #0d7a5f;
+            --higgs: #ff4d4d; --higgs-os: #cc3d3d;
+            --google: #4285f4; --google-os: #3367d6;
+            --free: #00aaff; --free-os: #0088cc;
+            --crema: #f4f9f1; --oro: #c5a059; --oscuro: #1a1a1a; 
         }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(180deg, #0d0624 0%, #07021a 100%); 
-            color: #e9d5ff; margin:0; padding: 20px; display: flex; justify-content: center; 
+        body { font-family: 'Inter', sans-serif; background: var(--crema); margin:0; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 900px; width: 100%; background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-top: 15px solid var(--verde); text-align: center; }
+        
+        h1 { color: var(--verde); margin-bottom: 5px; letter-spacing: -1.5px; font-size: 2.2rem; }
+        .subtitle { font-size: 0.8rem; color: #999; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; }
+
+        /* Acordeón */
+        .category { margin-bottom: 12px; border: 1px solid #eee; border-radius: 20px; overflow: hidden; text-align: left; background: white; }
+        .category-header { padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: var(--verde); }
+        .category-content { display: none; padding: 25px; background: #fcfdfb; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; border-top: 1px solid #f0f0f0; }
+        .category.active .category-content { display: grid; }
+
+        /* BOTONES 3D PILL STYLE */
+        .option-btn {
+            position: relative;
+            border-radius: 999px;
+            border: none;
+            padding: 12px 18px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            background: #ffffff;
+            color: #555;
+            border: 1px solid #e0e0e0;
+            border-bottom: 4px solid #d0d0d0; /* Sombra base */
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8); /* Brillo superior */
         }
 
-        .container { 
-            max-width: 800px; width: 100%; background: #1a0940; padding: 30px; 
-            border-radius: 40px; border-top: 10px solid var(--verde); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+        .option-btn:hover { background: #f9f9f9; transform: translateY(-1px); }
+
+        .option-btn.active {
+            background: var(--verde);
+            color: white;
+            border-color: var(--verde-os);
+            border-bottom: 4px solid var(--verde-os);
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%); /* Reflejo */
         }
 
-        h1 { color: #fde68a; font-size: 1.8rem; text-align: center; margin-bottom: 5px; }
-        .subtitle { text-align: center; font-size: 0.8rem; color: #a78bfa; margin-bottom: 30px; letter-spacing: 2px; }
-
-        /* Estilo Secciones */
-        .section-title { 
-            font-size: 0.8rem; font-weight: 800; color: var(--oro); 
-            text-transform: uppercase; margin: 25px 0 12px; border-bottom: 1px solid #3b0764; padding-bottom: 5px;
+        .option-btn:active {
+            transform: translateY(2px);
+            border-bottom: 1px solid #999;
+            margin-bottom: 3px;
         }
 
-        .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        /* CONSOLA DE RESULTADO */
+        .result-area { margin-top: 50px; padding: 30px; background: var(--oscuro); border-radius: 30px; text-align: left; position: sticky; bottom: 20px; border: 3px solid var(--oro); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .prompt-text { font-family: 'Courier New', monospace; font-size: 0.9rem; color: #90ee90; line-height: 1.6; display: block; }
 
-        /* BOTONES 3D PILL */
-        .pill-btn {
-            border-radius: 999px; border: 1.5px solid #3f2d5c; padding: 8px 16px;
-            font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.1s;
-            background: #1e1040; color: #a78bfa;
-            border-bottom: 4px solid #000;
-        }
-
-        .pill-btn:hover { background: #2a165a; transform: translateY(-1px); }
-
-        .pill-btn.active {
-            background: linear-gradient(135deg, var(--acento), var(--rosa));
-            color: white; border-color: #e879f9; border-bottom: 4px solid #5b21b6;
-            box-shadow: 0 0 10px rgba(232, 121, 249, 0.4);
-        }
-
-        .pill-btn:active { transform: translateY(2px); border-bottom-width: 1px; }
-
-        /* Consola de Salida */
-        .result-area { 
-            margin-top: 40px; padding: 25px; background: var(--oscuro); 
-            border-radius: 30px; border: 2px solid var(--acento); position: sticky; bottom: 20px;
-        }
-
-        .prompt-box { 
-            font-family: 'Courier New', monospace; font-size: 0.85rem; color: #86efac; 
-            background: #0a0520; padding: 15px; border-radius: 15px; min-height: 50px; margin-bottom: 20px;
-        }
-
-        .copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+        /* REJILLA MULTI-IA 3D */
+        .copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 15px; margin-top: 25px; }
         
         .btn-ia {
-            border-radius: 999px; border: none; padding: 12px; font-weight: 800; font-size: 0.6rem;
-            text-transform: uppercase; cursor: pointer; color: white; border-bottom: 4px solid rgba(0,0,0,0.3);
+            border-radius: 999px;
+            border: none;
+            padding: 14px;
+            font-weight: 800;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: white;
+            transition: all 0.1s;
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 40%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
         }
 
-        .btn-mj { background: var(--verde); } .btn-gpt { background: var(--gpt); }
-        .btn-higgs { background: var(--higgs); } .btn-flow { background: var(--google); }
-        .btn-free { background: var(--free); } .btn-reset { background: #444; }
+        .btn-ia:active { transform: translateY(3px); border-bottom-width: 1px !important; }
 
-        .btn-ia:active { transform: translateY(2px); border-bottom-width: 1px; }
+        .btn-mj { background-color: var(--verde); border-bottom: 5px solid var(--verde-os); }
+        .btn-gpt { background-color: var(--gpt); border-bottom: 5px solid var(--gpt-os); }
+        .btn-higgs { background-color: var(--higgs); border-bottom: 5px solid var(--higgs-os); }
+        .btn-flow { background-color: var(--google); border-bottom: 5px solid var(--google-os); }
+        .btn-free { background-color: var(--free); border-bottom: 5px solid var(--free-os); }
+        .btn-reset { background-color: #555; border-bottom: 5px solid #333; }
+
+        .back-btn { display: inline-block; margin-top: 30px; color: #bbb; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Arbelo Creator Studio</h1>
-    <div class="subtitle">DISEÑO DE PERSONAJES & OUTFITS IA</div>
+    <h1>Arbelo Vision Studio</h1>
+    <div class="subtitle">Console de Engenharia de Prompts 3D</div>
 
-    <div id="ui-builder"></div>
+    <div id="master-accordion"></div>
 
     <div class="result-area">
-        <div style="color: var(--oro); font-size: 0.7rem; font-weight: 900; margin-bottom: 10px;">PROMPT GENERADO:</div>
-        <div id="final-prompt" class="prompt-box">Selecciona opciones para crear...</div>
+        <span style="color:var(--oro); font-size:0.7rem; font-weight:900; letter-spacing:2px; display:block; margin-bottom:10px;">PROMPT GENERADO:</span>
+        <span id="display-prompt" class="prompt-text">Selecciona opciones para construir...</span>
         
         <div class="copy-grid">
-            <button class="btn-ia btn-mj" onclick="copyPrompt('mj')">Midjourney</button>
-            <button class="btn-ia btn-gpt" onclick="copyPrompt('gpt')">ChatGPT</button>
-            <button class="btn-ia btn-higgs" onclick="copyPrompt('higgs')">Higgsfield</button>
-            <button class="btn-ia btn-flow" onclick="copyPrompt('flow')">Google Flow</button>
-            <button class="btn-ia btn-free" onclick="copyPrompt('free')">Freepik</button>
+            <button class="btn-ia btn-mj" onclick="copyMJ()">Midjourney</button>
+            <button class="btn-ia btn-gpt" onclick="copyGPT()">ChatGPT</button>
+            <button class="btn-ia btn-higgs" onclick="copyHiggs()">Higgsfield</button>
+            <button class="btn-ia btn-flow" onclick="copyFlow()">Google Flow</button>
+            <button class="btn-ia btn-free" onclick="copyFree()">Freepik</button>
             <button class="btn-ia btn-reset" onclick="resetAll()">Limpiar</button>
         </div>
     </div>
+    
+    <a href="index.html" class="back-btn">← VOLVER</a>
 </div>
 
 <script>
-    // Datos integrados de tu código React
-    const SECTIONS = [
-        { label: "Producto", key: "prod", opts: ["3D Render", "Cuaderno", "Coloring Page", "Camiseta"] },
-        { label: "Estilo Visual", key: "style", opts: ["Chibi 3D Brillante", "Muñeca Hiperreal", "Render Octane", "Figura Vinilo", "Plastilina Suave"] },
-        { label: "Personaje", key: "char", opts: ["Chica", "Chico", "Mujer", "Hombre", "Hada", "Sirena", "Unicornio", "Panda"] },
-        { label: "Tono de Piel", key: "skin", opts: ["Latina Caramelo", "Asiática Porcelana", "Europea Clara", "Africana Melanin", "Árabe Dorada"] },
-        { label: "Outfit Preset", key: "outfit", opts: ["Jefa Poderosa", "Diva Glam", "Estilo Urbano", "Kawaii Tierno", "Sporty Star"] },
-        { label: "Calzado", key: "shoes", opts: ["Tenis Jordan", "Tacones Elegantes", "Botas Altas", "Mary Jane", "Pantuflas Peludas"] },
-        { label: "Peinado", key: "hair", opts: ["Largo Liso", "Ondas Sueltas", "Afro Voluminoso", "Trenzas Box", "Space Buns"] },
-        { label: "Pose", key: "pose", opts: ["Sassy Stand", "Saludando Feliz", "Beso Corazón", "Brazos Cruzados", "Sentada Barbilla"] },
-        { label: "Fondo", key: "bg", opts: ["PNG Transparente", "Blanco Sólido", "Degradado Pastel", "Glitter Sparkling"] }
+    const config = [
+        { title: "1. Arquetipo", key: "sub", opts: ["CEO Visionaria", "Mentora Zen", "Creativa Rebelde", "Líder de Opinión", "Influencer de Lujo", "Coach de Negocios", "Artista Minimalista", "Estratega Digital", "Fundadora Tech", "Embajadora de Marca"] },
+        { title: "2. Atuendo", key: "out", opts: ["Blazer Sastre", "Camisa de Seda", "Suéter Cashmere", "Vestido de Lino", "Total White Look", "Traje Monocromático", "Cuello Alto", "Blusa de Satén", "Gabardina Trench", "Estilo Old Money"] },
+        { title: "3. Accesorios", key: "acc", opts: ["Gafas de Lujo", "Joyas de Oro", "Reloj Alta Gama", "Perlas", "Bolso de Piel", "Cinturón Diseñador", "Pañuelo Seda", "Anillos Minimal", "Auriculares Pro", "Broche Dorado"] },
+        { title: "4. Maquillaje", key: "mk", opts: ["No-Makeup Look", "Labios Rojos", "Piel Glowy", "Mate Editorial", "Smokey Suave", "Contorno Marcado", "Labios Nude", "Piel Hidratada", "Natural Fresh", "Estilo Pasarela"] },
+        { title: "5. Peinado", key: "hair", opts: ["Moño Pulido", "Ondas al Agua", "Liso Extremo", "Coleta Alta", "Cabello al Aire", "Bob Estilizado", "Trenza Lateral", "Volumen Editorial", "Recogido Chic", "Wet Look"] },
+        { title: "6. Entorno", key: "env", opts: ["Penthouse NYC", "Lobby Hotel 5*", "Terraza Mediterránea", "Estudio Minimal", "Biblioteca Privada", "Mansión Moderna", "Jardín Botánico", "Calle de París", "Galería de Arte", "Oficina High-Tech"] },
+        { title: "7. Acción", key: "act", opts: ["Analizando Estrategia", "Tomando Café", "Risa Natural", "Mirada de Poder", "Caminando Decidida", "Ajustando Gafas", "Grabando Podcast", "Escribiendo Agenda", "Cruzando Brazos", "Saludando"] },
+        { title: "8. Tecnología", key: "obj", opts: ["MacBook Pro", "iPhone 15 Pro", "Copa Cristal", "Flores Blancas", "Revista Vogue", "Agenda Piel", "Micrófono Pro", "Agua con Limón", "iPad Pro", "Bolígrafo Oro"] },
+        { title: "9. Ángulo", key: "ang", opts: ["Primer Plano", "Plano Medio", "Ángulo Bajo", "Ángulo Alto", "Perfil Candid", "Tres Cuartos", "Plano Americano", "Plano Detalle", "Macro", "Panorámico"] },
+        { title: "10. Dispositivo", key: "len", opts: ["Shot on iPhone", "Portrait Mode", "Selfie Lujo", "85mm Pro", "35mm Street", "50mm Classic", "Wide Angle", "Macro Lens", "CCTV Style", "35mm Film"] },
+        { title: "11. Iluminación", key: "lit", opts: ["Golden Hour", "Luz Ventana", "Rim Lighting", "Sombras Persiana", "Softbox Estudio", "Luz Velas", "Neón Sutil", "Luz Cenital", "Contraluz", "Luz Mañana"] },
+        { title: "12. Branding", key: "col", opts: ["Neutros/Beige", "Blanco y Negro", "Tonos Tierra", "Azul y Oro", "Pasteles", "Monocromo", "Colores Joya", "Contraste Alto", "Tonos Desierto", "Minimal Blanco"] },
+        { title: "13. Atmósfera", key: "atm", opts: ["Niebla Sutil", "Polvo de Oro", "Reflejos Cristal", "Aire Puro", "Brisa Cabello", "God Rays", "Humo Artístico", "Motion Blur", "Lens Flare", "Partículas Luz"] },
+        { title: "14. Acabado", key: "fin", opts: ["Grano 35mm", "8K Digital", "Polaroid Lujo", "Mate Revista", "Brillo Vogue", "Kodachrome", "Fujicolor", "Film Noir", "Digital Clean", "Papel Textura"] },
+        { title: "15. Formato", key: "siz", opts: ["Vertical 9:16", "Post 4:5", "Cuadrado 1:1", "Panorámico 16:9", "Banner", "Cinematic", "Portrait 2:3", "Story", "Reels", "FB Cover"] },
+        { title: "16. Dirección", key: "sty", opts: ["UGC Style", "Editorial", "Cinematográfico", "Street Style", "Business", "Minimal", "Vanguardia", "Paparazzi", "Catálogo", "Lifestyle Relax"] },
+        { title: "17. Fondo", key: "mat", opts: ["Mármol", "Madera", "Concreto", "Terciopelo", "Cristal", "Ladrillo", "Oro", "Seda", "Piedra", "Pared Blanca"] },
+        { title: "18. Clima", key: "wth", opts: ["Soleado", "Otoño", "Invierno", "Primavera", "Lluvia Chic", "Nublado", "Mediodía", "Noche", "Tropical", "Niebla"] },
+        { title: "19. Piel", key: "skn", opts: ["Poros Reales", "Porcelana", "Bronceada", "Natural", "Pecas", "Esculpida", "Satinada", "Terciopelo", "Glowy", "HD Detail"] },
+        { title: "20. Motor IA", key: "eng", opts: ["Midjourney v6.1", "Raw Style", "Stylize 250", "Stylize 750", "Chaos 10", "High Variation", "Photographer", "Master Quality", "Octane Render", "Arbelo Engine"] }
     ];
 
     let state = {};
+    const mainBox = document.getElementById('master-accordion');
 
-    function init() {
-        const builder = document.getElementById('ui-builder');
-        SECTIONS.forEach(sec => {
-            const title = document.createElement('div');
-            title.className = 'section-title';
-            title.innerText = sec.label;
-            builder.appendChild(title);
-
-            const grid = document.createElement('div');
-            grid.className = 'chip-grid';
-            sec.opts.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'pill-btn';
-                btn.innerText = opt;
-                btn.onclick = () => {
-                    grid.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    state[sec.key] = opt;
-                    update();
-                };
-                grid.appendChild(btn);
-            });
-            builder.appendChild(grid);
+    config.forEach((group, i) => {
+        const div = document.createElement('div');
+        div.className = 'category';
+        div.innerHTML = `<div class="category-header" onclick="this.parentElement.classList.toggle('active')">${group.title} <span style="font-size:1.2rem; color:var(--oro)">+</span></div>
+                         <div class="category-content" id="box-${i}"></div>`;
+        mainBox.appendChild(div);
+        const grid = document.getElementById(`box-${i}`);
+        group.opts.forEach(opt => {
+            const b = document.createElement('button');
+            b.className = 'option-btn';
+            b.innerText = opt;
+            b.onclick = () => {
+                grid.querySelectorAll('.option-btn').forEach(x => x.classList.remove('active'));
+                b.classList.add('active');
+                state[group.key] = opt;
+                refresh();
+            };
+            grid.appendChild(b);
         });
-    }
+    });
 
-    function update() {
+    function refresh() {
         const p = Object.values(state).join(", ");
-        document.getElementById('final-prompt').innerText = p || "Selecciona opciones...";
+        document.getElementById('display-prompt').innerText = p || "Diseñando tu visión...";
     }
 
-    function copyPrompt(type) {
-        const text = document.getElementById('final-prompt').innerText;
-        let final = text;
-        if(type === 'mj') final = `${text} --v 6.1 --ar 4:5 --stylize 250`;
-        if(type === 'gpt') final = `A high-end 3D character design of: ${text}. Editorial style, 8k.`;
-        
-        navigator.clipboard.writeText(final);
-        alert(`✨ Prompt copiado para ${type.toUpperCase()}`);
+    function copyMJ() {
+        const t = document.getElementById('display-prompt').innerText;
+        const res = `${t} --v 6.1 --ar 4:5 --stylize 250 --quality 2`.replace("Vertical 9:16", "--ar 9:16");
+        navigator.clipboard.writeText(res); alert("✨ Midjourney Copiado!");
+    }
+
+    function copyGPT() {
+        const t = document.getElementById('display-prompt').innerText;
+        const res = `Photograph of: ${t}. Photorealistic luxury editorial style, 8k.`;
+        navigator.clipboard.writeText(res); alert("🎨 ChatGPT Copiado!");
+    }
+
+    function copyHiggs() {
+        const t = document.getElementById('display-prompt').innerText;
+        const res = `High-end cinematic motion, ${t}, 4k resolution.`;
+        navigator.clipboard.writeText(res); alert("🎬 Higgsfield Copiado!");
+    }
+
+    function copyFlow() {
+        const t = document.getElementById('display-prompt').innerText;
+        navigator.clipboard.writeText(t); alert("🔍 Google Flow Copiado!");
+    }
+
+    function copyFree() {
+        const t = document.getElementById('display-prompt').innerText;
+        const res = `Premium commercial photo, ${t}, high resolution.`;
+        navigator.clipboard.writeText(res); alert("📸 Freepik Copiado!");
     }
 
     function resetAll() {
         state = {};
-        document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-        update();
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.category').forEach(c => c.classList.remove('active'));
+        refresh();
     }
-
-    init();
 </script>
+
 </body>
 </html>

@@ -1,202 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visual Production Engine</title>
+
 <style>
-body {
+body{
+  margin:0;
+  padding:20px;
   font-family: Inter, sans-serif;
-  background: #121212;
-  color: #e0e0e0;
-  margin: 0;
-  padding: 20px;
+  background:#0b0f1a;
+  color:#eaeaea;
 }
 
-#prompt-system {
-  max-width: 900px;
-  margin: auto;
+.header{
+  max-width:1000px;
+  margin:auto;
+  padding:18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#111827,#0b0f1a);
+  border:1px solid #1f2937;
+  margin-bottom:18px;
 }
 
-/* BOTONES */
-button {
-  background: #1f1f1f;
-  border: 1px solid #2e2e2e;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  margin: 4px 4px 4px 0;
-  transition: 0.2s ease;
+.header h1{margin:0;font-size:18px;}
+.header p{margin:6px 0 0;font-size:13px;color:#9ca3af;}
+
+.section{
+  max-width:1000px;
+  margin:12px auto;
+  padding:14px;
+  border-radius:16px;
+  background:#111827;
+  border:1px solid #1f2937;
 }
 
-button:hover {
-  background: #2b2b2b;
+.section-title{
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:10px;
+  color:#7c5cff;
 }
 
-/* BLOQUES */
-.section {
-  margin-top: 16px;
-  border-radius: 12px;
-  background: #1a1a1a;
-  border: 1px solid #272727;
-  overflow: hidden;
+button{
+  background:linear-gradient(135deg,#7c5cff,#22d3ee);
+  border:none;
+  color:white;
+  padding:9px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:600;
+  margin:4px;
 }
 
-.section h3 {
-  margin: 0;
-  padding: 14px 16px;
-  background: #181818;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+button:hover{
+  transform:translateY(-2px);
 }
 
-.section h3::after {
-  content: "▸";
+.output-container{
+  max-width:1000px;
+  margin:18px auto;
 }
 
-.section.open h3::after {
-  content: "▾";
-}
-
-.content {
-  display: none;
-  padding: 10px 16px;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.section.open .content {
-  display: flex;
-}
-
-/* 🔻 RECUADRO ABAJO */
-#output {
-  width: 100%;
-  min-height: 180px;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #2a2a2a;
-  background: #1c1c1c;
-  color: #fff;
-  font-size: 14px;
-  resize: vertical;
-  margin-top: 20px;
+textarea{
+  width:100%;
+  min-height:130px;
+  padding:12px;
+  border-radius:12px;
+  background:#0f172a;
+  border:1px solid #1f2937;
+  color:#fff;
+  font-size:13px;
+  margin-bottom:10px;
 }
 </style>
+</head>
 
-<div id="prompt-system">
+<body>
 
-<!-- BLOQUES -->
-
-<div class="section open">
-  <h3 onclick="toggle(this)">SUJETO</h3>
-  <div class="content">
-    <button onclick="add('luxury business woman')">Ejecutiva</button>
-    <button onclick="add('male entrepreneur')">Emprendedor</button>
-    <button onclick="add('fitness influencer')">Fitness</button>
-    <button onclick="add('beauty model')">Modelo</button>
-  </div>
+<!-- HEADER -->
+<div class="header">
+  <h1>AI Visual Production Engine</h1>
+  <p>Genera prompts profesionales para imagen, video, UGC, influencers y e-commerce en segundos</p>
+  <p style="color:#22d3ee;font-size:12px;margin-top:8px;">
+    Convierte ideas simples en contenido visual listo para publicar y vender
+  </p>
+  <p style="color:#9ca3af;font-size:11px;margin-top:6px;">
+    Diseñado para creadores, marcas y negocios digitales
+  </p>
 </div>
 
+<!-- IDENTIDAD -->
 <div class="section">
-  <h3 onclick="toggle(this)">ESCENA</h3>
-  <div class="content">
-    <button onclick="add('modern luxury office')">Oficina lujo</button>
-    <button onclick="add('city skyline at sunset')">Sunset</button>
-    <button onclick="add('studio clean background')">Estudio</button>
-    <button onclick="add('urban night street')">Noche</button>
-  </div>
+  <div class="section-title">IDENTIDAD</div>
+
+  <button onclick="add('young woman (25 years old)','young woman (25 years old)')">Mujer 25</button>
+  <button onclick="add('adult woman (35 years old)','adult woman (35 years old)')">Mujer 35</button>
+  <button onclick="add('latin woman','latin woman')">Latina</button>
+  <button onclick="add('mexican woman','mexican woman')">Mexicana</button>
+  <button onclick="add('european woman','european woman')">Europea</button>
+
+  <button onclick="add('young man (25 years old)','young man (25 years old)')">Hombre 25</button>
+  <button onclick="add('adult man (35 years old)','adult man (35 years old)')">Hombre 35</button>
+  <button onclick="add('latin man','latin man')">Latino</button>
+  <button onclick="add('mexican man','mexican man')">Mexicano</button>
+  <button onclick="add('european man','european man')">Europeo</button>
 </div>
 
+<!-- SUJETO -->
 <div class="section">
-  <h3 onclick="toggle(this)">FOTOGRAFÍA</h3>
-  <div class="content">
-    <button onclick="add('85mm lens')">85mm</button>
-    <button onclick="add('shallow depth of field')">Bokeh</button>
-    <button onclick="add('centered composition')">Composición</button>
-  </div>
+  <div class="section-title">SUJETO</div>
+  <button onclick="add('luxury business person','luxury business person')">Ejecutivo lujo</button>
+  <button onclick="add('fitness influencer','fitness influencer')">Fitness</button>
+  <button onclick="add('beauty model','beauty model')">Modelo</button>
+  <button onclick="add('tech founder','tech founder')">Founder</button>
 </div>
 
+<!-- ESCENA -->
 <div class="section">
-  <h3 onclick="toggle(this)">ILUMINACIÓN</h3>
-  <div class="content">
-    <button onclick="add('soft diffused lighting')">Suave</button>
-    <button onclick="add('cinematic lighting')">Cine</button>
-    <button onclick="add('golden hour light')">Golden</button>
-    <button onclick="add('studio softbox lighting')">Estudio</button>
-  </div>
+  <div class="section-title">ESCENA</div>
+  <button onclick="add('luxury office','luxury office')">Oficina lujo</button>
+  <button onclick="add('city sunset','city sunset')">Ciudad sunset</button>
+  <button onclick="add('studio background','studio background')">Estudio</button>
+  <button onclick="add('urban street night','urban street night')">Ciudad noche</button>
 </div>
 
+<!-- FOTOGRAFÍA -->
 <div class="section">
-  <h3 onclick="toggle(this)">PIEL Y TEXTURA</h3>
-  <div class="content">
-    <button onclick="add('realistic skin texture, visible pores')">Piel real</button>
-    <button onclick="add('subsurface scattering skin')">SSS</button>
-    <button onclick="add('hair strands ultra detail')">Pelo</button>
-  </div>
+  <div class="section-title">FOTOGRAFÍA</div>
+  <button onclick="add('85mm lens','85mm lens')">85mm</button>
+  <button onclick="add('50mm lens','50mm lens')">50mm</button>
+  <button onclick="add('cinematic framing','cinematic framing')">Cine framing</button>
+  <button onclick="add('shallow depth of field','shallow depth of field')">Bokeh</button>
 </div>
 
+<!-- ILUMINACIÓN -->
 <div class="section">
-  <h3 onclick="toggle(this)">COLORIMETRÍA</h3>
-  <div class="content">
-    <button onclick="add('cinematic color grading')">Cine</button>
-    <button onclick="add('warm luxury tones')">Cálido</button>
-    <button onclick="add('muted aesthetic palette')">Suave</button>
-  </div>
+  <div class="section-title">ILUMINACIÓN</div>
+  <button onclick="add('cinematic lighting','cinematic lighting')">Cine</button>
+  <button onclick="add('soft light','soft light')">Suave</button>
+  <button onclick="add('golden hour','golden hour')">Golden</button>
+  <button onclick="add('neon lighting','neon lighting')">Neón</button>
 </div>
 
+<!-- PIEL -->
 <div class="section">
-  <h3 onclick="toggle(this)">UGC</h3>
-  <div class="content">
-    <button onclick="add('iPhone camera look')">iPhone</button>
-    <button onclick="add('natural indoor lighting')">Natural</button>
-    <button onclick="add('authentic lifestyle scene')">Lifestyle</button>
-  </div>
+  <div class="section-title">PIEL Y DETALLE</div>
+  <button onclick="add('realistic skin texture','realistic skin texture')">Piel real</button>
+  <button onclick="add('ultra detailed skin','ultra detailed skin')">Ultra detalle</button>
+  <button onclick="add('hair strands detail','hair strands detail')">Pelo</button>
 </div>
 
+<!-- COLOR -->
 <div class="section">
-  <h3 onclick="toggle(this)">INFLUENCER</h3>
-  <div class="content">
-    <button onclick="add('lifestyle influencer content')">Lifestyle</button>
-    <button onclick="add('beauty influencer aesthetic')">Beauty</button>
-    <button onclick="add('morning vlog style')">Vlog</button>
-  </div>
+  <div class="section-title">COLORIMETRÍA</div>
+  <button onclick="add('cinematic color grading','cinematic color grading')">Cine</button>
+  <button onclick="add('warm tones','warm tones')">Cálido</button>
+  <button onclick="add('cold tones','cold tones')">Frío</button>
+  <button onclick="add('high contrast','high contrast')">Contraste</button>
 </div>
 
+<!-- 3D -->
 <div class="section">
-  <h3 onclick="toggle(this)">E-COMMERCE</h3>
-  <div class="content">
-    <button onclick="add('clean product advertising shot')">Producto</button>
-    <button onclick="add('premium ecommerce visual style')">Premium</button>
-  </div>
+  <div class="section-title">3D / CGI</div>
+  <button onclick="add('photorealistic','photorealistic')">Fotoreal</button>
+  <button onclick="add('3D render ultra realistic','3D render ultra realistic')">3D realista</button>
+  <button onclick="add('cinematic 3D lighting','cinematic 3D lighting')">3D cine</button>
+  <button onclick="add('Blender render','Blender render')">Blender</button>
+  <button onclick="add('octane render','octane render')">Octane</button>
 </div>
 
-<!-- 🔻 RECUADRO ABAJO -->
-<textarea id="output" placeholder="Tu prompt se genera aquí..."></textarea>
+<!-- OUTFIT -->
+<div class="section">
+  <div class="section-title">OUTFIT / VESTUARIO</div>
 
-<div>
-  <button onclick="copyText()">Copiar</button>
-  <button onclick="clearText()">Borrar</button>
+  <button onclick="add('elegant black dress','elegant black dress')">Vestido negro mujer</button>
+  <button onclick="add('luxury business suit woman','luxury business suit woman')">Traje mujer</button>
+  <button onclick="add('streetwear outfit woman','streetwear outfit woman')">Streetwear mujer</button>
+
+  <button onclick="add('black luxury suit man','black luxury suit man')">Traje hombre</button>
+  <button onclick="add('casual smart outfit man','casual smart outfit man')">Casual hombre</button>
+  <button onclick="add('streetwear outfit man','streetwear outfit man')">Streetwear hombre</button>
+
+  <button onclick="add('minimalist outfit','minimalist outfit')">Minimalista</button>
+  <button onclick="add('high fashion outfit','high fashion outfit')">Alta moda</button>
 </div>
 
+<!-- UGC -->
+<div class="section">
+  <div class="section-title">UGC</div>
+  <button onclick="add('iphone footage','iphone footage')">iPhone</button>
+  <button onclick="add('handheld video','handheld video')">Mano real</button>
+  <button onclick="add('authentic lifestyle','authentic lifestyle')">Lifestyle</button>
+</div>
+
+<!-- INFLUENCER -->
+<div class="section">
+  <div class="section-title">INFLUENCER</div>
+  <button onclick="add('instagram reel style','instagram reel style')">Reels</button>
+  <button onclick="add('beauty influencer','beauty influencer')">Beauty</button>
+  <button onclick="add('fitness influencer','fitness influencer')">Fitness</button>
+</div>
+
+<!-- ECOMMERCE -->
+<div class="section">
+  <div class="section-title">E-COMMERCE</div>
+  <button onclick="add('product photography','product photography')">Producto</button>
+  <button onclick="add('shopify hero image','shopify hero image')">Hero</button>
+  <button onclick="add('t-shirt mockup','t-shirt mockup')">T-shirt</button>
+</div>
+
+<!-- OUTPUT -->
+<div class="output-container">
+  <textarea id="es" placeholder="Prompt en Español"></textarea>
+  <textarea id="en" placeholder="Prompt in English"></textarea>
+
+  <button onclick="copyAll()">Copiar</button>
+  <button onclick="clearAll()">Borrar</button>
 </div>
 
 <script>
-function add(text){
-  let output = document.getElementById("output");
-  output.value += (output.value ? ", " : "") + text;
+function add(es,en){
+  document.getElementById("es").value += (document.getElementById("es").value?", ":"") + es;
+  document.getElementById("en").value += (document.getElementById("en").value?", ":"") + en;
 }
 
-function clearText(){
-  document.getElementById("output").value = "";
+function copyAll(){
+  navigator.clipboard.writeText(
+    "ES:\n"+document.getElementById("es").value+
+    "\n\nEN:\n"+document.getElementById("en").value
+  );
 }
 
-function copyText(){
-  let output = document.getElementById("output");
-  output.select();
-  document.execCommand("copy");
-}
-
-function toggle(el){
-  el.parentElement.classList.toggle("open");
+function clearAll(){
+  document.getElementById("es").value="";
+  document.getElementById("en").value="";
 }
 </script>
+
+</body>
+</html>

@@ -1,255 +1,202 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>AI Prompt Builder</title>
 <style>
-body{
-font-family: Arial;
-background:#0f0f0f;
-color:white;
-margin:0;
-padding:0;
+body {
+  font-family: Inter, sans-serif;
+  background: #121212;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 20px;
 }
 
-header{
-padding:20px;
-text-align:center;
-background:#151515;
-font-size:18px;
-font-weight:bold;
+#prompt-system {
+  max-width: 900px;
+  margin: auto;
 }
 
-.container{
-display:flex;
-flex-direction:column;
-gap:10px;
-padding:15px;
-max-width:900px;
-margin:auto;
+/* BOTONES */
+button {
+  background: #1f1f1f;
+  border: 1px solid #2e2e2e;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  margin: 4px 4px 4px 0;
+  transition: 0.2s ease;
 }
 
-.block{
-background:#1c1c1c;
-border-radius:10px;
-overflow:hidden;
+button:hover {
+  background: #2b2b2b;
 }
 
-.block h2{
-margin:0;
-padding:12px;
-background:#222;
-cursor:pointer;
-font-size:14px;
+/* BLOQUES */
+.section {
+  margin-top: 16px;
+  border-radius: 12px;
+  background: #1a1a1a;
+  border: 1px solid #272727;
+  overflow: hidden;
 }
 
-.content{
-display:none;
-padding:10px;
-gap:8px;
-flex-wrap:wrap;
+.section h3 {
+  margin: 0;
+  padding: 14px 16px;
+  background: #181818;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-button{
-background:#2a2a2a;
-color:white;
-border:none;
-padding:8px 10px;
-border-radius:6px;
-cursor:pointer;
-font-size:12px;
+.section h3::after {
+  content: "▸";
 }
 
-button:hover{
-background:#444;
+.section.open h3::after {
+  content: "▾";
 }
 
-textarea{
-width:100%;
-height:180px;
-margin-top:10px;
-background:#111;
-color:white;
-border:1px solid #333;
-border-radius:8px;
-padding:10px;
+.content {
+  display: none;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.actions{
-display:flex;
-gap:10px;
-margin-top:10px;
+.section.open .content {
+  display: flex;
 }
 
-.actions button{
-flex:1;
-}
-
-.small{
-font-size:11px;
-opacity:0.7;
+/* 🔻 RECUADRO ABAJO */
+#output {
+  width: 100%;
+  min-height: 180px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  background: #1c1c1c;
+  color: #fff;
+  font-size: 14px;
+  resize: vertical;
+  margin-top: 20px;
 }
 </style>
-</head>
 
-<body>
+<div id="prompt-system">
 
-<header>
-AI PROMPT BUILDER · SYSTEM
-<div class="small">Generador modular de prompts para imagen, video y marketing</div>
-</header>
+<!-- BLOQUES -->
 
-<div class="container">
-
-<!-- OUTPUT -->
-<textarea id="output" placeholder="Tu prompt se generará aquí..."></textarea>
-
-<div class="actions">
-<button onclick="copyText()">Copiar</button>
-<button onclick="clearText()">Limpiar</button>
+<div class="section open">
+  <h3 onclick="toggle(this)">SUJETO</h3>
+  <div class="content">
+    <button onclick="add('luxury business woman')">Ejecutiva</button>
+    <button onclick="add('male entrepreneur')">Emprendedor</button>
+    <button onclick="add('fitness influencer')">Fitness</button>
+    <button onclick="add('beauty model')">Modelo</button>
+  </div>
 </div>
 
-<!-- SUJETO -->
-<div class="block">
-<h2 onclick="toggle(this)">1. SUJETO</h2>
-<div class="content">
-<button onclick="add('luxury business woman')">Mujer ejecutiva</button>
-<button onclick="add('male entrepreneur')">Emprendedor</button>
-<button onclick="add('fitness influencer')">Fitness influencer</button>
-<button onclick="add('beauty model')">Modelo belleza</button>
-</div>
-</div>
-
-<!-- ESCENA -->
-<div class="block">
-<h2 onclick="toggle(this)">2. ESCENA</h2>
-<div class="content">
-<button onclick="add('modern luxury office')">Oficina lujo</button>
-<button onclick="add('city skyline at sunset')">Ciudad atardecer</button>
-<button onclick="add('studio background clean')">Estudio limpio</button>
-<button onclick="add('street urban night')">Ciudad nocturna</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">ESCENA</h3>
+  <div class="content">
+    <button onclick="add('modern luxury office')">Oficina lujo</button>
+    <button onclick="add('city skyline at sunset')">Sunset</button>
+    <button onclick="add('studio clean background')">Estudio</button>
+    <button onclick="add('urban night street')">Noche</button>
+  </div>
 </div>
 
-<!-- FOTOGRAFÍA -->
-<div class="block">
-<h2 onclick="toggle(this)">3. FOTOGRAFÍA</h2>
-<div class="content">
-<button onclick="add('85mm lens')">85mm retrato</button>
-<button onclick="add('35mm documentary lens')">35mm documental</button>
-<button onclick="add('shallow depth of field')">Desenfoque fondo</button>
-<button onclick="add('centered composition')">Composición centrada</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">FOTOGRAFÍA</h3>
+  <div class="content">
+    <button onclick="add('85mm lens')">85mm</button>
+    <button onclick="add('shallow depth of field')">Bokeh</button>
+    <button onclick="add('centered composition')">Composición</button>
+  </div>
 </div>
 
-<!-- ILUMINACIÓN -->
-<div class="block">
-<h2 onclick="toggle(this)">4. ILUMINACIÓN</h2>
-<div class="content">
-<button onclick="add('soft diffused lighting')">Luz suave</button>
-<button onclick="add('cinematic lighting')">Cinemática</button>
-<button onclick="add('golden hour light')">Hora dorada</button>
-<button onclick="add('studio softbox lighting')">Estudio</button>
-</div>
-</div>
-
-<!-- REALISMO (PIEL + PELO + TEXTURA) -->
-<div class="block">
-<h2 onclick="toggle(this)">5. REALISMO (PIEL / TEXTURA)</h2>
-<div class="content">
-<button onclick="add('realistic skin texture, visible pores')">Piel realista</button>
-<button onclick="add('subsurface scattering skin')">SSS piel</button>
-<button onclick="add('individual hair strands detail')">Pelo realista</button>
-<button onclick="add('fabric texture visible')">Textura ropa</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">ILUMINACIÓN</h3>
+  <div class="content">
+    <button onclick="add('soft diffused lighting')">Suave</button>
+    <button onclick="add('cinematic lighting')">Cine</button>
+    <button onclick="add('golden hour light')">Golden</button>
+    <button onclick="add('studio softbox lighting')">Estudio</button>
+  </div>
 </div>
 
-<!-- COLORIMETRÍA -->
-<div class="block">
-<h2 onclick="toggle(this)">6. COLORIMETRÍA</h2>
-<div class="content">
-<button onclick="add('cinematic teal and orange grading')">Teal & Orange</button>
-<button onclick="add('warm luxury golden tones')">Lujo cálido</button>
-<button onclick="add('soft muted tones')">Tonos suaves</button>
-<button onclick="add('high contrast cinematic look')">Alto contraste</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">PIEL Y TEXTURA</h3>
+  <div class="content">
+    <button onclick="add('realistic skin texture, visible pores')">Piel real</button>
+    <button onclick="add('subsurface scattering skin')">SSS</button>
+    <button onclick="add('hair strands ultra detail')">Pelo</button>
+  </div>
 </div>
 
-<!-- VIDEO -->
-<div class="block">
-<h2 onclick="toggle(this)">7. VIDEO READY</h2>
-<div class="content">
-<button onclick="add('cinematic motion potential')">Movimiento cine</button>
-<button onclick="add('social media reel style')">Reels</button>
-<button onclick="add('handheld camera movement')">Cámara móvil</button>
-</div>
-</div>
-
-<!-- UGC -->
-<div class="block">
-<h2 onclick="toggle(this)">8. UGC</h2>
-<div class="content">
-<button onclick="add('iPhone camera look')">iPhone look</button>
-<button onclick="add('natural casual lighting')">Luz natural</button>
-<button onclick="add('authentic lifestyle content')">Lifestyle real</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">COLORIMETRÍA</h3>
+  <div class="content">
+    <button onclick="add('cinematic color grading')">Cine</button>
+    <button onclick="add('warm luxury tones')">Cálido</button>
+    <button onclick="add('muted aesthetic palette')">Suave</button>
+  </div>
 </div>
 
-<!-- INFLUENCER -->
-<div class="block">
-<h2 onclick="toggle(this)">9. INFLUENCER</h2>
-<div class="content">
-<button onclick="add('lifestyle influencer content')">Lifestyle</button>
-<button onclick="add('beauty influencer aesthetic')">Beauty</button>
-<button onclick="add('morning routine vlog style')">Rutina diaria</button>
-<button onclick="add('brand collaboration content')">Colaboración marca</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">UGC</h3>
+  <div class="content">
+    <button onclick="add('iPhone camera look')">iPhone</button>
+    <button onclick="add('natural indoor lighting')">Natural</button>
+    <button onclick="add('authentic lifestyle scene')">Lifestyle</button>
+  </div>
 </div>
 
-<!-- POD -->
-<div class="block">
-<h2 onclick="toggle(this)">10. PRINT ON DEMAND</h2>
-<div class="content">
-<button onclick="add('t-shirt mockup studio lighting')">T-shirt mockup</button>
-<button onclick="add('hoodie apparel design')">Hoodie</button>
-<button onclick="add('flat lay product composition')">Flat lay</button>
-<button onclick="add('ecommerce product photography')">Ecommerce</button>
-</div>
+<div class="section">
+  <h3 onclick="toggle(this)">INFLUENCER</h3>
+  <div class="content">
+    <button onclick="add('lifestyle influencer content')">Lifestyle</button>
+    <button onclick="add('beauty influencer aesthetic')">Beauty</button>
+    <button onclick="add('morning vlog style')">Vlog</button>
+  </div>
 </div>
 
-<!-- ECOMMERCE -->
-<div class="block">
-<h2 onclick="toggle(this)">11. E-COMMERCE</h2>
-<div class="content">
-<button onclick="add('clean product advertising shot')">Ad limpio</button>
-<button onclick="add('shopify product hero image')">Hero product</button>
-<button onclick="add('premium branding visual style')">Premium</button>
+<div class="section">
+  <h3 onclick="toggle(this)">E-COMMERCE</h3>
+  <div class="content">
+    <button onclick="add('clean product advertising shot')">Producto</button>
+    <button onclick="add('premium ecommerce visual style')">Premium</button>
+  </div>
 </div>
+
+<!-- 🔻 RECUADRO ABAJO -->
+<textarea id="output" placeholder="Tu prompt se genera aquí..."></textarea>
+
+<div>
+  <button onclick="copyText()">Copiar</button>
+  <button onclick="clearText()">Borrar</button>
 </div>
 
 </div>
 
 <script>
 function add(text){
-let output = document.getElementById("output");
-output.value += (output.value ? ", " : "") + text;
+  let output = document.getElementById("output");
+  output.value += (output.value ? ", " : "") + text;
 }
 
 function clearText(){
-document.getElementById("output").value = "";
+  document.getElementById("output").value = "";
 }
 
 function copyText(){
-let output = document.getElementById("output");
-output.select();
-document.execCommand("copy");
+  let output = document.getElementById("output");
+  output.select();
+  document.execCommand("copy");
 }
 
 function toggle(el){
-let content = el.nextElementSibling;
-content.style.display = content.style.display === "flex" ? "none" : "flex";
+  el.parentElement.classList.toggle("open");
 }
 </script>
-
-</body>
-</html>

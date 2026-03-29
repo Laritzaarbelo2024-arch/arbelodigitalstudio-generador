@@ -3,241 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Visual Production Engine</title>
+<title>PROMPT OS FULL ENGINE</title>
 
 <style>
 body{
-  margin:0;
-  padding:20px;
-  font-family: Inter, sans-serif;
-  background:#0b0f1a;
-  color:#eaeaea;
+    margin:0;
+    font-family:Arial;
+    background:#0f0f14;
+    color:#fff;
 }
 
-.header{
-  max-width:1000px;
-  margin:auto;
-  padding:18px;
-  border-radius:16px;
-  background:linear-gradient(135deg,#111827,#0b0f1a);
-  border:1px solid #1f2937;
-  margin-bottom:18px;
+header{
+    padding:18px;
+    text-align:center;
+    background:#1a1a24;
+    font-weight:bold;
 }
 
-.header h1{margin:0;font-size:18px;}
-.header p{margin:6px 0 0;font-size:13px;color:#9ca3af;}
-
-.section{
-  max-width:1000px;
-  margin:12px auto;
-  padding:14px;
-  border-radius:16px;
-  background:#111827;
-  border:1px solid #1f2937;
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:10px;
+    padding:10px;
 }
 
-.section-title{
-  font-size:13px;
-  font-weight:700;
-  margin-bottom:10px;
-  color:#7c5cff;
+.block{
+    background:#1c1c2a;
+    padding:10px;
+    border-radius:10px;
+}
+
+h3{
+    margin:0 0 8px 0;
+    color:#8bd3ff;
+    font-size:13px;
 }
 
 button{
-  background:linear-gradient(135deg,#7c5cff,#22d3ee);
-  border:none;
-  color:white;
-  padding:9px 12px;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:12px;
-  font-weight:600;
-  margin:4px;
+    margin:3px;
+    padding:6px 8px;
+    border:none;
+    border-radius:6px;
+    font-size:11px;
+    cursor:pointer;
+    background:#2d6cdf;
+    color:#fff;
 }
 
 button:hover{
-  transform:translateY(-2px);
-}
-
-.output-container{
-  max-width:1000px;
-  margin:18px auto;
+    background:#4a8bff;
 }
 
 textarea{
-  width:100%;
-  min-height:130px;
-  padding:12px;
-  border-radius:12px;
-  background:#0f172a;
-  border:1px solid #1f2937;
-  color:#fff;
-  font-size:13px;
-  margin-bottom:10px;
+    width:100%;
+    height:70px;
+    background:#12121a;
+    border:1px solid #2a2a3a;
+    color:white;
+    border-radius:8px;
+    padding:8px;
+}
+
+.output{
+    margin:10px;
+    padding:12px;
+    background:#12121a;
+    border-radius:10px;
+    white-space:pre-wrap;
+    border:1px solid #2a2a3a;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    padding:10px;
+}
+
+.actions button{
+    flex:1;
+    padding:10px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <h1>AI Visual Production Engine</h1>
-  <p>Genera prompts profesionales para imagen, video, UGC, influencers y e-commerce en segundos</p>
-  <p style="color:#22d3ee;font-size:12px;margin-top:8px;">
-    Convierte ideas simples en contenido visual listo para publicar y vender
-  </p>
-  <p style="color:#9ca3af;font-size:11px;margin-top:6px;">
-    Diseñado para creadores, marcas y negocios digitales
-  </p>
+<header>PROMPT OS — FULL VISUAL ENGINE</header>
+
+<!-- INPUT -->
+<div class="block" style="margin:10px;">
+<h3>🧠 Input base</h3>
+<textarea id="input" placeholder="Describe la idea principal..."></textarea>
 </div>
 
-<!-- IDENTIDAD -->
-<div class="section">
-  <div class="section-title">IDENTIDAD</div>
+<div class="container">
 
-  <button onclick="add('young woman (25 years old)','young woman (25 years old)')">Mujer 25</button>
-  <button onclick="add('adult woman (35 years old)','adult woman (35 years old)')">Mujer 35</button>
-  <button onclick="add('latin woman','latin woman')">Latina</button>
-  <button onclick="add('mexican woman','mexican woman')">Mexicana</button>
-  <button onclick="add('european woman','european woman')">Europea</button>
-
-  <button onclick="add('young man (25 years old)','young man (25 years old)')">Hombre 25</button>
-  <button onclick="add('adult man (35 years old)','adult man (35 years old)')">Hombre 35</button>
-  <button onclick="add('latin man','latin man')">Latino</button>
-  <button onclick="add('mexican man','mexican man')">Mexicano</button>
-  <button onclick="add('european man','european man')">Europeo</button>
+<!-- SCENE -->
+<div class="block">
+<h3>🎬 Scene</h3>
+<button onclick="add('urban scene with movement')">Urbana</button>
+<button onclick="add('studio controlled lighting scene')">Estudio</button>
+<button onclick="add('natural outdoor adventure scene')">Natural</button>
+<button onclick="add('commercial product focused scene')">Producto</button>
 </div>
 
-<!-- SUJETO -->
-<div class="section">
-  <div class="section-title">SUJETO</div>
-  <button onclick="add('luxury business person','luxury business person')">Ejecutivo lujo</button>
-  <button onclick="add('fitness influencer','fitness influencer')">Fitness</button>
-  <button onclick="add('beauty model','beauty model')">Modelo</button>
-  <button onclick="add('tech founder','tech founder')">Founder</button>
+<!-- SUBJECT -->
+<div class="block">
+<h3>🧍 Subject</h3>
+<button onclick="add('curvy woman defined facial structure realistic skin')">Mujer</button>
+<button onclick="add('male athletic model cinematic look')">Hombre</button>
+<button onclick="add('fashion influencer lifestyle look')">Influencer</button>
 </div>
 
-<!-- ESCENA -->
-<div class="section">
-  <div class="section-title">ESCENA</div>
-  <button onclick="add('luxury office','luxury office')">Oficina lujo</button>
-  <button onclick="add('city sunset','city sunset')">Ciudad sunset</button>
-  <button onclick="add('studio background','studio background')">Estudio</button>
-  <button onclick="add('urban street night','urban street night')">Ciudad noche</button>
+<!-- SHOT -->
+<div class="block">
+<h3>📷 Shot</h3>
+<button onclick="add('full body shot')">Full Body</button>
+<button onclick="add('medium shot')">Medium</button>
+<button onclick="add('close up')">Close Up</button>
+<button onclick="add('long shot')">Long</button>
 </div>
 
-<!-- FOTOGRAFÍA -->
-<div class="section">
-  <div class="section-title">FOTOGRAFÍA</div>
-  <button onclick="add('85mm lens','85mm lens')">85mm</button>
-  <button onclick="add('50mm lens','50mm lens')">50mm</button>
-  <button onclick="add('cinematic framing','cinematic framing')">Cine framing</button>
-  <button onclick="add('shallow depth of field','shallow depth of field')">Bokeh</button>
+<!-- ANGLE -->
+<div class="block">
+<h3>📐 Angle</h3>
+<button onclick="add('eye level shot')">Eye Level</button>
+<button onclick="add('low angle shot')">Low</button>
+<button onclick="add('high angle shot')">High</button>
+<button onclick="add('dutch angle shot')">Dutch</button>
 </div>
 
-<!-- ILUMINACIÓN -->
-<div class="section">
-  <div class="section-title">ILUMINACIÓN</div>
-  <button onclick="add('cinematic lighting','cinematic lighting')">Cine</button>
-  <button onclick="add('soft light','soft light')">Suave</button>
-  <button onclick="add('golden hour','golden hour')">Golden</button>
-  <button onclick="add('neon lighting','neon lighting')">Neón</button>
+<!-- MOTION -->
+<div class="block">
+<h3>🎥 Motion</h3>
+<button onclick="add('tracking shot')">Tracking</button>
+<button onclick="add('dolly in movement')">Dolly In</button>
+<button onclick="add('orbit shot around subject')">Orbit</button>
+<button onclick="add('static cinematic frame')">Static</button>
 </div>
 
-<!-- PIEL -->
-<div class="section">
-  <div class="section-title">PIEL Y DETALLE</div>
-  <button onclick="add('realistic skin texture','realistic skin texture')">Piel real</button>
-  <button onclick="add('ultra detailed skin','ultra detailed skin')">Ultra detalle</button>
-  <button onclick="add('hair strands detail','hair strands detail')">Pelo</button>
+<!-- COMPOSITION -->
+<div class="block">
+<h3>🧭 Composition</h3>
+<button onclick="add('centered composition')">Centered</button>
+<button onclick="add('symmetrical composition')">Symmetry</button>
+<button onclick="add('POV shot perspective')">POV</button>
+<button onclick="add('forced perspective illusion')">Forced</button>
 </div>
 
-<!-- COLOR -->
-<div class="section">
-  <div class="section-title">COLORIMETRÍA</div>
-  <button onclick="add('cinematic color grading','cinematic color grading')">Cine</button>
-  <button onclick="add('warm tones','warm tones')">Cálido</button>
-  <button onclick="add('cold tones','cold tones')">Frío</button>
-  <button onclick="add('high contrast','high contrast')">Contraste</button>
+<!-- LIGHT -->
+<div class="block">
+<h3>💡 Lighting</h3>
+<button onclick="add('golden hour natural sunlight')">Golden Hour</button>
+<button onclick="add('soft studio lighting setup')">Studio</button>
+<button onclick="add('backlit silhouette lighting')">Backlight</button>
+<button onclick="add('volumetric cinematic lighting')">Volumetric</button>
 </div>
 
-<!-- 3D -->
-<div class="section">
-  <div class="section-title">3D / CGI</div>
-  <button onclick="add('photorealistic','photorealistic')">Fotoreal</button>
-  <button onclick="add('3D render ultra realistic','3D render ultra realistic')">3D realista</button>
-  <button onclick="add('cinematic 3D lighting','cinematic 3D lighting')">3D cine</button>
-  <button onclick="add('Blender render','Blender render')">Blender</button>
-  <button onclick="add('octane render','octane render')">Octane</button>
+<!-- STYLE -->
+<div class="block">
+<h3>🎨 Style</h3>
+<button onclick="add('ultra-realistic cinematic photography')">Real</button>
+<button onclick="add('anime style illustration')">Anime</button>
+<button onclick="add('pixar style 3D render cinematic')">Pixar</button>
 </div>
 
-<!-- OUTFIT -->
-<div class="section">
-  <div class="section-title">OUTFIT / VESTUARIO</div>
-
-  <button onclick="add('elegant black dress','elegant black dress')">Vestido negro mujer</button>
-  <button onclick="add('luxury business suit woman','luxury business suit woman')">Traje mujer</button>
-  <button onclick="add('streetwear outfit woman','streetwear outfit woman')">Streetwear mujer</button>
-
-  <button onclick="add('black luxury suit man','black luxury suit man')">Traje hombre</button>
-  <button onclick="add('casual smart outfit man','casual smart outfit man')">Casual hombre</button>
-  <button onclick="add('streetwear outfit man','streetwear outfit man')">Streetwear hombre</button>
-
-  <button onclick="add('minimalist outfit','minimalist outfit')">Minimalista</button>
-  <button onclick="add('high fashion outfit','high fashion outfit')">Alta moda</button>
+<!-- QUALITY -->
+<div class="block">
+<h3>🔥 Quality</h3>
+<button onclick="add('hyper-detailed textures')">Detail</button>
+<button onclick="add('8k resolution')">8K</button>
+<button onclick="add('cinematic motion blur')">Motion Blur</button>
+<button onclick="add('professional advertising photography')">Ads</button>
 </div>
 
-<!-- UGC -->
-<div class="section">
-  <div class="section-title">UGC</div>
-  <button onclick="add('iphone footage','iphone footage')">iPhone</button>
-  <button onclick="add('handheld video','handheld video')">Mano real</button>
-  <button onclick="add('authentic lifestyle','authentic lifestyle')">Lifestyle</button>
+<!-- NEGATIVE -->
+<div class="block">
+<h3>🚫 Negative</h3>
+<button onclick="add('no plastic skin')">No Plastic</button>
+<button onclick="add('no distortion')">No Distortion</button>
+<button onclick="add('no low quality')">No Low Quality</button>
+<button onclick="add('no artificial look')">No AI Look</button>
 </div>
 
-<!-- INFLUENCER -->
-<div class="section">
-  <div class="section-title">INFLUENCER</div>
-  <button onclick="add('instagram reel style','instagram reel style')">Reels</button>
-  <button onclick="add('beauty influencer','beauty influencer')">Beauty</button>
-  <button onclick="add('fitness influencer','fitness influencer')">Fitness</button>
 </div>
 
-<!-- ECOMMERCE -->
-<div class="section">
-  <div class="section-title">E-COMMERCE</div>
-  <button onclick="add('product photography','product photography')">Producto</button>
-  <button onclick="add('shopify hero image','shopify hero image')">Hero</button>
-  <button onclick="add('t-shirt mockup','t-shirt mockup')">T-shirt</button>
+<!-- ACTIONS -->
+<div class="actions">
+<button onclick="generate()">GENERAR PROMPT FINAL</button>
+<button onclick="reset()">RESET</button>
 </div>
 
 <!-- OUTPUT -->
-<div class="output-container">
-  <textarea id="es" placeholder="Prompt en Español"></textarea>
-  <textarea id="en" placeholder="Prompt in English"></textarea>
-
-  <button onclick="copyAll()">Copiar</button>
-  <button onclick="clearAll()">Borrar</button>
-</div>
+<div class="output" id="output">Output aparecerá aquí...</div>
 
 <script>
-function add(es,en){
-  document.getElementById("es").value += (document.getElementById("es").value?", ":"") + es;
-  document.getElementById("en").value += (document.getElementById("en").value?", ":"") + en;
+
+let parts = [];
+
+function add(text){
+    parts.push(text);
+    document.getElementById("output").innerText = parts.join(", ");
 }
 
-function copyAll(){
-  navigator.clipboard.writeText(
-    "ES:\n"+document.getElementById("es").value+
-    "\n\nEN:\n"+document.getElementById("en").value
-  );
+function generate(){
+
+    const input = document.getElementById("input").value;
+
+    let scene = [];
+    let subject = [];
+    let camera = [];
+    let lighting = [];
+    let style = [];
+    let quality = [];
+    let negative = [];
+
+    // clasificación simple por keywords
+    parts.forEach(p => {
+        if(p.includes("scene")) scene.push(p);
+        else if(p.includes("woman") || p.includes("man") || p.includes("model") || p.includes("influencer")) subject.push(p);
+        else if(p.includes("shot") || p.includes("POV") || p.includes("composition") || p.includes("perspective")) camera.push(p);
+        else if(p.includes("lighting") || p.includes("sunlight")) lighting.push(p);
+        else if(p.includes("realistic") || p.includes("anime") || p.includes("pixar")) style.push(p);
+        else if(p.includes("8k") || p.includes("hyper") || p.includes("cinematic")) quality.push(p);
+        else if(p.includes("no")) negative.push(p);
+    });
+
+    let finalPrompt = "";
+
+    if(input){
+        finalPrompt += "MAIN IDEA: " + input + "\n\n";
+    }
+
+    finalPrompt += "PROMPT STRUCTURE:\n\n";
+
+    finalPrompt += "Scene: " + scene.join(", ") + "\n";
+    finalPrompt += "Subject: " + subject.join(", ") + "\n";
+    finalPrompt += "Camera: " + camera.join(", ") + "\n";
+    finalPrompt += "Lighting: " + lighting.join(", ") + "\n";
+    finalPrompt += "Style: " + style.join(", ") + "\n";
+    finalPrompt += "Quality: " + quality.join(", ") + "\n";
+    finalPrompt += "Negative: " + negative.join(", ") + "\n";
+
+    finalPrompt += "\nFINAL PROMPT:\n";
+    finalPrompt += parts.join(", ");
+
+    document.getElementById("output").innerText = finalPrompt;
 }
 
-function clearAll(){
-  document.getElementById("es").value="";
-  document.getElementById("en").value="";
+function reset(){
+    parts = [];
+    document.getElementById("output").innerText = "";
+    document.getElementById("input").value = "";
 }
+
 </script>
 
 </body>

@@ -1,194 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Sistema Visual Pro - Motor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laritza | AI Casting Studio</title>
+    <style>
+        :root {
+            --neon-green: #00ff41;
+            --neon-blue: #00f3ff;
+            --bg-dark: #050505;
+            --card-bg: #121212;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(180deg,#f8f3ff,#f0fbf7,#fff0f5);
-    display:flex;
-    justify-content:center;
-}
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.container{
-    width:420px;
-    height:90vh;
-    overflow-y:auto;
-    background:white;
-    margin:20px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-    padding:15px;
-}
+        h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid var(--neon-green); }
 
-.header{
-    text-align:center;
-    font-size:16px;
-    font-weight:bold;
-    padding:15px;
-}
+        .module {
+            background: var(--card-bg);
+            border-left: 4px solid var(--neon-green);
+            padding: 20px;
+            margin: 10px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
 
-.block-title{
-    font-weight:bold;
-    margin-top:10px;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-.btn{
-    padding:8px 10px;
-    margin:4px;
-    border-radius:18px;
-    border:none;
-    cursor:pointer;
-    font-size:12px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.1);
-    transition:0.2s;
-}
+        button {
+            background: #222;
+            border: 1px solid #444;
+            color: #ccc;
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.8em;
+        }
 
-.btn:hover{transform:scale(1.05);}
+        button:hover { border-color: var(--neon-green); color: white; }
 
-.pink{background:#ff6fae;color:white;}
-.green{background:#7de3b5;color:white;}
-.blue{background:#7db7ff;color:white;}
+        button.active {
+            background: var(--neon-green);
+            color: black;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
 
-.active{
-    outline:2px solid #000;
-}
+        #prompt-box {
+            position: sticky;
+            bottom: 20px;
+            width: 90%;
+            max-width: 800px;
+            background: #1a1a1a;
+            border: 2px solid var(--neon-blue);
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
 
-textarea{
-    width:100%;
-    height:90px;
-    border-radius:10px;
-    border:1px solid #ddd;
-    padding:8px;
-}
+        textarea {
+            width: 100%;
+            height: 80px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: none;
+            resize: none;
+            font-family: monospace;
+            font-size: 14px;
+        }
 
-.lang-container{
-    display:flex;
-    gap:10px;
-}
-
-.lang{
-    width:50%;
-}
-
-.copy{
-    background:#00c46a;
-    color:white;
-    margin-top:5px;
-}
-
-.clear{
-    background:#00a85a;
-    color:white;
-    margin-top:5px;
-}
-</style>
+        .copy-btn {
+            background: var(--neon-blue);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+    <h1>AI Global Casting Studio</h1>
 
-<div class="header">
-SISTEMA MODULAR VISUAL PRO (CORE LOCKED)
-</div>
+    <div class="module" id="mod-identity">
+        <h3>👤 MÓDULO 1: ORIGEN (LA CUBANA #1)</h3>
+        <div class="grid">
+            <button onclick="setSubject('🇨🇺 Cubana', 'Stunning Cuban woman, warm golden undertones, authentic Caribbean features')">🇨🇺 Cubana</button>
+            <button onclick="setSubject('🇩🇴 Dominicana', 'Radiant Dominican woman, deep honey skin, curly hair')">🇩🇴 Dominicana</button>
+            <button onclick="setSubject('🇨🇴 Colombiana', 'Beautiful Colombian woman, long dark hair, expressive eyes')">🇨🇴 Colombiana</button>
+            <button onclick="setSubject('🇯🇵 Japonesa', 'Modern Japanese woman, sleek black hair, porcelain skin')">🇯🇵 Japonesa</button>
+            <button onclick="setSubject('🇮🇹 Italiana', 'Stunning Italian woman, Mediterranean features, wavy hair')">🇮🇹 Italiana</button>
+        </div>
+    </div>
 
-<!-- BLOQUES SIMPLES DEMO -->
-<div class="block-title">🌎 Identidad</div>
-<button class="btn pink" onclick="selectOption('identity','latina',this)">latina</button>
-<button class="btn pink" onclick="selectOption('identity','europea',this)">europea</button>
+    <div class="module" id="mod-skin">
+        <h3>🧬 MÓDULO 2: ADN DE PIEL (MULTI-SELECT)</h3>
+        <div class="grid">
+            <button class="multi" onclick="toggleSkin('Poros', 'micro-detailed skin pores')">🧫 Poros Visibles</button>
+            <button class="multi" onclick="toggleSkin('Luz', 'subsurface scattering, realistic skin translucency')">💡 Luz Orgánica</button>
+            <button class="multi" onclick="toggleSkin('Sudor', 'natural skin sweat, hydrated glow')">🧴 Brillo/Sudor</button>
+            <button class="multi" onclick="toggleSkin('Pecas', 'natural facial freckles')">🍓 Pecas</button>
+        </div>
+    </div>
 
-<div class="block-title">💋 Labios</div>
-<button class="btn pink" onclick="selectOption('lips','rojos intensos',this)">rojos intensos</button>
-<button class="btn pink" onclick="selectOption('lips','naturales',this)">naturales</button>
+    <div class="module" id="mod-outfit">
+        <h3>🧥 MÓDULO 3: VESTUARIO</h3>
+        <div class="grid">
+            <button onclick="setOutfit('💼 Ejecutiva', 'wearing a sharp tailored business suit')">💼 Ejecutiva</button>
+            <button onclick="setOutfit('👗 Vestido Seda', 'wearing a luxurious silk slip dress')">👗 Vestido Seda</button>
+            <button onclick="setOutfit('🧘 Fitness', 'wearing high-waisted yoga leggings and sports bra')">🧘 Fitness</button>
+            <button onclick="setOutfit('👙 Bikini', 'wearing a luxury designer bikini')">👙 Bikini</button>
+        </div>
+    </div>
 
-<div class="block-title">😊 Sonrisa</div>
-<button class="btn blue" onclick="selectOption('smile','elegante',this)">elegante</button>
-<button class="btn blue" onclick="selectOption('smile','natural',this)">natural</button>
+    <div id="prompt-box">
+        <textarea id="final-prompt" readonly>Selecciona opciones para generar tu prompt maestro...</textarea>
+        <button class="copy-btn" onclick="copyPrompt()">COPIAR PROMPT</button>
+    </div>
 
-<div class="block-title">👁️ Mirada</div>
-<button class="btn blue" onclick="selectOption('look','directa',this)">directa</button>
-<button class="btn blue" onclick="selectOption('look','lateral',this)">lateral</button>
+    <script>
+        let selections = {
+            subject: "",
+            skin: [],
+            outfit: ""
+        };
 
-<div class="block-title">💇 Peinado</div>
-<button class="btn green" onclick="selectOption('hair','rizado',this)">rizado</button>
-<button class="btn green" onclick="selectOption('hair','liso',this)">liso</button>
+        function setSubject(name, tech) {
+            selections.subject = tech;
+            updatePrompt();
+            highlight(event.target);
+        }
 
-<div class="block-title">👠 Zapatos</div>
-<button class="btn pink" onclick="selectOption('shoes','tacones',this)">tacones</button>
-<button class="btn pink" onclick="selectOption('shoes','sneakers',this)">sneakers</button>
+        function toggleSkin(name, tech) {
+            const index = selections.skin.indexOf(tech);
+            if (index > -1) {
+                selections.skin.splice(index, 1);
+                event.target.classList.remove('active');
+            } else {
+                selections.skin.push(tech);
+                event.target.classList.add('active');
+            }
+            updatePrompt();
+        }
 
-<div class="block-title">💍 Accesorios</div>
-<button class="btn green" onclick="selectOption('accessories','collar de lujo',this)">collar</button>
-<button class="btn green" onclick="selectOption('accessories','sin accesorios',this)">ninguno</button>
+        function setOutfit(name, tech) {
+            selections.outfit = tech;
+            updatePrompt();
+            highlight(event.target);
+        }
 
-<hr>
+        function updatePrompt() {
+            let skinText = selections.skin.length > 0 ? `, with ${selections.skin.join(', ')}` : "";
+            let prompt = `${selections.subject}${skinText}, ${selections.outfit}, photorealistic, raw style, 8k --ar 9:16 --v 6.1`;
+            document.getElementById('final-prompt').value = prompt;
+        }
 
-<div class="lang-container">
+        function highlight(target) {
+            let siblings = target.parentNode.querySelectorAll('button:not(.multi)');
+            siblings.forEach(s => s.classList.remove('active'));
+            target.classList.add('active');
+        }
 
-<div class="lang">
-<textarea id="es" placeholder="Español"></textarea>
-<button class="btn copy" onclick="copyText('es')">Copiar</button>
-<button class="btn clear" onclick="clearText('es')">Eliminar</button>
-</div>
-
-<div class="lang">
-<textarea id="en" placeholder="English"></textarea>
-<button class="btn copy" onclick="copyText('en')">Copy</button>
-<button class="btn clear" onclick="clearText('en')">Clear</button>
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-let state = {
-    identity:"",
-    lips:"",
-    smile:"",
-    look:"",
-    hair:"",
-    shoes:"",
-    accessories:""
-};
-
-function selectOption(category,value,btn){
-
-    state[category] = value;
-
-    let buttons = btn.parentNode.querySelectorAll("button");
-    buttons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    buildPrompt();
-}
-
-function buildPrompt(){
-
-    let promptES =
-    `Mujer ${state.identity}, labios ${state.lips}, sonrisa ${state.smile}, mirada ${state.look}, cabello ${state.hair}, usa ${state.accessories}, calzado ${state.shoes}, escena cinematográfica, iluminación natural, estilo editorial, ultra realista 8k, formato 9:16.`;
-
-    let promptEN =
-    `Woman ${state.identity}, lips ${state.lips}, smile ${state.smile}, look ${state.look}, hair ${state.hair}, wearing ${state.accessories}, shoes ${state.shoes}, cinematic scene, natural lighting, editorial style, ultra realistic 8k, 9:16 format.`;
-
-    document.getElementById("es").value = promptES;
-    document.getElementById("en").value = promptEN;
-}
-
-function copyText(id){
-    navigator.clipboard.writeText(document.getElementById(id).value);
-}
-
-function clearText(id){
-    document.getElementById(id).value = "";
-}
-
-</script>
-
+        function copyPrompt() {
+            let copyText = document.getElementById("final-prompt");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Prompt copiado al portapapeles!");
+        }
+    </script>
 </body>
 </html>

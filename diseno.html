@@ -1,249 +1,305 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Studio | Luxury Prompt Suite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Arbelo Digital | AI Software</title>
     <style>
         :root {
-            --bg: #f5ede0;
-            --card: rgba(255,252,246,0.9);
-            --border: rgba(210,188,160,0.6);
-            --ink: #2c2118;
-            --text-light: #b0977c;
-            /* Paleta de Botones Arbelo */
-            --c1: #e8917a; --c2: #d4a574; --c3: #8bbfa8; --c4: #7da9c4;
-            --verde: #2d5a27; --gpt: #10a37f; --higgs: #ff4d4d; --google: #4285f4; --free: #00aaff;
+            --fondo: #fba667; /* Fondo mucho más saturado y vibrante */
+            --mint: #45c4a0;  /* Verde más fuerte */
+            --pink: #f26d7d;  /* Rosa más fuerte */
+            --peach: #f39c12; /* Naranja más fuerte */
+            --lavender: #7487f1; /* Lavanda más fuerte */
+            --marron-marca: #3d241e; /* Color de marca bien oscuro y potente */
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            background-color: var(--bg);
-            background-image: radial-gradient(circle at 2px 2px, rgba(150,120,80,0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-            font-family: 'DM Sans', sans-serif;
+            background-color: var(--fondo);
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 15px;
         }
 
-        .header { text-align: center; margin-bottom: 40px; }
-        .header h1 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 3rem; 
-            letter-spacing: 6px; 
-            text-transform: uppercase; 
-            color: var(--ink);
-            font-weight: 300;
-        }
-        .header h1 em { font-style: italic; }
-
-        .container { max-width: 650px; width: 100%; display: flex; flex-direction: column; gap: 12px; }
-
-        /* SECCIONES ACORDEÓN */
-        .category-block {
-            background: var(--card);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: 0.3s;
+        .header {
+            text-align: center;
+            margin: 25px 0;
         }
 
-        .category-header {
-            padding: 18px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2px;
+        .header h1 {
+            color: var(--marron-marca);
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--text-light);
+            font-weight: 900;
+            text-shadow: 1px 1px 0px white;
         }
 
-        .category-content {
-            display: none;
-            padding: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            border-top: 1px solid var(--border);
-        }
-
-        .category-block.active .category-content { display: grid; }
-
-        /* BOTONES 3D PILL CON LOS COLORES DE CATEGORÍA */
-        .btn-option {
-            position: relative;
-            border-radius: 999px;
-            border: none;
-            padding: 12px 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: white;
-            transition: all 0.15s cubic-bezier(.34,1.56,.64,1);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            border-bottom: 4px solid rgba(0,0,0,0.18);
-            overflow: hidden;
-        }
-
-        .btn-option::before {
-            content: '';
-            position: absolute;
-            top: 2px; left: 15%; right: 15%; height: 35%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
-            border-radius: 999px;
-        }
-
-        .btn-option:hover { transform: translateY(-3px); filter: brightness(1.05); }
-        .btn-option:active { transform: translateY(2px); border-bottom-width: 1px; }
-        .btn-option.active { outline: 2px solid var(--ink); outline-offset: 2px; filter: saturate(1.4) brightness(1.1); }
-
-        /* Variantes de Color para la Mezcla */
-        .c-v1 { background: linear-gradient(160deg, #f0a090, var(--c1)); }
-        .c-v2 { background: linear-gradient(160deg, #ddb880, var(--c2)); }
-        .c-v3 { background: linear-gradient(160deg, #9ecfb8, var(--c3)); }
-        .c-v4 { background: linear-gradient(160deg, #8cbcd4, var(--c4)); }
-
-        /* CONSOLA DE RESULTADO MULTI-IA */
-        .prompt-box {
-            position: sticky;
-            bottom: 20px;
-            background: rgba(245, 238, 226, 0.98);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 0 -10px 40px rgba(60,40,20,0.15);
-            margin-top: 30px;
+        .scroll-container {
             width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        #result {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            font-style: italic;
-            color: var(--ink);
+        .category-block {
             background: white;
             padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .column-title {
+            color: var(--marron-marca);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .btn-option {
+            border: none;
+            padding: 10px 2px;
             border-radius: 12px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-            min-height: 60px;
-            line-height: 1.5;
+            cursor: pointer;
+            font-size: 0.72rem;
+            font-weight: bold;
+            transition: 0.2s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
         }
 
-        .copy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .btn-ia {
-            padding: 10px 5px; border-radius: 10px; border: none; font-size: 0.6rem;
-            font-weight: 800; text-transform: uppercase; cursor: pointer; color: white;
-            transition: 0.2s; border-bottom: 3px solid rgba(0,0,0,0.2);
+        .btn-option.active { 
+            outline: 3px solid var(--marron-marca); 
+            transform: scale(0.95);
+            box-shadow: none;
         }
-        .btn-ia:active { transform: translateY(2px); border-bottom-width: 1px; }
 
-        .btn-mj { background: var(--verde); }
-        .btn-gpt { background: var(--gpt); }
-        .btn-higgs { background: var(--higgs); }
-        .btn-flow { background: var(--google); }
-        .btn-free { background: var(--free); }
-        .btn-reset { background: var(--text-light); }
+        .btn-pink { background: var(--pink); color: white; }
+        .btn-mint { background: var(--mint); color: white; }
+        .btn-lavender { background: var(--lavender); color: white; }
+        .btn-peach { background: var(--peach); color: white; }
 
-        .back-link { margin-bottom: 20px; text-decoration: none; color: var(--text-light); font-size: 0.7rem; letter-spacing: 1px; }
+        /* CAJA DE RESULTADO */
+        .prompt-box {
+            background: rgba(255, 255, 255, 0.98);
+            border: 4px solid var(--marron-marca);
+            border-radius: 25px;
+            padding: 18px;
+            margin-top: 20px;
+            position: sticky;
+            bottom: 10px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .lang-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .btn-lang {
+            padding: 6px 18px;
+            border-radius: 12px;
+            border: 2px solid var(--marron-marca);
+            background: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--marron-marca);
+        }
+
+        .btn-lang.active { background: var(--marron-marca); color: white; }
+
+        #result {
+            background: #fff8f0;
+            padding: 15px;
+            border-radius: 15px;
+            min-height: 50px;
+            font-size: 0.85rem;
+            color: #222;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        
+        .btn-action {
+            padding: 12px 20px;
+            border-radius: 15px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        }
+        .btn-copy { background: #e67e22; }
+        .btn-clear { background: #3498db; }
+        .btn-others { background: #9b59b6; }
+
+        .back-link { text-decoration: none; color: var(--marron-marca); font-size: 0.8rem; font-weight: 900; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-link">← VOLVER AL ESTUDIO</a>
+    <a href="index.html" class="back-link">← VOLVER AL MENÚ PRINCIPAL</a>
 
     <div class="header">
-        <h1>Arbelo <em>Studio</em></h1>
-        <div style="font-size: 0.6rem; letter-spacing: 4px; color: var(--text-light); text-transform: uppercase; margin-top: 10px;">Visual Prompt Builder</div>
+        <h1>ARBELO DIGITAL</h1>
     </div>
 
-    <div class="container" id="accordion-container"></div>
-
-    <div class="prompt-box">
-        <div id="result">Diseña tu visión seleccionando botones...</div>
-        <div class="copy-grid">
-            <button class="btn-ia btn-mj" onclick="copyPrompt('mj')">Midjourney</button>
-            <button class="btn-ia btn-gpt" onclick="copyPrompt('gpt')">ChatGPT</button>
-            <button class="btn-ia btn-higgs" onclick="copyPrompt('higgs')">Higgsfield</button>
-            <button class="btn-ia btn-flow" onclick="copyPrompt('flow')">Google Flow</button>
-            <button class="btn-ia btn-free" onclick="copyPrompt('free')">Freepik</button>
-            <button class="btn-ia btn-reset" onclick="resetAll()">Limpiar</button>
+    <div class="scroll-container">
+        <div class="category-block">
+            <div class="column-title">🌸 Nicho Principal</div>
+            <div class="options-grid">
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Business Mentor', 'Mentora de Negocios')">Negocios</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Skin Care Specialist', 'Especialista en Piel')">Belleza</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Content Creator', 'Creadora de Contenido')">Digital</button>
+            </div>
         </div>
+
+        <div class="category-block">
+            <div class="column-title">🎨 Texturas Profesionales</div>
+            <div class="options-grid">
+                <button class="btn-option btn-mint" onclick="toggle(this, 'High-end Silk', 'Seda de lujo')">Seda</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Polished Marble', 'Mármol Pulido')">Mármol</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Frosted Glass', 'Vidrio Esmerilado')">Vidrio</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title">💡 Iluminación de Estudio</div>
+            <div class="options-grid">
+                <button class="btn-option btn-lavender" onclick="toggle(this, 'Softbox lighting', 'Luz de Softbox')">Suave</button>
+                <button class="btn-option btn-lavender" onclick="toggle(this, 'Golden hour sunlight', 'Luz de atardecer')">Golden</button>
+                <button class="btn-option btn-lavender" onclick="toggle(this, 'Global illumination', 'Iluminación Global')">Global</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title">👗 Estilo & Outfits</div>
+            <div class="options-grid">
+                <button class="btn-option btn-peach" onclick="toggle(this, 'Old Money aesthetic', 'Estilo Old Money')">Old Money</button>
+                <button class="btn-option btn-peach" onclick="toggle(this, 'Boss Lady blazer', 'Blazer ejecutiva')">Empoderada</button>
+                <button class="btn-option btn-peach" onclick="toggle(this, 'Minimalist chic', 'Minimalista Chic')">Minimal</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title">✨ Mood & Vibras</div>
+            <div class="options-grid">
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Elegant & Sophisticated', 'Elegante y Sofisticado')">Sofisticado</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'High-end luxury', 'Lujo de alta gama')">Lujo</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Fresh & Modern', 'Fresco y Moderno')">Moderno</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title">📸 Encuadre</div>
+            <div class="options-grid">
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Macro shot', 'Plano detalle')">Macro</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Eye level', 'A la altura de los ojos')">Frontal</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Upper body shot', 'Plano medio')">Medio</button>
+            </div>
+        </div>
+
+        <div class="category-block">
+            <div class="column-title">🖼️ Parámetros Midjourney</div>
+            <div class="options-grid">
+                <button class="btn-option btn-lavender" onclick="toggle(this, '--ar 9:16', '--ar 9:16')">Vertical</button>
+                <button class="btn-option btn-lavender" onclick="toggle(this, '--ar 1:1', '--ar 1:1')">Cuadrado</button>
+                <button class="btn-option btn-lavender" onclick="toggle(this, '--v 6.0', '--v 6.0')">V 6.0</button>
+            </div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="lang-selector">
+                <button id="btn-en" class="btn-lang active" onclick="setLang('en')">INGLÉS</button>
+                <button id="btn-es" class="btn-lang" onclick="setLang('es')">ESPAÑOL</button>
+            </div>
+            <div id="result">Esperando selección...</div>
+            <div class="actions">
+                <button class="btn-action btn-copy" onclick="copyText()">♥ COPIAR</button>
+                <button class="btn-action btn-others" onclick="addOthers()">OTROS IA</button>
+                <button class="btn-action btn-clear" onclick="clearAll()">BORRAR TODO</button>
+            </div>
+        </div>
+        <div style="height: 40px;"></div>
     </div>
 
     <script>
-        const config = [
-            { title: "1. Arquetipo", key: "sub", color: "c-v1", opts: ["CEO Visionaria", "Mentora Zen", "Creativa Rebelde", "Líder de Opinión", "Influencer"] },
-            { title: "2. Atuendo", key: "out", color: "c-v2", opts: ["Blazer Sastre", "Camisa Seda", "Suéter Cashmere", "Vestido Lino", "Old Money"] },
-            { title: "3. Accesorios", key: "acc", color: "c-v3", opts: ["Gafas Lujo", "Joyas Oro", "Reloj Alta Gama", "Perlas", "Bolso Piel"] },
-            { title: "4. Escenario", key: "env", color: "c-v4", opts: ["Penthouse NYC", "Lobby Hotel", "Terraza", "Oficina Pro", "París"] },
-            { title: "5. Acción", key: "act", color: "c-v1", opts: ["Analizando", "Tomando Café", "Risa Natural", "Mirada Poder", "Grabando"] },
-            { title: "6. Ángulo", key: "ang", color: "c-v2", opts: ["Primer Plano", "Plano Medio", "Ángulo Bajo", "Cenital", "Macro"] },
-            { title: "7. Dispositivo", key: "len", color: "c-v3", opts: ["Shot on iPhone", "Portrait Mode", "85mm Pro", "35mm Street", "35mm Film"] },
-            { title: "8. Iluminación", key: "lit", color: "c-v4", opts: ["Golden Hour", "Natural", "Studio", "Sombras", "Mañana"] },
-            { title: "9. Branding", key: "col", color: "c-v1", opts: ["Neutros/Beige", "Blanco y Negro", "Tonos Tierra", "Azul y Oro", "Pasteles"] },
-            { title: "10. Dirección", key: "sty", color: "c-v2", opts: ["UGC Style", "Editorial", "Cinematográfico", "Minimal", "Lifestyle"] }
-        ];
+        let selectedEN = [];
+        let selectedES = [];
+        let currentLang = 'en';
+        let othersText = "";
 
-        let state = {};
-        const container = document.getElementById('accordion-container');
-
-        config.forEach((group, i) => {
-            const block = document.createElement('div');
-            block.className = 'category-block';
-            block.innerHTML = `
-                <div class="category-header" onclick="this.parentElement.classList.toggle('active')">
-                    ${group.title} <span>+</span>
-                </div>
-                <div class="category-content"></div>
-            `;
-            const grid = block.querySelector('.category-content');
-            group.opts.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = `btn-option ${group.color}`;
-                btn.innerText = opt;
-                btn.onclick = () => {
-                    grid.querySelectorAll('.btn-option').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    state[group.key] = opt;
-                    renderPrompt();
-                };
-                grid.appendChild(btn);
-            });
-            container.appendChild(block);
-        });
-
-        function renderPrompt() {
-            const p = Object.values(state).join(", ");
-            document.getElementById('result').innerText = p || "Diseña tu visión seleccionando botones...";
+        function toggle(btn, en, es) {
+            btn.classList.toggle('active');
+            if (selectedEN.includes(en)) {
+                selectedEN = selectedEN.filter(i => i !== en);
+                selectedES = selectedES.filter(i => i !== es);
+            } else {
+                selectedEN.push(en);
+                selectedES.push(es);
+            }
+            update();
         }
 
-        function copyPrompt(type) {
-            const t = document.getElementById('result').innerText;
-            if(t.includes("Diseña")) return alert("Selecciona opciones primero");
-            let final = t;
-            if(type === 'mj') final = `${t} --v 6.1 --ar 4:5 --stylize 250`;
-            if(type === 'gpt') final = `A professional photograph of ${t}, luxury editorial style, 8k.`;
-            if(type === 'higgs') final = `Cinematic movement, ${t}, 4k resolution.`;
+        function setLang(l) {
+            currentLang = l;
+            document.getElementById('btn-en').classList.toggle('active', l === 'en');
+            document.getElementById('btn-es').classList.toggle('active', l === 'es');
+            update();
+        }
+
+        function addOthers() {
+            // No quita nada, solo agrega o quita la coletilla
+            if (othersText === "") {
+                othersText = ", photorealistic, 8k, highly detailed, professional photography";
+            } else {
+                othersText = "";
+            }
+            update();
+        }
+
+        function update() {
+            const res = document.getElementById('result');
+            let base = currentLang === 'en' ? selectedEN.join(", ") : selectedES.join(", ");
             
-            navigator.clipboard.writeText(final);
-            alert(`Copiado para ${type.toUpperCase()}`);
+            // Unimos lo seleccionado + la coletilla de otros (si existe)
+            let finalPrompt = base + othersText;
+
+            res.innerText = finalPrompt.length > 0 ? finalPrompt : (currentLang === 'en' ? "Waiting for selection..." : "Esperando selección...");
         }
 
-        function resetAll() {
-            state = {};
+        function clearAll() {
+            selectedEN = []; selectedES = []; othersText = "";
             document.querySelectorAll('.btn-option').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.category-block').forEach(c => c.classList.remove('active'));
-            renderPrompt();
+            update();
+        }
+
+        function copyText() {
+            const text = document.getElementById('result').innerText;
+            navigator.clipboard.writeText(text);
+            alert("♥ ¡Prompt copiado!");
         }
     </script>
 </body>

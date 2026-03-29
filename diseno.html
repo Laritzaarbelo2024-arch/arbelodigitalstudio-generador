@@ -3,258 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PROMPT OS FULL ENGINE</title>
+<title>Prompt OS Full Candy Builder</title>
 
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    background:#0f0f14;
-    color:#fff;
+margin:0;
+font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+background:#f7f4fb;
+color:#2b2b2b;
 }
 
+/* HEADER */
 header{
-    padding:18px;
-    text-align:center;
-    background:#1a1a24;
-    font-weight:bold;
+padding:18px;
+text-align:center;
+font-weight:600;
+letter-spacing:1px;
+background: rgba(255,255,255,0.7);
+backdrop-filter: blur(10px);
+border-bottom:1px solid rgba(0,0,0,0.05);
 }
 
+/* GRID */
 .container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:10px;
-    padding:10px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:12px;
+padding:14px;
 }
 
+/* BLOCK */
 .block{
-    background:#1c1c2a;
-    padding:10px;
-    border-radius:10px;
+background:#ffffff;
+border-radius:20px;
+padding:12px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+border:1px solid rgba(0,0,0,0.04);
 }
 
 h3{
-    margin:0 0 8px 0;
-    color:#8bd3ff;
-    font-size:13px;
+margin:0 0 10px 0;
+font-size:13px;
+color:#a78bfa;
 }
 
+/* BUTTONS */
 button{
-    margin:3px;
-    padding:6px 8px;
-    border:none;
-    border-radius:6px;
-    font-size:11px;
-    cursor:pointer;
-    background:#2d6cdf;
-    color:#fff;
+margin:5px;
+padding:9px 12px;
+border:none;
+border-radius:999px;
+font-size:11px;
+cursor:pointer;
+
+background: linear-gradient(145deg, #ffe6f0, #e6f0ff);
+color:#3a3a3a;
+
+box-shadow:
+0 6px 12px rgba(0,0,0,0.08),
+inset 0 1px 0 rgba(255,255,255,0.9);
+
+transition: all 0.25s ease;
 }
 
 button:hover{
-    background:#4a8bff;
+transform: translateY(-3px) scale(1.02);
+box-shadow:0 12px 20px rgba(0,0,0,0.12);
 }
 
-textarea{
-    width:100%;
-    height:70px;
-    background:#12121a;
-    border:1px solid #2a2a3a;
-    color:white;
-    border-radius:8px;
-    padding:8px;
+/* PROMPT BOX */
+.prompt-box{
+margin:14px;
+padding:14px;
+min-height:100px;
+border-radius:20px;
+
+background:#ffffff;
+border:1px solid rgba(0,0,0,0.05);
+
+white-space:pre-wrap;
+
+box-shadow: inset 0 0 18px rgba(0,0,0,0.04);
 }
 
-.output{
-    margin:10px;
-    padding:12px;
-    background:#12121a;
-    border-radius:10px;
-    white-space:pre-wrap;
-    border:1px solid #2a2a3a;
-}
-
+/* ACTIONS */
 .actions{
-    display:flex;
-    gap:10px;
-    padding:10px;
+display:flex;
+gap:10px;
+padding:14px;
 }
 
 .actions button{
-    flex:1;
-    padding:10px;
+flex:1;
+padding:10px;
+font-weight:600;
+border-radius:999px;
+}
+
+.primary{
+background: linear-gradient(145deg, #cdb4ff, #bde0fe);
+color:#1f1f1f;
+}
+
+.primary:hover{
+box-shadow:0 0 18px rgba(189,224,254,0.6);
+}
+
+.danger{
+background: linear-gradient(145deg, #ffd6e0, #ffafcc);
+color:#5a1f2b;
 }
 </style>
 </head>
 
 <body>
 
-<header>PROMPT OS — FULL VISUAL ENGINE</header>
+<header>PROMPT OS — FULL CANDY BUILDER</header>
 
-<!-- INPUT -->
-<div class="block" style="margin:10px;">
-<h3>🧠 Input base</h3>
-<textarea id="input" placeholder="Describe la idea principal..."></textarea>
+<div class="prompt-box" id="promptBox">
+Tu prompt se construye aquí...
 </div>
 
 <div class="container">
 
 <!-- SCENE -->
 <div class="block">
-<h3>🎬 Scene</h3>
-<button onclick="add('urban scene with movement')">Urbana</button>
+<h3>🎬 Escenas</h3>
+<button onclick="add('urban cinematic street scene')">Urbana</button>
+<button onclick="add('natural outdoor adventure scene')">Aventura</button>
 <button onclick="add('studio controlled lighting scene')">Estudio</button>
-<button onclick="add('natural outdoor adventure scene')">Natural</button>
-<button onclick="add('commercial product focused scene')">Producto</button>
+<button onclick="add('commercial product scene')">Producto</button>
 </div>
 
-<!-- SUBJECT -->
+<!-- PERSPECTIVAS -->
 <div class="block">
-<h3>🧍 Subject</h3>
-<button onclick="add('curvy woman defined facial structure realistic skin')">Mujer</button>
-<button onclick="add('male athletic model cinematic look')">Hombre</button>
-<button onclick="add('fashion influencer lifestyle look')">Influencer</button>
+<h3>📷 Perspectiva</h3>
+<button onclick="add('point of view shot')">POV</button>
+<button onclick="add('shot from behind')">Desde atrás</button>
+<button onclick="add('over the shoulder shot')">Over Shoulder</button>
+<button onclick="add('front view composition')">Frontal</button>
+<button onclick="add('three quarter view')">3/4</button>
+<button onclick="add('symmetrical composition shot')">Simétrico</button>
+<button onclick="add('centered composition')">Centrado</button>
+<button onclick="add('off center artistic composition')">Off Center</button>
+<button onclick="add('forced perspective illusion shot')">Perspectiva forzada</button>
 </div>
 
-<!-- SHOT -->
+<!-- SUJETO -->
 <div class="block">
-<h3>📷 Shot</h3>
-<button onclick="add('full body shot')">Full Body</button>
-<button onclick="add('medium shot')">Medium</button>
-<button onclick="add('close up')">Close Up</button>
-<button onclick="add('long shot')">Long</button>
+<h3>🧍 Sujeto</h3>
+<button onclick="add('curvy woman defined facial structure natural skin texture freckles')">Mujer</button>
+<button onclick="add('male athletic model cinematic presence')">Hombre</button>
+<button onclick="add('fashion influencer lifestyle aesthetic')">Influencer</button>
 </div>
 
-<!-- ANGLE -->
+<!-- LUZ -->
 <div class="block">
-<h3>📐 Angle</h3>
-<button onclick="add('eye level shot')">Eye Level</button>
-<button onclick="add('low angle shot')">Low</button>
-<button onclick="add('high angle shot')">High</button>
-<button onclick="add('dutch angle shot')">Dutch</button>
+<h3>💡 Luz</h3>
+<button onclick="add('golden hour natural sunlight from horizon')">Golden Hour</button>
+<button onclick="add('soft studio lighting')">Studio suave</button>
+<button onclick="add('volumetric cinematic lighting')">Volumétrico</button>
 </div>
 
-<!-- MOTION -->
+<!-- ESTILO -->
 <div class="block">
-<h3>🎥 Motion</h3>
-<button onclick="add('tracking shot')">Tracking</button>
-<button onclick="add('dolly in movement')">Dolly In</button>
-<button onclick="add('orbit shot around subject')">Orbit</button>
-<button onclick="add('static cinematic frame')">Static</button>
-</div>
-
-<!-- COMPOSITION -->
-<div class="block">
-<h3>🧭 Composition</h3>
-<button onclick="add('centered composition')">Centered</button>
-<button onclick="add('symmetrical composition')">Symmetry</button>
-<button onclick="add('POV shot perspective')">POV</button>
-<button onclick="add('forced perspective illusion')">Forced</button>
-</div>
-
-<!-- LIGHT -->
-<div class="block">
-<h3>💡 Lighting</h3>
-<button onclick="add('golden hour natural sunlight')">Golden Hour</button>
-<button onclick="add('soft studio lighting setup')">Studio</button>
-<button onclick="add('backlit silhouette lighting')">Backlight</button>
-<button onclick="add('volumetric cinematic lighting')">Volumetric</button>
-</div>
-
-<!-- STYLE -->
-<div class="block">
-<h3>🎨 Style</h3>
-<button onclick="add('ultra-realistic cinematic photography')">Real</button>
+<h3>🎨 Estilo</h3>
+<button onclick="add('ultra realistic photography')">Realista</button>
 <button onclick="add('anime style illustration')">Anime</button>
-<button onclick="add('pixar style 3D render cinematic')">Pixar</button>
+<button onclick="add('pixar style 3D render')">Pixar</button>
 </div>
 
-<!-- QUALITY -->
+<!-- CALIDAD -->
 <div class="block">
-<h3>🔥 Quality</h3>
-<button onclick="add('hyper-detailed textures')">Detail</button>
-<button onclick="add('8k resolution')">8K</button>
-<button onclick="add('cinematic motion blur')">Motion Blur</button>
-<button onclick="add('professional advertising photography')">Ads</button>
+<h3>🔥 Calidad</h3>
+<button onclick="add('hyper detailed textures cinematic 8k')">Ultra</button>
+<button onclick="add('ugc iphone latest generation capture')">iPhone</button>
 </div>
 
-<!-- NEGATIVE -->
+<!-- NARRATIVA -->
 <div class="block">
-<h3>🚫 Negative</h3>
-<button onclick="add('no plastic skin')">No Plastic</button>
-<button onclick="add('no distortion')">No Distortion</button>
-<button onclick="add('no low quality')">No Low Quality</button>
-<button onclick="add('no artificial look')">No AI Look</button>
+<h3>🌍 Narrativa</h3>
+<button onclick="add('scene conveys adventure freedom and high performance lifestyle')">Aventura / Libertad</button>
+<button onclick="add('minimal luxury lifestyle aesthetic')">Lujo minimal</button>
 </div>
 
 </div>
 
-<!-- ACTIONS -->
 <div class="actions">
-<button onclick="generate()">GENERAR PROMPT FINAL</button>
-<button onclick="reset()">RESET</button>
+<button class="primary" onclick="copyPrompt()">Copiar Prompt</button>
+<button class="danger" onclick="resetPrompt()">Reset</button>
 </div>
-
-<!-- OUTPUT -->
-<div class="output" id="output">Output aparecerá aquí...</div>
 
 <script>
 
 let parts = [];
 
 function add(text){
-    parts.push(text);
-    document.getElementById("output").innerText = parts.join(", ");
+parts.push(text);
+document.getElementById("promptBox").innerText = parts.join(", ");
 }
 
-function generate(){
-
-    const input = document.getElementById("input").value;
-
-    let scene = [];
-    let subject = [];
-    let camera = [];
-    let lighting = [];
-    let style = [];
-    let quality = [];
-    let negative = [];
-
-    // clasificación simple por keywords
-    parts.forEach(p => {
-        if(p.includes("scene")) scene.push(p);
-        else if(p.includes("woman") || p.includes("man") || p.includes("model") || p.includes("influencer")) subject.push(p);
-        else if(p.includes("shot") || p.includes("POV") || p.includes("composition") || p.includes("perspective")) camera.push(p);
-        else if(p.includes("lighting") || p.includes("sunlight")) lighting.push(p);
-        else if(p.includes("realistic") || p.includes("anime") || p.includes("pixar")) style.push(p);
-        else if(p.includes("8k") || p.includes("hyper") || p.includes("cinematic")) quality.push(p);
-        else if(p.includes("no")) negative.push(p);
-    });
-
-    let finalPrompt = "";
-
-    if(input){
-        finalPrompt += "MAIN IDEA: " + input + "\n\n";
-    }
-
-    finalPrompt += "PROMPT STRUCTURE:\n\n";
-
-    finalPrompt += "Scene: " + scene.join(", ") + "\n";
-    finalPrompt += "Subject: " + subject.join(", ") + "\n";
-    finalPrompt += "Camera: " + camera.join(", ") + "\n";
-    finalPrompt += "Lighting: " + lighting.join(", ") + "\n";
-    finalPrompt += "Style: " + style.join(", ") + "\n";
-    finalPrompt += "Quality: " + quality.join(", ") + "\n";
-    finalPrompt += "Negative: " + negative.join(", ") + "\n";
-
-    finalPrompt += "\nFINAL PROMPT:\n";
-    finalPrompt += parts.join(", ");
-
-    document.getElementById("output").innerText = finalPrompt;
+function copyPrompt(){
+navigator.clipboard.writeText(parts.join(", "));
+alert("Prompt copiado");
 }
 
-function reset(){
-    parts = [];
-    document.getElementById("output").innerText = "";
-    document.getElementById("input").value = "";
+function resetPrompt(){
+parts = [];
+document.getElementById("promptBox").innerText = "Tu prompt se construye aquí...";
 }
 
 </script>

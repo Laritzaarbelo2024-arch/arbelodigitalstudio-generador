@@ -1,386 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VECTRA PROMPT SYSTEM</title>
+<meta charset="UTF-8">
+<title>Sistema Visual Pro - Motor</title>
 
 <style>
-
-/* =========================
-   🌈 FONDO MATIZADO PREMIUM
-========================= */
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #3A3A3A;
-
-  background:
-    radial-gradient(circle at top left, #FFD6E8 0%, transparent 50%),
-    radial-gradient(circle at top right, #D6F3FF 0%, transparent 50%),
-    radial-gradient(circle at bottom, #FFF1D6 0%, transparent 55%),
-    linear-gradient(180deg, #FFF8FB, #FFFFFF);
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg,#f8f3ff,#f0fbf7,#fff0f5);
+    display:flex;
+    justify-content:center;
 }
 
-/* =========================
-   📄 HOJA GLASS
-========================= */
-
-.container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-
-  background: rgba(255, 255, 255, 0.75);
-  max-width: 420px;
-  margin: 0 auto;
-
-  border-radius: 22px;
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.15),
-    0 5px 20px rgba(0,0,0,0.08);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255,255,255,0.6);
+.container{
+    width:420px;
+    height:90vh;
+    overflow-y:auto;
+    background:white;
+    margin:20px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    padding:15px;
 }
 
-/* =========================
-   🧠 HEADER
-========================= */
-
-header {
-  text-align: center;
-  padding: 25px 15px;
-  font-size: 22px;
-  font-weight: 800;
-  color: #FF5FA2;
+.header{
+    text-align:center;
+    font-size:16px;
+    font-weight:bold;
+    padding:15px;
 }
 
-.subheader {
-  font-size: 12px;
-  color: #777;
-  margin-top: 5px;
+.block-title{
+    font-weight:bold;
+    margin-top:10px;
 }
 
-/* =========================
-   📜 SECCIONES
-========================= */
-
-.section {
-  height: 100vh;
-  padding: 22px;
-  scroll-snap-align: start;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.btn{
+    padding:8px 10px;
+    margin:4px;
+    border-radius:18px;
+    border:none;
+    cursor:pointer;
+    font-size:12px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+    transition:0.2s;
 }
 
-.block-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #444;
+.btn:hover{transform:scale(1.05);}
+
+.pink{background:#ff6fae;color:white;}
+.green{background:#7de3b5;color:white;}
+.blue{background:#7db7ff;color:white;}
+
+.active{
+    outline:2px solid #000;
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+textarea{
+    width:100%;
+    height:90px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    padding:8px;
 }
 
-/* =========================
-   🔘 BOTONES 3D
-========================= */
-
-.btn {
-  border: none;
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-weight: 600;
-  cursor: pointer;
-
-  background: linear-gradient(145deg, #FFE3EF, #FFD1E3);
-
-  box-shadow:
-    0 6px 0 rgba(0,0,0,0.08),
-    0 10px 20px rgba(0,0,0,0.10);
-
-  transition: all 0.2s ease;
+.lang-container{
+    display:flex;
+    gap:10px;
 }
 
-.btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow:
-    0 10px 18px rgba(0,0,0,0.12),
-    0 4px 0 rgba(0,0,0,0.08);
+.lang{
+    width:50%;
 }
 
-.btn:active {
-  transform: translateY(2px) scale(0.98);
-  box-shadow: 0 3px 0 rgba(0,0,0,0.08);
+.copy{
+    background:#00c46a;
+    color:white;
+    margin-top:5px;
 }
 
-.option {
-  background: linear-gradient(145deg, #FFF0F6, #FFE1EC);
+.clear{
+    background:#00a85a;
+    color:white;
+    margin-top:5px;
 }
-
-/* =========================
-   🧾 OUTPUT DUAL
-========================= */
-
-.builder {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  border-top: 1px solid #E9E9E9;
-  padding: 10px;
-}
-
-.output-box {
-  height: 180px;
-  border-radius: 14px;
-
-  background: rgba(255,255,255,0.8);
-  border: 1px solid rgba(0,0,0,0.08);
-
-  backdrop-filter: blur(10px);
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.lang {
-  height: 50%;
-  padding: 10px;
-  font-size: 12px;
-  overflow-y: auto;
-}
-
-.lang.es {
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-/* =========================
-   🔘 ACCIONES
-========================= */
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-}
-
-.small-btn {
-  border: none;
-  border-radius: 999px;
-  padding: 8px 14px;
-
-  background: linear-gradient(145deg, #FF5FA2, #FF9EC4);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-}
-
-/* =========================
-   📌 FOOTER
-========================= */
-
-footer {
-  text-align: right;
-  font-size: 12px;
-  color: #8A8A8A;
-  padding: 8px 12px;
-}
-
 </style>
 </head>
 
 <body>
 
-<header>
-  VECTRA PROMPT SYSTEM
-  <div class="subheader">Sistema modular de creación de prompts visuales de alto nivel</div>
-</header>
-
 <div class="container">
 
-  <!-- SUJETO -->
-  <div class="section">
-    <div class="block-title">Sujeto</div>
-    <div class="grid">
-      <button class="btn option">woman</button>
-      <button class="btn option">man</button>
-      <button class="btn option">model</button>
-      <button class="btn option">athlete</button>
-      <button class="btn option">creator</button>
-      <button class="btn option">artist</button>
-      <button class="btn option">business</button>
-      <button class="btn option">traveler</button>
-    </div>
-  </div>
+<div class="header">
+SISTEMA MODULAR VISUAL PRO (CORE LOCKED)
+</div>
 
-  <!-- EDAD -->
-  <div class="section">
-    <div class="block-title">Edad</div>
-    <div class="grid">
-      <button class="btn option">teen</button>
-      <button class="btn option">20s</button>
-      <button class="btn option">30s</button>
-      <button class="btn option">40s</button>
-      <button class="btn option">50s</button>
-      <button class="btn option">young adult</button>
-      <button class="btn option">mature</button>
-      <button class="btn option">senior</button>
-    </div>
-  </div>
+<!-- BLOQUES SIMPLES DEMO -->
+<div class="block-title">🌎 Identidad</div>
+<button class="btn pink" onclick="selectOption('identity','latina',this)">latina</button>
+<button class="btn pink" onclick="selectOption('identity','europea',this)">europea</button>
 
-  <!-- CABELLO -->
-  <div class="section">
-    <div class="block-title">Cabello</div>
-    <div class="grid">
-      <button class="btn option">blonde</button>
-      <button class="btn option">black</button>
-      <button class="btn option">brown</button>
-      <button class="btn option">red</button>
-      <button class="btn option">curly</button>
-      <button class="btn option">straight</button>
-      <button class="btn option">wavy</button>
-      <button class="btn option">short</button>
-    </div>
-  </div>
+<div class="block-title">💋 Labios</div>
+<button class="btn pink" onclick="selectOption('lips','rojos intensos',this)">rojos intensos</button>
+<button class="btn pink" onclick="selectOption('lips','naturales',this)">naturales</button>
 
-  <!-- OUTFIT -->
-  <div class="section">
-    <div class="block-title">Outfit</div>
-    <div class="grid">
-      <button class="btn option">casual</button>
-      <button class="btn option">elegant</button>
-      <button class="btn option">sport</button>
-      <button class="btn option">streetwear</button>
-      <button class="btn option">luxury</button>
-      <button class="btn option">minimal</button>
-      <button class="btn option">formal</button>
-      <button class="btn option">beachwear</button>
-    </div>
-  </div>
+<div class="block-title">😊 Sonrisa</div>
+<button class="btn blue" onclick="selectOption('smile','elegante',this)">elegante</button>
+<button class="btn blue" onclick="selectOption('smile','natural',this)">natural</button>
 
-  <!-- ESCENA -->
-  <div class="section">
-    <div class="block-title">Escena</div>
-    <div class="grid">
-      <button class="btn option">beach</button>
-      <button class="btn option">city</button>
-      <button class="btn option">studio</button>
-      <button class="btn option">mountain</button>
-      <button class="btn option">office</button>
-      <button class="btn option">street</button>
-      <button class="btn option">luxury interior</button>
-      <button class="btn option">nature</button>
-    </div>
-  </div>
+<div class="block-title">👁️ Mirada</div>
+<button class="btn blue" onclick="selectOption('look','directa',this)">directa</button>
+<button class="btn blue" onclick="selectOption('look','lateral',this)">lateral</button>
 
-  <!-- ILUMINACIÓN -->
-  <div class="section">
-    <div class="block-title">Iluminación</div>
-    <div class="grid">
-      <button class="btn option">golden hour</button>
-      <button class="btn option">natural light</button>
-      <button class="btn option">soft light</button>
-      <button class="btn option">studio light</button>
-      <button class="btn option">neon</button>
-      <button class="btn option">dramatic</button>
-      <button class="btn option">backlight</button>
-      <button class="btn option">shadow</button>
-    </div>
-  </div>
+<div class="block-title">💇 Peinado</div>
+<button class="btn green" onclick="selectOption('hair','rizado',this)">rizado</button>
+<button class="btn green" onclick="selectOption('hair','liso',this)">liso</button>
 
-  <!-- CÁMARA -->
-  <div class="section">
-    <div class="block-title">Cámara</div>
-    <div class="grid">
-      <button class="btn option">close up</button>
-      <button class="btn option">medium shot</button>
-      <button class="btn option">full body</button>
-      <button class="btn option">wide shot</button>
-      <button class="btn option">POV</button>
-      <button class="btn option">over shoulder</button>
-      <button class="btn option">tracking</button>
-      <button class="btn option">long shot</button>
-    </div>
-  </div>
+<div class="block-title">👠 Zapatos</div>
+<button class="btn pink" onclick="selectOption('shoes','tacones',this)">tacones</button>
+<button class="btn pink" onclick="selectOption('shoes','sneakers',this)">sneakers</button>
 
-  <!-- ÁNGULO -->
-  <div class="section">
-    <div class="block-title">Ángulo</div>
-    <div class="grid">
-      <button class="btn option">low angle</button>
-      <button class="btn option">high angle</button>
-      <button class="btn option">eye level</button>
-      <button class="btn option">bird view</button>
-      <button class="btn option">worm view</button>
-      <button class="btn option">dutch angle</button>
-      <button class="btn option">side view</button>
-      <button class="btn option">front view</button>
-    </div>
-  </div>
+<div class="block-title">💍 Accesorios</div>
+<button class="btn green" onclick="selectOption('accessories','collar de lujo',this)">collar</button>
+<button class="btn green" onclick="selectOption('accessories','sin accesorios',this)">ninguno</button>
 
-  <!-- ESTILO -->
-  <div class="section">
-    <div class="block-title">Estilo</div>
-    <div class="grid">
-      <button class="btn option">ultra realistic</button>
-      <button class="btn option">cinematic</button>
-      <button class="btn option">fashion</button>
-      <button class="btn option">editorial</button>
-      <button class="btn option">minimal</button>
-      <button class="btn option">luxury</button>
-      <button class="btn option">vintage</button>
-      <button class="btn option">modern</button>
-    </div>
-  </div>
+<hr>
 
-  <!-- NARRATIVA -->
-  <div class="section">
-    <div class="block-title">Narrativa</div>
-    <div class="grid">
-      <button class="btn option">freedom</button>
-      <button class="btn option">adventure</button>
-      <button class="btn option">success</button>
-      <button class="btn option">energy</button>
-      <button class="btn option">calm</button>
-      <button class="btn option">power</button>
-      <button class="btn option">lifestyle</button>
-      <button class="btn option">motion</button>
-    </div>
-  </div>
+<div class="lang-container">
+
+<div class="lang">
+<textarea id="es" placeholder="Español"></textarea>
+<button class="btn copy" onclick="copyText('es')">Copiar</button>
+<button class="btn clear" onclick="clearText('es')">Eliminar</button>
+</div>
+
+<div class="lang">
+<textarea id="en" placeholder="English"></textarea>
+<button class="btn copy" onclick="copyText('en')">Copy</button>
+<button class="btn clear" onclick="clearText('en')">Clear</button>
+</div>
 
 </div>
 
-<!-- OUTPUT -->
-<div class="builder">
-
-  <div class="output-box">
-    <div class="lang es">Español prompt aquí...</div>
-    <div class="lang en">English prompt here...</div>
-  </div>
-
-  <div class="actions">
-    <button class="small-btn">Copiar</button>
-    <button class="small-btn">Eliminar</button>
-  </div>
-
-  <footer>© Arbelo Digital — Todos los derechos reservados</footer>
-
 </div>
+
+<script>
+
+let state = {
+    identity:"",
+    lips:"",
+    smile:"",
+    look:"",
+    hair:"",
+    shoes:"",
+    accessories:""
+};
+
+function selectOption(category,value,btn){
+
+    state[category] = value;
+
+    let buttons = btn.parentNode.querySelectorAll("button");
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    buildPrompt();
+}
+
+function buildPrompt(){
+
+    let promptES =
+    `Mujer ${state.identity}, labios ${state.lips}, sonrisa ${state.smile}, mirada ${state.look}, cabello ${state.hair}, usa ${state.accessories}, calzado ${state.shoes}, escena cinematográfica, iluminación natural, estilo editorial, ultra realista 8k, formato 9:16.`;
+
+    let promptEN =
+    `Woman ${state.identity}, lips ${state.lips}, smile ${state.smile}, look ${state.look}, hair ${state.hair}, wearing ${state.accessories}, shoes ${state.shoes}, cinematic scene, natural lighting, editorial style, ultra realistic 8k, 9:16 format.`;
+
+    document.getElementById("es").value = promptES;
+    document.getElementById("en").value = promptEN;
+}
+
+function copyText(id){
+    navigator.clipboard.writeText(document.getElementById(id).value);
+}
+
+function clearText(id){
+    document.getElementById(id).value = "";
+}
+
+</script>
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arbelo Digital | Prompt Generator</title>
+<title>Arbelo Digital Prompt Generator</title>
 
 <style>
 :root {
@@ -16,15 +16,21 @@
 }
 
 body {
-    background-color: var(--fondo);
-    font-family: Verdana, sans-serif;
     margin: 0;
     padding: 10px;
+    background: var(--fondo);
+    font-family: Verdana, sans-serif;
+}
+
+/* ===== LAYOUT GENERAL ===== */
+.layout {
     display: flex;
+    gap: 20px;
+    align-items: flex-start;
     justify-content: center;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* ===== BLOQUES ===== */
 .scroll-container {
     width: 100%;
     max-width: 440px;
@@ -33,7 +39,6 @@ body {
     gap: 12px;
 }
 
-/* BLOQUES */
 .category-block {
     background: white;
     padding: 12px;
@@ -42,11 +47,11 @@ body {
 }
 
 .column-title {
-    color: var(--marron-marca);
+    text-align: center;
     font-size: 0.75rem;
     font-weight: bold;
-    text-align: center;
     margin-bottom: 10px;
+    color: var(--marron-marca);
     text-transform: uppercase;
 }
 
@@ -60,11 +65,11 @@ body {
     border: none;
     padding: 8px;
     border-radius: 12px;
-    cursor: pointer;
     font-size: 0.65rem;
     font-weight: bold;
-    transition: 0.2s;
+    cursor: pointer;
     color: white;
+    transition: 0.2s;
 }
 
 .btn-option.active {
@@ -76,16 +81,15 @@ body {
 .btn-pink { background: var(--pink); }
 .btn-mint { background: var(--mint); }
 
-/* ===== CUADRO FLOTANTE REAL ===== */
+/* ===== PANEL FLOTANTE REAL ===== */
 .prompt-box {
-    position: fixed;
-    right: 20px;
+    position: sticky;
     top: 20px;
 
     width: 360px;
-    max-width: 90%;
+    max-width: 95%;
 
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255,255,255,0.96);
     border: 4px solid var(--marron-marca);
     border-radius: 35px;
 
@@ -95,11 +99,16 @@ body {
     z-index: 999;
 
     backdrop-filter: blur(10px);
-    box-sizing: border-box;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
+
+    .layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .prompt-box {
         position: fixed;
         bottom: 0;
@@ -113,7 +122,7 @@ body {
     }
 }
 
-/* LANG */
+/* ===== LANG ===== */
 .lang-header {
     display: flex;
     gap: 8px;
@@ -135,7 +144,7 @@ body {
     color: white;
 }
 
-/* OUTPUT */
+/* ===== OUTPUT ===== */
 .display-area {
     background: #fff;
     padding: 10px;
@@ -149,7 +158,7 @@ body {
     border: 2px solid var(--mint);
 }
 
-/* BOTONES */
+/* ===== ACTIONS ===== */
 .actions {
     display: flex;
     gap: 8px;
@@ -160,8 +169,8 @@ body {
     padding: 12px;
     border: none;
     border-radius: 18px;
-    color: white;
     font-weight: bold;
+    color: white;
     cursor: pointer;
 }
 
@@ -173,44 +182,50 @@ body {
 
 <body>
 
-<div class="scroll-container">
+<div class="layout">
 
-    <div class="category-block">
-        <div class="column-title">🎬 SUJETO</div>
-        <div class="options-grid">
-            <button class="btn-option btn-pink" onclick="toggle(this,'Editorial woman','Mujer editorial')">Editorial</button>
-            <button class="btn-option btn-pink" onclick="toggle(this,'UGC lifestyle','Lifestyle UGC')">UGC</button>
-            <button class="btn-option btn-pink" onclick="toggle(this,'Product shot','Producto')">Producto</button>
+    <!-- ===== BLOQUES ===== -->
+    <div class="scroll-container">
+
+        <div class="category-block">
+            <div class="column-title">🎬 SUJETO</div>
+            <div class="options-grid">
+                <button class="btn-option btn-pink" onclick="toggle(this,'Editorial woman','Mujer editorial')">Editorial</button>
+                <button class="btn-option btn-pink" onclick="toggle(this,'UGC lifestyle','UGC lifestyle')">UGC</button>
+                <button class="btn-option btn-pink" onclick="toggle(this,'Product shot','Producto')">Producto</button>
+            </div>
         </div>
-    </div>
 
-    <div class="category-block">
-        <div class="column-title">🌸 NICHO</div>
-        <div class="options-grid">
-            <button class="btn-option btn-mint" onclick="toggle(this,'Marketing AI','Marketing IA')">Marketing</button>
-            <button class="btn-option btn-mint" onclick="toggle(this,'Beauty skincare','Belleza')">Beauty</button>
-            <button class="btn-option btn-mint" onclick="toggle(this,'Real estate luxury','Inmuebles')">Realtor</button>
-            <button class="btn-option btn-mint" onclick="toggle(this,'Health coach','Salud')">Salud</button>
-            <button class="btn-option btn-mint" onclick="toggle(this,'Finance expert','Finanzas')">Finanzas</button>
+        <div class="category-block">
+            <div class="column-title">🌸 NICHO</div>
+            <div class="options-grid">
+                <button class="btn-option btn-mint" onclick="toggle(this,'Marketing AI','Marketing IA')">Marketing</button>
+                <button class="btn-option btn-mint" onclick="toggle(this,'Beauty skincare','Belleza')">Beauty</button>
+                <button class="btn-option btn-mint" onclick="toggle(this,'Real estate luxury','Realtor')">Realtor</button>
+                <button class="btn-option btn-mint" onclick="toggle(this,'Health coach','Salud')">Salud</button>
+                <button class="btn-option btn-mint" onclick="toggle(this,'Finance expert','Finanzas')">Finanzas</button>
+                <button class="btn-option btn-mint" onclick="toggle(this,'Amazon influencer','Amazon')">Amazon</button>
+            </div>
         </div>
+
     </div>
 
-</div>
+    <!-- ===== PANEL FLOTANTE ===== -->
+    <div class="prompt-box">
 
-<!-- ===== PANEL FLOTANTE ===== -->
-<div class="prompt-box">
+        <div class="lang-header">
+            <button id="enBtn" class="btn-lang active" onclick="setLang('en')">EN</button>
+            <button id="esBtn" class="btn-lang" onclick="setLang('es')">ES</button>
+        </div>
 
-    <div class="lang-header">
-        <button id="enBtn" class="btn-lang active" onclick="setLang('en')">EN</button>
-        <button id="esBtn" class="btn-lang" onclick="setLang('es')">ES</button>
-    </div>
+        <div id="result-en" class="display-area active-box">Waiting...</div>
+        <div id="result-es" class="display-area">Esperando...</div>
 
-    <div class="display-area active-box" id="result-en">Waiting...</div>
-    <div class="display-area" id="result-es">Esperando...</div>
+        <div class="actions">
+            <button class="btn-action btn-copy" onclick="copyText()">COPY</button>
+            <button class="btn-action btn-clear" onclick="clearAll()">CLEAR</button>
+        </div>
 
-    <div class="actions">
-        <button class="btn-action btn-copy" onclick="copyText()">COPY</button>
-        <button class="btn-action btn-clear" onclick="clearAll()">CLEAR</button>
     </div>
 
 </div>

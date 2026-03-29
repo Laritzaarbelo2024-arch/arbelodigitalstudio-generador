@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital | Software</title>
+    <title>Arbelo Digital | AI Software</title>
     <style>
         :root {
-            --fondo: #fba667; /* Fondo intenso y vibrante */
+            --fondo: #fba667; 
             --mint: #45c4a0;  
             --pink: #f26d7d;  
             --peach: #f39c12; 
             --lavender: #7487f1; 
-            --marron-marca: #3d241e; /* Chocolate profundo */
+            --marron-marca: #3d241e; 
         }
 
         body {
@@ -63,13 +63,13 @@
 
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 botones por fila */
+            grid-template-columns: repeat(3, 1fr);
             gap: 5px;
         }
 
         .btn-option {
             border: none;
-            padding: 8px 2px; /* Botones más pequeños y estéticos */
+            padding: 8px 2px;
             border-radius: 12px;
             cursor: pointer;
             font-size: 0.65rem;
@@ -91,7 +91,7 @@
         .btn-lavender { background: var(--lavender); }
         .btn-peach { background: var(--peach); }
 
-        /* EL NUEVO CUADRO BONITO */
+        /* EL CUADRO BONITO QUE NO SE TOCA */
         .prompt-box {
             background: rgba(255, 255, 255, 0.96);
             border: 4px solid var(--marron-marca);
@@ -172,47 +172,30 @@
     <div class="scroll-container">
         
         <div class="category-block">
-            <div class="column-title">🌸 Nicho de Mercado</div>
+            <div class="column-title">🎬 1. El Disparador (Sujeto & Acción)</div>
             <div class="options-grid">
-                <button class="btn-option btn-pink" onclick="toggle(this, 'UGC Creator', 'Creadora UGC')">UGC</button>
-                <button class="btn-option btn-pink" onclick="toggle(this, 'Business Mentor', 'Mentora de Negocios')">Negocios</button>
-                <button class="btn-option btn-pink" onclick="toggle(this, 'CEO Lifestyle', 'Estilo CEO')">Lifestyle</button>
-                <button class="btn-option btn-pink" onclick="toggle(this, 'Skincare Luxe', 'Lujo en Piel')">Belleza</button>
-                <button class="btn-option btn-pink" onclick="toggle(this, 'Fashion Designer', 'Moda')">Moda</button>
-                <button class="btn-option btn-pink" onclick="toggle(this, 'E-commerce Shop', 'E-com')">Ventas</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Editorial photography of a woman', 'Fotografía editorial de una mujer')">Mujer Editorial</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Candid lifestyle shot of a woman', 'Foto lifestyle espontánea')">Mujer Real/UGC</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Successful entrepreneur working', 'Emprendedora exitosa trabajando')">Mujer CEO</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Product photography of', 'Fotografía de producto de')">Producto Solo</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Close-up portrait of', 'Retrato primer plano de')">Primer Plano</button>
+                <button class="btn-option btn-pink" onclick="toggle(this, 'Woman holding a product', 'Mujer sosteniendo producto')">Acción UGC</button>
             </div>
         </div>
 
         <div class="category-block">
-            <div class="column-title">🎨 Materiales Premium</div>
+            <div class="column-title">🌸 2. Nicho de Mercado (ADN)</div>
             <div class="options-grid">
-                <button class="btn-option btn-mint" onclick="toggle(this, 'High-end Silk', 'Seda')">Seda</button>
-                <button class="btn-option btn-mint" onclick="toggle(this, 'Polished Marble', 'Mármol')">Mármol</button>
-                <button class="btn-option btn-mint" onclick="toggle(this, 'Golden details', 'Oro')">Oro</button>
-                <button class="btn-option btn-mint" onclick="toggle(this, 'Frosted Glass', 'Vidrio')">Vidrio</button>
-                <button class="btn-option btn-mint" onclick="toggle(this, 'Soft Velvet', 'Terciopelo')">Velvet</button>
-                <button class="btn-option btn-mint" onclick="toggle(this, 'Rose Gold', 'Oro Rosa')">Rose Gold</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">💡 Iluminación</div>
-            <div class="options-grid">
-                <button class="btn-option btn-lavender" onclick="toggle(this, 'Softbox lighting', 'Suave')">Softbox</button>
-                <button class="btn-option btn-lavender" onclick="toggle(this, 'Golden hour sunlight', 'Atardecer')">Golden</button>
-                <button class="btn-option btn-lavender" onclick="toggle(this, 'Studio lighting', 'Estudio')">Studio</button>
-                <button class="btn-option btn-lavender" onclick="toggle(this, 'Natural light', 'Natural')">Natural</button>
-                <button class="btn-option btn-lavender" onclick="toggle(this, 'Cinematic shadows', 'Sombras')">Cine</button>
-                <button class="btn-option btn-lavender" onclick="toggle(this, 'Ring light', 'Aro de luz')">Aro Luz</button>
-            </div>
-        </div>
-
-        <div class="category-block">
-            <div class="column-title">👗 Estilo & Outfit</div>
-            <div class="options-grid">
-                <button class="btn-option btn-peach" onclick="toggle(this, 'Old Money aesthetic', 'Old Money')">Old Money</button>
-                <button class="btn-option btn-peach" onclick="toggle(this, 'Boss Lady blazer', 'Ejecutiva')">Empoderada</button>
-                <button class="btn-option btn-peach" onclick="toggle(this, 'Minimalist chic', 'Minimalista')">Minimal</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Digital Marketing niche', 'Nicho Marketing Digital')">Marketing</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'UGC Creator niche', 'Nicho Creadora UGC')">UGC</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Social Media Influencer', 'Influencer de Redes')">Influencer</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Luxe Skincare Beauty', 'Belleza de Lujo')">Belleza</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Online Business expert', 'Negocios Online')">Negocios</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'High Fashion Design', 'Diseño de Moda')">Moda</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'E-commerce Shop owner', 'Tienda Online/Ventas')">Ventas</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Real Estate Luxe property', 'Bienes Raíces de Lujo')">Inmuebles</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Healthy Foodie lifestyle', 'Vida Saludable')">Healthy</button>
+                <button class="btn-option btn-mint" onclick="toggle(this, 'Tech Gadgets review', 'Tecnología/Gadgets')">Tech</button>
             </div>
         </div>
 
@@ -223,14 +206,14 @@
             </div>
 
             <div style="font-size: 0.55rem; font-weight: bold; color: #888; margin-bottom: 2px;">🇺🇸 PROMPT (COPIAR):</div>
-            <div id="result-en" class="display-area active-box">Waiting...</div>
+            <div id="result-en" class="display-area active-box">Waiting for selection...</div>
 
             <div style="font-size: 0.55rem; font-weight: bold; color: #888; margin-bottom: 2px;">🇪🇸 TRADUCCIÓN:</div>
-            <div id="result-es" class="display-area">Esperando...</div>
+            <div id="result-es" class="display-area">Esperando selección...</div>
 
             <div class="actions">
                 <button class="btn-action btn-copy" onclick="copyResult()">♥ COPIAR</button>
-                <button class="btn-action btn-clear" onclick="clearAll()">BORRAR</button>
+                <button class="btn-action btn-clear" onclick="clearAll()">BORRAR TODO</button>
             </div>
         </div>
         
@@ -265,8 +248,8 @@
         function render() {
             const resEN = document.getElementById('result-en');
             const resES = document.getElementById('result-es');
-            resEN.innerText = selectedEN.length > 0 ? selectedEN.join(", ") : "Waiting...";
-            resES.innerText = selectedES.length > 0 ? selectedES.join(", ") : "Esperando...";
+            resEN.innerText = selectedEN.length > 0 ? selectedEN.join(", ") : "Waiting for selection...";
+            resES.innerText = selectedES.length > 0 ? selectedES.join(", ") : "Esperando selección...";
         }
 
         function clearAll() {
@@ -284,4 +267,4 @@
         }
     </script>
 </body>
-</html>           
+</html>

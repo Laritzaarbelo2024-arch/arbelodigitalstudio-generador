@@ -3,92 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prompt OS Master V5</title>
+<title>Prompt OS Commercial Engine</title>
 
 <style>
 body{
 margin:0;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-background:linear-gradient(135deg,#f6f7fb,#eef3ff);
-color:#1a1a1a;
+background:#f4f6fb;
+color:#111;
 }
 
 header{
 text-align:center;
 padding:18px;
 font-weight:800;
-background:rgba(255,255,255,0.85);
-backdrop-filter:blur(16px);
-border-bottom:1px solid rgba(0,0,0,0.05);
+background:white;
+border-bottom:1px solid #eee;
 }
 
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:12px;
 padding:14px;
 }
 
 .block{
-background:#fff;
-border-radius:20px;
+background:white;
+border-radius:16px;
 padding:12px;
-box-shadow:0 12px 30px rgba(0,0,0,0.06);
+box-shadow:0 8px 22px rgba(0,0,0,0.06);
 }
 
 h3{
-margin:0 0 10px 0;
 font-size:12px;
+margin:0 0 10px 0;
 color:#6d28d9;
 }
 
 button{
 margin:4px;
-padding:8px 11px;
+padding:8px 10px;
 border:none;
 border-radius:999px;
 font-size:11px;
 font-weight:600;
 cursor:pointer;
 color:white;
-transition:0.2s;
-box-shadow:0 8px 18px rgba(0,0,0,0.12);
 }
 
-button:hover{transform:scale(1.05);}
+.scene{background:#ff5c7a;}
+.subject{background:#7c3aed;}
+.camera{background:#06b6d4;}
+.light{background:#f59e0b;}
+.style{background:#ec4899;}
+.quality{background:#3b82f6;}
+.story{background:#10b981;}
+.action{background:#ef4444;}
 
-/* COLORS */
-.base{background:linear-gradient(135deg,#111827,#374151);}
-.scene{background:linear-gradient(135deg,#ff4d6d,#ffb703);}
-.subject{background:linear-gradient(135deg,#8338ec,#3a86ff);}
-.camera{background:linear-gradient(135deg,#06d6a0,#1b9aaa);}
-.light{background:linear-gradient(135deg,#ffd166,#f77f00);}
-.style{background:linear-gradient(135deg,#ef476f,#ff006e);}
-.quality{background:linear-gradient(135deg,#4cc9f0,#4895ef);}
-.story{background:linear-gradient(135deg,#7209b7,#560bad);}
-.extra{background:linear-gradient(135deg,#22c55e,#16a34a);}
-
-.output-container{
+.output{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:12px;
 padding:14px;
 }
 
-.output{
-padding:16px;
-min-height:200px;
-border-radius:20px;
-background:#fff;
-border:1px solid rgba(0,0,0,0.08);
+.box{
+background:white;
+padding:14px;
+border-radius:16px;
+min-height:180px;
 white-space:pre-wrap;
-}
-
-.label{
-font-size:12px;
-font-weight:700;
-margin-bottom:8px;
-color:#6d28d9;
+border:1px solid #eee;
 }
 
 .actions{
@@ -99,157 +85,177 @@ padding:14px;
 
 .primary{
 flex:1;
-background:linear-gradient(135deg,#a78bfa,#60a5fa);
-border-radius:999px;
+background:#6366f1;
+color:white;
+border:none;
+padding:12px;
+border-radius:12px;
 font-weight:700;
 }
 
-.danger{
+.secondary{
 flex:1;
-background:linear-gradient(135deg,#fb7185,#f43f5e);
-border-radius:999px;
+background:#111;
+color:white;
+border:none;
+padding:12px;
+border-radius:12px;
+font-weight:700;
 }
 </style>
 </head>
 
 <body>
 
-<header>PROMPT OS — MASTER SYSTEM V5</header>
+<header>PROMPT OS — COMMERCIAL ENGINE</header>
 
 <div class="container">
 
-<!-- BASE PROMPT (INICIO CORRECTO) -->
+<!-- BASE -->
 <div class="block">
-<h3>⚙️ BASE DEL PROMPT</h3>
-<button class="base" onclick="add('ultra-realistic hyper-detailed cinematic advertising photography 8k professional composition')">Base visual</button>
-<button class="base" onclick="add('cinematic storytelling high-end marketing visual structure')">Base marketing</button>
-<button class="base" onclick="add('balanced framing professional art direction visual hierarchy')">Base composición</button>
-</div>
-
-<!-- ESCENAS -->
-<div class="block">
-<h3>🎬 ESCENAS</h3>
-<button class="scene" onclick="add('urban cinematic night city neon lights environment')">Urbana</button>
-<button class="scene" onclick="add('luxury fashion editorial studio high-end lighting')">Lujo</button>
-<button class="scene" onclick="add('ecommerce clean white studio product setup')">Ecommerce</button>
-<button class="scene" onclick="add('fitness high performance gym environment')">Fitness</button>
-<button class="scene" onclick="add('tropical beach cinematic adventure lifestyle')">Playa</button>
-<button class="scene" onclick="add('cyberpunk futuristic neon city night')">Cyberpunk</button>
+<h3>⚙️ BASE</h3>
+<button class="scene" onclick="add('base','ultra realistic cinematic advertising photography')">Base Pro</button>
 </div>
 
 <!-- SUJETO -->
 <div class="block">
 <h3>🧍 SUJETO</h3>
-<button class="subject" onclick="add('curvy woman defined facial structure natural glow skin editorial beauty')">Mujer</button>
-<button class="subject" onclick="add('athletic male model cinematic strong physique presence')">Hombre</button>
-<button class="subject" onclick="add('luxury influencer high fashion aesthetic lifestyle')">Influencer</button>
-<button class="subject" onclick="add('premium hero product centered composition advertising focus')">Producto</button>
+<button class="subject" onclick="add('subject','curvy woman defined facial structure editorial skin')">Mujer</button>
+<button class="subject" onclick="add('subject','athletic male cinematic strong physique')">Hombre</button>
+<button class="subject" onclick="add('subject','luxury influencer high fashion aesthetic')">Influencer</button>
+<button class="subject" onclick="add('subject','premium product hero shot centered')">Producto</button>
+</div>
+
+<!-- ACCIÓN -->
+<div class="block">
+<h3>🎬 ACCIÓN</h3>
+<button class="action" onclick="add('action','walking with cinematic motion')">Caminar</button>
+<button class="action" onclick="add('action','posing for luxury advertising shot')">Posar</button>
+<button class="action" onclick="add('action','interaction with environment natural movement')">Interactuar</button>
+</div>
+
+<!-- ESCENA -->
+<div class="block">
+<h3>🌍 ESCENA</h3>
+<button class="scene" onclick="add('scene','urban neon city night environment')">Urbana</button>
+<button class="scene" onclick="add('scene','tropical beach sunset cinematic mood')">Playa</button>
+<button class="scene" onclick="add('scene','luxury studio clean background lighting')">Studio</button>
+<button class="scene" onclick="add('scene','cyberpunk futuristic city environment')">Cyberpunk</button>
 </div>
 
 <!-- CÁMARA -->
 <div class="block">
 <h3>📷 CÁMARA</h3>
-<button class="camera" onclick="add('POV immersive first person perspective')">POV</button>
-<button class="camera" onclick="add('close up cinematic portrait shot')">Close</button>
-<button class="camera" onclick="add('wide cinematic establishing shot')">Wide</button>
-<button class="camera" onclick="add('low angle dramatic cinematic shot')">Low</button>
-<button class="camera" onclick="add('over shoulder cinematic framing depth')">Over</button>
-<button class="camera" onclick="add('shot on 35mm cinematic lens shallow depth')">35mm</button>
+<button class="camera" onclick="add('camera','35mm cinematic lens shallow depth')">35mm</button>
+<button class="camera" onclick="add('camera','85mm portrait lens bokeh depth')">85mm</button>
+<button class="camera" onclick="add('camera','low angle dramatic shot')">Low</button>
+<button class="camera" onclick="add('camera','POV immersive perspective')">POV</button>
 </div>
 
 <!-- LUZ -->
 <div class="block">
 <h3>💡 LUZ</h3>
-<button class="light" onclick="add('golden hour natural sunlight cinematic glow horizon')">Golden</button>
-<button class="light" onclick="add('soft studio diffused beauty lighting')">Studio</button>
-<button class="light" onclick="add('volumetric cinematic dramatic shadows atmosphere')">Volumétrico</button>
-<button class="light" onclick="add('neon cyberpunk rim lighting glow effects')">Neón</button>
+<button class="light" onclick="add('light','golden hour natural sunlight cinematic glow')">Golden</button>
+<button class="light" onclick="add('light','soft studio diffused lighting')">Studio</button>
+<button class="light" onclick="add('light','volumetric cinematic shadows')">Volumétrico</button>
 </div>
 
 <!-- ESTILO -->
 <div class="block">
 <h3>🎨 ESTILO</h3>
-<button class="style" onclick="add('ultra realistic advertising editorial photography style')">Real</button>
-<button class="style" onclick="add('anime cinematic illustration style detailed')">Anime</button>
-<button class="style" onclick="add('pixar 3d cinematic expressive lighting render')">Pixar</button>
-<button class="style" onclick="add('fashion magazine luxury editorial aesthetic')">Editorial</button>
+<button class="style" onclick="add('style','ultra realistic advertising photography')">Real</button>
+<button class="style" onclick="add('style','anime cinematic illustration style')">Anime</button>
+<button class="style" onclick="add('style','pixar 3d cinematic render')">Pixar</button>
 </div>
 
 <!-- CALIDAD -->
 <div class="block">
 <h3>🔥 CALIDAD</h3>
-<button class="quality" onclick="add('hyper detailed ultra realistic 8k resolution')">8K</button>
-<button class="quality" onclick="add('iphone latest generation natural capture')">iPhone</button>
-<button class="quality" onclick="add('cinematic film grain high production quality')">Film</button>
+<button class="quality" onclick="add('quality','8k ultra detailed hyper realistic')">8K</button>
+<button class="quality" onclick="add('quality','iphone latest generation capture')">iPhone</button>
 </div>
 
-<!-- NARRATIVA -->
+<!-- STORY -->
 <div class="block">
 <h3>🌍 NARRATIVA</h3>
-<button class="story" onclick="add('adventure freedom high performance lifestyle energy')">Aventura</button>
-<button class="story" onclick="add('luxury exclusivity premium lifestyle mood')">Lujo</button>
-<button class="story" onclick="add('viral social media engagement storytelling hook')">Viral</button>
-<button class="story" onclick="add('marketing conversion focused advertising intent')">Marketing</button>
-</div>
-
-<!-- EXTRA -->
-<div class="block">
-<h3>⚙️ CONTROL PRO</h3>
-<button class="extra" onclick="add('cinematic motion blur dynamic action')">Motion Blur</button>
-<button class="extra" onclick="add('high contrast color grading professional look')">Color</button>
-<button class="extra" onclick="add('shallow depth of field subject isolation')">DOF</button>
-<button class="extra" onclick="add('ultra sharp focus clarity detail')">Sharp</button>
+<button class="story" onclick="add('story','adventure freedom lifestyle energy')">Aventura</button>
+<button class="story" onclick="add('story','luxury premium exclusivity mood')">Lujo</button>
+<button class="story" onclick="add('story','viral social media hook marketing')">Viral</button>
 </div>
 
 </div>
 
 <!-- OUTPUT -->
-<div class="output-container">
-
 <div class="output">
-<div class="label">🇪🇸 ESPAÑOL</div>
-<div id="outES"></div>
+
+<div class="box">
+🇪🇸 ESPAÑOL
+<div id="es"></div>
 </div>
 
-<div class="output">
-<div class="label">🇺🇸 ENGLISH</div>
-<div id="outEN"></div>
+<div class="box">
+🇺🇸 ENGLISH
+<div id="en"></div>
 </div>
 
 </div>
 
-<!-- ACTIONS -->
 <div class="actions">
-<button class="primary" onclick="build()">GENERAR</button>
-<button class="danger" onclick="reset()">RESET</button>
+<button class="primary" onclick="generate()">GENERAR PROMPT</button>
+<button class="secondary" onclick="copyPrompt()">COPIAR</button>
 </div>
 
 <script>
 
-let parts = [];
+let engine = {
+base:[],
+subject:[],
+action:[],
+scene:[],
+camera:[],
+light:[],
+style:[],
+quality:[],
+story:[]
+};
 
-function add(text){
-parts.push(text);
-refresh();
+function add(type,value){
+engine[type].push(value);
+generate();
 }
 
-function refresh(){
-
-document.getElementById("outES").innerText =
-parts.join(", ") +
-", composición cinematográfica, fotografía publicitaria profesional, iluminación ultra realista, encuadre equilibrado";
-
-document.getElementById("outEN").innerText =
-parts.join(", ") +
-", cinematic composition, professional advertising photography, ultra realistic lighting, balanced framing, high-end production";
+function build(){
+return [
+...engine.base,
+...engine.subject,
+...engine.action,
+...engine.scene,
+...engine.camera,
+...engine.light,
+...engine.style,
+...engine.quality,
+...engine.story
+];
 }
 
-function build(){ refresh(); }
+function generate(){
 
-function reset(){
-parts = [];
-document.getElementById("outES").innerText = "";
-document.getElementById("outEN").innerText = "";
+let prompt = build().join(", ");
+
+document.getElementById("es").innerText =
+prompt + ", composición cinematográfica optimizada para marketing visual";
+
+document.getElementById("en").innerText =
+prompt + ", cinematic advertising composition, high-end commercial output";
+}
+
+function copyPrompt(){
+let text =
+"ES:\n" + document.getElementById("es").innerText +
+"\n\nEN:\n" + document.getElementById("en").innerText;
+
+navigator.clipboard.writeText(text);
+alert("Prompt copiado");
 }
 
 </script>

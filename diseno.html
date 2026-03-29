@@ -1,213 +1,386 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Prompt Engine Pro</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VECTRA PROMPT SYSTEM</title>
 
 <style>
-body{
-font-family: Arial;
-background:#fff8fb;
-padding:20px;
+
+/* =========================
+   🌈 FONDO MATIZADO PREMIUM
+========================= */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #3A3A3A;
+
+  background:
+    radial-gradient(circle at top left, #FFD6E8 0%, transparent 50%),
+    radial-gradient(circle at top right, #D6F3FF 0%, transparent 50%),
+    radial-gradient(circle at bottom, #FFF1D6 0%, transparent 55%),
+    linear-gradient(180deg, #FFF8FB, #FFFFFF);
 }
 
-h2{
-color:#ff4fa3;
+/* =========================
+   📄 HOJA GLASS
+========================= */
+
+.container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+
+  background: rgba(255, 255, 255, 0.75);
+  max-width: 420px;
+  margin: 0 auto;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.15),
+    0 5px 20px rgba(0,0,0,0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.6);
 }
 
-.block{
-background:#ffffff;
-border-radius:18px;
-padding:15px;
-margin-bottom:15px;
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
+/* =========================
+   🧠 HEADER
+========================= */
+
+header {
+  text-align: center;
+  padding: 25px 15px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #FF5FA2;
 }
 
-button{
-border:none;
-padding:10px 14px;
-margin:5px;
-border-radius:999px;
-cursor:pointer;
-background:#ffd1dc;
-color:#333;
-font-weight:bold;
-transition:0.2s;
+.subheader {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
 }
 
-button:hover{
-transform:scale(1.05);
-background:#ff9ec4;
+/* =========================
+   📜 SECCIONES
+========================= */
+
+.section {
+  height: 100vh;
+  padding: 22px;
+  scroll-snap-align: start;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.clearBtn{
-background:#ff6b6b;
-color:white;
+.block-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #444;
 }
 
-.outputBox{
-display:flex;
-gap:10px;
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-textarea{
-width:50%;
-height:200px;
-border-radius:12px;
-padding:10px;
-border:1px solid #ddd;
+/* =========================
+   🔘 BOTONES 3D
+========================= */
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: linear-gradient(145deg, #FFE3EF, #FFD1E3);
+
+  box-shadow:
+    0 6px 0 rgba(0,0,0,0.08),
+    0 10px 20px rgba(0,0,0,0.10);
+
+  transition: all 0.2s ease;
 }
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 10px 18px rgba(0,0,0,0.12),
+    0 4px 0 rgba(0,0,0,0.08);
+}
+
+.btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.08);
+}
+
+.option {
+  background: linear-gradient(145deg, #FFF0F6, #FFE1EC);
+}
+
+/* =========================
+   🧾 OUTPUT DUAL
+========================= */
+
+.builder {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #E9E9E9;
+  padding: 10px;
+}
+
+.output-box {
+  height: 180px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.lang {
+  height: 50%;
+  padding: 10px;
+  font-size: 12px;
+  overflow-y: auto;
+}
+
+.lang.es {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* =========================
+   🔘 ACCIONES
+========================= */
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.small-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+
+  background: linear-gradient(145deg, #FF5FA2, #FF9EC4);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   📌 FOOTER
+========================= */
+
+footer {
+  text-align: right;
+  font-size: 12px;
+  color: #8A8A8A;
+  padding: 8px 12px;
+}
+
 </style>
 </head>
 
 <body>
 
-<h2>🧠 Prompt Engine Pro (Cozy Tech)</h2>
+<header>
+  VECTRA PROMPT SYSTEM
+  <div class="subheader">Sistema modular de creación de prompts visuales de alto nivel</div>
+</header>
 
-<!-- SUBJECT -->
-<div class="block">
-<h3>Sujeto</h3>
-<button onclick="set('subject','woman')">Mujer</button>
-<button onclick="set('subject','man')">Hombre</button>
-<button onclick="set('subject','model')">Modelo</button>
-<button onclick="set('subject','curvy latina woman')">Mujer latina curvilínea</button>
-</div>
+<div class="container">
 
-<!-- AGE / COUNTRY -->
-<div class="block">
-<h3>Contexto</h3>
-<button onclick="set('context','young adult')">Joven adulto</button>
-<button onclick="set('context','25 years old')">25 años</button>
-<button onclick="set('context','latina')">Latina</button>
-<button onclick="set('context','european')">Europea</button>
-</div>
+  <!-- SUJETO -->
+  <div class="section">
+    <div class="block-title">Sujeto</div>
+    <div class="grid">
+      <button class="btn option">woman</button>
+      <button class="btn option">man</button>
+      <button class="btn option">model</button>
+      <button class="btn option">athlete</button>
+      <button class="btn option">creator</button>
+      <button class="btn option">artist</button>
+      <button class="btn option">business</button>
+      <button class="btn option">traveler</button>
+    </div>
+  </div>
 
-<!-- HAIR COLOR -->
-<div class="block">
-<h3>Color de pelo <button class="clearBtn" onclick="clearCat('hair_color')">X</button></h3>
-<button onclick="set('hair_color','black hair')">Negro</button>
-<button onclick="set('hair_color','blonde hair')">Rubio</button>
-<button onclick="set('hair_color','brown hair')">Castaño</button>
-<button onclick="set('hair_color','red hair')">Rojo</button>
-</div>
+  <!-- EDAD -->
+  <div class="section">
+    <div class="block-title">Edad</div>
+    <div class="grid">
+      <button class="btn option">teen</button>
+      <button class="btn option">20s</button>
+      <button class="btn option">30s</button>
+      <button class="btn option">40s</button>
+      <button class="btn option">50s</button>
+      <button class="btn option">young adult</button>
+      <button class="btn option">mature</button>
+      <button class="btn option">senior</button>
+    </div>
+  </div>
 
-<!-- HAIR STYLE -->
-<div class="block">
-<h3>Tipo de pelo <button class="clearBtn" onclick="clearCat('hair_style')">X</button></h3>
-<button onclick="set('hair_style','straight hair')">Lacio</button>
-<button onclick="set('hair_style','curly hair')">Rizado</button>
-<button onclick="set('hair_style','wavy hair')">Ondulado</button>
-</div>
+  <!-- CABELLO -->
+  <div class="section">
+    <div class="block-title">Cabello</div>
+    <div class="grid">
+      <button class="btn option">blonde</button>
+      <button class="btn option">black</button>
+      <button class="btn option">brown</button>
+      <button class="btn option">red</button>
+      <button class="btn option">curly</button>
+      <button class="btn option">straight</button>
+      <button class="btn option">wavy</button>
+      <button class="btn option">short</button>
+    </div>
+  </div>
 
-<!-- OUTFIT -->
-<div class="block">
-<h3>Outfit</h3>
-<button onclick="set('outfit','casual streetwear outfit')">Streetwear</button>
-<button onclick="set('outfit','elegant luxury dress')">Elegante</button>
-<button onclick="set('outfit','sport athleisure outfit')">Deportivo</button>
-<button onclick="set('outfit','minimalist outfit')">Minimalista</button>
-</div>
+  <!-- OUTFIT -->
+  <div class="section">
+    <div class="block-title">Outfit</div>
+    <div class="grid">
+      <button class="btn option">casual</button>
+      <button class="btn option">elegant</button>
+      <button class="btn option">sport</button>
+      <button class="btn option">streetwear</button>
+      <button class="btn option">luxury</button>
+      <button class="btn option">minimal</button>
+      <button class="btn option">formal</button>
+      <button class="btn option">beachwear</button>
+    </div>
+  </div>
 
-<!-- CAMERA -->
-<div class="block">
-<h3>Cámara</h3>
-<button onclick="set('camera','close up shot')">Close Up</button>
-<button onclick="set('camera','full body shot')">Full Body</button>
-<button onclick="set('camera','low angle shot')">Low Angle</button>
-<button onclick="set('camera','wide cinematic shot')">Cinemático</button>
-</div>
+  <!-- ESCENA -->
+  <div class="section">
+    <div class="block-title">Escena</div>
+    <div class="grid">
+      <button class="btn option">beach</button>
+      <button class="btn option">city</button>
+      <button class="btn option">studio</button>
+      <button class="btn option">mountain</button>
+      <button class="btn option">office</button>
+      <button class="btn option">street</button>
+      <button class="btn option">luxury interior</button>
+      <button class="btn option">nature</button>
+    </div>
+  </div>
 
-<!-- LIGHT -->
-<div class="block">
-<h3>Luz</h3>
-<button onclick="set('light','golden hour sunlight')">Golden Hour</button>
-<button onclick="set('light','soft studio light')">Studio</button>
-<button onclick="set('light','natural daylight')">Natural</button>
-</div>
+  <!-- ILUMINACIÓN -->
+  <div class="section">
+    <div class="block-title">Iluminación</div>
+    <div class="grid">
+      <button class="btn option">golden hour</button>
+      <button class="btn option">natural light</button>
+      <button class="btn option">soft light</button>
+      <button class="btn option">studio light</button>
+      <button class="btn option">neon</button>
+      <button class="btn option">dramatic</button>
+      <button class="btn option">backlight</button>
+      <button class="btn option">shadow</button>
+    </div>
+  </div>
 
-<!-- STYLE -->
-<div class="block">
-<h3>Estilo visual</h3>
-<button onclick="set('style','ultra realistic')">Ultra Realista</button>
-<button onclick="set('style','anime style')">Anime</button>
-<button onclick="set('style','pixar style 3d render')">Pixar</button>
-</div>
+  <!-- CÁMARA -->
+  <div class="section">
+    <div class="block-title">Cámara</div>
+    <div class="grid">
+      <button class="btn option">close up</button>
+      <button class="btn option">medium shot</button>
+      <button class="btn option">full body</button>
+      <button class="btn option">wide shot</button>
+      <button class="btn option">POV</button>
+      <button class="btn option">over shoulder</button>
+      <button class="btn option">tracking</button>
+      <button class="btn option">long shot</button>
+    </div>
+  </div>
 
-<!-- SCENE -->
-<div class="block">
-<h3>Escena</h3>
-<button onclick="set('scene','urban city background')">Ciudad</button>
-<button onclick="set('scene','beach adventure lifestyle')">Playa</button>
-<button onclick="set('scene','luxury studio environment')">Estudio</button>
-<button onclick="set('scene','fitness gym environment')">Gym</button>
-</div>
+  <!-- ÁNGULO -->
+  <div class="section">
+    <div class="block-title">Ángulo</div>
+    <div class="grid">
+      <button class="btn option">low angle</button>
+      <button class="btn option">high angle</button>
+      <button class="btn option">eye level</button>
+      <button class="btn option">bird view</button>
+      <button class="btn option">worm view</button>
+      <button class="btn option">dutch angle</button>
+      <button class="btn option">side view</button>
+      <button class="btn option">front view</button>
+    </div>
+  </div>
 
-<!-- PRODUCT SCENES -->
-<div class="block">
-<h3>Escenas de producto</h3>
-<button onclick="set('scene','advertising product placement minimal background')">Producto minimal</button>
-<button onclick="set('scene','luxury product commercial lighting')">Luxury ads</button>
-<button onclick="set('scene','ecommerce studio product shot')">Ecommerce</button>
+  <!-- ESTILO -->
+  <div class="section">
+    <div class="block-title">Estilo</div>
+    <div class="grid">
+      <button class="btn option">ultra realistic</button>
+      <button class="btn option">cinematic</button>
+      <button class="btn option">fashion</button>
+      <button class="btn option">editorial</button>
+      <button class="btn option">minimal</button>
+      <button class="btn option">luxury</button>
+      <button class="btn option">vintage</button>
+      <button class="btn option">modern</button>
+    </div>
+  </div>
+
+  <!-- NARRATIVA -->
+  <div class="section">
+    <div class="block-title">Narrativa</div>
+    <div class="grid">
+      <button class="btn option">freedom</button>
+      <button class="btn option">adventure</button>
+      <button class="btn option">success</button>
+      <button class="btn option">energy</button>
+      <button class="btn option">calm</button>
+      <button class="btn option">power</button>
+      <button class="btn option">lifestyle</button>
+      <button class="btn option">motion</button>
+    </div>
+  </div>
+
 </div>
 
 <!-- OUTPUT -->
-<div class="block">
-<h3>Resultado</h3>
+<div class="builder">
 
-<div class="outputBox">
-<textarea id="es" placeholder="Español"></textarea>
-<textarea id="en" placeholder="English"></textarea>
+  <div class="output-box">
+    <div class="lang es">Español prompt aquí...</div>
+    <div class="lang en">English prompt here...</div>
+  </div>
+
+  <div class="actions">
+    <button class="small-btn">Copiar</button>
+    <button class="small-btn">Eliminar</button>
+  </div>
+
+  <footer>© Arbelo Digital — Todos los derechos reservados</footer>
+
 </div>
-
-<button onclick="copyAll()">Copiar</button>
-<button onclick="clearAll()">Limpiar</button>
-</div>
-
-<script>
-let engine = {};
-
-function set(key,value){
-engine[key]=value;
-build();
-}
-
-function clearCat(key){
-delete engine[key];
-build();
-}
-
-function build(){
-
-let base = engine.style || "";
-let subject = engine.subject || "";
-let context = engine.context || "";
-let hair = (engine.hair_color||"") + " " + (engine.hair_style||"");
-let outfit = engine.outfit || "";
-let camera = engine.camera || "";
-let light = engine.light || "";
-let scene = engine.scene || "";
-
-// ESPAÑOL
-document.getElementById("es").value =
-`${subject}, ${context}, ${hair}, ${outfit}, ${scene}, iluminación ${light}, ${camera}, estilo ${base}`;
-
-// ENGLISH
-document.getElementById("en").value =
-`${subject}, ${context}, ${hair}, ${outfit}, ${scene}, lighting ${light}, ${camera}, style ${base}`;
-}
-
-function copyAll(){
-navigator.clipboard.writeText(
-document.getElementById("es").value + "\n\n" + document.getElementById("en").value
-);
-}
-
-function clearAll(){
-engine={};
-document.getElementById("es").value="";
-document.getElementById("en").value="";
-}
-</script>
 
 </body>
 </html>

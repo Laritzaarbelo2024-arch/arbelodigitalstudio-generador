@@ -2,285 +2,253 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arbelo Digital Prompt Generator</title>
-
+<title>AI Prompt Builder</title>
 <style>
-:root {
-    --fondo: #fba667; 
-    --mint: #45c4a0;  
-    --pink: #f26d7d;  
-    --peach: #f39c12; 
-    --lavender: #7487f1; 
-    --marron-marca: #3d241e; 
+body{
+font-family: Arial;
+background:#0f0f0f;
+color:white;
+margin:0;
+padding:0;
 }
 
-body {
-    margin: 0;
-    padding: 10px;
-    background: var(--fondo);
-    font-family: Verdana, sans-serif;
+header{
+padding:20px;
+text-align:center;
+background:#151515;
+font-size:18px;
+font-weight:bold;
 }
 
-/* ===== LAYOUT GENERAL ===== */
-.layout {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    justify-content: center;
+.container{
+display:flex;
+flex-direction:column;
+gap:10px;
+padding:15px;
+max-width:900px;
+margin:auto;
 }
 
-/* ===== BLOQUES ===== */
-.scroll-container {
-    width: 100%;
-    max-width: 440px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.block{
+background:#1c1c1c;
+border-radius:10px;
+overflow:hidden;
 }
 
-.category-block {
-    background: white;
-    padding: 12px;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+.block h2{
+margin:0;
+padding:12px;
+background:#222;
+cursor:pointer;
+font-size:14px;
 }
 
-.column-title {
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--marron-marca);
-    text-transform: uppercase;
+.content{
+display:none;
+padding:10px;
+gap:8px;
+flex-wrap:wrap;
 }
 
-.options-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
+button{
+background:#2a2a2a;
+color:white;
+border:none;
+padding:8px 10px;
+border-radius:6px;
+cursor:pointer;
+font-size:12px;
 }
 
-.btn-option {
-    border: none;
-    padding: 8px;
-    border-radius: 12px;
-    font-size: 0.65rem;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-    transition: 0.2s;
+button:hover{
+background:#444;
 }
 
-.btn-option.active {
-    outline: 3px solid var(--marron-marca);
-    transform: scale(0.92);
-    filter: brightness(0.8);
+textarea{
+width:100%;
+height:180px;
+margin-top:10px;
+background:#111;
+color:white;
+border:1px solid #333;
+border-radius:8px;
+padding:10px;
 }
 
-.btn-pink { background: var(--pink); }
-.btn-mint { background: var(--mint); }
-
-/* ===== PANEL FLOTANTE REAL ===== */
-.prompt-box {
-    position: sticky;
-    top: 20px;
-
-    width: 360px;
-    max-width: 95%;
-
-    background: rgba(255,255,255,0.96);
-    border: 4px solid var(--marron-marca);
-    border-radius: 35px;
-
-    padding: 18px;
-
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    z-index: 999;
-
-    backdrop-filter: blur(10px);
+.actions{
+display:flex;
+gap:10px;
+margin-top:10px;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-
-    .layout {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .prompt-box {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-
-        width: 100%;
-        max-width: 100%;
-
-        border-radius: 25px 25px 0 0;
-        top: auto;
-    }
+.actions button{
+flex:1;
 }
 
-/* ===== LANG ===== */
-.lang-header {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 10px;
+.small{
+font-size:11px;
+opacity:0.7;
 }
-
-.btn-lang {
-    flex: 1;
-    padding: 7px;
-    border-radius: 12px;
-    border: 2px solid var(--marron-marca);
-    background: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-lang.active {
-    background: var(--marron-marca);
-    color: white;
-}
-
-/* ===== OUTPUT ===== */
-.display-area {
-    background: #fff;
-    padding: 10px;
-    border-radius: 15px;
-    min-height: 40px;
-    font-size: 0.75rem;
-    margin-bottom: 10px;
-}
-
-.display-area.active-box {
-    border: 2px solid var(--mint);
-}
-
-/* ===== ACTIONS ===== */
-.actions {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-action {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 18px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-}
-
-.btn-copy { background: var(--marron-marca); }
-.btn-clear { background: #e74c3c; }
-
 </style>
 </head>
 
 <body>
 
-<div class="layout">
+<header>
+AI PROMPT BUILDER · SYSTEM
+<div class="small">Generador modular de prompts para imagen, video y marketing</div>
+</header>
 
-    <!-- ===== BLOQUES ===== -->
-    <div class="scroll-container">
+<div class="container">
 
-        <div class="category-block">
-            <div class="column-title">🎬 SUJETO</div>
-            <div class="options-grid">
-                <button class="btn-option btn-pink" onclick="toggle(this,'Editorial woman','Mujer editorial')">Editorial</button>
-                <button class="btn-option btn-pink" onclick="toggle(this,'UGC lifestyle','UGC lifestyle')">UGC</button>
-                <button class="btn-option btn-pink" onclick="toggle(this,'Product shot','Producto')">Producto</button>
-            </div>
-        </div>
+<!-- OUTPUT -->
+<textarea id="output" placeholder="Tu prompt se generará aquí..."></textarea>
 
-        <div class="category-block">
-            <div class="column-title">🌸 NICHO</div>
-            <div class="options-grid">
-                <button class="btn-option btn-mint" onclick="toggle(this,'Marketing AI','Marketing IA')">Marketing</button>
-                <button class="btn-option btn-mint" onclick="toggle(this,'Beauty skincare','Belleza')">Beauty</button>
-                <button class="btn-option btn-mint" onclick="toggle(this,'Real estate luxury','Realtor')">Realtor</button>
-                <button class="btn-option btn-mint" onclick="toggle(this,'Health coach','Salud')">Salud</button>
-                <button class="btn-option btn-mint" onclick="toggle(this,'Finance expert','Finanzas')">Finanzas</button>
-                <button class="btn-option btn-mint" onclick="toggle(this,'Amazon influencer','Amazon')">Amazon</button>
-            </div>
-        </div>
+<div class="actions">
+<button onclick="copyText()">Copiar</button>
+<button onclick="clearText()">Limpiar</button>
+</div>
 
-    </div>
+<!-- SUJETO -->
+<div class="block">
+<h2 onclick="toggle(this)">1. SUJETO</h2>
+<div class="content">
+<button onclick="add('luxury business woman')">Mujer ejecutiva</button>
+<button onclick="add('male entrepreneur')">Emprendedor</button>
+<button onclick="add('fitness influencer')">Fitness influencer</button>
+<button onclick="add('beauty model')">Modelo belleza</button>
+</div>
+</div>
 
-    <!-- ===== PANEL FLOTANTE ===== -->
-    <div class="prompt-box">
+<!-- ESCENA -->
+<div class="block">
+<h2 onclick="toggle(this)">2. ESCENA</h2>
+<div class="content">
+<button onclick="add('modern luxury office')">Oficina lujo</button>
+<button onclick="add('city skyline at sunset')">Ciudad atardecer</button>
+<button onclick="add('studio background clean')">Estudio limpio</button>
+<button onclick="add('street urban night')">Ciudad nocturna</button>
+</div>
+</div>
 
-        <div class="lang-header">
-            <button id="enBtn" class="btn-lang active" onclick="setLang('en')">EN</button>
-            <button id="esBtn" class="btn-lang" onclick="setLang('es')">ES</button>
-        </div>
+<!-- FOTOGRAFÍA -->
+<div class="block">
+<h2 onclick="toggle(this)">3. FOTOGRAFÍA</h2>
+<div class="content">
+<button onclick="add('85mm lens')">85mm retrato</button>
+<button onclick="add('35mm documentary lens')">35mm documental</button>
+<button onclick="add('shallow depth of field')">Desenfoque fondo</button>
+<button onclick="add('centered composition')">Composición centrada</button>
+</div>
+</div>
 
-        <div id="result-en" class="display-area active-box">Waiting...</div>
-        <div id="result-es" class="display-area">Esperando...</div>
+<!-- ILUMINACIÓN -->
+<div class="block">
+<h2 onclick="toggle(this)">4. ILUMINACIÓN</h2>
+<div class="content">
+<button onclick="add('soft diffused lighting')">Luz suave</button>
+<button onclick="add('cinematic lighting')">Cinemática</button>
+<button onclick="add('golden hour light')">Hora dorada</button>
+<button onclick="add('studio softbox lighting')">Estudio</button>
+</div>
+</div>
 
-        <div class="actions">
-            <button class="btn-action btn-copy" onclick="copyText()">COPY</button>
-            <button class="btn-action btn-clear" onclick="clearAll()">CLEAR</button>
-        </div>
+<!-- REALISMO (PIEL + PELO + TEXTURA) -->
+<div class="block">
+<h2 onclick="toggle(this)">5. REALISMO (PIEL / TEXTURA)</h2>
+<div class="content">
+<button onclick="add('realistic skin texture, visible pores')">Piel realista</button>
+<button onclick="add('subsurface scattering skin')">SSS piel</button>
+<button onclick="add('individual hair strands detail')">Pelo realista</button>
+<button onclick="add('fabric texture visible')">Textura ropa</button>
+</div>
+</div>
 
-    </div>
+<!-- COLORIMETRÍA -->
+<div class="block">
+<h2 onclick="toggle(this)">6. COLORIMETRÍA</h2>
+<div class="content">
+<button onclick="add('cinematic teal and orange grading')">Teal & Orange</button>
+<button onclick="add('warm luxury golden tones')">Lujo cálido</button>
+<button onclick="add('soft muted tones')">Tonos suaves</button>
+<button onclick="add('high contrast cinematic look')">Alto contraste</button>
+</div>
+</div>
+
+<!-- VIDEO -->
+<div class="block">
+<h2 onclick="toggle(this)">7. VIDEO READY</h2>
+<div class="content">
+<button onclick="add('cinematic motion potential')">Movimiento cine</button>
+<button onclick="add('social media reel style')">Reels</button>
+<button onclick="add('handheld camera movement')">Cámara móvil</button>
+</div>
+</div>
+
+<!-- UGC -->
+<div class="block">
+<h2 onclick="toggle(this)">8. UGC</h2>
+<div class="content">
+<button onclick="add('iPhone camera look')">iPhone look</button>
+<button onclick="add('natural casual lighting')">Luz natural</button>
+<button onclick="add('authentic lifestyle content')">Lifestyle real</button>
+</div>
+</div>
+
+<!-- INFLUENCER -->
+<div class="block">
+<h2 onclick="toggle(this)">9. INFLUENCER</h2>
+<div class="content">
+<button onclick="add('lifestyle influencer content')">Lifestyle</button>
+<button onclick="add('beauty influencer aesthetic')">Beauty</button>
+<button onclick="add('morning routine vlog style')">Rutina diaria</button>
+<button onclick="add('brand collaboration content')">Colaboración marca</button>
+</div>
+</div>
+
+<!-- POD -->
+<div class="block">
+<h2 onclick="toggle(this)">10. PRINT ON DEMAND</h2>
+<div class="content">
+<button onclick="add('t-shirt mockup studio lighting')">T-shirt mockup</button>
+<button onclick="add('hoodie apparel design')">Hoodie</button>
+<button onclick="add('flat lay product composition')">Flat lay</button>
+<button onclick="add('ecommerce product photography')">Ecommerce</button>
+</div>
+</div>
+
+<!-- ECOMMERCE -->
+<div class="block">
+<h2 onclick="toggle(this)">11. E-COMMERCE</h2>
+<div class="content">
+<button onclick="add('clean product advertising shot')">Ad limpio</button>
+<button onclick="add('shopify product hero image')">Hero product</button>
+<button onclick="add('premium branding visual style')">Premium</button>
+</div>
+</div>
 
 </div>
 
 <script>
-
-let en = [];
-let es = [];
-let lang = "en";
-
-function toggle(btn, enText, esText) {
-
-    btn.classList.toggle("active");
-
-    if (en.includes(enText)) {
-        en = en.filter(i => i !== enText);
-        es = es.filter(i => i !== esText);
-    } else {
-        en.push(enText);
-        es.push(esText);
-    }
-
-    render();
+function add(text){
+let output = document.getElementById("output");
+output.value += (output.value ? ", " : "") + text;
 }
 
-function render() {
-    document.getElementById("result-en").innerText =
-        en.length ? en.join(", ") : "Waiting...";
-
-    document.getElementById("result-es").innerText =
-        es.length ? es.join(", ") : "Esperando...";
+function clearText(){
+document.getElementById("output").value = "";
 }
 
-function setLang(l) {
-    lang = l;
-    document.getElementById("enBtn").classList.toggle("active", l==="en");
-    document.getElementById("esBtn").classList.toggle("active", l==="es");
+function copyText(){
+let output = document.getElementById("output");
+output.select();
+document.execCommand("copy");
 }
 
-function copyText() {
-    let text = lang === "en"
-        ? document.getElementById("result-en").innerText
-        : document.getElementById("result-es").innerText;
-
-    navigator.clipboard.writeText(text);
-    alert("Copiado");
+function toggle(el){
+let content = el.nextElementSibling;
+content.style.display = content.style.display === "flex" ? "none" : "flex";
 }
-
-function clearAll() {
-    en = [];
-    es = [];
-    document.querySelectorAll(".btn-option").forEach(b => b.classList.remove("active"));
-    render();
-}
-
 </script>
 
 </body>

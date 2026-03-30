@@ -1,73 +1,136 @@
 
-<style>
-    /* --- EVOLUCIÓN DE COLORES PREMIUM --- */
-    :root {
-        --neon-green: #00ff41; 
-        --neon-blue: #00f3ff; 
-        --text-chrome: #E0E0E0; /* Plata Metálico para ARBELO */
-        --text-dark-gray: #555; /* Gris Profundo para el tagline */
-        --bg-dark: #050505; 
-        --card-bg: #111111;
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbelo Digital | Prompt Mastermind Elite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #00ff41; --neon-blue: #00f3ff; --chrome: #E0E0E0;
+            --bg-dark: #050505; --card-bg: #111111;
+        }
+        body { 
+            background-color: var(--bg-dark); color: var(--chrome); 
+            font-family: 'Inter', sans-serif; margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center; padding-bottom: 400px; 
+        }
+        
+        /* SECCIÓN DEFINICIÓN: QUÉ ES LA HERRAMIENTA */
+        .hero-branding {
+            text-align: center; padding: 60px 20px; width: 100%;
+            background: linear-gradient(to bottom, #0a0a0a 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid #1a1a1a; margin-bottom: 40px;
+        }
+        .tool-category {
+            color: var(--neon-blue); font-size: 0.7em; letter-spacing: 5px;
+            text-transform: uppercase; font-weight: 700; margin-bottom: 15px; display: block;
+        }
+        .hero-branding h1 { 
+            font-family: 'Playfair Display', serif; font-size: 3.5em; margin: 0;
+            letter-spacing: -1px; color: var(--chrome);
+        }
+        .hero-branding h1 span { color: var(--neon-green); font-style: italic; }
+        
+        .mastermind-badge {
+            display: inline-block; margin-top: 20px; padding: 10px 30px;
+            border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 4px;
+            background: rgba(0, 243, 255, 0.02);
+        }
+        .mastermind-badge span { color: var(--neon-blue); letter-spacing: 4px; font-weight: 800; font-size: 0.9em; }
 
-    body { 
-        background-color: var(--bg-dark); 
-        color: var(--text-chrome); /* Texto base en Plata sutil */
-        font-family: 'Inter', sans-serif; 
-        margin: 0; padding: 20px; 
-        display: flex; flex-direction: column; align-items: center; 
-        padding-bottom: 400px; 
-    }
-    
-    /* ENCABEZADO COMERCIAL DE ALTA JERARQUÍA (REDISEÑADO) */
-    .main-header { 
-        text-align: center; margin-bottom: 60px; width: 100%; max-width: 1100px; 
-        border-bottom: 1px solid #1a1a1a; padding-bottom: 20px;
-    }
-    
-    .main-header h1 { 
-        letter-spacing: 10px; font-weight: 800; 
-        color: var(--text-chrome); /* Plata Chrome */
-        margin: 0; font-size: 2.8em; text-transform: uppercase;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Profundidad 3D */
-    }
-    
-    .main-header h1 span { 
-        color: var(--neon-green); 
-        /* Brillo láser profundo para DIGITAL */
-        text-shadow: 0 0 15px rgba(0, 255, 65, 0.6), 0 0 30px rgba(0, 255, 65, 0.3);
-    }
-    
-    .product-badge { 
-        margin-top: 20px; 
-        border: 1px solid rgba(0, 243, 255, 0.3); /* Borde Azul Glaciar sutil */
-        background: rgba(0,0,0,0.5);
-        display: inline-block; padding: 10px 35px; border-radius: 50px;
-        box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-    }
-    
-    .product-badge span { 
-        color: var(--neon-blue); /* Azul Glaciar técnico */
-        font-size: 0.95em; letter-spacing: 6px; font-weight: 700; 
-        text-transform: uppercase; text-shadow: 0 0 8px var(--neon-blue);
-    }
+        .hero-description {
+            max-width: 700px; margin: 25px auto 0; color: #777;
+            font-size: 0.95em; line-height: 1.6; font-weight: 300;
+        }
+        .hero-description b { color: var(--chrome); font-weight: 600; }
 
-    /* EL TAGLINE EN INGLÉS: ELEGANTE Y PROFESIONAL */
-    .tagline { 
-        color: #777; /* Gris Ejecutivo para no competir */
-        font-size: 0.82em; letter-spacing: 3px; text-transform: uppercase; 
-        margin-top: 25px; 
-        font-family: 'Inter', sans-serif; font-weight: 400; /* Letra bien 'bien', moderna */
-        opacity: 0.8;
-    }
-</style>
+        /* MÓDULOS TÉCNICOS */
+        .module { 
+            background: var(--card-bg); border-left: 4px solid var(--neon-green); 
+            padding: 25px; margin: 20px 0; width: 90%; max-width: 1100px; 
+            border-radius: 0 12px 12px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        h3 { font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 12px; color: #eee; letter-spacing: 2px; }
 
-<div class="main-header">
-    <h1>ARBELO <span>DIGITAL</span></h1>
-    
-    <div class="product-badge">
-        <span>PROMPT MASTERMIND ELITE</span>
+        .capsula-edu { 
+            background: rgba(0, 243, 255, 0.04); border: 1px solid rgba(0, 243, 255, 0.15); 
+            padding: 15px; border-radius: 8px; margin-bottom: 20px; 
+        }
+        .capsula-edu span { font-size: 0.75em; color: var(--neon-blue); font-style: italic; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+        
+        button { 
+            background: #151515; border: 1px solid #333; color: #888; padding: 15px; 
+            border-radius: 6px; cursor: pointer; font-size: 0.65em; font-weight: 700;
+            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        button:hover { border-color: var(--neon-green); color: white; background: #1a1a1a; }
+        button.active { 
+            background: #000 !important; color: var(--neon-green) !important; 
+            border-color: var(--neon-green) !important; box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        /* PANEL DE RESULTADOS */
+        #master-panel { 
+            position: fixed; bottom: 20px; width: 92%; max-width: 950px; 
+            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(20px);
+            border: 1px solid var(--neon-blue); padding: 25px; border-radius: 20px; 
+            box-shadow: 0 -20px 50px rgba(0,0,0,0.8); z-index: 9999;
+        }
+        textarea { 
+            width: 97%; background: #000; border: 1px solid #222; border-radius: 10px; 
+            padding: 15px; color: #ccc; font-size: 0.88em; resize: none; outline: none; height: 50px;
+        }
+        .btn-copy { background: var(--neon-green); color: black; font-weight: 800; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; float: right; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <section class="hero-branding">
+        <span class="tool-category">Professional AI Workstation</span>
+        <h1>ARBELO <span>DIGITAL</span></h1>
+        
+        <div class="mastermind-badge">
+            <span>PROMPT MASTERMIND ELITE</span>
+        </div>
+
+        <p class="hero-description">
+            La herramienta definitiva de <b>Ingeniería de Prompts</b> diseñada para creadores de contenido. 
+            Desde principiante a experto, construye visuales generativos de alta jerarquía con precisión quirúrgica.
+        </p>
+    </section>
+
+    <div class="module" id="mod-id">
+        <h3>👤 M1: Identidad & Casting</h3>
+        <div class="capsula-edu"><span>🎓 <b>Cápsula:</b> La identidad es el origen biológico de tu creación visual.</span></div>
+        <div class="grid">
+            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Mi propio Clon')">👤 MI CLON</button>
+            <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
+            <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
+        </div>
     </div>
 
-    <p class="tagline">From Beginner to Expert in Prompt Engineering & Generative AI Visual Arts</p>
-</div>
+    <div id="master-panel">
+        <div style="margin-bottom: 10px; font-size: 0.75em; color: #555;">ENGINE OUTPUT | ARBELO DIGITAL SYSTEM</div>
+        <textarea id="out-es" readonly placeholder="Concepto en Español..."></textarea>
+        <textarea id="out-en" style="margin-top:10px; color: var(--neon-blue);" readonly placeholder="Master Prompt in English..."></textarea>
+        <button class="btn-copy" onclick="copyPrompt()">COPIAR PROMPT MAESTRO</button>
+    </div>
+
+    <script>
+        let data = { subj:{en:"", es:""} };
+        function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
+        function update() {
+            if (data.subj.en) {
+                document.getElementById('out-en').value = data.subj.en + ", photorealistic, 8k --v 6.1";
+                document.getElementById('out-es').value = data.subj.es + ".";
+            }
+        }
+        function highlight(t, id) { document.getElementById(id).querySelectorAll('button').forEach(b => b.classList.remove('active')); t.classList.add('active'); }
+        function copyPrompt() { let e = document.getElementById("out-en"); e.select(); document.execCommand("copy"); alert("✅ ¡Copiado!"); }
+    </script>
+</body>
+</html>

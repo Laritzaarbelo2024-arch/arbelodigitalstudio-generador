@@ -1,143 +1,184 @@
 
-<style>
-    :root {
-        --neon-green: #00ff41; 
-        --neon-blue: #00f3ff; 
-        --bg-dark: #050505; 
-        --panel-glass: rgba(15, 15, 15, 0.95);
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laritza | Código Maestro Integral AI</title>
+    <style>
+        /* CONFIGURACIÓN DE COLORES MAESTROS */
+        :root {
+            --neon-green: #00ff41; 
+            --neon-blue: #00f3ff; 
+            --bg-dark: #050505; 
+            --card-bg: #111111;
+        }
 
-    body { 
-        background-color: var(--bg-dark); 
-        color: white; 
-        font-family: 'Inter', sans-serif; 
-        padding: 20px; 
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        padding-bottom: 300px; 
-    }
-    
-    h1 { 
-        color: var(--neon-green); 
-        text-transform: uppercase; 
-        letter-spacing: 6px; 
-        border-bottom: 2px solid var(--neon-green); 
-        margin-bottom: 40px; 
-        text-shadow: 0 0 15px rgba(0, 255, 65, 0.5); 
-        font-family: 'Playfair Display', serif; 
-        font-style: italic;
-    }
-    
-    .module { 
-        background: #0d0d0d; 
-        border-left: 5px solid var(--neon-green); 
-        padding: 25px; 
-        margin: 20px 0; 
-        width: 95%; 
-        max-width: 1100px; 
-        border-radius: 4px 15px 15px 4px; 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
+        body { 
+            background-color: var(--bg-dark); 
+            color: white; 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center; 
+            padding-bottom: 350px; /* Espacio para el panel final */
+        }
+        
+        h1 { 
+            color: var(--neon-green); 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            border-bottom: 2px solid var(--neon-green); 
+            margin-bottom: 30px; 
+            text-shadow: 0 0 10px var(--neon-green);
+            font-family: 'Georgia', serif; font-style: italic;
+        }
+        
+        .module { 
+            background: var(--card-bg); 
+            border-left: 4px solid var(--neon-green); 
+            padding: 20px; margin: 15px 0; 
+            width: 95%; max-width: 1100px; 
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
 
-    h3 { font-size: 0.9em; letter-spacing: 2px; color: #eee; border-bottom: 1px solid #222; padding-bottom: 12px; }
+        h3 { font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; color: #fff; }
 
-    .capsula-edu { 
-        background: rgba(0, 243, 255, 0.03); 
-        border: 1px solid rgba(0, 243, 255, 0.2); 
-        padding: 15px; 
-        border-radius: 10px; 
-        margin-bottom: 20px; 
-    }
+        .capsula-edu { 
+            background: rgba(0, 243, 255, 0.05); 
+            border: 1px solid rgba(0, 243, 255, 0.2); 
+            padding: 12px; border-radius: 8px; margin-bottom: 15px; 
+        }
+        .capsula-edu span { font-size: 0.72em; color: var(--neon-blue); font-style: italic; }
 
-    .capsula-edu span { font-size: 0.75em; color: var(--neon-blue); font-style: italic; }
+        /* --- BOTONES ORIGINALES CON RELIEVE --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
 
-    /* --- DISEÑO DE BOTONES ORIGINALES --- */
-    .grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-        gap: 15px; 
-    }
+        button { 
+            background: #1a1a1a; 
+            border: 1px solid #333; 
+            color: #888; 
+            padding: 12px; border-radius: 8px;
+            cursor: pointer; font-size: 0.68em; font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.8);
+        }
 
-    button { 
-        background: linear-gradient(145deg, #1a1a1a, #080808) !important;
-        border: 1px solid #333 !important;
-        color: #777 !important;
-        padding: 15px !important;
-        border-radius: 12px !important;
-        cursor: pointer;
-        font-size: 0.7em !important;
-        text-transform: uppercase;
-        font-weight: 600;
-        letter-spacing: 1px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.4), inset 1px 1px 1px rgba(255,255,255,0.05) !important;
-    }
+        button:hover { border-color: var(--neon-green); color: white; transform: translateY(-2px); }
 
-    button:hover { 
-        color: #fff !important;
-        border-color: #555 !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
-    }
+        /* EFECTO DE LUZ CUANDO SE ACTIVA */
+        button.active { 
+            background: #000 !important;
+            color: var(--neon-green) !important;
+            border-color: var(--neon-green) !important;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.4) !important;
+            text-shadow: 0 0 5px var(--neon-green);
+        }
 
-    /* ESTADO ACTIVO: EL EFECTO DE LUZ HACIA EL FONDO NEGRO */
-    button.active { 
-        background: #000 !important;
-        color: var(--neon-green) !important;
-        border-color: var(--neon-green) !important;
-        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 10px rgba(0, 255, 65, 0.2) !important;
-        text-shadow: 0 0 8px var(--neon-green) !important;
-    }
+        .btn-clon { border-color: var(--neon-blue); color: var(--neon-blue); }
 
-    /* Botón Clon con luz azul */
-    .btn-clon { border-color: var(--neon-blue) !important; color: var(--neon-blue) !important; }
-    .btn-clon.active { 
-        color: var(--neon-blue) !important; 
-        border-color: var(--neon-blue) !important; 
-        box-shadow: 0 0 20px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.2) !important;
-        text-shadow: 0 0 8px var(--neon-blue) !important;
-    }
+        /* --- PANEL FINAL VERTICAL (CORREGIDO) --- */
+        #master-panel { 
+            position: fixed; bottom: 20px; 
+            width: 90%; max-width: 850px; 
+            background: rgba(10, 10, 10, 0.98); 
+            border: 2px solid var(--neon-blue); 
+            padding: 20px; border-radius: 20px; 
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.9);
+            z-index: 9999;
+        }
 
-    /* --- PANEL DE RESULTADOS REESTRUCTURADO --- */
-    #master-panel { 
-        position: sticky; bottom: 20px; 
-        width: 95%; max-width: 900px; 
-        background: var(--panel-glass); 
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(0, 243, 255, 0.3); 
-        padding: 25px; 
-        border-radius: 25px; 
-        box-shadow: 0 -20px 50px rgba(0,0,0,0.9);
-    }
+        .output-stack { display: flex; flex-direction: column; gap: 15px; }
+        
+        textarea { 
+            width: 96%; background: #000; border: 1px solid #222; 
+            border-radius: 10px; padding: 15px; color: #ddd; 
+            font-size: 0.85em; resize: none; outline: none; height: 50px;
+        }
+        #out-en { color: var(--neon-blue); font-family: monospace; font-weight: bold; }
 
-    .output-stack { display: flex; flex-direction: column; gap: 20px; }
-    
-    .box-label { font-family: 'Playfair Display', serif; font-size: 0.8em; color: #666; font-style: italic; margin-bottom: 5px; display: block; }
+        .panel-actions { 
+            display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; 
+        }
 
-    textarea { 
-        width: 100%; background: rgba(0,0,0,0.6); 
-        border: 1px solid #222; border-radius: 15px; 
-        padding: 18px; color: #ccc; font-size: 0.9em; line-height: 1.6;
-        resize: none; outline: none; transition: 0.3s;
-    }
-    #out-en { color: var(--neon-blue); font-family: 'Courier New', monospace; font-weight: bold; }
+        .btn-p { padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.7em; }
+        
+        .btn-copy { background: var(--neon-green); color: black; box-shadow: 0 0 10px var(--neon-green); }
+        .btn-del { background: #333; color: #888; }
+    </style>
+</head>
+<body>
 
-    .panel-actions { 
-        display: flex; justify-content: flex-end; 
-        gap: 15px; margin-top: 20px; 
-        padding-top: 15px; border-top: 1px solid #222; 
-    }
+    <h1>CÓDIGO MAESTRO INTEGRAL</h1>
 
-    .btn-p { 
-        padding: 14px 28px; border-radius: 10px; border: none; 
-        font-weight: bold; text-transform: uppercase; font-size: 0.75em; 
-        cursor: pointer; transition: 0.3s; 
-    }
+    <div class="module" id="mod-id">
+        <h3>👤 M1: Identidad & Casting</h3>
+        <div class="capsula-edu">
+            <span>🎓 <b>Cápsula:</b> La identidad define el "alma" biológica. Un botón activo inyecta el ADN base para que el video posterior sea coherente.</span>
+        </div>
+        <div class="grid">
+            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Basado en referencia facial propia')">👤 MI PROPIO CLON</button>
+            <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
+            <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
+            <button onclick="setSubject('Dominicana', 'Dominican woman', 'Mujer Dominicana')">🇩🇴 Dominicana</button>
+        </div>
+    </div>
 
-    .btn-copy { background: var(--neon-green) !important; color: black !important; box-shadow: 0 0 20px rgba(0, 255, 65, 0.4) !important; }
-    .btn-copy:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--neon-green) !important; }
-    
-    .btn-del { background: #1a1a1a; color: #555; border: 1px solid #333; }
-    .btn-del:hover { color: #ff4b4b; border-color: #ff4b4b; }
-</style>
+    <div class="module" id="mod-adn" style="border-left-color: var(--neon-blue);">
+        <h3>🧫 M2: ADN de Piel (Realismo)</h3>
+        <div class="capsula-edu">
+            <span>🔬 <b>Dato:</b> Sin "Poros HD", la piel se ve plana. El SSS da la transparencia orgánica necesaria.</span>
+        </div>
+        <div class="grid">
+            <button onclick="setSkin('Poros', 'detailed skin pores', 'con Poros HD')">🧫 Poros HD</button>
+            <button onclick="setSkin('Luz SSS', 'subsurface scattering', 'con Luz SSS')">💡 Luz SSS</button>
+        </div>
+    </div>
+
+    <div id="master-panel">
+        <div class="output-stack">
+            <textarea id="out-es" readonly placeholder="Traducción en Español..."></textarea>
+            <textarea id="out-en" readonly placeholder="English Prompt..."></textarea>
+        </div>
+        <div class="panel-actions">
+            <button class="btn-p btn-del" onclick="resetAll()">Limpiar</button>
+            <button class="btn-p btn-copy" onclick="copyPrompt()">Copiar Prompt</button>
+        </div>
+    </div>
+
+    <script>
+        let data = { subj:{en:"", es:""}, skin:{en:"", es:""} };
+
+        function setSubject(name, en, es) { 
+            data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); 
+        }
+
+        function setSkin(name, en, es) { 
+            data.skin = {en, es}; update(); highlight(event.target, 'mod-adn'); 
+        }
+
+        function update() {
+            let pEn = [], pEs = [];
+            if (data.subj.en) { pEn.push(data.subj.en); pEs.push(data.subj.es); }
+            if (data.skin.en) { pEn.push(data.skin.en); pEs.push(data.skin.es); }
+
+            if (pEn.length > 0) {
+                document.getElementById('out-en').value = pEn.join(', ') + ", photorealistic, 8k --v 6.1";
+                document.getElementById('out-es').value = pEs.join(', ') + ".";
+            }
+        }
+
+        function highlight(t, id) { 
+            document.getElementById(id).querySelectorAll('button').forEach(b => b.classList.remove('active')); 
+            t.classList.add('active'); 
+        }
+
+        function resetAll() { location.reload(); }
+
+        function copyPrompt() { 
+            let e = document.getElementById("out-en"); 
+            if (e.value) { e.select(); document.execCommand("copy"); alert("✅ Copiado!"); } 
+        }
+    </script>
+</body>
+</html>

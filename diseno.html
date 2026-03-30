@@ -4,48 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital | Prompt Mastermind Elite</title>
+    <title>Arbelo Digital | Mastermind Elite Full</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-green: #00ff41; --neon-blue: #00f3ff; --chrome: #E0E0E0;
-            --bg-dark: #050505; --card-bg: #111111;
-        }
-        html { font-size: 13.5px; } 
-        body { background-color: var(--bg-dark); color: var(--chrome); font-family: 'Inter', sans-serif; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; padding-bottom: 500px; }
+        :root { --neon-green: #00ff41; --neon-blue: #00f3ff; --bg-dark: #050505; --card-bg: #111111; }
+        html { font-size: 13.2px; } 
+        body { background-color: var(--bg-dark); color: #E0E0E0; font-family: 'Inter', sans-serif; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; padding-bottom: 500px; }
         
-        .hero-section { text-align: center; margin-bottom: 35px; width: 100%; max-width: 950px; }
-        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3em; margin: 0; color: #fff; letter-spacing: -1px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
-        .hero-section h1 span { color: var(--neon-green); font-style: italic; text-shadow: 0 0 25px rgba(0,255,65,0.6); }
-        .tagline { color: #888; font-size: 0.8em; letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; font-weight: 700; border-top: 1px solid #222; display: inline-block; padding-top: 15px; }
+        .hero-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 1000px; }
+        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3em; margin: 0; color: #fff; }
+        .hero-section h1 span { color: var(--neon-green); font-style: italic; text-shadow: 0 0 20px rgba(0,255,65,0.5); }
 
-        .module { background: var(--card-bg); border-left: 5px solid var(--neon-green); padding: 25px; margin: 20px 0; width: 95%; max-width: 950px; border-radius: 0 12px 12px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
-        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
-        .mod-header h3 { font-size: 0.95em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
+        .module { background: var(--card-bg); border-left: 5px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1000px; border-radius: 0 12px 12px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 12px; margin-bottom: 15px; }
+        .mod-header h3 { font-size: 0.9em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
 
-        .bilingual-badge { background: rgba(0, 243, 255, 0.1); border: 1.5px solid var(--neon-blue); color: var(--neon-blue); padding: 6px 14px; border-radius: 4px; font-size: 0.65em; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); display: flex; align-items: center; gap: 8px; }
-        .bilingual-badge span { font-size: 1.4em; color: var(--neon-blue); filter: drop-shadow(0 0 8px var(--neon-blue)); }
-
-        .capsula-edu { background: rgba(0, 243, 255, 0.06); border: 1px solid rgba(0, 243, 255, 0.4); padding: 18px; border-radius: 12px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .edu-col { font-size: 0.78em; line-height: 1.6; color: #eee; font-style: italic; }
-        .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 6px; font-size: 1.1em; text-shadow: 0 0 10px rgba(0,255,65,0.4); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
-        button { background: linear-gradient(145deg, #222, #050505) !important; border: 1px solid #333 !important; padding: 15px !important; border-radius: 10px !important; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 6px; box-shadow: 5px 5px 12px rgba(0,0,0,0.9) !important; }
-        button .es-label { color: #fff; font-size: 0.78em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
-        button .en-label { color: #555; font-size: 0.65em; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; font-style: italic; text-align: center; }
+        .bilingual-badge { background: rgba(0, 243, 255, 0.1); border: 1.5px solid var(--neon-blue); color: var(--neon-blue); padding: 5px 12px; border-radius: 4px; font-size: 0.6em; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
         
-        button:hover { border-color: var(--neon-green) !important; transform: translateY(-4px) !important; }
-        button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 20px rgba(0, 255, 65, 0.5) !important; }
-        button.active .es-label { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+        button { background: linear-gradient(145deg, #222, #050505) !important; border: 1px solid #333 !important; padding: 15px !important; border-radius: 8px !important; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        button .es-label { color: #fff; font-size: 0.75em; font-weight: 800; text-transform: uppercase; text-align: center; }
+        button .en-label { color: #555; font-size: 0.6em; font-weight: 400; text-transform: uppercase; font-style: italic; text-align: center; }
+        button:hover { border-color: var(--neon-green) !important; }
+        button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 15px rgba(0, 255, 65, 0.4) !important; }
+        button.active .es-label { color: var(--neon-green); }
 
-        #master-panel { position: fixed; bottom: 20px; width: 92%; max-width: 950px; background: rgba(10, 10, 10, 0.99); backdrop-filter: blur(30px); border: 2px solid var(--neon-blue); padding: 25px; border-radius: 25px; box-shadow: 0 -20px 70px rgba(0,0,0,1); z-index: 9999; }
-        .box-title { display: flex; align-items: center; gap: 10px; font-size: 0.85em; color: #fff; margin-bottom: 8px; font-weight: 800; }
-        textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; color: #fff; font-size: 0.95em; resize: none; outline: none; height: 50px; margin-bottom: 12px; }
-        #out-en { color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 8px rgba(0,243,255,0.3); }
-        .btn-actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
-        .btn-p { padding: 14px 35px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 0.75em; text-transform: uppercase; transition: 0.4s; }
-        .btn-copy { background: var(--neon-green) !important; color: #000 !important; border: none !important; box-shadow: 0 0 30px var(--neon-green) !important; display: flex; align-items: center; gap: 8px; }
+        #master-panel { position: fixed; bottom: 15px; width: 92%; max-width: 950px; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(25px); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 25px; box-shadow: 0 -15px 60px rgba(0,0,0,1); z-index: 9999; }
+        .box-title { display: flex; align-items: center; gap: 8px; font-size: 0.8em; color: #fff; margin-bottom: 5px; font-weight: 800; }
+        textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #222; border-radius: 12px; padding: 12px; color: #fff; font-size: 0.9em; resize: none; outline: none; height: 45px; margin-bottom: 10px; }
+        #out-en { color: var(--neon-blue); font-weight: bold; }
+        .btn-actions { display: flex; justify-content: flex-end; gap: 15px; border-top: 1px solid #222; padding-top: 12px; }
+        .btn-p { padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 0.75em; text-transform: uppercase; }
+        .btn-copy { background: var(--neon-green) !important; color: #000 !important; border: none !important; box-shadow: 0 0 25px var(--neon-green) !important; display: flex; align-items: center; gap: 8px; }
         .btn-del { background: #1a1a1a; color: #ff4b4b; border: 1px solid #333; display: flex; align-items: center; gap: 8px; }
     </style>
 </head>
@@ -53,97 +43,95 @@
 
     <section class="hero-section">
         <h1>ARBELO <span>DIGITAL</span></h1>
-        <p class="tagline">Prompt Mastermind Elite | Engineering Visual Excellence</p>
     </section>
 
     <div class="module" id="m1">
         <div class="mod-header"><h3>👤 M1: IDENTIDAD / IDENTITY</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid" id="grid-m1">
-            <button onclick="setVal('id', 'Clon', '[REF FACE]', 'Mi Clon', 'grid-m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">My Clone</span></button>
-            <button onclick="setVal('id', 'Cubana', 'Cuban woman', 'Mujer Cubana', 'grid-m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">Cuban Woman</span></button>
-            <button onclick="setVal('id', 'Latina', 'Latina woman', 'Mujer Latina', 'grid-m1')"><span class="es-label">💃 LATINA</span><span class="en-label">Latina Woman</span></button>
-            <button onclick="setVal('id', 'Americana', 'American woman', 'Mujer Americana', 'grid-m1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">American Woman</span></button>
-        </div>
+        <div class="grid"><button onclick="setV('id','Clon','[REF]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">My Clone</span></button><button onclick="setV('id','Cubana','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">Cuban</span></button></div>
     </div>
 
     <div class="module" id="m2">
-        <div class="mod-header"><h3>🧬 M2: TEXTURA DE PIEL / SKIN DNA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid" id="grid-m2">
-            <button onclick="setVal('skin', 'Poros HD', 'hyper-detailed skin pores', 'Poros hiper-detallados', 'grid-m2')"><span class="es-label">✨ POROS HD</span><span class="en-label">HD Pores</span></button>
-            <button onclick="setVal('skin', 'Melanina', 'rich melanin complexion', 'Piel con melanina rica', 'grid-m2')"><span class="es-label">🏾 MELANINA</span><span class="en-label">Melanin</span></button>
-            <button onclick="setVal('skin', 'Piel Canela', 'warm cinnamon skin', 'Piel canela cálida', 'grid-m2')"><span class="es-label">🍯 PIEL CANELA</span><span class="en-label">Cinnamon Skin</span></button>
-            <button onclick="setVal('skin', 'Realismo', 'ultra-realistic texture', 'Textura ultra-realista', 'grid-m2')"><span class="es-label">📸 REALISMO</span><span class="en-label">Realism</span></button>
-        </div>
+        <div class="mod-header"><h3>🧬 M2: ETNICIDAD / ETHNICITY</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('eth','Latina','Latina features','Rasgos Latinos','m2')"><span class="es-label">💃 LATINA</span><span class="en-label">Latina</span></button></div>
     </div>
 
     <div class="module" id="m3">
-        <div class="mod-header"><h3>🧘 M3: POSE / POSING</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid" id="grid-m3">
-            <button onclick="setVal('pose', 'Mirada', 'looking at camera', 'Mirando a cámara', 'grid-m3')"><span class="es-label">👁 MIRADA</span><span class="en-label">Eye Contact</span></button>
-            <button onclick="setVal('pose', 'Perfil', 'side profile view', 'Vista de perfil', 'grid-m3')"><span class="es-label">👤 PERFIL</span><span class="en-label">Profile</span></button>
-            <button onclick="setVal('pose', 'Elegante', 'elegant pose', 'Pose elegante', 'grid-m3')"><span class="es-label">💎 ELEGANTE</span><span class="en-label">Elegant</span></button>
-            <button onclick="setVal('pose', 'Acción', 'dynamic movement', 'Movimiento dinámico', 'grid-m3')"><span class="es-label">🏃 ACCIÓN</span><span class="en-label">Action</span></button>
-        </div>
+        <div class="mod-header"><h3>✨ M3: ADN PIEL / SKIN DNA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('skin','Poros','detailed pores','Poros detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">HD Pores</span></button></div>
     </div>
 
     <div class="module" id="m4">
-        <div class="mod-header"><h3>💡 M4: ILUMINACIÓN / LIGHTING</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid" id="grid-m4">
-            <button onclick="setVal('light', 'Rim Light', 'rim lighting', 'Iluminación de contorno', 'grid-m4')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">Rim Light</span></button>
-            <button onclick="setVal('light', 'Golden Hour', 'golden hour light', 'Luz de hora dorada', 'grid-m4')"><span class="es-label">☀️ GOLDEN HOUR</span><span class="en-label">Golden Hour</span></button>
-            <button onclick="setVal('light', 'Soft Light', 'soft window light', 'Luz de ventana suave', 'grid-m4')"><span class="es-label">🕯 LUZ SUAVE</span><span class="en-label">Soft Light</span></button>
-            <button onclick="setVal('light', 'Cinematic', 'cinematic lighting', 'Iluminación de cine', 'grid-m4')"><span class="es-label">🎬 CINEMATIC</span><span class="en-label">Cinematic</span></button>
-        </div>
+        <div class="mod-header"><h3>😊 M4: ROSTRO / FACE</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('face','Simetria','symmetrical face','Rostro simétrico','m4')"><span class="es-label">📐 SIMETRÍA</span><span class="en-label">Symmetry</span></button></div>
     </div>
 
     <div class="module" id="m5">
-        <div class="mod-header"><h3>🎥 M5: CÁMARA / CAMERA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid" id="grid-m5">
-            <button onclick="setVal('cam', '85mm', 'shot on 85mm lens', 'Lente 85mm', 'grid-m5')"><span class="es-label">📸 85MM</span><span class="en-label">Portrait Lens</span></button>
-            <button onclick="setVal('cam', '35mm', '35mm wide angle', 'Gran angular 35mm', 'grid-m5')"><span class="es-label">🏙 35MM</span><span class="en-label">Wide Angle</span></button>
-            <button onclick="setVal('cam', 'Bokeh', 'depth of field bokeh', 'Fondo desenfocado', 'grid-m5')"><span class="es-label">✨ BOKEH</span><span class="en-label">Bokeh</span></button>
-            <button onclick="setVal('cam', '8K', 'ultra-high definition 8k', 'Resolución 8K', 'grid-m5')"><span class="es-label">📺 8K QUALITY</span><span class="en-label">8K Ultra</span></button>
-        </div>
+        <div class="mod-header"><h3>💇 M5: CABELLO / HAIR</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('hair','Negro','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">Black Hair</span></button></div>
+    </div>
+
+    <div class="module" id="m6">
+        <div class="mod-header"><h3>🧘 M6: POSE / POSING</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('pose','Mirada','eye contact','Mirando a cámara','m6')"><span class="es-label">👁 MIRADA</span><span class="en-label">Eye Contact</span></button></div>
+    </div>
+
+    <div class="module" id="m7">
+        <div class="mod-header"><h3>🏙 M7: ESCENARIO / SCENE</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('scene','Estudio','minimalist studio','Estudio minimalista','m7')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">Studio</span></button></div>
+    </div>
+
+    <div class="module" id="m8">
+        <div class="mod-header"><h3>💡 M8: LUZ / LIGHTING</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('light','Rim','rim light','Luz de contorno','m8')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">Rim Light</span></button></div>
+    </div>
+
+    <div class="module" id="m9">
+        <div class="mod-header"><h3>🎥 M9: CÁMARA / CAMERA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('cam','85mm','85mm lens','Lente 85mm','m9')"><span class="es-label">📸 85MM</span><span class="en-label">85mm Lens</span></button></div>
+    </div>
+
+    <div class="module" id="m10">
+        <div class="mod-header"><h3>📐 M10: COMPOSICIÓN / COMP</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('comp','Medium','medium shot','Plano medio','m10')"><span class="es-label">🖼 PLANO MEDIO</span><span class="en-label">Medium Shot</span></button></div>
+    </div>
+
+    <div class="module" id="m11">
+        <div class="mod-header"><h3>📺 M11: CALIDAD / QUALITY</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('qual','8K','8k resolution','Resolución 8K','m11')"><span class="es-label">📺 8K HD</span><span class="en-label">8K HD</span></button></div>
+    </div>
+
+    <div class="module" id="m12">
+        <div class="mod-header"><h3>⚙️ M12: MOTOR / ENGINE</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid"><button onclick="setV('eng','V6','--v 6.1','Motor Midjourney 6.1','m12')"><span class="es-label">🚀 V6.1</span><span class="en-label">MJ Engine</span></button></div>
     </div>
 
     <div id="master-panel">
-        <div style="margin-bottom: 12px; font-size: 0.75em; color: #555; letter-spacing: 4px; font-weight: 900; text-transform: uppercase;">Engine Output | Arbelo Digital System</div>
-        <div class="box-title"><span>🇪🇸</span> Concepto Visual Educativo</div>
-        <textarea id="out-es" readonly placeholder="Esperando selección..."></textarea>
-        <div class="box-title" style="color: var(--neon-blue);"><span>🇺🇸</span> Master Prompt (AI Output)</div>
-        <textarea id="out-en" readonly placeholder="Waiting for selection..."></textarea>
+        <div class="box-title"><span>🇪🇸</span> Concepto Visual</div>
+        <textarea id="out-es" readonly></textarea>
+        <div class="box-title" style="color:var(--neon-blue);"><span>🇺🇸</span> Master Prompt</div>
+        <textarea id="out-en" readonly></textarea>
         <div class="btn-actions">
-            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR / CLEAR</button>
-            <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT MAESTRO</button>
+            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR</button>
+            <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT</button>
         </div>
     </div>
 
     <script>
-        let pData = { id:null, skin:null, pose:null, light:null, cam:null };
-
-        function setVal(mod, name, en, es, gridId) { 
-            pData[mod] = {en, es}; 
+        let pD = {}; 
+        function setV(m, n, en, es, g) { 
+            pD[m] = {en, es}; 
             update(); 
-            highlight(event.target, gridId); 
+            document.getElementById(g).querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            event.target.closest('button').classList.add('active');
         }
-
         function update() {
-            let resEN = [], resES = [];
-            Object.values(pData).forEach(v => { if(v) { resEN.push(v.en); resES.push(v.es); } });
-            if(resEN.length > 0) {
-                document.getElementById('out-en').value = resEN.join(', ') + ", photorealistic, high resolution --v 6.1";
-                document.getElementById('out-es').value = resES.join(', ');
-            }
+            let e = [], s = [];
+            Object.values(pD).forEach(v => { e.push(v.en); s.push(v.es); });
+            document.getElementById('out-en').value = e.join(', ');
+            document.getElementById('out-es').value = s.join(', ');
         }
-
-        function highlight(t, gridId) { 
-            let b = t.closest('button');
-            document.getElementById(gridId).querySelectorAll('button').forEach(btn => btn.classList.remove('active')); 
-            b.classList.add('active'); 
-        }
-
         function resetAll() { location.reload(); }
-        function copyPrompt() { let e = document.getElementById("out-en"); if(e.value) { e.select(); document.execCommand("copy"); alert("✅ PROMPT COPIADO"); } }
+        function copyPrompt() { let e = document.getElementById("out-en"); e.select(); document.execCommand("copy"); alert("✅ COPIADO"); }
     </script>
 </body>
 </html>

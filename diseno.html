@@ -13,124 +13,122 @@
         }
         body { 
             background-color: var(--bg-dark); color: var(--chrome); 
-            font-family: 'Inter', sans-serif; margin: 0; padding: 0;
-            display: flex; flex-direction: column; align-items: center; padding-bottom: 400px; 
+            font-family: 'Inter', sans-serif; margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center; padding-bottom: 480px; 
         }
         
-        /* SECCIÓN DEFINICIÓN: QUÉ ES LA HERRAMIENTA */
-        .hero-branding {
-            text-align: center; padding: 60px 20px; width: 100%;
-            background: linear-gradient(to bottom, #0a0a0a 0%, var(--bg-dark) 100%);
-            border-bottom: 1px solid #1a1a1a; margin-bottom: 40px;
-        }
-        .tool-category {
-            color: var(--neon-blue); font-size: 0.7em; letter-spacing: 5px;
-            text-transform: uppercase; font-weight: 700; margin-bottom: 15px; display: block;
-        }
-        .hero-branding h1 { 
-            font-family: 'Playfair Display', serif; font-size: 3.5em; margin: 0;
-            letter-spacing: -1px; color: var(--chrome);
-        }
-        .hero-branding h1 span { color: var(--neon-green); font-style: italic; }
-        
-        .mastermind-badge {
-            display: inline-block; margin-top: 20px; padding: 10px 30px;
-            border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 4px;
-            background: rgba(0, 243, 255, 0.02);
-        }
-        .mastermind-badge span { color: var(--neon-blue); letter-spacing: 4px; font-weight: 800; font-size: 0.9em; }
+        /* HEADER DE ALTA JERARQUÍA */
+        .hero-section { text-align: center; margin-bottom: 50px; width: 100%; max-width: 1100px; }
+        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3.5em; margin: 0; color: var(--chrome); letter-spacing: -1px; }
+        .hero-section h1 span { color: var(--neon-green); font-style: italic; text-shadow: 0 0 15px rgba(0,255,65,0.4); }
+        .tagline { color: #777; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin-top: 25px; font-weight: 400; }
 
-        .hero-description {
-            max-width: 700px; margin: 25px auto 0; color: #777;
-            font-size: 0.95em; line-height: 1.6; font-weight: 300;
-        }
-        .hero-description b { color: var(--chrome); font-weight: 600; }
+        /* MÓDULOS BILINGÜES */
+        .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 25px; margin: 20px 0; width: 95%; max-width: 1100px; border-radius: 0 12px 12px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 12px; margin-bottom: 15px; }
+        .mod-header h3 { font-size: 0.85em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
 
-        /* MÓDULOS TÉCNICOS */
-        .module { 
-            background: var(--card-bg); border-left: 4px solid var(--neon-green); 
-            padding: 25px; margin: 20px 0; width: 90%; max-width: 1100px; 
-            border-radius: 0 12px 12px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-        h3 { font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 12px; color: #eee; letter-spacing: 2px; }
+        /* CÁPSULA EDUCATIVA DUAL */
+        .capsula-edu { background: rgba(0, 243, 255, 0.03); border: 1px solid rgba(0, 243, 255, 0.15); padding: 15px; border-radius: 10px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .edu-col { font-size: 0.72em; line-height: 1.5; color: var(--neon-blue); font-style: italic; }
+        .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 4px; }
 
-        .capsula-edu { 
-            background: rgba(0, 243, 255, 0.04); border: 1px solid rgba(0, 243, 255, 0.15); 
-            padding: 15px; border-radius: 8px; margin-bottom: 20px; 
-        }
-        .capsula-edu span { font-size: 0.75em; color: var(--neon-blue); font-style: italic; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-        
+        /* BOTONES CON RELIEVE Y DOBLE IDIOMA */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
         button { 
-            background: #151515; border: 1px solid #333; color: #888; padding: 15px; 
-            border-radius: 6px; cursor: pointer; font-size: 0.65em; font-weight: 700;
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+            background: linear-gradient(145deg, #1c1c1c, #0a0a0a) !important;
+            border: 1px solid #333 !important; padding: 15px !important; border-radius: 8px !important; cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; display: flex; flex-direction: column; align-items: center; gap: 5px;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.8) !important;
         }
-        button:hover { border-color: var(--neon-green); color: white; background: #1a1a1a; }
+        button .es-label { color: #ccc; font-size: 0.75em; font-weight: 800; text-transform: uppercase; }
+        button .en-label { color: #555; font-size: 0.6em; font-weight: 400; text-transform: capitalize; font-style: italic; }
+        
+        button:hover { border-color: var(--neon-green) !important; transform: translateY(-3px) !important; }
         button.active { 
-            background: #000 !important; color: var(--neon-green) !important; 
-            border-color: var(--neon-green) !important; box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            background: #000 !important; border-color: var(--neon-green) !important; 
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.4) !important; 
         }
+        button.active .es-label { color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
+        button.active .en-label { color: #aaa; }
 
-        /* PANEL DE RESULTADOS */
-        #master-panel { 
-            position: fixed; bottom: 20px; width: 92%; max-width: 950px; 
-            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(20px);
-            border: 1px solid var(--neon-blue); padding: 25px; border-radius: 20px; 
-            box-shadow: 0 -20px 50px rgba(0,0,0,0.8); z-index: 9999;
-        }
-        textarea { 
-            width: 97%; background: #000; border: 1px solid #222; border-radius: 10px; 
-            padding: 15px; color: #ccc; font-size: 0.88em; resize: none; outline: none; height: 50px;
-        }
-        .btn-copy { background: var(--neon-green); color: black; font-weight: 800; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; float: right; margin-top: 15px; }
+        /* DASHBOARD FINAL CON BANDERAS */
+        #master-panel { position: fixed; bottom: 20px; width: 92%; max-width: 950px; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(20px); border: 2px solid var(--neon-blue); padding: 25px; border-radius: 25px; box-shadow: 0 -20px 60px rgba(0,0,0,0.9); z-index: 9999; }
+        .box-title { display: flex; align-items: center; gap: 8px; font-size: 0.75em; color: #666; font-style: italic; margin-bottom: 6px; }
+        textarea { width: 97%; background: rgba(0,0,0,0.6); border: 1px solid #222; border-radius: 12px; padding: 15px; color: #ddd; font-size: 0.9em; resize: none; outline: none; height: 50px; margin-bottom: 12px; }
+        #out-en { color: var(--neon-blue); font-family: 'Courier New', monospace; font-weight: bold; }
+        
+        .btn-actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
+        .btn-p { padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.7em; text-transform: uppercase; transition: 0.3s; }
+        .btn-copy { background: var(--neon-green); color: black; border: none; box-shadow: 0 0 20px var(--neon-green); }
+        .btn-del { background: #222; color: #666; border: 1px solid #333; }
     </style>
 </head>
 <body>
 
-    <section class="hero-branding">
-        <span class="tool-category">Professional AI Workstation</span>
+    <section class="hero-section">
         <h1>ARBELO <span>DIGITAL</span></h1>
-        
-        <div class="mastermind-badge">
-            <span>PROMPT MASTERMIND ELITE</span>
-        </div>
-
-        <p class="hero-description">
-            La herramienta definitiva de <b>Ingeniería de Prompts</b> diseñada para creadores de contenido. 
-            Desde principiante a experto, construye visuales generativos de alta jerarquía con precisión quirúrgica.
-        </p>
+        <p class="tagline">From Beginner to Expert in Prompt Engineering & Generative AI Visual Arts</p>
     </section>
 
     <div class="module" id="mod-id">
-        <h3>👤 M1: Identidad & Casting</h3>
-        <div class="capsula-edu"><span>🎓 <b>Cápsula:</b> La identidad es el origen biológico de tu creación visual.</span></div>
+        <div class="mod-header">
+            <h3>👤 M1: Identidad & Casting</h3>
+            <div style="font-size: 0.6em; color: #444;">BILINGUAL INTERFACE 🌐</div>
+        </div>
+        
+        <div class="capsula-edu">
+            <div class="edu-col">
+                <b>👉 Qué hace:</b> Define el ADN base del sujeto.<br>
+                <i>Resultado: Consistencia facial absoluta.</i>
+            </div>
+            <div class="edu-col">
+                <b>👉 What it does:</b> Defines subject's base DNA.<br>
+                <i>Impact: Absolute facial consistency.</i>
+            </div>
+        </div>
+
         <div class="grid">
-            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Mi propio Clon')">👤 MI CLON</button>
-            <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
-            <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
+            <button onclick="setSub('Cubana', 'Cuban woman', 'Mujer Cubana')">
+                <span class="es-label">🇨🇺 Cubana</span>
+                <span class="en-label">Cuban Woman</span>
+            </button>
+            <button onclick="setSub('Americana', 'American woman', 'Mujer Americana')">
+                <span class="es-label">🇺🇸 Americana</span>
+                <span class="en-label">American Woman</span>
+            </button>
         </div>
     </div>
 
     <div id="master-panel">
-        <div style="margin-bottom: 10px; font-size: 0.75em; color: #555;">ENGINE OUTPUT | ARBELO DIGITAL SYSTEM</div>
-        <textarea id="out-es" readonly placeholder="Concepto en Español..."></textarea>
-        <textarea id="out-en" style="margin-top:10px; color: var(--neon-blue);" readonly placeholder="Master Prompt in English..."></textarea>
-        <button class="btn-copy" onclick="copyPrompt()">COPIAR PROMPT MAESTRO</button>
+        <div class="box-title"><span>🇪🇸</span> Concepto Educativo</div>
+        <textarea id="out-es" readonly placeholder="Construyendo..."></textarea>
+        
+        <div class="box-title"><span>🇺🇸</span> Master Prompt (AI Engine Output)</div>
+        <textarea id="out-en" readonly placeholder="Ready to copy..."></textarea>
+        
+        <div class="btn-actions">
+            <button class="btn-p btn-del" onclick="resetAll()">LIMPIAR</button>
+            <button class="btn-p btn-copy" onclick="copyPrompt()">COPIAR PROMPT MAESTRO</button>
+        </div>
     </div>
 
     <script>
-        let data = { subj:{en:"", es:""} };
-        function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
+        let data = { s:{en:"", es:""} };
+        function setSub(n, en, es) { data.s = {en, es}; update(); highlight(event.target, 'mod-id'); }
         function update() {
-            if (data.subj.en) {
-                document.getElementById('out-en').value = data.subj.en + ", photorealistic, 8k --v 6.1";
-                document.getElementById('out-es').value = data.subj.es + ".";
+            if (data.s.en) {
+                document.getElementById('out-en').value = data.s.en + ", photorealistic, high resolution --v 6.1";
+                document.getElementById('out-es').value = data.s.es + ".";
             }
         }
-        function highlight(t, id) { document.getElementById(id).querySelectorAll('button').forEach(b => b.classList.remove('active')); t.classList.add('active'); }
-        function copyPrompt() { let e = document.getElementById("out-en"); e.select(); document.execCommand("copy"); alert("✅ ¡Copiado!"); }
+        function highlight(t, id) { 
+            let b = t.closest('button');
+            document.getElementById(id).querySelectorAll('button').forEach(btn => btn.classList.remove('active')); 
+            b.classList.add('active'); 
+        }
+        function resetAll() { location.reload(); }
+        function copyPrompt() { let e = document.getElementById("out-en"); e.select(); document.execCommand("copy"); alert("Copiado!"); }
     </script>
 </body>
 </html>

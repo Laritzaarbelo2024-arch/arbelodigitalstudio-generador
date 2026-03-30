@@ -1,25 +1,27 @@
 
 
-     <!DOCTYPE html>
+    
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laritza | AI Universal Studio</title>
+    <title>Laritza | AI Universal Studio PRO</title>
     <style>
         :root {
             --neon-green: #00ff41; --neon-blue: #00f3ff; --neon-pink: #ff00ff;
             --neon-yellow: #ffcc00; --neon-red: #ff4b4b; --bg-dark: #050505; --card-bg: #121212;
         }
         body { background-color: var(--bg-dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; text-shadow: 0 0 10px var(--neon-green); text-align: center; }
-        .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1000px; box-shadow: 0 0 20px rgba(0, 255, 65, 0.05); }
+        h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; text-shadow: 0 0-10px var(--neon-green); text-align: center; }
+        .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; box-shadow: 0 0 20px rgba(0, 255, 65, 0.05); }
         h3 { margin-top: 0; color: #fff; font-size: 0.8em; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 15px; }
-        button { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 12px; cursor: pointer; transition: 0.2s; font-size: 0.72em; text-align: center; border-radius: 4px; }
+        h4 { color: #888; font-size: 0.7em; margin: 15px 0 5px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 10px; }
+        button { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 12px; cursor: pointer; transition: 0.2s; font-size: 0.72em; text-align: left; border-radius: 4px; }
         button:hover { border-color: var(--neon-green); color: white; background: #222; }
         button.active { background: var(--neon-green); color: black; font-weight: bold; box-shadow: 0 0 15px var(--neon-green); border-color: white; }
-        #master-panel { position: sticky; bottom: 20px; width: 95%; max-width: 1000px; background: rgba(10,10,10,0.98); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 12px; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
+        #master-panel { position: sticky; bottom: 20px; width: 95%; max-width: 1100px; background: rgba(10,10,10,0.98); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 12px; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
         textarea { width: 100%; background: transparent; border: none; resize: none; outline: none; font-size: 0.9em; padding: 5px 0; }
         #out-es { color: #ccc; height: 50px; border-bottom: 1px solid #222; }
         #out-en { color: var(--neon-blue); font-family: monospace; height: 65px; font-weight: bold; margin-top: 10px; }
@@ -36,41 +38,78 @@
     <div class="module" id="mod-id">
         <h3>👤 M1: ETNIA & ORIGEN</h3>
         <div class="grid">
-            <button onclick="setSubject('Cubana', 'Cuban woman', 'Modelo Cubana')">🇨🇺 Cubana</button>
-            <button onclick="setSubject('Dominicana', 'Dominican woman', 'Modelo Dominicana')">🇩🇴 Dominicana</button>
-            <button onclick="setSubject('Europea', 'European woman', 'Modelo Europea')">🇪🇺 Europea</button>
+            <button onclick="setSubject('Cubana', 'Stunning Cuban woman, warm golden skin, Caribbean features', 'Modelo Cubana de piel dorada')">🇨🇺 Cubana</button>
+            <button onclick="setSubject('Dominicana', 'Radiant Dominican woman, honey skin, voluminous curls', 'Modelo Dominicana de piel canela')">🇩🇴 Dominicana</button>
+            <button onclick="setSubject('Europea', 'Elegant European woman, fair skin, refined features', 'Modelo Europea de piel clara')">🇪🇺 Europea</button>
         </div>
     </div>
 
-    <div class="module" id="mod-engine" style="border-left-color: var(--neon-red);">
-        <h3>⚙️ M8: PARÁMETROS TÉCNICOS GENERALES</h3>
+    <div class="module" id="mod-cloth" style="border-left-color: var(--neon-pink);">
+        <h3>🧥 M3: EL GUARDARROBA (25 ESTILOS DE LUJO)</h3>
+        
+        <h4>Business & Power</h4>
         <div class="grid">
-            <button class="multi" onclick="toggleParam('Stylize', '--stylize 250', 'Estilo 250')">🎨 Stylize 250</button>
-            <button class="multi" onclick="toggleParam('Chaos', '--c 10', 'Caos 10')">🎲 Chaos 10</button>
-            <button class="multi" onclick="toggleParam('Raw', '--sraw', 'Modo RAW')">📷 Realismo Puro</button>
+            <button onclick="setOutfit('Traje Sastre', 'wearing a sharp tailored power suit, crisp blazer, professional fit', 'un traje de sastre empoderado')">💼 Traje Sastre</button>
+            <button onclick="setOutfit('Vestido Tubo', 'wearing a sophisticated midi pencil dress, seamless elegant fit', 'un vestido de tubo elegante')">👗 Vestido de Tubo</button>
+            <button onclick="setOutfit('Blusa Seda', 'wearing a luxurious silk pussy-bow blouse, soft fabric drapes', 'una blusa de seda de lujo')">👔 Blusa de Seda</button>
+            <button onclick="setOutfit('Gabardina', 'wearing a classic designer trench coat, belted waist, structured', 'una gabardina de diseño')">🧥 Gabardina / Trench</button>
+        </div>
+
+        <h4>Glamour & Noche</h4>
+        <div class="grid">
+            <button onclick="setOutfit('Lentejuelas', 'wearing a shimmering sequin evening gown, reflective metallic sparkles', 'un vestido de lentejuelas brillante')">✨ Vestido de Noche</button>
+            <button onclick="setOutfit('Vestido Negro', 'wearing a chic little black dress, velvet texture, timeless', 'un vestido negro clásico')">🖤 Little Black Dress</button>
+            <button onclick="setOutfit('Satén', 'wearing a silk satin slip dress, liquid-like fabric, thin straps', 'un vestido de satén líquido')">💎 Vestido de Satén</button>
+            <button onclick="setOutfit('Alta Costura', 'wearing an avant-garde couture gown, intricate embroidery', 'un vestido de alta costura')">👑 Alta Costura</button>
+        </div>
+
+        <h4>Street & Urban</h4>
+        <div class="grid">
+            <button onclick="setOutfit('Denim & Top', 'wearing tight denim jeans, ribbed crop top, fabric tension', 'jeans ajustados y crop top')">👖 Denim & Crop Top</button>
+            <button onclick="setOutfit('Cuero', 'wearing a biker leather jacket, grainy texture, metallic zippers', 'una chaqueta de cuero real')">🧥 Chaqueta Cuero</button>
+            <button onclick="setOutfit('Streetwear', 'wearing an oversized hoodie, baggy fit, modern urban aesthetic', 'estilo streetwear moderno')">👕 Hoodie Urban</button>
+            <button onclick="setOutfit('Falda Cuero', 'wearing a tight leather mini skirt, high-waist, glossy finish', 'minifalda de cuero')">👗 Falda de Cuero</button>
+        </div>
+
+        <h4>Fitness & Sport</h4>
+        <div class="grid">
+            <button onclick="setOutfit('Yoga Set', 'wearing a sculpting high-waist yoga set, spandex compression', 'conjunto de yoga moldeador')">🧘 Conjunto Yoga</button>
+            <button onclick="setOutfit('Body Spandex', 'wearing a high-cut spandex bodysuit, athletic silhouette', 'un body de spandex atlético')">🩱 Body / Leotardo</button>
+            <button onclick="setOutfit('Ciclista', 'wearing tight biker shorts, compression fabric, sporty look', 'shorts de ciclista')">🩳 Biker Shorts</button>
+            <button onclick="setOutfit('Tenis', 'wearing a pleated tennis skirt and polo, sporty chic', 'un conjunto de tenis')">🎾 Atuendo Tenis</button>
+        </div>
+
+        <h4>Summer & Beach</h4>
+        <div class="grid">
+            <button onclick="setOutfit('Bikini Lujo', 'wearing a luxury micro bikini, gold hardware, wet skin look', 'un bikini de lujo')">👙 Bikini de Diseñador</button>
+            <button onclick="setOutfit('Bañador', 'wearing an elegant one-piece swimsuit, deep plunge neckline', 'un bañador elegante')">🩱 Bañador Enterizo</button>
+            <button onclick="setOutfit('Maxi Boho', 'wearing a flowing bohemian maxi dress, airy linen fabric', 'un vestido boho fluido')">👗 Maxi Vestido Boho</button>
+            <button onclick="setOutfit('Pareo', 'wearing a sheer silk sarong, translucent fabric, vacation vibe', 'un pareo de seda traslúcido')">👒 Pareo de Verano</button>
+        </div>
+
+        <h4>Intimates & Home</h4>
+        <div class="grid">
+            <button onclick="setOutfit('Encaje', 'wearing intricate sheer lace lingerie, delicate embroidery', 'lencería de encaje fino')">🌹 Lencería Encaje</button>
+            <button onclick="setOutfit('Bata Seda', 'wearing a luxurious silk robe, open front, relaxed morning look', 'una bata de seda lujosa')">👘 Bata de Seda</button>
+            <button onclick="setOutfit('Suéter Lana', 'wearing a chunky oversized knit sweater, visible wool fibers', 'un suéter de lana grueso')">🧶 Suéter de Lana</button>
+            <button onclick="setOutfit('Básico Algodón', 'wearing a white cotton tank top and panties, raw natural look', 'básicos de algodón')">🩲 Conjunto Algodón</button>
+            <button onclick="setOutfit('Corset', 'wearing a structured vintage corset, lace-up detail, tight fit', 'un corset estructurado')">⏳ Corset Vintage</button>
         </div>
     </div>
 
     <div class="module" id="mod-ia" style="border-left-color: var(--neon-yellow);">
-        <h3>🚀 M9: OPTIMIZACIÓN POR MOTOR (10 IAs)</h3>
+        <h3>🚀 M9: OPTIMIZACIÓN POR MOTOR IA</h3>
         <div class="grid">
-            <button onclick="setIA('Midjourney', '--v 6.1 --ar 9:16', 'Optimizado para Midjourney v6.1')">⛵ Midjourney</button>
-            <button onclick="setIA('Freepik', 'high quality photography, cinematic lighting, 8k', 'Optimizado para Freepik Pikaso')">🖼️ Freepik AI</button>
-            <button onclick="setIA('Leonardo', 'Leonardo Photoreal, cinematic, highly detailed', 'Optimizado para Leonardo.ai')">🦁 Leonardo.ai</button>
-            <button onclick="setIA('Flux', 'FLUX.1, highly detailed skin, natural lighting', 'Optimizado para Flux.1')">⚡ Flux / Google</button>
-            <button onclick="setIA('DALL-E', 'ultra-realistic digital photography, 4k resolution', 'Optimizado para DALL-E 3')">🎨 DALL-E 3</button>
-            <button onclick="setIA('Ideogram', 'cinematic photo, realistic skin texture, 10:16', 'Optimizado para Ideogram 2.0')">📝 Ideogram</button>
-            <button onclick="setIA('AdobeFirefly', 'photorealistic, macro photography, hyper-detail', 'Optimizado para Adobe Firefly')">🔥 Adobe Firefly</button>
-            <button onclick="setIA('SeaArt', 'best quality, masterpiece, realistic skin', 'Optimizado para SeaArt / Stable Diffusion')">🌊 SeaArt / SD</button>
-            <button onclick="setIA('Krea', 'krea high-def, extreme realism, raw photo', 'Optimizado para Krea.ai')">🧠 Krea.ai</button>
-            <button onclick="setIA('Groq', 'llama-3-vision realistic prompt, professional photo', 'Optimizado para Llama-3 Vision')">🤖 Groq / Llama</button>
+            <button onclick="setIA('Midjourney', '--v 6.1 --ar 9:16', 'Optimizado para Midjourney')">⛵ Midjourney</button>
+            <button onclick="setIA('Freepik', 'high quality photo, cinematic lighting, 8k', 'Optimizado para Freepik AI')">🖼️ Freepik AI</button>
+            <button onclick="setIA('Leonardo', 'Leonardo Photoreal, cinematic detail', 'Optimizado para Leonardo')">🦁 Leonardo AI</button>
         </div>
     </div>
 
     <div id="master-panel">
-        <div class="lang-label" style="color: var(--neon-yellow); font-size: 0.7em;">🇪🇸 ESPAÑOL (INTERPRETACIÓN)</div>
+        <div class="lang-label" style="color: var(--neon-yellow); font-size: 0.7em;">🇪🇸 ESPAÑOL</div>
         <textarea id="out-es" readonly></textarea>
-        <div class="lang-label" style="color: var(--neon-blue); font-size: 0.7em; margin-top: 10px;">🇺🇸 INGLÉS (IA UNIVERSAL COMMAND)</div>
+        <div class="lang-label" style="color: var(--neon-blue); font-size: 0.7em; margin-top: 10px;">🇺🇸 INGLÉS (IA COMMAND)</div>
         <textarea id="out-en" readonly></textarea>
         <div class="actions">
             <button class="btn btn-del" onclick="resetAll()">🗑️ Borrar</button>
@@ -79,38 +118,25 @@
     </div>
 
     <script>
-        let data = { subj:{en:"",es:""}, params:[], ia:{en:"",es:""} };
+        let data = { subj:{en:"",es:""}, cloth:{en:"",es:""}, ia:{en:"",es:""} };
 
         function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
+        function setOutfit(name, en, es) { data.cloth = {en, es}; update(); highlight(event.target, 'mod-cloth'); }
         function setIA(name, en, es) { data.ia = {en, es}; update(); highlight(event.target, 'mod-ia'); }
-
-        function toggleParam(name, en, es) {
-            const i = data.params.findIndex(p => p.en === en);
-            if (i > -1) { data.params.splice(i, 1); event.target.classList.remove('active'); }
-            else { data.params.push({en, es}); event.target.classList.add('active'); }
-            update();
-        }
 
         function update() {
             let enArr = [], esArr = [];
-            
-            // Sujeto base
             if (data.subj.en) { enArr.push(data.subj.en); esArr.push(data.subj.es); }
+            if (data.cloth.en) { enArr.push(data.cloth.en); esArr.push("vestida con " + data.cloth.es); }
 
-            // Construir Prompt General
-            let promptEn = enArr.join(', ') + ", photorealistic, hyper-detailed";
-            let promptEs = esArr.join(', ') + ". Estilo fotográfico.";
+            let promptEn = enArr.join(', ') + ", photorealistic, hyper-detailed, 8k";
+            let promptEs = esArr.join(', ') + ". Estilo fotográfico profesional.";
 
-            // Parámetros técnicos (Estilo, Caos, etc)
-            if (data.params.length > 0) {
-                promptEn += " " + data.params.map(p => p.en).join(' ');
-                promptEs += " Usando " + data.params.map(p => p.es).join(', ') + ".";
-            }
-
-            // Optimización Final según la IA elegida
             if (data.ia.en) {
                 promptEn += ", " + data.ia.en;
                 promptEs += " " + data.ia.es + ".";
+            } else {
+                promptEn += " --ar 9:16 --v 6.1 --stylize 250";
             }
 
             document.getElementById('out-en').value = promptEn;
@@ -118,19 +144,19 @@
         }
 
         function highlight(target, id) {
-            document.getElementById(id).querySelectorAll('button:not(.multi)').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).querySelectorAll('button').forEach(b => b.classList.remove('active'));
             target.classList.add('active');
         }
 
         function resetAll() {
-            data = { subj:{en:"",es:""}, params:[], ia:{en:"",es:""} };
+            data = { subj:{en:"",es:""}, cloth:{en:"",es:""}, ia:{en:"",es:""} };
             document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
             document.getElementById('out-en').value = ""; document.getElementById('out-es').value = "";
         }
 
         function copyPrompt() {
             const el = document.getElementById("out-en");
-            if (!el.value) return; el.select(); document.execCommand("copy"); alert("✅ Prompt Universal Copiado");
+            if (!el.value) return; el.select(); document.execCommand("copy"); alert("✅ Prompt Copiado");
         }
     </script>
 </body>

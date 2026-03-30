@@ -1,29 +1,33 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laritza | AI Universal Encyclopedia PRO</title>
+    <title>Laritza | AI Premium Universal Studio</title>
     <style>
         :root {
             --neon-green: #00ff41; --neon-blue: #00f3ff; --neon-pink: #ff00ff;
-            --neon-yellow: #ffcc00; --neon-red: #ff4b4b; --bg-dark: #050505; --card-bg: #121212;
+            --neon-yellow: #ffcc00; --bg-dark: #050505; --card-bg: #121212;
         }
         body { background-color: var(--bg-dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; text-shadow: 0 0 10px var(--neon-green); text-align: center; }
         .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; box-shadow: 0 0 20px rgba(0, 255, 65, 0.05); }
         h3 { margin-top: 0; color: #fff; font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        h4 { color: #888; font-size: 0.7em; margin: 15px 0 5px 0; text-transform: uppercase; letter-spacing: 1px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 10px; }
-        button { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 12px; cursor: pointer; transition: 0.2s; font-size: 0.72em; border-radius: 4px; text-align: center; }
-        button:hover { border-color: var(--neon-green); color: white; background: #222; }
-        button.active { background: var(--neon-green); color: black; font-weight: bold; box-shadow: 0 0 15px var(--neon-green); border-color: white; }
+        h4 { color: #888; font-size: 0.7em; margin: 15px 0 5px 0; text-transform: uppercase; letter-spacing: 1px; border-left: 2px solid var(--neon-blue); padding-left: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin-top: 10px; }
+        
+        button { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 10px; cursor: pointer; transition: 0.2s; font-size: 0.68em; border-radius: 4px; text-align: center; }
+        button:hover { border-color: var(--neon-green); color: white; }
+        button.active { background: var(--neon-green); color: black; font-weight: bold; box-shadow: 0 0 12px var(--neon-green); border-color: white; }
+        
+        .btn-clon { background: linear-gradient(45deg, #004d1a, #1a1a1a); border: 1px solid var(--neon-green); color: var(--neon-green); font-weight: bold; }
+        .btn-others { border: 1px dashed #555; font-style: italic; }
+
         #master-panel { position: sticky; bottom: 20px; width: 95%; max-width: 1100px; background: rgba(10,10,10,0.98); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 12px; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
         textarea { width: 100%; background: transparent; border: none; resize: none; outline: none; font-size: 0.9em; padding: 5px 0; }
-        #out-es { color: #ccc; height: 50px; border-bottom: 1px solid #222; }
-        #out-en { color: var(--neon-blue); font-family: monospace; height: 65px; font-weight: bold; margin-top: 10px; }
+        #out-es { color: #ccc; height: 45px; border-bottom: 1px solid #222; }
+        #out-en { color: var(--neon-blue); font-family: monospace; height: 60px; font-weight: bold; margin-top: 10px; }
         .actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
         .btn { padding: 10px 20px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75em; }
         .btn-copy { background: var(--neon-blue); color: #000; }
@@ -35,85 +39,43 @@
     <h1>LATIN AI PROMPT ENGINE TOTAL</h1>
 
     <div class="module" id="mod-id">
-        <h3>👤 M1: ETNIA & ORIGEN</h3>
+        <h3>👤 M1: IDENTIDAD & HERENCIA (CASTING)</h3>
+        
+        <h4>Casting Principal</h4>
         <div class="grid">
+            <button class="btn-clon" onclick="setSubject('Mi Clon', '[FACE REFERENCE]', 'Basado en referencia facial personalizada')">👤 MI PROPIO CLON</button>
             <button onclick="setSubject('Cubana', 'Cuban woman', 'Modelo Cubana')">🇨🇺 Cubana</button>
             <button onclick="setSubject('Dominicana', 'Dominican woman', 'Modelo Dominicana')">🇩🇴 Dominicana</button>
+            <button onclick="setSubject('Puertorriqueña', 'Puerto Rican woman', 'Modelo Puertorriqueña')">🇵🇷 Boricua</button>
+            <button onclick="setSubject('Mexicana', 'Mexican woman', 'Modelo Mexicana')">🇲🇽 Mexicana</button>
             <button onclick="setSubject('Colombiana', 'Colombian woman', 'Modelo Colombiana')">🇨🇴 Colombiana</button>
-            <button onclick="setSubject('Europea', 'European woman', 'Modelo Europea')">🇪🇺 Europea</button>
+            <button onclick="setSubject('Venezolana', 'Venezuelan woman', 'Modelo Venezolana')">🇻🇪 Venezolana</button>
+            
+            <button onclick="setSubject('Americana', 'Stunning American woman, blonde or brunette, modern US style', 'Modelo de EE.UU. (Gringa)')">🇺🇸 AMERICANA / EE.UU.</button>
+            
+            <button class="btn-others" onclick="setSubject('Personalizada', 'Woman with specific ethnicity', 'Modelo con etnia personalizada')">➕ OTROS / GRAL</button>
         </div>
-    </div>
 
-    <div class="module" id="mod-features" style="border-left-color: var(--neon-yellow);">
-        <h3>🧬 M1.2: RASGOS & TONOS</h3>
+        <h4>Librería Internacional</h4>
         <div class="grid">
-            <button class="multi" onclick="toggleFeature('Piel Dorada', 'warm golden skin undertones', 'piel dorada')">✨ Piel Dorada</button>
-            <button class="multi" onclick="toggleFeature('Ojos Intensos', 'intense expressive eyes', 'ojos intensos')">👁️ Ojos Intensos</button>
-            <button class="multi" onclick="toggleFeature('Rasgos Caribe', 'authentic Caribbean features', 'rasgos caribeños')">🌴 Rasgos Caribe</button>
-        </div>
-    </div>
-
-    <div class="module" id="mod-age" style="border-left-color: var(--neon-pink);">
-        <h3>⏳ M1.3: MADUREZ BIOLÓGICA</h3>
-        <div class="grid">
-            <button onclick="setAge('20s', 'early 20s, youthful supple skin', 'joven de 20 años')">👶 20s: Juventud</button>
-            <button onclick="setAge('40s', 'late 40s, graceful age lines, mature beauty', 'de 40 años madura')">💃 40s: Madurez</button>
-            <button onclick="setAge('60s', '60 years old, deep wisdom lines, silver hair', 'de 60 años con clase')">✨ 60s: Sabiduría</button>
+            <button onclick="setSubject('Española', 'Spanish woman', 'Modelo Española')">🇪🇸 Española</button>
+            <button onclick="setSubject('Italiana', 'Italian woman', 'Modelo Italiana')">🇮🇹 Italiana</button>
+            <button onclick="setSubject('Brasileña', 'Brazilian woman', 'Modelo Brasileña')">🇧🇷 Brasileña</button>
+            <button onclick="setSubject('Rusa', 'Russian woman', 'Modelo Rusa')">🇷🇺 Rusa</button>
         </div>
     </div>
 
     <div class="module" id="mod-skin" style="border-left-color: var(--neon-blue);">
         <h3>🧫 M2: ADN DE PIEL (REALISMO)</h3>
         <div class="grid">
-            <button class="multi" onclick="toggleSkin('Poros', 'micro-detailed skin pores', 'poros reales')">🧫 Poros</button>
-            <button class="multi" onclick="toggleSkin('Sudor', 'natural skin sweat, hydrated glow', 'brillo de sudor')">🧴 Hidratación</button>
-            <button class="multi" onclick="toggleSkin('Pecas', 'natural facial freckles', 'pecas')">🍓 Pecas</button>
-        </div>
-    </div>
-
-    <div class="module" id="mod-cloth" style="border-left-color: var(--neon-pink);">
-        <h3>🧥 M3: EL GUARDARROBA (25 ESTILOS)</h3>
-        <div class="grid">
-            <button onclick="setOutfit('Traje Sastre', 'sharp tailored power suit', 'traje de sastre')">💼 Traje Sastre</button>
-            <button onclick="setOutfit('Bikini', 'luxury designer bikini', 'bikini de lujo')">👙 Bikini Lujo</button>
-            <button onclick="setOutfit('Seda', 'silk satin slip dress', 'vestido de seda')">👗 Vestido Seda</button>
-            <button onclick="setOutfit('Yoga', 'high-waist yoga set', 'conjunto de yoga')">🧘 Yoga Set</button>
-            <button onclick="setOutfit('Cuero', 'grainy leather jacket', 'chaqueta de cuero')">🧥 Chaqueta Cuero</button>
-        </div>
-    </div>
-
-    <div class="module" id="mod-cam" style="border-left-color: var(--neon-yellow);">
-        <h3>🎬 M4: ÓPTICA & LUZ</h3>
-        <div class="grid">
-            <button onclick="setCam('85mm', 'shot on 85mm lens, f/1.8, bokeh', 'lente 85mm')">📸 Retrato 85mm</button>
-            <button onclick="setLight('Neón Verde', 'emerald green neon lighting', 'neón verde')">🟢 Neón Verde</button>
-        </div>
-    </div>
-
-    <div class="module" id="mod-engine" style="border-left-color: var(--neon-red);">
-        <h3>⚙️ M8: PARÁMETROS (ESTILO & CAOS)</h3>
-        <div class="grid">
-            <button class="multi" onclick="toggleParam('Stylize 250', '--stylize 250', 'Estilo 250')">🎨 Stylize 250</button>
-            <button class="multi" onclick="toggleParam('Chaos 10', '--c 10', 'Caos 10')">🎲 Chaos 10</button>
-            <button class="multi" onclick="toggleParam('Raw', '--sraw', 'Modo RAW')">📷 Modo RAW</button>
-        </div>
-    </div>
-
-    <div class="module" id="mod-ia" style="border-left-color: var(--neon-yellow);">
-        <h3>🚀 M9: OPTIMIZACIÓN POR MOTOR (10 IAs)</h3>
-        <div class="grid">
-            <button onclick="setIA('Midjourney', '--v 6.1 --ar 9:16', 'Optimizado para Midjourney')">⛵ Midjourney</button>
-            <button onclick="setIA('Freepik', 'high quality photo, 8k', 'Optimizado para Freepik')">🖼️ Freepik AI</button>
-            <button onclick="setIA('Leonardo', 'Leonardo Photoreal, 8k', 'Optimizado para Leonardo')">🦁 Leonardo AI</button>
-            <button onclick="setIA('Flux', 'FLUX.1 realistic skin', 'Optimizado para Flux.1')">⚡ Flux / Google</button>
+            <button class="multi" onclick="toggleSkin('Poros', 'micro-detailed skin pores', 'poros reales')">🧫 Poros HD</button>
+            <button class="multi" onclick="toggleSkin('SSS', 'subsurface scattering', 'luz orgánica SSS')">💡 Luz SSS</button>
         </div>
     </div>
 
     <div id="master-panel">
-        <div class="lang-label" style="color: var(--neon-yellow); font-size: 0.7em;">🇪🇸 ESPAÑOL</div>
-        <textarea id="out-es" readonly></textarea>
-        <div class="lang-label" style="color: var(--neon-blue); font-size: 0.7em; margin-top: 10px;">🇺🇸 INGLÉS</div>
-        <textarea id="out-en" readonly></textarea>
+        <textarea id="out-es" readonly placeholder="Español..."></textarea>
+        <textarea id="out-en" readonly placeholder="English Prompt..."></textarea>
         <div class="actions">
             <button class="btn btn-del" onclick="resetAll()">🗑️ Borrar</button>
             <button class="btn btn-copy" onclick="copyPrompt()">📋 Copiar</button>
@@ -121,81 +83,39 @@
     </div>
 
     <script>
-        let data = { subj:{en:"",es:""}, features:[], age:{en:"",es:""}, skin:[], cloth:{en:"",es:""}, cam:{en:"",es:""}, light:{en:"",es:""}, params:[], ia:{en:"",es:""} };
-
+        let data = { subj:{en:"",es:""}, skin:[] };
         function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
-        function setAge(name, en, es) { data.age = {en, es}; update(); highlight(event.target, 'mod-age'); }
-        function setOutfit(name, en, es) { data.cloth = {en, es}; update(); highlight(event.target, 'mod-cloth'); }
-        function setCam(name, en, es) { data.cam = {en, es}; update(); highlight(event.target, 'mod-cam'); }
-        function setLight(name, en, es) { data.light = {en, es}; update(); highlight(event.target, 'mod-cam'); }
-        function setIA(name, en, es) { data.ia = {en, es}; update(); highlight(event.target, 'mod-ia'); }
-
-        function toggleFeature(name, en, es) {
-            const i = data.features.findIndex(f => f.en === en);
-            if (i > -1) { data.features.splice(i, 1); event.target.classList.remove('active'); }
-            else { data.features.push({en, es}); event.target.classList.add('active'); }
-            update();
-        }
-
         function toggleSkin(name, en, es) {
             const i = data.skin.findIndex(s => s.en === en);
             if (i > -1) { data.skin.splice(i, 1); event.target.classList.remove('active'); }
             else { data.skin.push({en, es}); event.target.classList.add('active'); }
             update();
         }
-
-        function toggleParam(name, en, es) {
-            const i = data.params.findIndex(p => p.en === en);
-            if (i > -1) { data.params.splice(i, 1); event.target.classList.remove('active'); }
-            else { data.params.push({en, es}); event.target.classList.add('active'); }
-            update();
-        }
-
         function update() {
             let enArr = [], esArr = [];
-            if (data.subj.en) {
-                let sEn = data.subj.en; let sEs = data.subj.es;
-                if (data.age.en) { sEn += ", " + data.age.en; sEs += " " + data.age.es; }
-                enArr.push(sEn); esArr.push(sEs);
-            }
-            if (data.features.length > 0) {
-                enArr.push("with " + data.features.map(f => f.en).join(', '));
-                esArr.push("con " + data.features.map(f => f.es).join(', '));
-            }
+            if (data.subj.en) { enArr.push(data.subj.en); esArr.push(data.subj.es); }
             if (data.skin.length > 0) {
-                enArr.push("showing " + data.skin.map(s => s.en).join(', '));
-                esArr.push("mostrando " + data.skin.map(s => s.es).join(', '));
+                enArr.push("with " + data.skin.map(s => s.en).join(', '));
+                esArr.push("con " + data.skin.map(s => s.es).join(', '));
             }
-            if (data.cloth.en) { enArr.push(data.cloth.en); esArr.push("vestida con " + data.cloth.es); }
-            if (data.cam.en) { enArr.push(data.cam.en); esArr.push("usando " + data.cam.es); }
-            if (data.light.en) { enArr.push(data.light.en); esArr.push("iluminada con " + data.light.es); }
-
-            let promptEn = enArr.join(', ') + ", photorealistic, 8k";
-            let promptEs = esArr.join(', ') + ".";
-
-            if (data.params.length > 0) promptEn += " " + data.params.map(p => p.en).join(' ');
-            if (data.ia.en) promptEn += " " + data.ia.en; else promptEn += " --ar 9:16 --v 6.1";
-
-            document.getElementById('out-en').value = promptEn;
-            document.getElementById('out-es').value = promptEs;
+            if (enArr.length > 0) {
+                document.getElementById('out-en').value = enArr.join(', ') + ", photorealistic, raw style, 8k --v 6.1 --ar 9:16 --stylize 250";
+                document.getElementById('out-es').value = esArr.join(', ') + ".";
+            }
         }
-
         function highlight(target, id) {
             document.getElementById(id).querySelectorAll('button:not(.multi)').forEach(b => b.classList.remove('active'));
             target.classList.add('active');
         }
-
         function resetAll() {
-            data = { subj:{en:"",es:""}, features:[], age:{en:"",es:""}, skin:[], cloth:{en:"",es:""}, cam:{en:"",es:""}, light:{en:"",es:""}, params:[], ia:{en:"",es:""} };
+            data = { subj:{en:"",es:""}, skin:[] };
             document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
             update();
         }
-
         function copyPrompt() {
             const el = document.getElementById("out-en");
-            if (el.value) { el.select(); document.execCommand("copy"); alert("Copiado!"); }
+            if (el.value) { el.select(); document.execCommand("copy"); alert("✅ Copiado"); }
         }
     </script>
 </body>
 </html>
-

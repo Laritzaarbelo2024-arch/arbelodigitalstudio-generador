@@ -1,5 +1,4 @@
-
-
+           
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,6 @@
             --bg-dark: #050505; --card-bg: #111111;
         }
         
-        /* ESCALA COMPACTA PROFESIONAL */
         html { font-size: 13.5px; } 
 
         body { 
@@ -22,7 +20,6 @@
             display: flex; flex-direction: column; align-items: center; padding-bottom: 400px; 
         }
         
-        /* HEADER */
         .hero-section { text-align: center; margin-bottom: 35px; width: 100%; max-width: 950px; }
         .hero-section h1 { 
             font-family: 'Playfair Display', serif; font-size: 3em; margin: 0;
@@ -34,7 +31,6 @@
             margin-top: 20px; font-weight: 700; border-top: 1px solid #222; display: inline-block; padding-top: 15px; 
         }
 
-        /* MÓDULOS */
         .module { 
             background: var(--card-bg); border-left: 5px solid var(--neon-green); 
             padding: 25px; margin: 20px 0; width: 95%; max-width: 950px; 
@@ -44,7 +40,6 @@
         .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
         .mod-header h3 { font-size: 0.95em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
 
-        /* SELLO BILINGUAL CON ICONO RESALTADO */
         .bilingual-badge {
             background: rgba(0, 243, 255, 0.1); border: 2px solid var(--neon-blue); color: var(--neon-blue);
             padding: 6px 14px; border-radius: 4px; font-size: 0.65em; font-weight: 900; letter-spacing: 2px;
@@ -53,10 +48,9 @@
         .bilingual-badge span { 
             font-size: 1.4em; 
             color: var(--neon-blue); 
-            filter: drop-shadow(0 0 8px var(--neon-blue)); /* Efecto de brillo intenso */
+            filter: drop-shadow(0 0 8px var(--neon-blue));
         }
 
-        /* CÁPSULA EDUCATIVA */
         .capsula-edu { 
             background: rgba(0, 243, 255, 0.06); border: 1px solid rgba(0, 243, 255, 0.4); 
             padding: 18px; border-radius: 12px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
@@ -64,7 +58,6 @@
         .edu-col { font-size: 0.78em; line-height: 1.6; color: #eee; font-style: italic; }
         .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 6px; font-size: 1.1em; text-shadow: 0 0 10px rgba(0,255,65,0.4); }
 
-        /* BOTONES 3D */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
         button { 
             background: linear-gradient(145deg, #222, #050505) !important;
@@ -79,7 +72,6 @@
         button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 20px rgba(0, 255, 65, 0.5) !important; }
         button.active .es-label { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
 
-        /* DASHBOARD FINAL */
         #master-panel { 
             position: fixed; bottom: 20px; width: 92%; max-width: 950px; 
             background: rgba(10, 10, 10, 0.99); backdrop-filter: blur(30px); border: 2px solid var(--neon-blue); 
@@ -90,7 +82,6 @@
         textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; color: #fff; font-size: 0.95em; resize: none; outline: none; height: 50px; margin-bottom: 12px; }
         #out-en { color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 8px rgba(0,243,255,0.3); }
         
-        /* ACCIONES FINALES */
         .btn-actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
         .btn-p { padding: 14px 35px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 0.75em; text-transform: uppercase; transition: 0.4s; }
         
@@ -171,7 +162,7 @@
         function resetAll() { location.reload(); }
         function copyPrompt() { 
             let e = document.getElementById("out-en"); 
-            if(e.value) { e.select(); document.execCommand("copy"); alert("✅ COPIADO"); } 
+            if(e.value) { e.select(); document.execCommand("copy"); alert("✅ PROMPT COPIADO"); } 
         }
     </script>
 </body>

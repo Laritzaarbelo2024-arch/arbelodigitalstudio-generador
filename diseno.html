@@ -4,23 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital | Mastermind Elite Full</title>
+    <title>Arbelo Digital | Mastermind Elite Full 12 Blocks</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --neon-green: #00ff41; --neon-blue: #00f3ff; --bg-dark: #050505; --card-bg: #111111; }
         html { font-size: 13.2px; } 
-        body { background-color: var(--bg-dark); color: #E0E0E0; font-family: 'Inter', sans-serif; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; padding-bottom: 500px; }
-        
+        body { background-color: var(--bg-dark); color: #E0E0E0; font-family: 'Inter', sans-serif; margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; padding-bottom: 500px; }
         .hero-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 1000px; }
-        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3em; margin: 0; color: #fff; }
+        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3.2em; margin: 0; color: #fff; }
         .hero-section h1 span { color: var(--neon-green); font-style: italic; text-shadow: 0 0 20px rgba(0,255,65,0.5); }
-
         .module { background: var(--card-bg); border-left: 5px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1000px; border-radius: 0 12px 12px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 12px; margin-bottom: 15px; }
         .mod-header h3 { font-size: 0.9em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
-
         .bilingual-badge { background: rgba(0, 243, 255, 0.1); border: 1.5px solid var(--neon-blue); color: var(--neon-blue); padding: 5px 12px; border-radius: 4px; font-size: 0.6em; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
         button { background: linear-gradient(145deg, #222, #050505) !important; border: 1px solid #333 !important; padding: 15px !important; border-radius: 8px !important; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
         button .es-label { color: #fff; font-size: 0.75em; font-weight: 800; text-transform: uppercase; text-align: center; }
@@ -28,7 +24,6 @@
         button:hover { border-color: var(--neon-green) !important; }
         button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 15px rgba(0, 255, 65, 0.4) !important; }
         button.active .es-label { color: var(--neon-green); }
-
         #master-panel { position: fixed; bottom: 15px; width: 92%; max-width: 950px; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(25px); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 25px; box-shadow: 0 -15px 60px rgba(0,0,0,1); z-index: 9999; }
         .box-title { display: flex; align-items: center; gap: 8px; font-size: 0.8em; color: #fff; margin-bottom: 5px; font-weight: 800; }
         textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #222; border-radius: 12px; padding: 12px; color: #fff; font-size: 0.9em; resize: none; outline: none; height: 45px; margin-bottom: 10px; }
@@ -47,69 +42,118 @@
 
     <div class="module" id="m1">
         <div class="mod-header"><h3>👤 M1: IDENTIDAD / IDENTITY</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('id','Clon','[REF]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">My Clone</span></button><button onclick="setV('id','Cubana','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">Cuban</span></button></div>
+        <div class="grid">
+            <button onclick="setV('id','Mi Clon','[REF FACE]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">MY CLONE</span></button>
+            <button onclick="setV('id','Cubana','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">CUBAN WOMAN</span></button>
+            <button onclick="setV('id','Latina','Latina woman','Mujer Latina','m1')"><span class="es-label">💃 LATINA</span><span class="en-label">LATINA WOMAN</span></button>
+            <button onclick="setV('id','Americana','American woman','Mujer Americana','m1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">AMERICAN WOMAN</span></button>
+        </div>
     </div>
 
     <div class="module" id="m2">
         <div class="mod-header"><h3>🧬 M2: ETNICIDAD / ETHNICITY</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('eth','Latina','Latina features','Rasgos Latinos','m2')"><span class="es-label">💃 LATINA</span><span class="en-label">Latina</span></button></div>
+        <div class="grid">
+            <button onclick="setV('eth','Rasgos Latinos','Latina features','Rasgos Latinos','m2')"><span class="es-label">✨ LATINOS</span><span class="en-label">LATIN FEATURES</span></button>
+            <button onclick="setV('eth','Rasgos Afro','Afro-descendant features','Rasgos Afro','m2')"><span class="es-label">🏾 AFRO</span><span class="en-label">AFRO FEATURES</span></button>
+            <button onclick="setV('eth','Rasgos Nórdicos','Nordic features','Rasgos Nórdicos','m2')"><span class="es-label">❄️ NÓRDICOS</span><span class="en-label">NORDIC FEATURES</span></button>
+        </div>
     </div>
 
     <div class="module" id="m3">
         <div class="mod-header"><h3>✨ M3: ADN PIEL / SKIN DNA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('skin','Poros','detailed pores','Poros detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">HD Pores</span></button></div>
+        <div class="grid">
+            <button onclick="setV('skin','Poros Detallados','hyper-detailed pores','Poros detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">DETAILED PORES</span></button>
+            <button onclick="setV('skin','Melanina Rica','rich melanin skin','Piel con melanina rica','m3')"><span class="es-label">🏾 MELANINA</span><span class="en-label">RICH MELANIN</span></button>
+            <button onclick="setV('skin','Textura Natural','natural skin texture','Textura de piel natural','m3')"><span class="es-label">📸 NATURAL</span><span class="en-label">NATURAL TEXTURE</span></button>
+        </div>
     </div>
 
     <div class="module" id="m4">
         <div class="mod-header"><h3>😊 M4: ROSTRO / FACE</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('face','Simetria','symmetrical face','Rostro simétrico','m4')"><span class="es-label">📐 SIMETRÍA</span><span class="en-label">Symmetry</span></button></div>
+        <div class="grid">
+            <button onclick="setV('face','Simétrico','symmetrical face','Rostro simétrico','m4')"><span class="es-label">📐 SIMÉTRICO</span><span class="en-label">SYMMETRICAL</span></button>
+            <button onclick="setV('face','Expresión Neutra','neutral expression','Expresión neutra','m4')"><span class="es-label">😐 NEUTRO</span><span class="en-label">NEUTRAL</span></button>
+            <button onclick="setV('face','Sonrisa','subtle smile','Sonrisa sutil','m4')"><span class="es-label">😊 SONRISA</span><span class="en-label">SUBTLE SMILE</span></button>
+        </div>
     </div>
 
     <div class="module" id="m5">
         <div class="mod-header"><h3>💇 M5: CABELLO / HAIR</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('hair','Negro','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">Black Hair</span></button></div>
+        <div class="grid">
+            <button onclick="setV('hair','Negro Sedoso','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">BLACK SILKY</span></button>
+            <button onclick="setV('hair','Castaño','chestnut brown hair','Cabello castaño','m5')"><span class="es-label">🤎 CASTAÑO</span><span class="en-label">BROWN HAIR</span></button>
+            <button onclick="setV('hair','Rubio','golden blonde hair','Cabello rubio dorado','m5')"><span class="es-label">💛 RUBIO</span><span class="en-label">GOLDEN BLONDE</span></button>
+        </div>
     </div>
 
     <div class="module" id="m6">
         <div class="mod-header"><h3>🧘 M6: POSE / POSING</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('pose','Mirada','eye contact','Mirando a cámara','m6')"><span class="es-label">👁 MIRADA</span><span class="en-label">Eye Contact</span></button></div>
+        <div class="grid">
+            <button onclick="setV('pose','Mirando Cámara','looking at camera','Mirando a cámara','m6')"><span class="es-label">👁 MIRADA</span><span class="en-label">EYE CONTACT</span></button>
+            <button onclick="setV('pose','Perfil','side profile','Perfil','m6')"><span class="es-label">👤 PERFIL</span><span class="en-label">PROFILE</span></button>
+            <button onclick="setV('pose','Sentada','sitting elegantly','Sentada elegantemente','m6')"><span class="es-label">🪑 SENTADA</span><span class="en-label">SITTING</span></button>
+        </div>
     </div>
 
     <div class="module" id="m7">
         <div class="mod-header"><h3>🏙 M7: ESCENARIO / SCENE</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('scene','Estudio','minimalist studio','Estudio minimalista','m7')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">Studio</span></button></div>
+        <div class="grid">
+            <button onclick="setV('scene','Estudio Minimalista','minimalist studio background','Estudio minimalista','m7')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">STUDIO</span></button>
+            <button onclick="setV('scene','Urbano','urban street background','Fondo urbano','m7')"><span class="es-label">🏙 URBANO</span><span class="en-label">URBAN</span></button>
+            <button onclick="setV('scene','Naturaleza','nature landscape','Fondo de naturaleza','m7')"><span class="es-label">🌿 NATURALEZA</span><span class="en-label">NATURE</span></button>
+        </div>
     </div>
 
     <div class="module" id="m8">
         <div class="mod-header"><h3>💡 M8: LUZ / LIGHTING</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('light','Rim','rim light','Luz de contorno','m8')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">Rim Light</span></button></div>
+        <div class="grid">
+            <button onclick="setV('light','Luz Contorno','rim lighting','Luz de contorno','m8')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">RIM LIGHTING</span></button>
+            <button onclick="setV('light','Suave','soft window lighting','Luz suave de ventana','m8')"><span class="es-label">🕯 SUAVE</span><span class="en-label">SOFT LIGHT</span></button>
+            <button onclick="setV('light','Cinematográfica','cinematic lighting','Iluminación cinematográfica','m8')"><span class="es-label">🎬 CINE</span><span class="en-label">CINEMATIC</span></button>
+        </div>
     </div>
 
     <div class="module" id="m9">
         <div class="mod-header"><h3>🎥 M9: CÁMARA / CAMERA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('cam','85mm','85mm lens','Lente 85mm','m9')"><span class="es-label">📸 85MM</span><span class="en-label">85mm Lens</span></button></div>
+        <div class="grid">
+            <button onclick="setV('cam','Lente 85mm','shot on 85mm lens','Lente 85mm','m9')"><span class="es-label">📸 85MM</span><span class="en-label">85MM LENS</span></button>
+            <button onclick="setV('cam','Lente 35mm','shot on 35mm lens','Lente 35mm','m9')"><span class="es-label">🏙 35MM</span><span class="en-label">35MM LENS</span></button>
+            <button onclick="setV('cam','Realista','ultra-realistic photo','Foto ultra-realista','m9')"><span class="es-label">💎 REALISTA</span><span class="en-label">REALISTIC</span></button>
+        </div>
     </div>
 
     <div class="module" id="m10">
         <div class="mod-header"><h3>📐 M10: COMPOSICIÓN / COMP</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('comp','Medium','medium shot','Plano medio','m10')"><span class="es-label">🖼 PLANO MEDIO</span><span class="en-label">Medium Shot</span></button></div>
+        <div class="grid">
+            <button onclick="setV('comp','Plano Medio','medium shot','Plano medio','m10')"><span class="es-label">🖼 MEDIO</span><span class="en-label">MEDIUM SHOT</span></button>
+            <button onclick="setV('comp','Primer Plano','close-up shot','Primer plano','m10')"><span class="es-label">🔍 CERCANO</span><span class="en-label">CLOSE-UP</span></button>
+            <button onclick="setV('comp','Cuerpo Entero','full body shot','Cuerpo entero','m10')"><span class="es-label">🚶 ENTERO</span><span class="en-label">FULL BODY</span></button>
+        </div>
     </div>
 
     <div class="module" id="m11">
         <div class="mod-header"><h3>📺 M11: CALIDAD / QUALITY</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('qual','8K','8k resolution','Resolución 8K','m11')"><span class="es-label">📺 8K HD</span><span class="en-label">8K HD</span></button></div>
+        <div class="grid">
+            <button onclick="setV('qual','Resolución 8K','8k resolution','Resolución 8K','m11')"><span class="es-label">📺 8K HD</span><span class="en-label">8K RES</span></button>
+            <button onclick="setV('qual','Alta Definición','highly detailed','Alta definición','m11')"><span class="es-label">✨ DETALLADO</span><span class="en-label">HIGH DETAIL</span></button>
+            <button onclick="setV('qual','Fotorrealismo','photorealistic','Fotorrealismo','m11')"><span class="es-label">📸 FOTO</span><span class="en-label">PHOTO REAL</span></button>
+        </div>
     </div>
 
     <div class="module" id="m12">
         <div class="mod-header"><h3>⚙️ M12: MOTOR / ENGINE</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
-        <div class="grid"><button onclick="setV('eng','V6','--v 6.1','Motor Midjourney 6.1','m12')"><span class="es-label">🚀 V6.1</span><span class="en-label">MJ Engine</span></button></div>
+        <div class="grid">
+            <button onclick="setV('eng','Motor Midjourney 6.1','--v 6.1','Motor Midjourney 6.1','m12')"><span class="es-label">🚀 V6.1</span><span class="en-label">MJ ENGINE</span></button>
+            <button onclick="setV('eng','Realismo MJ','--style raw','Estilo realista Raw','m12')"><span class="es-label">📸 RAW</span><span class="en-label">RAW STYLE</span></button>
+            <button onclick="setV('eng','Calidad Alta','--q 2','Calidad alta v2','m12')"><span class="es-label">💎 Q2</span><span class="en-label">QUALITY 2</span></button>
+        </div>
     </div>
 
     <div id="master-panel">
         <div class="box-title"><span>🇪🇸</span> Concepto Visual</div>
-        <textarea id="out-es" readonly></textarea>
-        <div class="box-title" style="color:var(--neon-blue);"><span>🇺🇸</span> Master Prompt</div>
-        <textarea id="out-en" readonly></textarea>
+        <textarea id="out-es" readonly placeholder="Construyendo..."></textarea>
+        <div class="box-title" style="color:var(--neon-blue);"><span>🇺🇸</span> Mensaje maestro</div>
+        <textarea id="out-en" readonly placeholder="Ready to copy..."></textarea>
         <div class="btn-actions">
             <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR</button>
             <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT</button>
@@ -118,6 +162,7 @@
 
     <script>
         let pD = {}; 
+        const order = ['id','eth','skin','face','hair','pose','scene','light','cam','comp','qual','eng'];
         function setV(m, n, en, es, g) { 
             pD[m] = {en, es}; 
             update(); 
@@ -126,12 +171,12 @@
         }
         function update() {
             let e = [], s = [];
-            Object.values(pD).forEach(v => { e.push(v.en); s.push(v.es); });
+            order.forEach(k => { if(pD[k]) { e.push(pD[k].en); s.push(pD[k].es); } });
             document.getElementById('out-en').value = e.join(', ');
             document.getElementById('out-es').value = s.join(', ');
         }
         function resetAll() { location.reload(); }
-        function copyPrompt() { let e = document.getElementById("out-en"); e.select(); document.execCommand("copy"); alert("✅ COPIADO"); }
+        function copyPrompt() { let e = document.getElementById("out-en"); if(e.value) { e.select(); document.execCommand("copy"); alert("✅ PROMPT COPIADO"); } }
     </script>
 </body>
 </html>

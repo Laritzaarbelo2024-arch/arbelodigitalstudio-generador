@@ -4,139 +4,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laritza | AI Prompt Encyclopedia TOTAL</title>
+    <title>Laritza | Código Maestro Integral AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-green: #00ff41; --neon-blue: #00f3ff; --neon-pink: #ff00ff;
             --neon-yellow: #ffcc00; --neon-red: #ff4b4b; --bg-dark: #050505; --card-bg: #121212;
         }
-        body { background-color: var(--bg-dark); color: white; font-family: 'Segoe UI', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; text-shadow: 0 0 10px var(--neon-green); text-align: center; font-size: 1.4em; }
-        .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; border-radius: 0 8px 8px 0; box-shadow: 0 0 20px rgba(0,255,65,0.05); }
-        h3 { margin-top: 0; color: #fff; font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .capsula-edu { background: rgba(0, 243, 255, 0.07); border-radius: 6px; padding: 12px; margin-bottom: 15px; border: 1px solid rgba(0, 243, 255, 0.3); display: flex; align-items: flex-start; gap: 10px; }
-        .capsula-edu span { font-size: 0.68em; color: var(--neon-blue); line-height: 1.4; }
-        .capsula-edu b { color: white; text-transform: uppercase; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 8px; margin-top: 10px; }
-        button { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 10px; cursor: pointer; transition: 0.2s; font-size: 0.68em; border-radius: 4px; }
-        button:hover { border-color: var(--neon-green); color: white; }
+        body { background-color: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; padding-bottom: 220px; }
+        
+        h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 5px; border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; text-shadow: 0 0 10px var(--neon-green); text-align: center; font-family: 'Playfair Display', serif; font-size: 1.8em; font-style: italic; }
+        
+        /* Módulos */
+        .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; border-radius: 0 12px 12px 0; box-shadow: 0 0 20px rgba(0,255,65,0.05); }
+        h3 { margin-top: 0; color: #fff; font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; letter-spacing: 2px; }
+        h4 { color: var(--neon-yellow); font-size: 0.7em; margin: 15px 0 5px 0; text-transform: uppercase; border-left: 2px solid var(--neon-blue); padding-left: 8px; }
+
+        /* Cápsulas Educativas */
+        .capsula-edu { background: rgba(0, 243, 255, 0.07); border-radius: 8px; padding: 12px; margin-bottom: 15px; border: 1px solid rgba(0, 243, 255, 0.3); display: flex; align-items: flex-start; gap: 10px; }
+        .capsula-edu span { font-size: 0.72em; color: var(--neon-blue); line-height: 1.5; font-style: italic; }
+        .capsula-edu b { color: white; text-transform: uppercase; font-style: normal; }
+
+        /* Grilla y Botones */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; margin-top: 10px; }
+        button { background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 12px; cursor: pointer; transition: 0.2s; font-size: 0.68em; border-radius: 5px; text-align: center; }
+        button:hover { border-color: var(--neon-green); color: white; background: #222; }
         button.active { background: var(--neon-green); color: black; font-weight: bold; box-shadow: 0 0 12px var(--neon-green); border-color: white; }
-        #master-panel { position: sticky; bottom: 20px; width: 95%; max-width: 1100px; background: rgba(10,10,10,0.98); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 12px; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
-        textarea { width: 100%; background: transparent; border: none; resize: none; outline: none; font-size: 0.85em; color: var(--neon-blue); font-family: monospace; height: 70px; }
+        
+        .btn-clon { background: linear-gradient(45deg, #004d1a, #1a1a1a); border: 1px solid var(--neon-green); color: var(--neon-green); font-weight: bold; }
+
+        /* PANEL MAESTRO HORIZONTAL (Dashboard) */
+        #master-panel { 
+            position: sticky; bottom: 15px; width: 95%; max-width: 1100px; 
+            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
+            border: 2px solid var(--neon-blue); padding: 15px 25px; border-radius: 20px; 
+            z-index: 1000; box-shadow: 0 -15px 40px rgba(0,0,0,0.9);
+        }
+        .output-row { display: flex; gap: 20px; align-items: flex-start; }
+        .box { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+        .title-lang { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85em; letter-spacing: 1px; color: #888; }
+        .title-lang b { color: var(--neon-blue); text-transform: uppercase; font-style: normal; font-size: 0.8em; }
+
+        textarea { 
+            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid #222; 
+            resize: none; outline: none; font-size: 0.88em; padding: 12px; 
+            border-radius: 12px; line-height: 1.5; height: 65px; color: #ddd;
+        }
+        #out-en { color: var(--neon-blue); font-family: 'Courier New', monospace; font-weight: bold; border-color: rgba(0,243,255,0.1); }
+
+        .panel-btns { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+        .btn-action { padding: 12px 20px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 0.7em; text-transform: uppercase; width: 115px; transition: 0.3s; }
+        .btn-copy { background: var(--neon-blue); color: black; box-shadow: 0 0 15px rgba(0,243,255,0.2); }
+        .btn-del { background: #333; color: #888; border: 1px solid #444; }
+
+        @media (max-width: 850px) { .output-row { flex-direction: column; } .panel-btns { flex-direction: row; width: 100%; } .btn-action { flex: 1; } }
     </style>
 </head>
 <body>
 
-    <h1>LATIN AI PROMPT ACADEMY TOTAL</h1>
+    <h1>Código Maestro Integral</h1>
 
     <div class="module" id="mod-id">
-        <h3>👤 M1: IDENTIDAD & CASTING</h3>
+        <h3>👤 M1: Identidad & Casting (Pasaporte)</h3>
+        <div class="capsula-edu">
+            <span>🎓 <b>Cápsula:</b> El origen define la estructura base. Usa "Mi Propio Clon" para marca personal o navega por los 30 países para diversidad biológica real.</span>
+        </div>
         <div class="grid">
-            <button onclick="setSubject('Cubana', 'Cuban woman', 'Modelo Cubana')">🇨🇺 Cubana</button>
-            <button onclick="setSubject('Gringa', 'American woman', 'Modelo Americana')">🇺🇸 Americana</button>
+            <button class="btn-clon" onclick="setSubject('Mi Clon', '[FACE REFERENCE]', 'Basado en referencia facial propia')">👤 MI PROPIO CLON</button>
+            <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
+            <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
+            <button onclick="setSubject('Boricua', 'Puerto Rican woman', 'Mujer Puertorriqueña')">🇵🇷 Boricua</button>
+            <button onclick="setSubject('Mexicana', 'Mexican woman', 'Mujer Mexicana')">🇲🇽 Mexicana</button>
+            <button onclick="setSubject('Española', 'Spanish woman', 'Mujer Española')">🇪🇸 Española</button>
         </div>
     </div>
 
-    <div class="module" id="mod-escenario" style="border-left-color: var(--neon-yellow);">
-        <h3>🏙️ M5: ESCENARIOS & LOCALIZACIONES</h3>
+    <div class="module" id="mod-adn" style="border-left-color: var(--neon-yellow);">
+        <h3>🧬 M1.2: ADN Étnico (Riqueza de Herencia)</h3>
         <div class="capsula-edu">
-            <span>🌆 <b>Cápsula:</b> El entorno no es solo fondo, es narración. Un "Luxury Hotel" inyecta elegancia, mientras que un "Cyberpunk Street" fuerza a la IA a usar luces de neón y reflejos en la piel.</span>
+            <span>💡 <b>Mentoría:</b> Los rasgos específicos (Melanina, Ojos Miel) educan a la IA sobre cómo la luz interactúa con la biología para evitar rostros genéricos.</span>
         </div>
         <div class="grid">
-            <button onclick="setLoc('Luxury Hotel', 'inside a luxury hotel suite, elegant decor', 'hotel de lujo')">🏨 Luxury Hotel</button>
-            <button onclick="setLoc('Tropical Beach', 'at a tropical beach during sunset, golden hour', 'playa tropical')">🏝️ Playa Tropical</button>
-            <button onclick="setLoc('Modern Office', 'in a high-tech modern office, glass walls', 'oficina moderna')">💼 Oficina Pro</button>
-            <button onclick="setLoc('Cyberpunk City', 'neon-lit cyberpunk city street at night', 'ciudad cyberpunk')">🤖 Cyberpunk City</button>
-            <button onclick="setLoc('Gym', 'in a high-end fitness gym, workout equipment background', 'gimnasio')">💪 Gym Pro</button>
+            <button class="multi" onclick="toggleEdu('Melanina', 'rich melanin, deep warm undertones', 'melanina rica')">🏾 Melanina</button>
+            <button class="multi" onclick="toggleEdu('Ojos Miel', 'honey-colored eyes, intense iris', 'ojos miel')">👁️ Ojos Miel</button>
+            <button class="multi" onclick="toggleEdu('Piel Canela', 'tan sun-kissed skin', 'piel canela')">✨ Piel Canela</button>
+            <button class="multi" onclick="toggleEdu('Ojos Verdes', 'emerald green eyes', 'ojos verdes')">💎 Ojos Verdes</button>
         </div>
     </div>
 
-    <div class="module" id="mod-light" style="border-left-color: var(--neon-blue);">
-        <h3>💡 M6: ILUMINACIÓN & ATMÓSFERA</h3>
+    <div class="module" id="mod-skin" style="border-left-color: var(--neon-blue);">
+        <h3>🧫 M2: ADN de Piel (Texturas & Poros)</h3>
         <div class="capsula-edu">
-            <span>💡 <b>Mentoría:</b> La luz es el 90% de la foto. El "Cinematic Lighting" crea sombras dramáticas; el "Soft Box" es ideal para catálogos de belleza porque elimina imperfecciones.</span>
+            <span>🔬 <b>Dato Técnico:</b> Sin "Poros HD", la piel se ve plana. El SSS (Subsurface Scattering) da la transparencia orgánica de la piel humana.</span>
         </div>
         <div class="grid">
-            <button class="multi" onclick="toggleLight('Cinematic', 'cinematic dramatic lighting, high contrast', 'iluminación cinematográfica')">🎬 Cinematic</button>
-            <button class="multi" onclick="toggleLight('Neon', 'vibrant neon emerald and pink lights', 'luces de neón')">🌈 Neon Glow</button>
-            <button class="multi" onclick="toggleLight('Natural', 'soft natural sunlight through a window', 'luz natural')">☀️ Natural Light</button>
-            <button class="multi" onclick="toggleLight('Studio', 'professional studio lighting, softbox', 'luz de estudio')">📸 Studio Light</button>
-        </div>
-    </div>
-
-    <div class="module" id="mod-motion" style="border-left-color: var(--neon-pink);">
-        <h3>🏃 M7: PERSPECTIVA & DINAMISMO</h3>
-        <div class="capsula-edu">
-            <span>🏃 <b>Cápsula:</b> Rompe la rigidez. "Walking" o "Action Shot" le dice a la IA que añada desenfoque de movimiento (motion blur) para que la imagen parezca capturada en el momento real.</span>
-        </div>
-        <div class="grid">
-            <button onclick="setMotion('Walking', 'captured while walking, motion blur, candid', 'caminando')">🚶 Caminando</button>
-            <button onclick="setMotion('Sitting', 'relaxed sitting pose, looking at camera', 'sentada')">🪑 Sentada</button>
-            <button onclick="setMotion('Action Shot', 'dynamic action shot, hair blowing in the wind', 'en acción')">⚡ Acción/Viento</button>
-            <button onclick="setMotion('POV', 'POV perspective, first-person view', 'perspectiva POV')">👁️ POV Shot</button>
+            <button class="multi" onclick="toggleSkin('Poros', 'micro-detailed skin pores', 'poros reales HD')">🧫 Poros HD</button>
+            <button class="multi" onclick="toggleSkin('SSS', 'subsurface scattering translucency', 'luz orgánica SSS')">💡 Luz SSS</button>
+            <button class="multi" onclick="toggleSkin('Glow', 'hydrated skin sheen, subtle glow', 'brillo hidratado')">🧴 Glow Skin</button>
         </div>
     </div>
 
     <div class="module" id="mod-ia" style="border-left-color: var(--neon-red);">
-        <h3>🚀 M9: MOTOR IA</h3>
+        <h3>🚀 M12: Motor de Salida & Optimización</h3>
+        <div class="capsula-edu">
+            <span>🤖 <b>Cápsula:</b> Cada IA tiene su idioma. <b>Google Flux</b> domina la anatomía real; <b>DALL-E 3</b> entiende historias complejas.</span>
+        </div>
         <div class="grid">
-            <button onclick="setIA('Flux', 'FLUX.1 photographic fidelity', 'Google Flux')">⚡ GOOGLE FLUX</button>
+            <button onclick="setIA('Flux', 'FLUX.1 photographic fidelity, realistic anatomy', 'Google Flux')">⚡ GOOGLE FLUX</button>
+            <button onclick="setIA('ChatGPT', 'cinematic DALL-E 3 style, narrative prompt', 'ChatGPT')">🤖 CHAT GPT</button>
             <button onclick="setIA('Midjourney', '--v 6.1 --ar 9:16 --stylize 250', 'Midjourney')">⛵ MIDJOURNEY</button>
         </div>
     </div>
 
     <div id="master-panel">
-        <textarea id="out-en" readonly placeholder="Construyendo el Prompt Maestro con todos los módulos..."></textarea>
-        <div style="display:flex; justify-content: flex-end; gap:10px; margin-top:10px;">
-            <button onclick="resetAll()" style="background:#333; color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer;">🗑️ Limpiar Todo</button>
-            <button onclick="copyPrompt()" style="background:var(--neon-blue); color:black; border:none; padding:10px 20px; border-radius:4px; font-weight:bold; cursor:pointer;">📋 Copiar</button>
+        <div class="output-row">
+            <div class="box">
+                <div class="title-lang">🇪🇸 <b>Español</b> | Concepto Educativo</div>
+                <textarea id="out-es" readonly placeholder="Tu historia visual cobrando vida..."></textarea>
+            </div>
+            <div class="box">
+                <div class="title-lang">🇺🇸 <b>Inglés</b> | Master AI Prompt</div>
+                <textarea id="out-en" readonly placeholder="Comando maestro para la IA..."></textarea>
+            </div>
+            <div class="panel-btns">
+                <button class="btn-action btn-copy" onclick="copyPrompt()">Copiar</button>
+                <button class="btn-action btn-del" onclick="resetAll()">Limpiar</button>
+            </div>
         </div>
     </div>
 
     <script>
-        let data = { subj:{en:""}, loc:{en:""}, light:[], motion:{en:""}, ia:{en:""} };
+        let data = { subj:{en:"", es:""}, edu:[], skin:[], ia:{en:""} };
 
-        function setSubject(name, en, es) { data.subj = {en}; update(); highlight(event.target, 'mod-id'); }
-        function setLoc(name, en, es) { data.loc = {en}; update(); highlight(event.target, 'mod-escenario'); }
-        function setMotion(name, en, es) { data.motion = {en}; update(); highlight(event.target, 'mod-motion'); }
+        function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
         function setIA(name, en, es) { data.ia = {en}; update(); highlight(event.target, 'mod-ia'); }
-        
-        function toggleLight(name, en, es) {
-            const i = data.light.findIndex(f => f.en === en);
-            if (i > -1) { data.light.splice(i, 1); event.target.classList.remove('active'); }
-            else { data.light.push({en}); event.target.classList.add('active'); }
+
+        function toggleEdu(name, en, es) {
+            const i = data.edu.findIndex(f => f.en === en);
+            if (i > -1) { data.edu.splice(i, 1); event.target.classList.remove('active'); }
+            else { data.edu.push({en, es}); event.target.classList.add('active'); }
+            update();
+        }
+
+        function toggleSkin(name, en, es) {
+            const i = data.skin.findIndex(s => s.en === en);
+            if (i > -1) { data.skin.splice(i, 1); event.target.classList.remove('active'); }
+            else { data.skin.push({en, es}); event.target.classList.add('active'); }
             update();
         }
 
         function update() {
-            let parts = [];
-            if (data.motion.en) parts.push(data.motion.en);
-            if (data.subj.en) parts.push(data.subj.en);
-            if (data.loc.en) parts.push(data.loc.en);
-            if (data.light.length > 0) parts.push("illuminated by " + data.light.map(l => l.en).join(', '));
-
-            let finalPrompt = parts.join(', ');
-            if (finalPrompt) {
-                finalPrompt += ", photorealistic, 8k";
-                if (data.ia.en) finalPrompt += " " + data.ia.en;
+            let enP = [], esP = [];
+            if (data.subj.en) { enP.push(data.subj.en); esP.push(data.subj.es); }
+            if (data.edu.length > 0) {
+                enP.push("with " + data.edu.map(e => e.en).join(', '));
+                esP.push("con " + data.edu.map(e => e.es).join(', '));
             }
-            document.getElementById('out-en').value = finalPrompt;
+            if (data.skin.length > 0) {
+                enP.push("skin showing " + data.skin.map(s => s.en).join(', '));
+                esP.push("textura de piel con " + data.skin.map(s => s.es).join(', '));
+            }
+
+            let promptFinal = enP.join(', ');
+            if (promptFinal) {
+                promptFinal += ", photorealistic, ultra-detailed, 8k " + data.ia.en;
+                document.getElementById('out-en').value = promptFinal;
+                document.getElementById('out-es').value = esP.join(', ') + ".";
+            } else {
+                document.getElementById('out-en').value = ""; document.getElementById('out-es').value = "";
+            }
         }
 
-        function highlight(target, id) {
-            document.getElementById(id).querySelectorAll('button:not(.multi)').forEach(b => b.classList.remove('active'));
-            target.classList.add('active');
+        function highlight(t, id) { 
+            document.getElementById(id).querySelectorAll('button:not(.multi)').forEach(b => b.classList.remove('active')); 
+            t.classList.add('active'); 
         }
 
-        function resetAll() {
-            data = { subj:{en:""}, loc:{en:""}, light:[], motion:{en:""}, ia:{en:""} };
-            document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            update();
+        function resetAll() { 
+            data = { subj:{en:"",es:""}, edu:[], skin:[], ia:{en:""} }; 
+            document.querySelectorAll('button').forEach(b => b.classList.remove('active')); 
+            update(); 
         }
 
-        function copyPrompt() {
-            const el = document.getElementById("out-en");
-            if (el.value) { el.select(); document.execCommand("copy"); alert("✅ ¡Todo Copiado!"); }
+        function copyPrompt() { 
+            let e = document.getElementById("out-en"); 
+            if (e.value) { e.select(); document.execCommand("copy"); alert("✅ Prompt Maestro Copiado"); } 
         }
     </script>
 </body>

@@ -1,108 +1,203 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laritza | Código Maestro Integral (Original Pro)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-green: #00ff41; --neon-blue: #00f3ff; --neon-pink: #ff00ff;
-            --neon-yellow: #ffcc00; --bg-dark: #050505; --card-bg: #111111;
-        }
-        body { background-color: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; padding-bottom: 280px; }
-        
-        h1 { color: var(--neon-green); text-transform: uppercase; letter-spacing: 5px; border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; text-shadow: 0 0 10px var(--neon-green); text-align: center; font-family: 'Playfair Display', serif; font-size: 1.8em; font-style: italic; }
-        
-        .module { background: var(--card-bg); border-left: 4px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; border-radius: 0 12px 12px 0; border-top: 1px solid rgba(255,255,255,0.03); }
-        h3 { margin-top: 0; color: #fff; font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; letter-spacing: 2px; }
+<style>
+    :root {
+        --neon-green: #00ff41; 
+        --neon-blue: #00f3ff; 
+        --neon-pink: #ff00ff;
+        --neon-yellow: #ffcc00; 
+        --bg-dark: #050505; 
+        --card-bg: #111111;
+    }
 
-        .capsula-edu { background: rgba(0, 243, 255, 0.05); border-radius: 8px; padding: 12px; margin-bottom: 15px; border: 1px solid rgba(0, 243, 255, 0.15); display: flex; align-items: flex-start; gap: 10px; }
-        .capsula-edu span { font-size: 0.72em; color: var(--neon-blue); line-height: 1.5; font-style: italic; }
+    body { 
+        background-color: var(--bg-dark); 
+        color: white; 
+        font-family: 'Inter', sans-serif; 
+        padding: 20px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        padding-bottom: 280px; 
+    }
+    
+    h1 { 
+        color: var(--neon-green); 
+        text-transform: uppercase; 
+        letter-spacing: 5px; 
+        border-bottom: 2px solid var(--neon-green); 
+        margin-bottom: 30px; 
+        text-shadow: 0 0 10px var(--neon-green); 
+        text-align: center; 
+        font-family: 'Playfair Display', serif; 
+        font-size: 1.8em; 
+        font-style: italic; 
+    }
+    
+    .module { 
+        background: var(--card-bg); 
+        border-left: 4px solid var(--neon-green); 
+        padding: 20px; 
+        margin: 15px 0; 
+        width: 95%; 
+        max-width: 1100px; 
+        border-radius: 0 12px 12px 0; 
+        border-top: 1px solid rgba(255,255,255,0.03); 
+    }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 12px; margin-top: 10px; max-height: 250px; overflow-y: auto; padding: 10px; }
+    h3 { 
+        margin-top: 0; 
+        color: #fff; 
+        font-size: 0.85em; 
+        text-transform: uppercase; 
+        border-bottom: 1px solid #222; 
+        padding-bottom: 10px; 
+        letter-spacing: 2px; 
+    }
 
-        /* BOTONES ORIGINALES EVOLUCIONADOS */
-        button { 
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d); 
-            border: 1px solid #333; color: #999; padding: 14px; cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            font-size: 0.65em; border-radius: 8px; text-align: center;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            position: relative; overflow: hidden;
-        }
-        button:hover { border-color: var(--neon-green); color: white; transform: scale(1.03); }
-        
-        /* Efecto de luz interna cuando está activo */
-        button.active { 
-            background: #000; color: var(--neon-green); font-weight: bold; 
-            border-color: var(--neon-green); 
-            box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.2), 0 0 15px rgba(0, 255, 65, 0.2);
-            text-shadow: 0 0 5px var(--neon-green);
-        }
+    .capsula-edu { 
+        background: rgba(0, 243, 255, 0.05); 
+        border-radius: 8px; 
+        padding: 12px; 
+        margin-bottom: 15px; 
+        border: 1px solid rgba(0, 243, 255, 0.15); 
+        display: flex; 
+        align-items: flex-start; 
+        gap: 10px; 
+    }
 
-        .btn-clon { border: 1px solid var(--neon-blue); color: var(--neon-blue); background: rgba(0, 243, 255, 0.02); }
+    .capsula-edu span { 
+        font-size: 0.72em; 
+        color: var(--neon-blue); 
+        line-height: 1.5; 
+        font-style: italic; 
+    }
 
-        /* PANEL MAESTRO VERTICAL */
-        #master-panel { 
-            position: sticky; bottom: 15px; width: 95%; max-width: 900px; 
-            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
-            border: 2px solid var(--neon-blue); padding: 20px; border-radius: 20px; 
-            z-index: 1000; box-shadow: 0 -15px 40px rgba(0,0,0,0.9);
-        }
-        .output-stack { display: flex; flex-direction: column; gap: 15px; }
-        textarea { width: 100%; background: #000; border: 1px solid #222; resize: none; outline: none; font-size: 0.88em; padding: 15px; border-radius: 10px; height: 50px; color: #ddd; }
-        #out-en { color: var(--neon-blue); font-family: monospace; font-weight: bold; border-color: rgba(0,243,255,0.1); }
+    .grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); 
+        gap: 12px; 
+        margin-top: 10px; 
+        max-height: 250px; 
+        overflow-y: auto; 
+        padding: 10px; 
+    }
 
-        .panel-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; border-top: 1px solid #222; padding-top: 10px; }
-        .btn-p { padding: 12px 22px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.72em; transition: 0.3s; }
-        .btn-copy { background: var(--neon-green); color: black; box-shadow: 0 0 15px rgba(0,255,65,0.4); }
-        .btn-del { background: #222; color: #666; }
-    </style>
-</head>
-<body>
+    /* --- EL CAMBIO ESTÁ AQUÍ --- */
+    /* NUEVO ESTILO BASE PARA TODOS LOS BOTONES DE MÓDULOS */
+    button { 
+        background: linear-gradient(145deg, #1a1a1a, #0d0d0d) !important; /* Forza el gradiente 3D */
+        border: 1px solid #333 !important; 
+        color: #999 !important; 
+        padding: 14px !important; 
+        cursor: pointer; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Animación suave */
+        font-size: 0.65em !important; 
+        border-radius: 8px !important; 
+        text-align: center;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.5) !important; /* Sombra sutil */
+        position: relative; 
+        overflow: hidden;
+    }
 
-    <h1>Código Maestro Integral</h1>
+    button:hover { 
+        border-color: var(--neon-green) !important; 
+        color: white !important; 
+        transform: scale(1.03) !important; /* Micro-expansión */
+    }
+    
+    /* EFECTO DE LUZ INTERNA (GLOW) CUANDO ESTÁ ACTIVO */
+    button.active { 
+        background: #000 !important; 
+        color: var(--neon-green) !important; 
+        font-weight: bold !important; 
+        border-color: var(--neon-green) !important; 
+        /* El "Glow" que pediste hacia el fondo negro */
+        box-shadow: inset 0 0 15px rgba(0, 255, 65, 0.2), 0 0 15px rgba(0, 255, 65, 0.3) !important;
+        text-shadow: 0 0 5px var(--neon-green) !important;
+    }
 
-    <div class="module" id="mod-id">
-        <h3>👤 M1: Identidad & Casting</h3>
-        <div class="capsula-edu">
-            <span>🎓 <b>Cápsula:</b> La identidad define el "alma" biológica. Un botón activo inyecta el ADN base para que el video posterior sea coherente.</span>
-        </div>
-        <div class="grid">
-            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Basado en referencia facial propia')">👤 MI PROPIO CLON</button>
-            <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
-            <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
-            <button onclick="setSubject('Dominicana', 'Dominican woman', 'Mujer Dominicana')">🇩🇴 Dominicana</button>
-        </div>
-    </div>
+    /* Botón especial 'Mi Clon' */
+    .btn-clon { 
+        border: 1px solid var(--neon-blue) !important; 
+        color: var(--neon-blue) !important; 
+        background: rgba(0, 243, 255, 0.02) !important; 
+    }
+    .btn-clon.active {
+        color: var(--neon-blue) !important;
+        border-color: var(--neon-blue) !important;
+        box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.2), 0 0 15px rgba(0, 243, 255, 0.3) !important;
+        text-shadow: 0 0 5px var(--neon-blue) !important;
+    }
 
-    <div id="master-panel">
-        <div class="output-stack">
-            <div class="box"><textarea id="out-es" readonly placeholder="Español..."></textarea></div>
-            <div class="box"><textarea id="out-en" readonly placeholder="English Prompt..."></textarea></div>
-        </div>
-        <div class="panel-actions">
-            <button class="btn-p btn-del" onclick="resetAll()">Limpiar</button>
-            <button class="btn-p btn-copy" onclick="copyPrompt()">Copiar Prompt</button>
-        </div>
-    </div>
+    /* PANEL MAESTRO VERTICAL */
+    #master-panel { 
+        position: sticky; bottom: 15px; width: 95%; max-width: 900px; 
+        background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
+        border: 2px solid var(--neon-blue); padding: 20px; border-radius: 20px; 
+        z-index: 1000; box-shadow: 0 -15px 40px rgba(0,0,0,0.9);
+    }
 
-    <script>
-        let data = { subj:{en:"", es:""} };
-        function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
-        function update() {
-            if (data.subj.en) {
-                document.getElementById('out-en').value = data.subj.en + ", photorealistic, 8k --v 6.1";
-                document.getElementById('out-es').value = data.subj.es + ".";
-            }
-        }
-        function highlight(t, id) { 
-            document.getElementById(id).querySelectorAll('button').forEach(b => b.classList.remove('active')); 
-            t.classList.add('active'); 
-        }
-        function resetAll() { location.reload(); }
-        function copyPrompt() { let e = document.getElementById("out-en"); e.select(); document.execCommand("copy"); alert("Copiado!"); }
-    </script>
-</body>
-</html>
+    .output-stack { display: flex; flex-direction: column; gap: 15px; }
+
+    textarea { 
+        width: 100%; 
+        background: #000; 
+        border: 1px solid #222; 
+        resize: none; 
+        outline: none; 
+        font-size: 0.88em; 
+        padding: 15px; 
+        border-radius: 10px; 
+        height: 50px; 
+        color: #ddd; 
+    }
+
+    #out-en { 
+        color: var(--neon-blue); 
+        font-family: monospace; 
+        font-weight: bold; 
+        border-color: rgba(0,243,255,0.1); 
+    }
+
+    .panel-actions { 
+        display: flex; 
+        justify-content: flex-end; 
+        gap: 10px; 
+        margin-top: 15px; 
+        border-top: 1px solid #222; 
+        padding-top: 10px; 
+    }
+
+    .btn-p { 
+        padding: 12px 22px; 
+        border-radius: 8px; 
+        border: none; 
+        font-weight: bold; 
+        cursor: pointer; 
+        text-transform: uppercase; 
+        font-size: 0.72em; 
+        transition: 0.3s; 
+    }
+
+    /* BOTÓN COPIAR SIEMPRE EN VERDE NEÓN CON GLOW */
+    .btn-copy { 
+        background: var(--neon-green) !important; 
+        color: black !important; 
+        box-shadow: 0 0 15px rgba(0,255,65,0.4) !important; 
+    }
+
+    .btn-copy:hover { 
+        background: white !important;
+        transform: translateY(-2px) !important; 
+        box-shadow: 0 0 25px var(--neon-green) !important; 
+    }
+
+    .btn-del { 
+        background: #222 !important; 
+        color: #666 !important; 
+        border: 1px solid #333 !important;
+    }
+    .btn-del:hover {
+        color: #ff4b4b !important;
+        border-color: #ff4b4b !important;
+    }
+</style>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laritza | Código Maestro Integral AI</title>
+    <title>Laritza | Academia de Prompt Engineering</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,12 +17,18 @@
             padding-bottom: 380px; 
         }
         
-        h1 { 
+        /* TÍTULO EDUCATIVO EVOLUCIONADO */
+        .main-header { text-align: center; margin-bottom: 40px; }
+        .main-header h1 { 
             color: var(--neon-green); text-transform: uppercase; letter-spacing: 5px; 
-            border-bottom: 2px solid var(--neon-green); margin-bottom: 30px; 
-            text-shadow: 0 0 10px var(--neon-green); font-family: 'Playfair Display', serif; font-style: italic;
+            margin: 0; text-shadow: 0 0 10px var(--neon-green); 
+            font-family: 'Playfair Display', serif; font-size: 2.2em; font-style: italic;
         }
-        
+        .main-header p { 
+            color: #888; font-size: 0.85em; letter-spacing: 3px; text-transform: uppercase; 
+            margin-top: 5px; border-top: 1px solid #333; padding-top: 10px;
+        }
+
         .module { 
             background: var(--card-bg); border-left: 4px solid var(--neon-green); 
             padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; 
@@ -36,16 +42,14 @@
         }
         .capsula-edu span { font-size: 0.72em; color: var(--neon-blue); font-style: italic; line-height: 1.5; }
 
-        /* Grilla con Scroll para los 50 elementos */
         .grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-            gap: 12px; margin-top: 10px; max-height: 280px; overflow-y: auto; 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); 
+            gap: 12px; margin-top: 10px; max-height: 250px; overflow-y: auto; 
             padding: 10px; background: rgba(0,0,0,0.2); border-radius: 8px;
         }
         .grid::-webkit-scrollbar { width: 5px; }
         .grid::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 10px; }
 
-        /* Botones con Relieve y Originalidad */
         button { 
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d); 
             border: 1px solid #333; color: #888; padding: 12px; border-radius: 8px;
@@ -59,9 +63,6 @@
             text-shadow: 0 0 5px var(--neon-green);
         }
 
-        .btn-clon { border-color: var(--neon-blue); color: var(--neon-blue); }
-
-        /* PANEL MAESTRO REFORZADO */
         #master-panel { 
             position: fixed; bottom: 20px; width: 92%; max-width: 900px; 
             background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
@@ -70,13 +71,13 @@
         }
         .output-stack { display: flex; flex-direction: column; gap: 15px; }
         .box { display: flex; flex-direction: column; gap: 5px; }
-        .title-lang { font-family: 'Playfair Display', serif; font-size: 0.8em; color: #888; font-style: italic; }
+        .title-lang { font-family: 'Playfair Display', serif; font-size: 0.85em; color: #888; font-style: italic; }
         
         textarea { 
             width: 97%; background: #000; border: 1px solid #222; border-radius: 12px; 
             padding: 15px; color: #ddd; font-size: 0.88em; resize: none; outline: none; height: 55px;
         }
-        #out-en { color: var(--neon-blue); font-family: monospace; font-weight: bold; border-color: rgba(0,243,255,0.1); }
+        #out-en { color: var(--neon-blue); font-family: monospace; font-weight: bold; }
 
         .panel-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
         .btn-p { padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.72em; transition: 0.3s; }
@@ -86,41 +87,36 @@
 </head>
 <body>
 
-    <h1>Código Maestro Integral</h1>
+    <div class="main-header">
+        <h1>Código Maestro Integral</h1>
+        <p>De Principiante a Experto en Prompt Engineering</p>
+    </div>
 
     <div class="module" id="mod-id">
         <h3>👤 M1: Identidad & Casting Global</h3>
         <div class="capsula-edu">
-            <span>🎓 <b>Cápsula:</b> La identidad es el origen biológico. Elegir un rasgo específico permite que la IA mantenga la coherencia total para el video final.</span>
+            <span>🎓 <b>Cápsula:</b> La identidad es el origen. Domina el "Casting" para que la IA genere rostros consistentes y con autoridad visual.</span>
         </div>
         <div class="grid">
-            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Basado en referencia facial propia')">👤 MI PROPIO CLON</button>
+            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Basado en mi referencia facial única')">👤 MI PROPIO CLON</button>
             <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
             <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
             <button onclick="setSubject('Dominicana', 'Dominican woman', 'Mujer Dominicana')">🇩🇴 Dominicana</button>
-            <button onclick="setSubject('Boricua', 'Puerto Rican woman', 'Mujer Puertorriqueña')">🇵🇷 Boricua</button>
-            <button onclick="setSubject('Mexicana', 'Mexican woman', 'Mujer Mexicana')">🇲🇽 Mexicana</button>
-            <button onclick="setSubject('Colombiana', 'Colombian woman', 'Mujer Colombiana')">🇨🇴 Colombiana</button>
             <button onclick="setSubject('Española', 'Spanish woman', 'Mujer Española')">🇪🇸 Española</button>
-            <button onclick="setSubject('Brasileña', 'Brazilian woman', 'Mujer Brasileña')">🇧🇷 Brasileña</button>
-            <button onclick="setSubject('Italiana', 'Italian woman', 'Mujer Italiana')">🇮🇹 Italiana</button>
-        </div>
+            </div>
     </div>
 
     <div class="module" id="mod-adn" style="border-left-color: var(--neon-yellow);">
-        <h3>🧬 M2: ADN Étnico (Herencia Técnica)</h3>
+        <h3>🧬 M2: ADN Étnico (Herencia de Realismo)</h3>
         <div class="capsula-edu">
-            <span>💡 <b>Mentoría:</b> Los detalles genéticos (Melanina, Ojos, Estructura) educan a la IA para evitar rostros genéricos y lograr realismo quirúrgico.</span>
+            <span>💡 <b>Mentoría:</b> Los rasgos específicos educan a la IA. La riqueza técnica en el ADN evita los rostros artificiales "tipo filtro".</span>
         </div>
         <div class="grid">
-            <button class="multi" onclick="toggleEdu('Melanina', 'rich melanin, deep warm skin', 'melanina rica')">🏾 Melanina</button>
+            <button class="multi" onclick="toggleEdu('Melanina', 'rich melanin, deep warm tones', 'melanina rica')">🏾 Melanina</button>
             <button class="multi" onclick="toggleEdu('Piel Canela', 'sun-kissed cinnamon skin', 'piel canela')">✨ Piel Canela</button>
-            <button class="multi" onclick="toggleEdu('Ojos Miel', 'honey-amber eyes', 'ojos miel')">👁️ Ojos Miel</button>
-            <button class="multi" onclick="toggleEdu('Ojos Verdes', 'emerald green eyes', 'ojos verdes')">💎 Ojos Verdes</button>
-            <button class="multi" onclick="toggleEdu('Pómulos', 'high defined cheekbones', 'pómulos definidos')">🦴 Pómulos</button>
+            <button class="multi" onclick="toggleEdu('Pómulos', 'high prominent cheekbones', 'pómulos definidos')">🦴 Pómulos</button>
             <button class="multi" onclick="toggleEdu('Labios Pro', 'full luscious lips', 'labios carnosos')">👄 Labios Pro</button>
-            <button class="multi" onclick="toggleEdu('Mandíbula', 'sharp defined jawline', 'mandíbula pro')">📐 Mandíbula</button>
-            <button class="multi" onclick="toggleEdu('Pelo Afro', '4C kinky hair texture', 'pelo afro 4C')">👩🏾‍🦱 Pelo Afro</button>
+            <button class="multi" onclick="toggleEdu('Ojos Miel', 'honey-amber eyes', 'ojos miel')">👁️ Ojos Miel</button>
         </div>
     </div>
 
@@ -132,7 +128,7 @@
             </div>
             <div class="box">
                 <div class="title-lang">🇺🇸 <b>Inglés</b> | Master AI Prompt</div>
-                <textarea id="out-en" readonly placeholder="Master command..."></textarea>
+                <textarea id="out-en" readonly placeholder="Comando maestro..."></textarea>
             </div>
         </div>
         <div class="panel-actions">
@@ -143,18 +139,13 @@
 
     <script>
         let data = { subj:{en:"", es:""}, edu:[] };
-
-        function setSubject(name, en, es) { 
-            data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); 
-        }
-
-        function toggleEdu(name, en, es) {
+        function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
+        function toggleEdu(n, en, es) {
             const i = data.edu.findIndex(f => f.en === en);
             if (i > -1) { data.edu.splice(i, 1); event.target.classList.remove('active'); }
             else { data.edu.push({en, es}); event.target.classList.add('active'); }
             update();
         }
-
         function update() {
             let enP = [], esP = [];
             if (data.subj.en) { enP.push(data.subj.en); esP.push(data.subj.es); }
@@ -164,20 +155,17 @@
             }
             if (enP.length > 0) {
                 document.getElementById('out-en').value = enP.join(', ') + ", photorealistic, ultra-detailed, 8k --v 6.1";
-                document.getElementById('out-es').value = esP.join(', ') + ". Calidad de imagen superior.";
+                document.getElementById('out-es').value = esP.join(', ') + ".";
             }
         }
-
         function highlight(t, id) { 
             document.getElementById(id).querySelectorAll('button:not(.multi)').forEach(b => b.classList.remove('active')); 
             t.classList.add('active'); 
         }
-
         function resetAll() { location.reload(); }
-
         function copyPrompt() { 
             let e = document.getElementById("out-en"); 
-            if (e.value) { e.select(); document.execCommand("copy"); alert("✅ ¡Copiado con éxito!"); } 
+            if (e.value) { e.select(); document.execCommand("copy"); alert("✅ ¡Prompt copiado con éxito!"); } 
         }
     </script>
 </body>

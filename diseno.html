@@ -1,172 +1,73 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laritza | Academia de Prompt Engineering</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:italic,wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-green: #00ff41; --neon-blue: #00f3ff; --neon-pink: #ff00ff;
-            --neon-yellow: #ffcc00; --bg-dark: #050505; --card-bg: #111111;
-        }
-        body { 
-            background-color: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; 
-            margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; 
-            padding-bottom: 380px; 
-        }
-        
-        /* TÍTULO EDUCATIVO EVOLUCIONADO */
-        .main-header { text-align: center; margin-bottom: 40px; }
-        .main-header h1 { 
-            color: var(--neon-green); text-transform: uppercase; letter-spacing: 5px; 
-            margin: 0; text-shadow: 0 0 10px var(--neon-green); 
-            font-family: 'Playfair Display', serif; font-size: 2.2em; font-style: italic;
-        }
-        .main-header p { 
-            color: #888; font-size: 0.85em; letter-spacing: 3px; text-transform: uppercase; 
-            margin-top: 5px; border-top: 1px solid #333; padding-top: 10px;
-        }
+<style>
+    /* --- EVOLUCIÓN DE COLORES PREMIUM --- */
+    :root {
+        --neon-green: #00ff41; 
+        --neon-blue: #00f3ff; 
+        --text-chrome: #E0E0E0; /* Plata Metálico para ARBELO */
+        --text-dark-gray: #555; /* Gris Profundo para el tagline */
+        --bg-dark: #050505; 
+        --card-bg: #111111;
+    }
 
-        .module { 
-            background: var(--card-bg); border-left: 4px solid var(--neon-green); 
-            padding: 20px; margin: 15px 0; width: 95%; max-width: 1100px; 
-            border-radius: 0 15px 15px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        h3 { font-size: 0.85em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; color: #fff; letter-spacing: 2px; }
+    body { 
+        background-color: var(--bg-dark); 
+        color: var(--text-chrome); /* Texto base en Plata sutil */
+        font-family: 'Inter', sans-serif; 
+        margin: 0; padding: 20px; 
+        display: flex; flex-direction: column; align-items: center; 
+        padding-bottom: 400px; 
+    }
+    
+    /* ENCABEZADO COMERCIAL DE ALTA JERARQUÍA (REDISEÑADO) */
+    .main-header { 
+        text-align: center; margin-bottom: 60px; width: 100%; max-width: 1100px; 
+        border-bottom: 1px solid #1a1a1a; padding-bottom: 20px;
+    }
+    
+    .main-header h1 { 
+        letter-spacing: 10px; font-weight: 800; 
+        color: var(--text-chrome); /* Plata Chrome */
+        margin: 0; font-size: 2.8em; text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Profundidad 3D */
+    }
+    
+    .main-header h1 span { 
+        color: var(--neon-green); 
+        /* Brillo láser profundo para DIGITAL */
+        text-shadow: 0 0 15px rgba(0, 255, 65, 0.6), 0 0 30px rgba(0, 255, 65, 0.3);
+    }
+    
+    .product-badge { 
+        margin-top: 20px; 
+        border: 1px solid rgba(0, 243, 255, 0.3); /* Borde Azul Glaciar sutil */
+        background: rgba(0,0,0,0.5);
+        display: inline-block; padding: 10px 35px; border-radius: 50px;
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    }
+    
+    .product-badge span { 
+        color: var(--neon-blue); /* Azul Glaciar técnico */
+        font-size: 0.95em; letter-spacing: 6px; font-weight: 700; 
+        text-transform: uppercase; text-shadow: 0 0 8px var(--neon-blue);
+    }
 
-        .capsula-edu { 
-            background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.2); 
-            padding: 12px; border-radius: 8px; margin-bottom: 15px; 
-        }
-        .capsula-edu span { font-size: 0.72em; color: var(--neon-blue); font-style: italic; line-height: 1.5; }
+    /* EL TAGLINE EN INGLÉS: ELEGANTE Y PROFESIONAL */
+    .tagline { 
+        color: #777; /* Gris Ejecutivo para no competir */
+        font-size: 0.82em; letter-spacing: 3px; text-transform: uppercase; 
+        margin-top: 25px; 
+        font-family: 'Inter', sans-serif; font-weight: 400; /* Letra bien 'bien', moderna */
+        opacity: 0.8;
+    }
+</style>
 
-        .grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); 
-            gap: 12px; margin-top: 10px; max-height: 250px; overflow-y: auto; 
-            padding: 10px; background: rgba(0,0,0,0.2); border-radius: 8px;
-        }
-        .grid::-webkit-scrollbar { width: 5px; }
-        .grid::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 10px; }
-
-        button { 
-            background: linear-gradient(145deg, #1a1a1a, #0d0d0d); 
-            border: 1px solid #333; color: #888; padding: 12px; border-radius: 8px;
-            cursor: pointer; font-size: 0.65em; font-weight: bold; transition: all 0.3s ease;
-            box-shadow: 3px 3px 6px rgba(0,0,0,0.6); text-transform: uppercase;
-        }
-        button:hover { border-color: var(--neon-green); color: white; transform: translateY(-2px); }
-        button.active { 
-            background: #000 !important; color: var(--neon-green) !important; 
-            border-color: var(--neon-green) !important; box-shadow: 0 0 15px rgba(0, 255, 65, 0.4) !important;
-            text-shadow: 0 0 5px var(--neon-green);
-        }
-
-        #master-panel { 
-            position: fixed; bottom: 20px; width: 92%; max-width: 900px; 
-            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px);
-            border: 2px solid var(--neon-blue); padding: 20px; border-radius: 25px; 
-            box-shadow: 0 -15px 50px rgba(0,0,0,0.9); z-index: 9999;
-        }
-        .output-stack { display: flex; flex-direction: column; gap: 15px; }
-        .box { display: flex; flex-direction: column; gap: 5px; }
-        .title-lang { font-family: 'Playfair Display', serif; font-size: 0.85em; color: #888; font-style: italic; }
-        
-        textarea { 
-            width: 97%; background: #000; border: 1px solid #222; border-radius: 12px; 
-            padding: 15px; color: #ddd; font-size: 0.88em; resize: none; outline: none; height: 55px;
-        }
-        #out-en { color: var(--neon-blue); font-family: monospace; font-weight: bold; }
-
-        .panel-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
-        .btn-p { padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.72em; transition: 0.3s; }
-        .btn-copy { background: var(--neon-green); color: black; box-shadow: 0 0 15px var(--neon-green); }
-        .btn-del { background: #333; color: #999; }
-    </style>
-</head>
-<body>
-
-    <div class="main-header">
-        <h1>Código Maestro Integral</h1>
-        <p>De Principiante a Experto en Prompt Engineering</p>
+<div class="main-header">
+    <h1>ARBELO <span>DIGITAL</span></h1>
+    
+    <div class="product-badge">
+        <span>PROMPT MASTERMIND ELITE</span>
     </div>
 
-    <div class="module" id="mod-id">
-        <h3>👤 M1: Identidad & Casting Global</h3>
-        <div class="capsula-edu">
-            <span>🎓 <b>Cápsula:</b> La identidad es el origen. Domina el "Casting" para que la IA genere rostros consistentes y con autoridad visual.</span>
-        </div>
-        <div class="grid">
-            <button class="btn-clon" onclick="setSubject('Mi Clon', '[REF FACE]', 'Basado en mi referencia facial única')">👤 MI PROPIO CLON</button>
-            <button onclick="setSubject('Cubana', 'Cuban woman', 'Mujer Cubana')">🇨🇺 Cubana</button>
-            <button onclick="setSubject('Americana', 'American woman', 'Mujer Americana')">🇺🇸 Americana</button>
-            <button onclick="setSubject('Dominicana', 'Dominican woman', 'Mujer Dominicana')">🇩🇴 Dominicana</button>
-            <button onclick="setSubject('Española', 'Spanish woman', 'Mujer Española')">🇪🇸 Española</button>
-            </div>
-    </div>
-
-    <div class="module" id="mod-adn" style="border-left-color: var(--neon-yellow);">
-        <h3>🧬 M2: ADN Étnico (Herencia de Realismo)</h3>
-        <div class="capsula-edu">
-            <span>💡 <b>Mentoría:</b> Los rasgos específicos educan a la IA. La riqueza técnica en el ADN evita los rostros artificiales "tipo filtro".</span>
-        </div>
-        <div class="grid">
-            <button class="multi" onclick="toggleEdu('Melanina', 'rich melanin, deep warm tones', 'melanina rica')">🏾 Melanina</button>
-            <button class="multi" onclick="toggleEdu('Piel Canela', 'sun-kissed cinnamon skin', 'piel canela')">✨ Piel Canela</button>
-            <button class="multi" onclick="toggleEdu('Pómulos', 'high prominent cheekbones', 'pómulos definidos')">🦴 Pómulos</button>
-            <button class="multi" onclick="toggleEdu('Labios Pro', 'full luscious lips', 'labios carnosos')">👄 Labios Pro</button>
-            <button class="multi" onclick="toggleEdu('Ojos Miel', 'honey-amber eyes', 'ojos miel')">👁️ Ojos Miel</button>
-        </div>
-    </div>
-
-    <div id="master-panel">
-        <div class="output-stack">
-            <div class="box">
-                <div class="title-lang">🇪🇸 <b>Español</b> | Concepto Educativo</div>
-                <textarea id="out-es" readonly placeholder="Traducción visual..."></textarea>
-            </div>
-            <div class="box">
-                <div class="title-lang">🇺🇸 <b>Inglés</b> | Master AI Prompt</div>
-                <textarea id="out-en" readonly placeholder="Comando maestro..."></textarea>
-            </div>
-        </div>
-        <div class="panel-actions">
-            <button class="btn-p btn-del" onclick="resetAll()">🗑️ Limpiar</button>
-            <button class="btn-p btn-copy" onclick="copyPrompt()">📋 Copiar Prompt</button>
-        </div>
-    </div>
-
-    <script>
-        let data = { subj:{en:"", es:""}, edu:[] };
-        function setSubject(name, en, es) { data.subj = {en, es}; update(); highlight(event.target, 'mod-id'); }
-        function toggleEdu(n, en, es) {
-            const i = data.edu.findIndex(f => f.en === en);
-            if (i > -1) { data.edu.splice(i, 1); event.target.classList.remove('active'); }
-            else { data.edu.push({en, es}); event.target.classList.add('active'); }
-            update();
-        }
-        function update() {
-            let enP = [], esP = [];
-            if (data.subj.en) { enP.push(data.subj.en); esP.push(data.subj.es); }
-            if (data.edu.length > 0) {
-                enP.push("with " + data.edu.map(e => e.en).join(', '));
-                esP.push("con " + data.edu.map(e => e.es).join(', '));
-            }
-            if (enP.length > 0) {
-                document.getElementById('out-en').value = enP.join(', ') + ", photorealistic, ultra-detailed, 8k --v 6.1";
-                document.getElementById('out-es').value = esP.join(', ') + ".";
-            }
-        }
-        function highlight(t, id) { 
-            document.getElementById(id).querySelectorAll('button:not(.multi)').forEach(b => b.classList.remove('active')); 
-            t.classList.add('active'); 
-        }
-        function resetAll() { location.reload(); }
-        function copyPrompt() { 
-            let e = document.getElementById("out-en"); 
-            if (e.value) { e.select(); document.execCommand("copy"); alert("✅ ¡Prompt copiado con éxito!"); } 
-        }
-    </script>
-</body>
-</html>
+    <p class="tagline">From Beginner to Expert in Prompt Engineering & Generative AI Visual Arts</p>
+</div>

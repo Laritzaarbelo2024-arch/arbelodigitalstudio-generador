@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,76 +9,96 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-green: #00ff41; --neon-blue: #00f3ff; --neon-yellow: #ffcc00;
-            --chrome: #E0E0E0; --bg-dark: #050505; --card-bg: #111111;
+            --neon-green: #00ff41; --neon-blue: #00f3ff; --chrome: #E0E0E0;
+            --bg-dark: #050505; --card-bg: #111111;
         }
+        
+        /* ESCALA COMPACTA PROFESIONAL */
+        html { font-size: 13.5px; } 
+
         body { 
             background-color: var(--bg-dark); color: var(--chrome); 
-            font-family: 'Inter', sans-serif; margin: 0; padding: 20px;
-            display: flex; flex-direction: column; align-items: center; padding-bottom: 550px; 
+            font-family: 'Inter', sans-serif; margin: 0; padding: 15px;
+            display: flex; flex-direction: column; align-items: center; padding-bottom: 400px; 
         }
         
-        /* HEADER DE ALTA JERARQUÍA */
-        .hero-section { text-align: center; margin-bottom: 60px; width: 100%; max-width: 1100px; }
-        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3.8em; margin: 0; color: #ffffff; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        /* HEADER */
+        .hero-section { text-align: center; margin-bottom: 35px; width: 100%; max-width: 950px; }
+        .hero-section h1 { 
+            font-family: 'Playfair Display', serif; font-size: 3em; margin: 0;
+            color: #fff; letter-spacing: -1px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
         .hero-section h1 span { color: var(--neon-green); font-style: italic; text-shadow: 0 0 25px rgba(0,255,65,0.6); }
-        .tagline { color: #ffffff; font-size: 0.85em; letter-spacing: 4px; text-transform: uppercase; margin-top: 25px; font-weight: 800; border-top: 1px solid #333; display: inline-block; padding-top: 15px; opacity: 0.9; }
+        .tagline { 
+            color: #888; font-size: 0.8em; letter-spacing: 4px; text-transform: uppercase; 
+            margin-top: 20px; font-weight: 700; border-top: 1px solid #222; display: inline-block; padding-top: 15px; 
+        }
 
-        /* MÓDULOS UNIVERSALES */
-        .module { background: var(--card-bg); border-left: 5px solid var(--neon-green); padding: 35px; margin: 25px 0; width: 95%; max-width: 1100px; border-radius: 0 15px 15px 0; box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
+        /* MÓDULOS */
+        .module { 
+            background: var(--card-bg); border-left: 5px solid var(--neon-green); 
+            padding: 25px; margin: 20px 0; width: 95%; max-width: 950px; 
+            border-radius: 0 12px 12px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.8); 
+        }
         
-        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 30px; }
-        .mod-header h3 { font-size: 1.1em; text-transform: uppercase; margin: 0; color: #ffffff; letter-spacing: 2px; font-weight: 800; }
+        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
+        .mod-header h3 { font-size: 0.95em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
 
-        /* SELLO BILINGÜE JERARQUIZADO */
+        /* SELLO BILINGUAL CON ICONO RESALTADO */
         .bilingual-badge {
             background: rgba(0, 243, 255, 0.1); border: 2px solid var(--neon-blue); color: var(--neon-blue);
-            padding: 10px 22px; border-radius: 6px; font-size: 0.75em; font-weight: 900; letter-spacing: 3px;
-            text-transform: uppercase; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); display: flex; align-items: center; gap: 12px;
+            padding: 6px 14px; border-radius: 4px; font-size: 0.65em; font-weight: 900; letter-spacing: 2px;
+            text-transform: uppercase; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); display: flex; align-items: center; gap: 10px;
+        }
+        .bilingual-badge span { 
+            font-size: 1.4em; 
+            color: var(--neon-blue); 
+            filter: drop-shadow(0 0 8px var(--neon-blue)); /* Efecto de brillo intenso */
         }
 
-        /* CÁPSULA EDUCATIVA DUAL ESPEJO */
-        .capsula-edu { background: rgba(0, 243, 255, 0.08); border: 1px solid rgba(0, 243, 255, 0.5); padding: 25px; border-radius: 12px; margin-bottom: 35px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .edu-col { font-size: 0.85em; line-height: 1.7; color: #ffffff; font-style: italic; }
-        .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 10px; font-size: 1.1em; text-shadow: 0 0 12px rgba(0,255,65,0.5); letter-spacing: 1px; }
+        /* CÁPSULA EDUCATIVA */
+        .capsula-edu { 
+            background: rgba(0, 243, 255, 0.06); border: 1px solid rgba(0, 243, 255, 0.4); 
+            padding: 18px; border-radius: 12px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
+        }
+        .edu-col { font-size: 0.78em; line-height: 1.6; color: #eee; font-style: italic; }
+        .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 6px; font-size: 1.1em; text-shadow: 0 0 10px rgba(0,255,65,0.4); }
 
-        /* BOTONES DUALES CON RELIEVE 3D */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        /* BOTONES 3D */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
         button { 
-            background: linear-gradient(145deg, #252525, #050505) !important;
-            border: 1px solid #333 !important; padding: 22px !important; border-radius: 12px !important; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; display: flex; flex-direction: column; align-items: center; gap: 10px;
-            box-shadow: 6px 6px 15px rgba(0,0,0,0.9) !important;
+            background: linear-gradient(145deg, #222, #050505) !important;
+            border: 1px solid #333 !important; padding: 18px !important; border-radius: 10px !important; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; display: flex; flex-direction: column; align-items: center; gap: 6px;
+            box-shadow: 5px 5px 12px rgba(0,0,0,0.9) !important;
         }
-        button .es-label { color: #ffffff; font-size: 0.9em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        button .en-label { color: #666666; font-size: 0.7em; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; font-style: italic; }
+        button .es-label { color: #fff; font-size: 0.82em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        button .en-label { color: #666; font-size: 0.68em; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; font-style: italic; }
         
-        button:hover { border-color: var(--neon-green) !important; transform: translateY(-5px) !important; box-shadow: 8px 8px 25px rgba(0,0,0,1) !important; }
-        button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 30px rgba(0, 255, 65, 0.6) !important; }
+        button:hover { border-color: var(--neon-green) !important; transform: translateY(-4px) !important; }
+        button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 20px rgba(0, 255, 65, 0.5) !important; }
         button.active .es-label { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
-        button.active .en-label { color: #aaaaaa; }
 
-        /* DASHBOARD FINAL TÉCNICO */
-        #master-panel { position: fixed; bottom: 20px; width: 94%; max-width: 1000px; background: rgba(10, 10, 10, 0.99); backdrop-filter: blur(35px); border: 2px solid var(--neon-blue); padding: 30px; border-radius: 35px; box-shadow: 0 -25px 80px rgba(0,0,0,1); z-index: 9999; }
+        /* DASHBOARD FINAL */
+        #master-panel { 
+            position: fixed; bottom: 20px; width: 92%; max-width: 950px; 
+            background: rgba(10, 10, 10, 0.99); backdrop-filter: blur(30px); border: 2px solid var(--neon-blue); 
+            padding: 25px; border-radius: 25px; box-shadow: 0 -20px 70px rgba(0,0,0,1); z-index: 9999; 
+        }
         
-        .box-title { display: flex; align-items: center; gap: 12px; font-size: 0.9em; color: #ffffff; margin-bottom: 12px; font-weight: 800; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
-        .box-title .flag { font-size: 1.4em; }
-
-        textarea { width: 97%; background: rgba(0,0,0,0.85); border: 1px solid #333; border-radius: 15px; padding: 20px; color: #ffffff; font-size: 1.05em; resize: none; outline: none; height: 60px; margin-bottom: 20px; border-left: 4px solid #444; }
-        #out-en { color: var(--neon-blue); font-weight: bold; border-left-color: var(--neon-blue); text-shadow: 0 0 10px rgba(0,243,255,0.4); font-family: 'Courier New', monospace; }
+        .box-title { display: flex; align-items: center; gap: 10px; font-size: 0.85em; color: #fff; margin-bottom: 8px; font-weight: 800; }
+        textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; color: #fff; font-size: 0.95em; resize: none; outline: none; height: 50px; margin-bottom: 12px; }
+        #out-en { color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 8px rgba(0,243,255,0.3); }
         
-        /* BOTONES DE ACCIÓN: COPIAR Y ELIMINAR */
-        .btn-actions { display: flex; justify-content: flex-end; gap: 20px; margin-top: 10px; border-top: 1px solid #222; padding-top: 25px; }
-        .btn-p { padding: 18px 45px; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.85em; text-transform: uppercase; transition: 0.4s; letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
+        /* ACCIONES FINALES */
+        .btn-actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
+        .btn-p { padding: 14px 35px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 0.75em; text-transform: uppercase; transition: 0.4s; }
         
-        .btn-del { background: #1a1a1a; color: #ff4b4b; border: 1px solid #444; }
-        .btn-del:hover { background: #330000; border-color: #ff4b4b; transform: scale(1.02); }
-
         .btn-copy { 
             background: var(--neon-green) !important; color: #000 !important; border: none !important; 
-            box-shadow: 0 0 35px var(--neon-green) !important;
+            box-shadow: 0 0 30px var(--neon-green) !important; display: flex; align-items: center; gap: 8px;
         }
-        .btn-copy:hover { transform: scale(1.05); box-shadow: 0 0 45px var(--neon-green) !important; }
+        .btn-del { background: #1a1a1a; color: #ff4b4b; border: 1px solid #333; display: flex; align-items: center; gap: 8px; }
     </style>
 </head>
 <body>
@@ -91,18 +112,18 @@
         <div class="mod-header">
             <h3>👤 M1: Identidad & Casting / Identity & Casting</h3>
             <div class="bilingual-badge">
-                <span>⚡</span> BILINGUAL INTERFACE <span>ELITE</span>
+                <span>🌐</span> BILINGUAL INTERFACE <span>ELITE</span>
             </div>
         </div>
         
         <div class="capsula-edu">
             <div class="edu-col">
                 <b>👉 QUÉ HACE:</b> Define el ADN base del sujeto.<br>
-                <i>RESULTADO: Consistencia facial absoluta en cada frame.</i>
+                <i>RESULTADO: Consistencia facial absoluta.</i>
             </div>
             <div class="edu-col">
-                <b>👉 WHAT IT DOES:</b> Defines the subject's base DNA.<br>
-                <i>IMPACT: Absolute facial consistency across all frames.</i>
+                <b>👉 WHAT IT DOES:</b> Defines subject's base DNA.<br>
+                <i>IMPACT: Absolute facial consistency.</i>
             </div>
         </div>
 
@@ -115,73 +136,42 @@
                 <span class="es-label">🇺🇸 Americana</span>
                 <span class="en-label">American Woman</span>
             </button>
-            <button onclick="setSub('Española', 'Spanish woman', 'Mujer Española')">
-                <span class="es-label">🇪🇸 Española</span>
-                <span class="en-label">Spanish Woman</span>
-            </button>
         </div>
     </div>
 
     <div id="master-panel">
-        <div style="margin-bottom: 20px; font-size: 0.85em; color: #555; letter-spacing: 5px; font-weight: 900; text-transform: uppercase;">Engine Output | Arbelo Digital System</div>
+        <div style="margin-bottom: 15px; font-size: 0.75em; color: #555; letter-spacing: 4px; font-weight: 900; text-transform: uppercase;">Engine Output | Arbelo Digital System</div>
         
-        <div class="box-title">
-            <span class="flag">🇪🇸</span> Concepto Visual Educativo / Educational Concept
-        </div>
-        <textarea id="out-es" readonly placeholder="Esperando selección de parámetros..."></textarea>
+        <div class="box-title"><span>🇪🇸</span> Concepto Visual Educativo</div>
+        <textarea id="out-es" readonly placeholder="Esperando..."></textarea>
         
-        <div class="box-title" style="color: var(--neon-blue);">
-            <span class="flag">🇺🇸</span> Master Prompt (AI Engine Input)
-        </div>
-        <textarea id="out-en" readonly placeholder="Waiting for parameter selection..."></textarea>
+        <div class="box-title" style="color: var(--neon-blue);"><span>🇺🇸</span> Master Prompt (AI Output)</div>
+        <textarea id="out-en" readonly placeholder="Waiting..."></textarea>
         
         <div class="btn-actions">
-            <button class="btn-p btn-del" onclick="resetAll()">
-                <span>🗑️</span> LIMPIAR / CLEAR
-            </button>
-            <button class="btn-p btn-copy" onclick="copyPrompt()">
-                <span>📋</span> COPIAR PROMPT MAESTRO
-            </button>
+            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR / CLEAR</button>
+            <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT MAESTRO</button>
         </div>
     </div>
 
     <script>
         let data = { s:{en:"", es:""} };
-
-        function setSub(n, en, es) { 
-            data.s = {en, es}; 
-            update(); 
-            highlight(event.target, 'mod-id'); 
-        }
-
+        function setSub(n, en, es) { data.s = {en, es}; update(); highlight(event.target, 'mod-id'); }
         function update() {
             if (data.s.en) {
-                document.getElementById('out-en').value = data.s.en + ", photorealistic, cinematic shot, hyper-detailed, 8k --v 6.1";
-                document.getElementById('out-es').value = data.s.es + ". Calidad fotográfica profesional.";
+                document.getElementById('out-en').value = data.s.en + ", photorealistic, cinematic lighting, 8k --v 6.1";
+                document.getElementById('out-es').value = data.s.es + ".";
             }
         }
-
         function highlight(t, id) { 
             let b = t.closest('button');
             document.getElementById(id).querySelectorAll('button').forEach(btn => btn.classList.remove('active')); 
             b.classList.add('active'); 
         }
-
-        function resetAll() { 
-            if(confirm("¿Limpiar todo el proyecto? / Clear entire project?")) {
-                location.reload(); 
-            }
-        }
-
+        function resetAll() { location.reload(); }
         function copyPrompt() { 
             let e = document.getElementById("out-en"); 
-            if(e.value) { 
-                e.select(); 
-                document.execCommand("copy"); 
-                alert("✅ PROMPT MAESTRO COPIADO / MASTER PROMPT COPIED"); 
-            } else {
-                alert("❌ Selecciona parámetros primero / Select parameters first");
-            }
+            if(e.value) { e.select(); document.execCommand("copy"); alert("✅ COPIADO"); } 
         }
     </script>
 </body>

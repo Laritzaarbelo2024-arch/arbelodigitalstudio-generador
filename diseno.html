@@ -11,84 +11,44 @@
             --neon-green: #00ff41; --neon-blue: #00f3ff; --chrome: #E0E0E0;
             --bg-dark: #050505; --card-bg: #111111;
         }
+        html { font-size: 13.2px; } 
+        body { background-color: var(--bg-dark); color: var(--chrome); font-family: 'Inter', sans-serif; margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; padding-bottom: 500px; }
         
-        html { font-size: 13.5px; } 
-
-        body { 
-            background-color: var(--bg-dark); color: var(--chrome); 
-            font-family: 'Inter', sans-serif; margin: 0; padding: 15px;
-            display: flex; flex-direction: column; align-items: center; padding-bottom: 400px; 
-        }
-        
-        .hero-section { text-align: center; margin-bottom: 35px; width: 100%; max-width: 950px; }
-        .hero-section h1 { 
-            font-family: 'Playfair Display', serif; font-size: 3em; margin: 0;
-            color: #fff; letter-spacing: -1px; text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
+        /* HEADER */
+        .hero-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 1000px; }
+        .hero-section h1 { font-family: 'Playfair Display', serif; font-size: 3.2em; margin: 0; color: #fff; letter-spacing: -1px; }
         .hero-section h1 span { color: var(--neon-green); font-style: italic; text-shadow: 0 0 25px rgba(0,255,65,0.6); }
-        .tagline { 
-            color: #888; font-size: 0.8em; letter-spacing: 4px; text-transform: uppercase; 
-            margin-top: 20px; font-weight: 700; border-top: 1px solid #222; display: inline-block; padding-top: 15px; 
-        }
+        .tagline { color: #888; font-size: 0.8em; letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; font-weight: 700; border-top: 1px solid #222; display: inline-block; padding-top: 10px; }
 
-        .module { 
-            background: var(--card-bg); border-left: 5px solid var(--neon-green); 
-            padding: 25px; margin: 20px 0; width: 95%; max-width: 950px; 
-            border-radius: 0 12px 12px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.8); 
-        }
+        /* MÓDULOS */
+        .module { background: var(--card-bg); border-left: 5px solid var(--neon-green); padding: 20px; margin: 15px 0; width: 95%; max-width: 1000px; border-radius: 0 12px 12px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 12px; margin-bottom: 15px; }
+        .mod-header h3 { font-size: 0.9em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
+
+        .bilingual-badge { background: rgba(0, 243, 255, 0.1); border: 1.5px solid var(--neon-blue); color: var(--neon-blue); padding: 5px 12px; border-radius: 4px; font-size: 0.6em; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+        .bilingual-badge span { font-size: 1.3em; filter: drop-shadow(0 0 5px var(--neon-blue)); }
+
+        .capsula-edu { background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.3); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .edu-col { font-size: 0.75em; line-height: 1.5; color: #ddd; font-style: italic; }
+        .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 5px; font-size: 1.1em; text-shadow: 0 0 8px rgba(0,255,65,0.4); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+        button { background: linear-gradient(145deg, #222, #050505) !important; border: 1px solid #333 !important; padding: 15px !important; border-radius: 8px !important; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 5px; box-shadow: 4px 4px 10px rgba(0,0,0,0.9) !important; }
+        button .es-label { color: #fff; font-size: 0.75em; font-weight: 800; text-transform: uppercase; text-align: center; }
+        button .en-label { color: #555; font-size: 0.6em; font-weight: 400; text-transform: uppercase; font-style: italic; text-align: center; }
         
-        .mod-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
-        .mod-header h3 { font-size: 0.95em; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: 2px; }
-
-        .bilingual-badge {
-            background: rgba(0, 243, 255, 0.1); border: 2px solid var(--neon-blue); color: var(--neon-blue);
-            padding: 6px 14px; border-radius: 4px; font-size: 0.65em; font-weight: 900; letter-spacing: 2px;
-            text-transform: uppercase; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); display: flex; align-items: center; gap: 10px;
-        }
-        .bilingual-badge span { 
-            font-size: 1.4em; 
-            color: var(--neon-blue); 
-            filter: drop-shadow(0 0 8px var(--neon-blue));
-        }
-
-        .capsula-edu { 
-            background: rgba(0, 243, 255, 0.06); border: 1px solid rgba(0, 243, 255, 0.4); 
-            padding: 18px; border-radius: 12px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
-        }
-        .edu-col { font-size: 0.78em; line-height: 1.6; color: #eee; font-style: italic; }
-        .edu-col b { color: var(--neon-green); text-transform: uppercase; font-style: normal; display: block; margin-bottom: 6px; font-size: 1.1em; text-shadow: 0 0 10px rgba(0,255,65,0.4); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-        button { 
-            background: linear-gradient(145deg, #222, #050505) !important;
-            border: 1px solid #333 !important; padding: 18px !important; border-radius: 10px !important; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; display: flex; flex-direction: column; align-items: center; gap: 6px;
-            box-shadow: 5px 5px 12px rgba(0,0,0,0.9) !important;
-        }
-        button .es-label { color: #fff; font-size: 0.82em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        button .en-label { color: #666; font-size: 0.68em; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; font-style: italic; }
-        
-        button:hover { border-color: var(--neon-green) !important; transform: translateY(-4px) !important; }
+        button:hover { border-color: var(--neon-green) !important; transform: translateY(-3px) !important; }
         button.active { background: #000 !important; border-color: var(--neon-green) !important; box-shadow: 0 0 20px rgba(0, 255, 65, 0.5) !important; }
-        button.active .es-label { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+        button.active .es-label { color: var(--neon-green); text-shadow: 0 0 8px var(--neon-green); }
 
-        #master-panel { 
-            position: fixed; bottom: 20px; width: 92%; max-width: 950px; 
-            background: rgba(10, 10, 10, 0.99); backdrop-filter: blur(30px); border: 2px solid var(--neon-blue); 
-            padding: 25px; border-radius: 25px; box-shadow: 0 -20px 70px rgba(0,0,0,1); z-index: 9999; 
-        }
-        
-        .box-title { display: flex; align-items: center; gap: 10px; font-size: 0.85em; color: #fff; margin-bottom: 8px; font-weight: 800; }
-        textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #333; border-radius: 12px; padding: 15px; color: #fff; font-size: 0.95em; resize: none; outline: none; height: 50px; margin-bottom: 12px; }
-        #out-en { color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 8px rgba(0,243,255,0.3); }
-        
-        .btn-actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; border-top: 1px solid #222; padding-top: 15px; }
-        .btn-p { padding: 14px 35px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 0.75em; text-transform: uppercase; transition: 0.4s; }
-        
-        .btn-copy { 
-            background: var(--neon-green) !important; color: #000 !important; border: none !important; 
-            box-shadow: 0 0 30px var(--neon-green) !important; display: flex; align-items: center; gap: 8px;
-        }
+        /* DASHBOARD */
+        #master-panel { position: fixed; bottom: 15px; width: 92%; max-width: 950px; background: rgba(10, 10, 10, 0.99); backdrop-filter: blur(25px); border: 2px solid var(--neon-blue); padding: 20px; border-radius: 25px; box-shadow: 0 -15px 60px rgba(0,0,0,1); z-index: 9999; }
+        .box-title { display: flex; align-items: center; gap: 8px; font-size: 0.8em; color: #fff; margin-bottom: 5px; font-weight: 800; }
+        textarea { width: 97%; background: rgba(0,0,0,0.8); border: 1px solid #222; border-radius: 12px; padding: 12px; color: #fff; font-size: 0.9em; resize: none; outline: none; height: 45px; margin-bottom: 10px; }
+        #out-en { color: var(--neon-blue); font-weight: bold; text-shadow: 0 0 5px rgba(0,243,255,0.3); }
+        .btn-actions { display: flex; justify-content: flex-end; gap: 15px; border-top: 1px solid #222; padding-top: 12px; }
+        .btn-p { padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 0.75em; text-transform: uppercase; }
+        .btn-copy { background: var(--neon-green) !important; color: #000 !important; border: none !important; box-shadow: 0 0 25px var(--neon-green) !important; display: flex; align-items: center; gap: 8px; }
         .btn-del { background: #1a1a1a; color: #ff4b4b; border: 1px solid #333; display: flex; align-items: center; gap: 8px; }
     </style>
 </head>
@@ -96,74 +56,94 @@
 
     <section class="hero-section">
         <h1>ARBELO <span>DIGITAL</span></h1>
-        <p class="tagline">From Beginner to Expert in Prompt Engineering & Generative AI Visual Arts</p>
+        <p class="tagline">Prompt Mastermind Elite | Engineering Visual Excellence</p>
     </section>
 
-    <div class="module" id="mod-id">
-        <div class="mod-header">
-            <h3>👤 M1: Identidad & Casting / Identity & Casting</h3>
-            <div class="bilingual-badge">
-                <span>🌐</span> BILINGUAL INTERFACE <span>ELITE</span>
-            </div>
-        </div>
-        
-        <div class="capsula-edu">
-            <div class="edu-col">
-                <b>👉 QUÉ HACE:</b> Define el ADN base del sujeto.<br>
-                <i>RESULTADO: Consistencia facial absoluta.</i>
-            </div>
-            <div class="edu-col">
-                <b>👉 WHAT IT DOES:</b> Defines subject's base DNA.<br>
-                <i>IMPACT: Absolute facial consistency.</i>
-            </div>
-        </div>
-
+    <div class="module" id="m1">
+        <div class="mod-header"><h3>👤 M1: Identidad / Identity</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="capsula-edu"><div class="edu-col"><b>👉 Qué hace:</b> Fija el ADN base.<br><i>Resultado: Consistencia absoluta.</i></div><div class="edu-col"><b>👉 What it does:</b> Sets base DNA.<br><i>Impact: Total consistency.</i></div></div>
         <div class="grid">
-            <button onclick="setSub('Cubana', 'Cuban woman', 'Mujer Cubana')">
-                <span class="es-label">🇨🇺 Cubana</span>
-                <span class="en-label">Cuban Woman</span>
-            </button>
-            <button onclick="setSub('Americana', 'American woman', 'Mujer Americana')">
-                <span class="es-label">🇺🇸 Americana</span>
-                <span class="en-label">American Woman</span>
-            </button>
+            <button onclick="setVal('id', 'Clon', '[REF FACE]', 'Basado en mi clon facial', 'm1')"><span class="es-label">👤 MI CLON</span><span class="en-label">My Clone</span></button>
+            <button onclick="setVal('id', 'Cubana', 'Cuban woman', 'Mujer Cubana', 'm1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">Cuban Woman</span></button>
+            <button onclick="setVal('id', 'Latina', 'Latina woman', 'Mujer Latina', 'm1')"><span class="es-label">💃 LATINA</span><span class="en-label">Latina Woman</span></button>
+            <button onclick="setVal('id', 'Americana', 'American woman', 'Mujer Americana', 'm1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">American Woman</span></button>
+        </div>
+    </div>
+
+    <div class="module" id="m2">
+        <div class="mod-header"><h3>🧬 M2: ADN de Piel / Skin DNA</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid">
+            <button onclick="setVal('skin', 'Poros HD', 'extreme close-up skin pores', 'poros de piel extremos', 'm2')"><span class="es-label">✨ POROS HD</span><span class="en-label">HD Pores</span></button>
+            <button onclick="setVal('skin', 'Melanina', 'rich melanin complexion', 'complexión rica en melanina', 'm2')"><span class="es-label">🏾 MELANINA</span><span class="en-label">Rich Melanin</span></button>
+            <button onclick="setVal('skin', 'Piel Canela', 'warm cinnamon skin', 'piel canela cálida', 'm2')"><span class="es-label">🍯 CANELA</span><span class="en-label">Cinnamon</span></button>
+            <button onclick="setVal('skin', 'Pecat', 'subtle freckles', 'pecas sutiles', 'm2')"><span class="es-label">☀ PECAS</span><span class="en-label">Freckles</span></button>
+        </div>
+    </div>
+
+    <div class="module" id="m3">
+        <div class="mod-header"><h3>🧘 M3: Pose & Ángulo / Pose & Angle</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid">
+            <button onclick="setVal('pose', 'Mirada', 'looking at camera', 'mirando a cámara', 'm3')"><span class="es-label">👁 MIRADA</span><span class="en-label">Eye Contact</span></button>
+            <button onclick="setVal('pose', 'Perfil', 'side profile view', 'vista de perfil', 'm3')"><span class="es-label">👤 PERFIL</span><span class="en-label">Profile</span></button>
+            <button onclick="setVal('pose', 'Sentada', 'sitting elegantly', 'sentada elegantemente', 'm3')"><span class="es-label">🪑 SENTADA</span><span class="en-label">Sitting</span></button>
+            <button onclick="setVal('pose', 'Caminando', 'walking naturally', 'caminando natural', 'm3')"><span class="es-label">🚶 CAMINANDO</span><span class="en-label">Walking</span></button>
+        </div>
+    </div>
+
+    <div class="module" id="m4">
+        <div class="mod-header"><h3>💡 M4: Iluminación / Lighting</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid">
+            <button onclick="setVal('light', 'Rim Light', 'rim lighting', 'iluminación de contorno', 'm4')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">Rim Light</span></button>
+            <button onclick="setVal('light', 'Golden Hour', 'golden hour sunlight', 'luz de hora dorada', 'm4')"><span class="es-label">☀️ HORA DORADA</span><span class="en-label">Golden Hour</span></button>
+            <button onclick="setVal('light', 'Neon', 'cyberpunk neon lights', 'luces neón cyberpunk', 'm4')"><span class="es-label">🔵 NEÓN</span><span class="en-label">Neon</span></button>
+            <button onclick="setVal('light', 'Suave', 'soft window light', 'luz de ventana suave', 'm4')"><span class="es-label">🕯 SUAVE</span><span class="en-label">Soft Light</span></button>
+        </div>
+    </div>
+
+    <div class="module" id="m5">
+        <div class="mod-header"><h3>🎥 M5: Cámara / Camera</h3><div class="bilingual-badge"><span>🌐</span> BILINGUAL</div></div>
+        <div class="grid">
+            <button onclick="setVal('cam', '85mm', 'shot on 85mm lens', 'fotografía con lente 85mm', 'm5')"><span class="es-label">📸 LENTE 85MM</span><span class="en-label">85mm Lens</span></button>
+            <button onclick="setVal('cam', '35mm', '35mm wide angle', 'gran angular 35mm', 'm5')"><span class="es-label">🏙 35MM</span><span class="en-label">35mm Wide</span></button>
+            <button onclick="setVal('cam', 'Bokeh', 'depth of field bokeh', 'desenfoque de fondo bokeh', 'm5')"><span class="es-label">✨ BOKEH</span><span class="en-label">Bokeh</span></button>
+            <button onclick="setVal('cam', 'HD', 'ultra-high definition', 'ultra alta definición', 'm5')"><span class="es-label">📺 8K HD</span><span class="en-label">8K Quality</span></button>
         </div>
     </div>
 
     <div id="master-panel">
-        <div style="margin-bottom: 15px; font-size: 0.75em; color: #555; letter-spacing: 4px; font-weight: 900; text-transform: uppercase;">Engine Output | Arbelo Digital System</div>
-        
+        <div style="margin-bottom: 10px; font-size: 0.7em; color: #444; letter-spacing: 3px; font-weight: 800; text-transform: uppercase;">Engine Output | Arbelo Digital System</div>
         <div class="box-title"><span>🇪🇸</span> Concepto Visual Educativo</div>
         <textarea id="out-es" readonly placeholder="Esperando..."></textarea>
-        
         <div class="box-title" style="color: var(--neon-blue);"><span>🇺🇸</span> Master Prompt (AI Output)</div>
         <textarea id="out-en" readonly placeholder="Waiting..."></textarea>
-        
         <div class="btn-actions">
-            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR / CLEAR</button>
-            <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT MAESTRO</button>
+            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR</button>
+            <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT</button>
         </div>
     </div>
 
     <script>
-        let data = { s:{en:"", es:""} };
-        function setSub(n, en, es) { data.s = {en, es}; update(); highlight(event.target, 'mod-id'); }
+        let promptData = { id:null, skin:null, pose:null, light:null, cam:null };
+        function setVal(mod, name, en, es, gridId) { 
+            promptData[mod] = {en, es}; 
+            update(); 
+            highlight(event.target, gridId); 
+        }
         function update() {
-            if (data.s.en) {
-                document.getElementById('out-en').value = data.s.en + ", photorealistic, cinematic lighting, 8k --v 6.1";
-                document.getElementById('out-es').value = data.s.es + ".";
+            let pEN = [], pES = [];
+            Object.values(promptData).forEach(v => { if(v) { pEN.push(v.en); pES.push(v.es); } });
+            if(pEN.length > 0) {
+                document.getElementById('out-en').value = pEN.join(', ') + ", photorealistic, cinematic, 8k --v 6.1";
+                document.getElementById('out-es').value = pES.join(', ') + ". Acabado profesional Arbelo Digital.";
             }
         }
-        function highlight(t, id) { 
+        function highlight(t, gridId) { 
             let b = t.closest('button');
-            document.getElementById(id).querySelectorAll('button').forEach(btn => btn.classList.remove('active')); 
+            document.getElementById(gridId).querySelectorAll('button').forEach(btn => btn.classList.remove('active')); 
             b.classList.add('active'); 
         }
         function resetAll() { location.reload(); }
-        function copyPrompt() { 
-            let e = document.getElementById("out-en"); 
-            if(e.value) { e.select(); document.execCommand("copy"); alert("✅ PROMPT COPIADO"); } 
-        }
+        function copyPrompt() { let e = document.getElementById("out-en"); if(e.value) { e.select(); document.execCommand("copy"); alert("✅ PROMPT COPIADO"); } }
     </script>
 </body>
 </html>

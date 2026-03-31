@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,7 @@
             display:flex;
             flex-direction:column;
             align-items:center;
-            padding-bottom:460px;
+            padding-bottom:470px;
         }
 
         .hero-section{
@@ -175,13 +174,13 @@
         .grid{
             display:grid;
             grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
-            gap:10px;
+            gap:12px;
         }
 
         button.option-btn{
             background:linear-gradient(145deg,#222,#050505) !important;
             border:1px solid #333 !important;
-            padding:14px 12px !important;
+            padding:16px 14px !important;
             border-radius:8px !important;
             cursor:pointer;
             transition:.22s ease;
@@ -189,8 +188,8 @@
             flex-direction:column;
             align-items:center;
             justify-content:center;
-            gap:8px;
-            min-height:84px;
+            gap:10px;
+            min-height:96px;
         }
         button.option-btn:hover{
             border-color:var(--neon-green) !important;
@@ -204,28 +203,28 @@
         }
         .es-label{
             color:#fff;
-            font-size:.85em;
+            font-size:.88em;
             font-weight:900;
             text-transform:uppercase;
             text-align:center;
-            line-height:1.22;
-            letter-spacing:.2px;
-            text-shadow:0 0 8px rgba(255,255,255,.04);
+            line-height:1.24;
+            letter-spacing:.25px;
+            text-shadow:0 0 8px rgba(255,255,255,.05);
         }
         .en-label{
-            color:#d6fbff;
-            font-size:.73em;
-            font-weight:800;
+            color:#e0fcff;
+            font-size:.76em;
+            font-weight:900;
             text-transform:uppercase;
             font-style:italic;
             text-align:center;
-            line-height:1.22;
-            text-shadow:0 0 14px rgba(0,243,255,.16);
+            line-height:1.24;
+            text-shadow:0 0 14px rgba(0,243,255,.18);
             opacity:1;
-            letter-spacing:.2px;
+            letter-spacing:.25px;
         }
         button.option-btn.active .es-label{ color:var(--neon-green); }
-        button.option-btn.active .en-label{ color:#ecffff; }
+        button.option-btn.active .en-label{ color:#f2ffff; }
 
         #master-panel{
             position:fixed;
@@ -264,15 +263,15 @@
             background:rgba(0,0,0,.85);
             border:1px solid #222;
             border-radius:10px;
-            padding:12px 14px;
+            padding:14px 16px;
             color:#fff;
-            font-size:1em;
+            font-size:1.08em;
             resize:none;
             outline:none;
-            min-height:90px;
-            max-height:180px;
+            min-height:102px;
+            max-height:210px;
             font-family:'Inter',sans-serif;
-            line-height:1.6;
+            line-height:1.65;
             overflow:auto;
             transition:border-color .2s;
         }
@@ -354,12 +353,14 @@
             .panel-top{ grid-template-columns:1fr; }
         }
         @media (max-width:768px){
-            body{ padding-bottom:560px; }
+            body{ padding-bottom:590px; }
             .hero-section h1{ font-size:2.35em; }
             .hero-kicker{ font-size:.76em; letter-spacing:3px; }
             .hero-badge{ min-width:auto; width:92%; font-size:.78em; letter-spacing:2px; }
             .grid{ grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); }
             #master-panel{ width:92%; max-width:92%; }
+            button.option-btn{ min-height:102px; }
+            textarea{ font-size:1.04em; min-height:108px; }
         }
     </style>
 </head>
@@ -1074,7 +1075,7 @@
 
     function autoResize(el){
         el.style.height = 'auto';
-        el.style.height = Math.min(el.scrollHeight, 180) + 'px';
+        el.style.height = Math.min(el.scrollHeight, 210) + 'px';
     }
 
     function getValues(data, key, lang){
@@ -1348,7 +1349,7 @@
         ['out-es','out-en'].forEach(id => {
             const el = document.getElementById(id);
             el.value = '';
-            el.style.height = '72px';
+            el.style.height = '102px';
         });
         const note = document.getElementById('smart-note');
         note.style.display = 'none';
@@ -1376,4 +1377,6 @@
 </script>
 </body>
 </html>
+
+
 

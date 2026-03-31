@@ -1,13 +1,12 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arbelo Digital | Prompt Mastermind Elite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
         :root{
             --neon-green:#00ff41;
@@ -18,7 +17,6 @@
         }
 
         *{ box-sizing:border-box; }
-
         html{ font-size:13.2px; scroll-behavior:smooth; }
 
         body{
@@ -30,12 +28,12 @@
             display:flex;
             flex-direction:column;
             align-items:center;
-            padding-bottom:430px;
+            padding-bottom:460px;
         }
 
         .hero-section{
             text-align:center;
-            margin-bottom:28px;
+            margin-bottom:32px;
             width:100%;
             max-width:1100px;
             display:flex;
@@ -43,7 +41,6 @@
             align-items:center;
             gap:12px;
         }
-
         .hero-kicker{
             font-size:0.86em;
             font-weight:800;
@@ -52,7 +49,6 @@
             color:var(--neon-blue);
             text-shadow:0 0 14px rgba(0,243,255,.42);
         }
-
         .hero-section h1{
             font-family:'Playfair Display',serif;
             font-size:3.25em;
@@ -61,17 +57,13 @@
             text-transform:uppercase;
             letter-spacing:1px;
         }
-
         .hero-section h1 .gradient-text{
             background:linear-gradient(90deg,#ff5de7 0%,#cb6dff 20%,#6de6ff 48%,#4ef7ff 67%,#7fff83 84%,#00ff41 100%);
             -webkit-background-clip:text;
             background-clip:text;
             color:transparent;
-            text-shadow:0 0 18px rgba(98,217,255,0.18),0 0 28px rgba(0,255,65,0.15);
         }
-
         .hero-section h1 .digital-word{ font-style:italic; }
-
         .hero-badge{
             display:inline-flex;
             align-items:center;
@@ -89,17 +81,43 @@
             box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 0 14px rgba(0,243,255,.12);
         }
 
+        .section-divider{
+            width:95%;
+            max-width:1100px;
+            display:flex;
+            align-items:center;
+            gap:16px;
+            margin:24px 0 8px;
+        }
+        .section-divider-line{
+            flex:1;
+            height:1px;
+            background:linear-gradient(90deg,transparent,rgba(0,255,65,.35),transparent);
+        }
+        .section-divider-label{
+            font-size:.68em;
+            font-weight:900;
+            letter-spacing:5px;
+            text-transform:uppercase;
+            color:var(--neon-green);
+            text-shadow:0 0 12px rgba(0,255,65,.4);
+            white-space:nowrap;
+            padding:4px 14px;
+            border:1px solid rgba(0,255,65,.22);
+            border-radius:30px;
+            background:rgba(0,255,65,.04);
+        }
+
         .module{
             background:var(--card-bg);
             border-left:5px solid var(--neon-green);
-            padding:18px 18px 20px;
-            margin:12px 0;
+            padding:18px 18px 22px;
+            margin:8px 0;
             width:95%;
             max-width:1100px;
             border-radius:0 12px 12px 0;
             box-shadow:0 10px 30px rgba(0,0,0,.78);
         }
-
         .mod-header{
             display:flex;
             justify-content:space-between;
@@ -107,17 +125,15 @@
             gap:12px;
             border-bottom:1px solid var(--card-line);
             padding-bottom:12px;
-            margin-bottom:14px;
+            margin-bottom:16px;
         }
-
         .mod-header h3{
-            font-size:.92em;
+            font-size:.88em;
             text-transform:uppercase;
             margin:0;
             color:#fff;
             letter-spacing:2px;
         }
-
         .bilingual-badge{
             background:rgba(0,243,255,.10);
             border:1.5px solid var(--neon-blue);
@@ -133,50 +149,69 @@
             white-space:nowrap;
         }
 
+        .subgroup{ margin-bottom:14px; }
+        .subgroup:last-child{ margin-bottom:0; }
+
+        .subgroup-label{
+            font-size:.60em;
+            font-weight:900;
+            letter-spacing:4px;
+            text-transform:uppercase;
+            color:#555;
+            margin-bottom:8px;
+            padding-left:2px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+        .subgroup-label::after{
+            content:'';
+            flex:1;
+            height:1px;
+            background:var(--card-line);
+        }
+
         .grid{
             display:grid;
             grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
-            gap:12px;
+            gap:10px;
         }
 
         button.option-btn{
             background:linear-gradient(145deg,#222,#050505) !important;
             border:1px solid #333 !important;
-            padding:12px 10px !important;
+            padding:11px 10px !important;
             border-radius:8px !important;
             cursor:pointer;
-            transition:.25s ease;
+            transition:.22s ease;
             display:flex;
             flex-direction:column;
             align-items:center;
             justify-content:center;
-            gap:6px;
-            min-height:74px;
+            gap:5px;
+            min-height:70px;
         }
-
         button.option-btn:hover{
             border-color:var(--neon-green) !important;
-            transform:translateY(-1px);
+            transform:translateY(-2px);
+            box-shadow:0 4px 16px rgba(0,255,65,.12) !important;
         }
-
         button.option-btn.active{
             background:#000 !important;
             border-color:var(--neon-green) !important;
-            box-shadow:0 0 15px rgba(0,255,65,.36) !important;
+            box-shadow:0 0 18px rgba(0,255,65,.38) !important;
         }
-
         .es-label{
             color:#fff;
-            font-size:.73em;
+            font-size:.72em;
             font-weight:800;
             text-transform:uppercase;
             text-align:center;
             line-height:1.15;
         }
-
         .en-label{
             color:#b9f8ff;
-            font-size:.63em;
+            font-size:.62em;
             font-weight:700;
             text-transform:uppercase;
             font-style:italic;
@@ -185,7 +220,6 @@
             text-shadow:0 0 12px rgba(0,243,255,.14);
             opacity:.98;
         }
-
         button.option-btn.active .es-label{ color:var(--neon-green); }
         button.option-btn.active .en-label{ color:#d9ffff; }
 
@@ -193,636 +227,1098 @@
             position:fixed;
             bottom:12px;
             width:88%;
-            max-width:860px;
-            background:rgba(10,10,10,.98);
-            backdrop-filter:blur(25px);
+            max-width:900px;
+            background:rgba(8,8,8,.98);
+            backdrop-filter:blur(28px);
             border:2px solid var(--neon-blue);
-            padding:16px 18px;
+            padding:14px 18px 16px;
             border-radius:18px;
-            box-shadow:0 -15px 60px rgba(0,0,0,1);
+            box-shadow:0 -18px 70px rgba(0,0,0,1);
             z-index:9999;
         }
-
+        .panel-top{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:12px;
+            margin-bottom:10px;
+        }
         .box-title{
             display:flex;
             align-items:center;
-            gap:8px;
-            font-size:.76em;
-            color:#fff;
-            margin-bottom:6px;
+            gap:7px;
+            font-size:.72em;
+            color:#888;
+            margin-bottom:5px;
             font-weight:800;
+            letter-spacing:1.5px;
+            text-transform:uppercase;
         }
+        .box-title .lang-flag{ font-size:1em; }
 
         textarea{
             width:100%;
-            background:rgba(0,0,0,.82);
+            background:rgba(0,0,0,.85);
             border:1px solid #222;
             border-radius:10px;
-            padding:11px 12px;
+            padding:10px 12px;
             color:#fff;
-            font-size:.86em;
+            font-size:.84em;
             resize:none;
             outline:none;
-            min-height:78px;
-            max-height:220px;
-            margin-bottom:10px;
+            min-height:72px;
+            max-height:180px;
             font-family:'Inter',sans-serif;
-            line-height:1.45;
+            line-height:1.5;
             overflow:auto;
+            transition:border-color .2s;
         }
-
-        #out-en{
-            color:var(--neon-blue);
-            font-weight:700;
-        }
+        textarea:focus{ border-color:#333; }
+        #out-en{ color:var(--neon-blue); font-weight:700; }
 
         .smart-note{
             display:none;
             margin:0 0 10px 0;
-            padding:10px 12px;
+            padding:9px 12px;
             border:1px solid rgba(0,243,255,.28);
-            background:rgba(0,243,255,.06);
-            border-radius:10px;
+            background:rgba(0,243,255,.05);
+            border-radius:8px;
             color:#cfffff;
-            font-size:.74em;
+            font-size:.72em;
             line-height:1.35;
         }
 
         .btn-actions{
             display:flex;
-            justify-content:flex-end;
-            gap:10px;
-            border-top:1px solid #222;
+            justify-content:space-between;
+            align-items:center;
+            border-top:1px solid #1a1a1a;
             padding-top:10px;
-            margin-top:4px;
+            gap:10px;
         }
-
+        .panel-counter{
+            font-size:.66em;
+            color:#444;
+            font-weight:700;
+            letter-spacing:2px;
+            text-transform:uppercase;
+        }
+        .panel-counter span{
+            color:var(--neon-green);
+            font-size:1.1em;
+        }
+        .btn-group{ display:flex; gap:8px; }
         .btn-p{
-            padding:10px 20px;
-            border-radius:10px;
+            padding:9px 18px;
+            border-radius:9px;
             cursor:pointer;
             font-weight:800;
-            font-size:.72em;
+            font-size:.70em;
             text-transform:uppercase;
+            letter-spacing:1px;
             min-height:auto !important;
         }
-
         .btn-copy{
             background:var(--neon-green) !important;
             color:#000 !important;
             border:none !important;
-            box-shadow:0 0 25px var(--neon-green) !important;
+            box-shadow:0 0 20px rgba(0,255,65,.5) !important;
             display:flex;
             align-items:center;
-            gap:8px;
+            gap:7px;
         }
-
+        .btn-copy:hover{ box-shadow:0 0 32px rgba(0,255,65,.7) !important; }
         .btn-del{
-            background:#1a1a1a !important;
+            background:#111 !important;
             color:#ff4b4b !important;
-            border:1px solid #333 !important;
+            border:1px solid #2a2a2a !important;
             display:flex;
             align-items:center;
-            gap:8px;
+            gap:7px;
+        }
+        .btn-copy-es{
+            background:#0a0a0a !important;
+            color:#aaa !important;
+            border:1px solid #2a2a2a !important;
+            display:flex;
+            align-items:center;
+            gap:7px;
         }
 
         @media (max-width:900px){
             .hero-section h1{ font-size:2.75em; }
-            .mod-header{
-                flex-direction:column;
-                align-items:flex-start;
-            }
+            .mod-header{ flex-direction:column; align-items:flex-start; }
+            .panel-top{ grid-template-columns:1fr; }
         }
-
         @media (max-width:768px){
-            body{ padding-bottom:430px; }
+            body{ padding-bottom:560px; }
             .hero-section h1{ font-size:2.35em; }
             .hero-kicker{ font-size:.76em; letter-spacing:3px; }
-            .hero-badge{
-                min-width:auto;
-                width:92%;
-                text-align:center;
-                font-size:.78em;
-                letter-spacing:2px;
-            }
-            .grid{
-                grid-template-columns:repeat(auto-fill,minmax(132px,1fr));
-            }
-            #master-panel{
-                width:92%;
-                max-width:92%;
-            }
+            .hero-badge{ min-width:auto; width:92%; font-size:.78em; letter-spacing:2px; }
+            .grid{ grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); }
+            #master-panel{ width:92%; max-width:92%; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero-section">
-        <div class="hero-kicker">PROFESSIONAL AI WORKSTATION</div>
-        <h1><span class="gradient-text">ARBELO</span> <span class="gradient-text digital-word">DIGITAL</span></h1>
-        <div class="hero-badge">PROMPT MASTERMIND ELITE</div>
-    </section>
+<section class="hero-section">
+    <div class="hero-kicker">PROFESSIONAL AI WORKSTATION</div>
+    <h1><span class="gradient-text">ARBELO</span> <span class="gradient-text digital-word">DIGITAL</span></h1>
+    <div class="hero-badge">PROMPT MASTERMIND ELITE · V3</div>
+</section>
 
-    <div class="module" id="m1">
-        <div class="mod-header">
-            <h3>👤 M1: IDENTIDAD / IDENTITY</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+<div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">I · SUJETO & ANATOMÍA</div>
+    <div class="section-divider-line"></div>
+</div>
+
+<div class="module" id="m1">
+    <div class="mod-header">
+        <h3>👤 M1 — IDENTIDAD / IDENTITY</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Referencia principal</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'id','[REF FACE]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">MY CLONE</span></button>
-            <button class="option-btn" onclick="setV(event,'id','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">CUBAN WOMAN</span></button>
-            <button class="option-btn" onclick="setV(event,'id','Latina woman','Mujer Latina','m1')"><span class="es-label">💃 LATINA</span><span class="en-label">LATINA WOMAN</span></button>
-            <button class="option-btn" onclick="setV(event,'id','American woman','Mujer Americana','m1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">AMERICAN WOMAN</span></button>
-            <button class="option-btn" onclick="setV(event,'id','European woman','Mujer Europea','m1')"><span class="es-label">🇪🇺 EUROPEA</span><span class="en-label">EUROPEAN WOMAN</span></button>
-            <button class="option-btn" onclick="setV(event,'id','Afro-Caribbean woman','Mujer Afrocaribeña','m1')"><span class="es-label">🌺 AFROCARIBEÑA</span><span class="en-label">AFRO-CARIBBEAN</span></button>
-            <button class="option-btn" onclick="setV(event,'id','Middle Eastern woman','Mujer de Medio Oriente','m1')"><span class="es-label">🕌 MEDIO ORIENTE</span><span class="en-label">MIDDLE EASTERN</span></button>
-            <button class="option-btn" onclick="setV(event,'id','Asian woman','Mujer Asiática','m1')"><span class="es-label">🌸 ASIÁTICA</span><span class="en-label">ASIAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_ref','[REF FACE]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">MY CLONE</span></button>
+            <button class="option-btn" onclick="setV(event,'id_type','androgynous person','Persona andrógina','m1')"><span class="es-label">⚡ ANDRÓGINO/A</span><span class="en-label">ANDROGYNOUS</span></button>
         </div>
     </div>
 
-    <div class="module" id="m2">
-        <div class="mod-header">
-            <h3>🧬 M2: ETNICIDAD / ETHNICITY</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    <div class="subgroup">
+        <div class="subgroup-label">Origen / región</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'id_origin','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">CUBAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','Latina woman','Mujer Latina','m1')"><span class="es-label">💃 LATINA</span><span class="en-label">LATINA WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','Brazilian woman','Mujer Brasileña','m1')"><span class="es-label">🇧🇷 BRASILEÑA</span><span class="en-label">BRAZILIAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','American woman','Mujer Americana','m1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">AMERICAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','European woman','Mujer Europea','m1')"><span class="es-label">🇪🇺 EUROPEA</span><span class="en-label">EUROPEAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','Afro-Caribbean woman','Mujer Afrocaribeña','m1')"><span class="es-label">🌺 AFROCARIBEÑA</span><span class="en-label">AFRO-CARIBBEAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','Middle Eastern woman','Mujer Árabe','m1')"><span class="es-label">🕌 ÁRABE</span><span class="en-label">MIDDLE EASTERN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','Asian woman','Mujer Asiática','m1')"><span class="es-label">🌸 ASIÁTICA</span><span class="en-label">ASIAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id_origin','South Asian woman','Mujer del Sur de Asia','m1')"><span class="es-label">🪔 SUR ASIÁTICA</span><span class="en-label">SOUTH ASIAN</span></button>
         </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Rango de edad</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'id_age','woman in her early 20s','Mujer de unos 20 años','m1')"><span class="es-label">🌟 20s</span><span class="en-label">EARLY 20s</span></button>
+            <button class="option-btn" onclick="setV(event,'id_age','woman in her early 30s','Mujer de unos 30 años','m1')"><span class="es-label">💎 30s</span><span class="en-label">EARLY 30s</span></button>
+            <button class="option-btn" onclick="setV(event,'id_age','woman in her mid 40s','Mujer de unos 40 años','m1')"><span class="es-label">👑 40s</span><span class="en-label">MID 40s</span></button>
+            <button class="option-btn" onclick="setV(event,'id_age','woman in her 50s distinguished','Mujer distinguida de 50s','m1')"><span class="es-label">🏛 50s</span><span class="en-label">50s DISTINGUISHED</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="module" id="m2">
+    <div class="mod-header">
+        <h3>🧬 M2 — ETNICIDAD / ETHNICITY</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">América & Caribe</div>
         <div class="grid">
             <button class="option-btn" onclick="setV(event,'eth','Latina features','Rasgos Latinos','m2')"><span class="es-label">✨ LATINOS</span><span class="en-label">LATIN FEATURES</span></button>
             <button class="option-btn" onclick="setV(event,'eth','Afro-descendant features','Rasgos Afro','m2')"><span class="es-label">🏾 AFRO</span><span class="en-label">AFRO FEATURES</span></button>
-            <button class="option-btn" onclick="setV(event,'eth','Nordic features','Rasgos Nórdicos','m2')"><span class="es-label">❄️ NÓRDICOS</span><span class="en-label">NORDIC FEATURES</span></button>
-            <button class="option-btn" onclick="setV(event,'eth','Mediterranean features','Rasgos Mediterráneos','m2')"><span class="es-label">🌊 MEDITERRÁNEOS</span><span class="en-label">MEDITERRANEAN</span></button>
-            <button class="option-btn" onclick="setV(event,'eth','Mestiza features','Rasgos Mestizos','m2')"><span class="es-label">🌎 MESTIZOS</span><span class="en-label">MESTIZA FEATURES</span></button>
-            <button class="option-btn" onclick="setV(event,'eth','Asian facial structure','Estructura facial asiática','m2')"><span class="es-label">🪷 ESTRUCTURA ASIÁTICA</span><span class="en-label">ASIAN STRUCTURE</span></button>
-            <button class="option-btn" onclick="setV(event,'eth','Indigenous features','Rasgos Indígenas','m2')"><span class="es-label">🪶 INDÍGENAS</span><span class="en-label">INDIGENOUS FEATURES</span></button>
-            <button class="option-btn" onclick="setV(event,'eth','Mixed heritage features','Rasgos mixtos','m2')"><span class="es-label">🧩 MIXTOS</span><span class="en-label">MIXED HERITAGE</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Mestiza features','Rasgos Mestizos','m2')"><span class="es-label">🌎 MESTIZA</span><span class="en-label">MESTIZA FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Indigenous features','Rasgos Indígenas','m2')"><span class="es-label">🪶 INDÍGENA</span><span class="en-label">INDIGENOUS</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','West African features','Rasgos Afro-Occidentales','m2')"><span class="es-label">🌍 AFRO OESTE</span><span class="en-label">WEST AFRICAN</span></button>
         </div>
     </div>
 
-    <div class="module" id="m3">
-        <div class="mod-header">
-            <h3>✨ M3: ADN PIEL / SKIN DNA</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Europa</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'skin','hyper-detailed pores','Poros detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">DETAILED PORES</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','rich melanin skin','Piel con melanina rica','m3')"><span class="es-label">🏾 MELANINA</span><span class="en-label">RICH MELANIN</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','natural skin texture','Textura de piel natural','m3')"><span class="es-label">📸 NATURAL</span><span class="en-label">NATURAL TEXTURE</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','realistic skin imperfections','Imperfecciones reales','m3')"><span class="es-label">🧪 IMPERFECCIONES</span><span class="en-label">REAL IMPERFECTIONS</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','subtle freckles','Pecas sutiles','m3')"><span class="es-label">✨ PECAS</span><span class="en-label">SUBTLE FRECKLES</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','olive skin tone','Tono de piel oliva','m3')"><span class="es-label">🫒 OLIVA</span><span class="en-label">OLIVE SKIN</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','porcelain fair skin','Piel porcelana','m3')"><span class="es-label">🤍 PORCELANA</span><span class="en-label">PORCELAIN SKIN</span></button>
-            <button class="option-btn" onclick="setV(event,'skin','realistic subsurface scattering','Dispersión de luz realista','m3')"><span class="es-label">💡 SUBSURFACE</span><span class="en-label">LIGHT SCATTERING</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Nordic features','Rasgos Nórdicos','m2')"><span class="es-label">❄️ NÓRDICA</span><span class="en-label">NORDIC</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Mediterranean features','Rasgos Mediterráneos','m2')"><span class="es-label">🌊 MEDITERRÁNEA</span><span class="en-label">MEDITERRANEAN</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Slavic features','Rasgos Eslavos','m2')"><span class="es-label">🏔 ESLAVA</span><span class="en-label">SLAVIC</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Celtic features','Rasgos Celtas','m2')"><span class="es-label">☘️ CELTA</span><span class="en-label">CELTIC</span></button>
         </div>
     </div>
 
-    <div class="module" id="m4">
-        <div class="mod-header">
-            <h3>😊 M4: ROSTRO / FACE</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Asia & Oriente</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'face','symmetrical face','Rostro simétrico','m4')"><span class="es-label">📐 SIMÉTRICO</span><span class="en-label">SYMMETRICAL</span></button>
-            <button class="option-btn" onclick="setV(event,'face','neutral expression','Expresión neutra','m4')"><span class="es-label">😐 NEUTRO</span><span class="en-label">NEUTRAL</span></button>
-            <button class="option-btn" onclick="setV(event,'face','subtle smile','Sonrisa sutil','m4')"><span class="es-label">😊 SONRISA</span><span class="en-label">SUBTLE SMILE</span></button>
-            <button class="option-btn" onclick="setV(event,'face','intense confident gaze','Mirada intensa','m4')"><span class="es-label">🔥 MIRADA INTENSA</span><span class="en-label">INTENSE GAZE</span></button>
-            <button class="option-btn" onclick="setV(event,'face','defined cheekbones','Pómulos definidos','m4')"><span class="es-label">💎 PÓMULOS</span><span class="en-label">DEFINED CHEEKBONES</span></button>
-            <button class="option-btn" onclick="setV(event,'face','soft jawline','Mandíbula suave','m4')"><span class="es-label">🌙 MANDÍBULA</span><span class="en-label">SOFT JAWLINE</span></button>
-            <button class="option-btn" onclick="setV(event,'face','almond-shaped eyes','Ojos almendrados','m4')"><span class="es-label">👁 OJOS ALMENDRADOS</span><span class="en-label">ALMOND EYES</span></button>
-            <button class="option-btn" onclick="setV(event,'face','full natural lips','Labios naturales definidos','m4')"><span class="es-label">💋 LABIOS</span><span class="en-label">FULL LIPS</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Asian facial structure','Estructura facial asiática','m2')"><span class="es-label">🪷 ASIÁTICA</span><span class="en-label">ASIAN STRUCTURE</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Southeast Asian features','Rasgos Sudeste Asiático','m2')"><span class="es-label">🌴 SE ASIÁTICA</span><span class="en-label">SE ASIAN</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Mixed heritage features','Rasgos mixtos','m2')"><span class="es-label">🧩 MIXTA</span><span class="en-label">MIXED HERITAGE</span></button>
         </div>
     </div>
+</div>
 
-    <div class="module" id="m5">
-        <div class="mod-header">
-            <h3>💇 M5: CABELLO / HAIR</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+<div class="module" id="m3">
+    <div class="mod-header">
+        <h3>✨ M3 — ADN PIEL / SKIN DNA</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Tono & melanina</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'hair','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">BLACK SILKY</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','chestnut brown hair','Cabello castaño','m5')"><span class="es-label">🤎 CASTAÑO</span><span class="en-label">BROWN HAIR</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','golden blonde hair','Cabello rubio dorado','m5')"><span class="es-label">💛 RUBIO</span><span class="en-label">GOLDEN BLONDE</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','soft loose waves','Ondas suaves','m5')"><span class="es-label">〰️ ONDAS</span><span class="en-label">SOFT WAVES</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','sleek straight hair','Lacio pulido','m5')"><span class="es-label">✨ LACIO PULIDO</span><span class="en-label">SLEEK STRAIGHT</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','elegant updo','Recogido elegante','m5')"><span class="es-label">🎀 RECOGIDO</span><span class="en-label">ELEGANT UPDO</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','defined curls','Rizos definidos','m5')"><span class="es-label">🌀 RIZOS</span><span class="en-label">DEFINED CURLS</span></button>
-            <button class="option-btn" onclick="setV(event,'hair','wet look hair','Efecto wet look','m5')"><span class="es-label">💧 WET LOOK</span><span class="en-label">WET LOOK</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tone','porcelain fair skin','Piel porcelana','m3')"><span class="es-label">🤍 PORCELANA</span><span class="en-label">PORCELAIN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tone','olive skin tone','Piel oliva','m3')"><span class="es-label">🫒 OLIVA</span><span class="en-label">OLIVE SKIN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tone','sun-kissed tan skin','Piel bronceada natural','m3')"><span class="es-label">☀️ BRONCEADA</span><span class="en-label">SUN-KISSED TAN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tone','rich melanin skin','Piel de melanina rica','m3')"><span class="es-label">🏾 MELANINA</span><span class="en-label">RICH MELANIN</span></button>
         </div>
     </div>
 
-    <div class="module" id="m6">
-        <div class="mod-header">
-            <h3>🧘 M6: POSE / POSING</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Textura & acabado</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'pose','looking at camera','Mirando a cámara','m6')"><span class="es-label">👁 MIRADA</span><span class="en-label">EYE CONTACT</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','side profile','Perfil','m6')"><span class="es-label">👤 PERFIL</span><span class="en-label">PROFILE</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','sitting elegantly','Sentada elegantemente','m6')"><span class="es-label">🪑 SENTADA</span><span class="en-label">SITTING</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','three-quarter pose','Pose tres cuartos','m6')"><span class="es-label">📐 3/4</span><span class="en-label">THREE QUARTER</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','hands gently crossed','Manos cruzadas','m6')"><span class="es-label">🤍 MANOS CRUZADAS</span><span class="en-label">CROSSED HANDS</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','editorial walking pose','Caminar editorial','m6')"><span class="es-label">🚶 EDITORIAL</span><span class="en-label">WALKING POSE</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','hand on waist pose','Mano en cintura','m6')"><span class="es-label">🫱 CINTURA</span><span class="en-label">HAND ON WAIST</span></button>
-            <button class="option-btn" onclick="setV(event,'pose','over the shoulder pose','Pose sobre hombro','m6')"><span class="es-label">🔄 SOBRE HOMBRO</span><span class="en-label">OVER SHOULDER</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_texture','glowing dewy skin','Piel luminosa húmeda','m3')"><span class="es-label">💧 DEWY GLOW</span><span class="en-label">DEWY GLOW</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_texture','matte skin finish','Acabado mate','m3')"><span class="es-label">⬛ MATE</span><span class="en-label">MATTE FINISH</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_texture','natural skin texture','Textura de piel natural','m3')"><span class="es-label">📸 NATURAL</span><span class="en-label">NATURAL TEXTURE</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_texture','realistic skin imperfections','Imperfecciones reales','m3')"><span class="es-label">🧪 IMPERFECCIONES</span><span class="en-label">IMPERFECTIONS</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_texture','subtle freckles','Pecas sutiles','m3')"><span class="es-label">✨ PECAS</span><span class="en-label">FRECKLES</span></button>
         </div>
     </div>
 
-    <div class="module" id="m7">
-        <div class="mod-header">
-            <h3>🏙 M7: ESCENARIO / SCENE</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Técnica fotográfica de piel</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'scene','minimalist studio background','Estudio minimalista','m7')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">STUDIO</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','seamless gray backdrop','Fondo gris seamless','m7')"><span class="es-label">⬜ SEAMLESS</span><span class="en-label">GRAY BACKDROP</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','luxury interior set','Interior de lujo','m7')"><span class="es-label">✨ LUJO</span><span class="en-label">LUXURY INTERIOR</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','urban street background','Fondo urbano','m7')"><span class="es-label">🏙 URBANO</span><span class="en-label">URBAN</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','nature landscape','Fondo de naturaleza','m7')"><span class="es-label">🌿 NATURALEZA</span><span class="en-label">NATURE</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','modern premium office','Oficina premium','m7')"><span class="es-label">💼 OFICINA</span><span class="en-label">PREMIUM OFFICE</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','rooftop skyline background','Azotea con skyline','m7')"><span class="es-label">🌃 ROOFTOP</span><span class="en-label">ROOFTOP SKYLINE</span></button>
-            <button class="option-btn" onclick="setV(event,'scene','soft blurred bokeh background','Fondo bokeh suave','m7')"><span class="es-label">🌫 BOKEH</span><span class="en-label">SOFT BOKEH</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tech','hyper-detailed pores ultra close','Poros ultra detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">HYPER PORES</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tech','realistic subsurface scattering','Dispersión de luz realista','m3')"><span class="es-label">💡 SUBSURFACE</span><span class="en-label">SSS LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tech','translucent skin visible veins','Piel translúcida con venas','m3')"><span class="es-label">🫀 TRANSLÚCIDA</span><span class="en-label">TRANSLUCENT</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tech','micro-detail skin texture 8K','Micro-textura de piel 8K','m3')"><span class="es-label">🔭 MICRO 8K</span><span class="en-label">MICRO 8K SKIN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin_tech','visible fine lines natural aging','Líneas de expresión naturales','m3')"><span class="es-label">🕰 ENVEJECIMIENTO</span><span class="en-label">NATURAL AGING</span></button>
         </div>
     </div>
+</div>
 
-    <div class="module" id="m8">
-        <div class="mod-header">
-            <h3>💡 M8: LUZ / LIGHTING</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+<div class="module" id="m4">
+    <div class="mod-header">
+        <h3>😊 M4 — ROSTRO / FACE</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Expresión</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'light','soft window lighting','Luz suave de ventana','m8')"><span class="es-label">🕯 SUAVE</span><span class="en-label">SOFT LIGHT</span></button>
-            <button class="option-btn" onclick="setV(event,'light','rim lighting','Luz de contorno','m8')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">RIM LIGHTING</span></button>
-            <button class="option-btn" onclick="setV(event,'light','cinematic lighting','Iluminación cinematográfica','m8')"><span class="es-label">🎬 CINE</span><span class="en-label">CINEMATIC</span></button>
-            <button class="option-btn" onclick="setV(event,'light','beauty dish lighting','Luz beauty dish','m8')"><span class="es-label">💄 BEAUTY DISH</span><span class="en-label">BEAUTY DISH</span></button>
-            <button class="option-btn" onclick="setV(event,'light','high-key studio lighting','Iluminación high key','m8')"><span class="es-label">⚪ HIGH KEY</span><span class="en-label">HIGH-KEY LIGHT</span></button>
-            <button class="option-btn" onclick="setV(event,'light','moody contrast lighting','Contraste dramático','m8')"><span class="es-label">🌑 CONTRASTE</span><span class="en-label">MOODY CONTRAST</span></button>
-            <button class="option-btn" onclick="setV(event,'light','Rembrandt lighting','Iluminación Rembrandt','m8')"><span class="es-label">🖼 REMBRANDT</span><span class="en-label">REMBRANDT LIGHT</span></button>
-            <button class="option-btn" onclick="setV(event,'light','butterfly lighting','Iluminación butterfly','m8')"><span class="es-label">🦋 BUTTERFLY</span><span class="en-label">BUTTERFLY LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'face_expr','neutral expression stoic','Expresión neutra estoica','m4')"><span class="es-label">😐 NEUTRA</span><span class="en-label">NEUTRAL STOIC</span></button>
+            <button class="option-btn" onclick="setV(event,'face_expr','subtle closed-mouth smile','Sonrisa sutil boca cerrada','m4')"><span class="es-label">😊 SONRISA SUTIL</span><span class="en-label">SUBTLE SMILE</span></button>
+            <button class="option-btn" onclick="setV(event,'face_expr','intense confident gaze','Mirada intensa y segura','m4')"><span class="es-label">🔥 MIRADA FUERTE</span><span class="en-label">INTENSE GAZE</span></button>
+            <button class="option-btn" onclick="setV(event,'face_expr','dreamy soft expression','Expresión suave soñadora','m4')"><span class="es-label">🌙 SOÑADORA</span><span class="en-label">DREAMY</span></button>
+            <button class="option-btn" onclick="setV(event,'face_expr','laugh lines natural joy','Alegría natural espontánea','m4')"><span class="es-label">😄 JOY NATURAL</span><span class="en-label">NATURAL JOY</span></button>
         </div>
     </div>
 
-    <div class="module" id="m9">
-        <div class="mod-header">
-            <h3>🎥 M9: ÓPTICA / LENS & OPTICS</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Estructura ósea</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'lens','shot on 85mm lens','Lente 85mm','m9')"><span class="es-label">📸 85MM</span><span class="en-label">85MM LENS</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','shot on 50mm lens','Lente 50mm','m9')"><span class="es-label">🎯 50MM</span><span class="en-label">50MM LENS</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','shot on 35mm lens','Lente 35mm','m9')"><span class="es-label">🏙 35MM</span><span class="en-label">35MM LENS</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','telephoto lens compression','Compresión telefoto','m9')"><span class="es-label">🔭 TELEPHOTO</span><span class="en-label">TELE COMPRESSION</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','shallow depth of field','Profundidad de campo reducida','m9')"><span class="es-label">🌫 DOF</span><span class="en-label">SHALLOW DOF</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','sharp focus on eyes','Enfoque en ojos','m9')"><span class="es-label">👀 OJOS NÍTIDOS</span><span class="en-label">SHARP EYES</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','creamy bokeh','Bokeh cremoso','m9')"><span class="es-label">✨ BOKEH</span><span class="en-label">CREAMY BOKEH</span></button>
-            <button class="option-btn" onclick="setV(event,'lens','ultra-realistic photo','Foto ultra realista','m9')"><span class="es-label">💎 REALISTA</span><span class="en-label">ULTRA REALISTIC</span></button>
+            <button class="option-btn" onclick="setV(event,'face_structure','symmetrical face perfect ratio','Rostro simétrico proporción perfecta','m4')"><span class="es-label">📐 SIMÉTRICO</span><span class="en-label">SYMMETRICAL</span></button>
+            <button class="option-btn" onclick="setV(event,'face_structure','defined sculpted cheekbones','Pómulos esculpidos definidos','m4')"><span class="es-label">💎 PÓMULOS</span><span class="en-label">SCULPTED CHEEKS</span></button>
+            <button class="option-btn" onclick="setV(event,'face_structure','strong angular jawline','Mandíbula angular fuerte','m4')"><span class="es-label">⬡ ANGULAR</span><span class="en-label">ANGULAR JAW</span></button>
+            <button class="option-btn" onclick="setV(event,'face_structure','soft rounded jawline','Mandíbula suave redondeada','m4')"><span class="es-label">🌙 JAW SUAVE</span><span class="en-label">SOFT JAWLINE</span></button>
+            <button class="option-btn" onclick="setV(event,'face_structure','prominent nose bridge refined','Puente nasal prominente refinado','m4')"><span class="es-label">👃 NARIZ</span><span class="en-label">NOSE BRIDGE</span></button>
+            <button class="option-btn" onclick="setV(event,'face_structure','high forehead refined','Frente alta refinada','m4')"><span class="es-label">🎭 FRENTE ALTA</span><span class="en-label">HIGH FOREHEAD</span></button>
         </div>
     </div>
 
-    <div class="module" id="m10">
-        <div class="mod-header">
-            <h3>📐 M10: ÁNGULOS DE CÁMARA / CAMERA ANGLES</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Ojos & labios</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'angle','eye level shot','Ángulo a la altura de los ojos','m10')"><span class="es-label">👁 EYE LEVEL</span><span class="en-label">EYE LEVEL SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','high angle shot','Ángulo picado','m10')"><span class="es-label">⬆️ PICADO</span><span class="en-label">HIGH ANGLE</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','low angle shot','Ángulo contrapicado','m10')"><span class="es-label">⬇️ CONTRAPICADO</span><span class="en-label">LOW ANGLE</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','birds eye view','Vista cenital','m10')"><span class="es-label">🦅 CENITAL</span><span class="en-label">BIRD'S EYE VIEW</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','worms eye view','Vista nadir','m10')"><span class="es-label">🪲 NADIR</span><span class="en-label">WORM'S EYE VIEW</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','dutch angle shot','Ángulo holandés','m10')"><span class="es-label">🌀 DUTCH ANGLE</span><span class="en-label">DUTCH ANGLE</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','side profile shot','Toma de perfil lateral','m10')"><span class="es-label">👤 PERFIL LATERAL</span><span class="en-label">SIDE PROFILE</span></button>
-            <button class="option-btn" onclick="setV(event,'angle','quarter turn shot','Giro de cuarto','m10')"><span class="es-label">🔄 QUARTER TURN</span><span class="en-label">QUARTER TURN</span></button>
+            <button class="option-btn" onclick="setV(event,'face_features','almond-shaped eyes deep','Ojos almendrados profundos','m4')"><span class="es-label">👁 ALMENDRADOS</span><span class="en-label">ALMOND EYES</span></button>
+            <button class="option-btn" onclick="setV(event,'face_features','hooded deep-set eyes','Ojos profundos párpado caído','m4')"><span class="es-label">🌑 PROFUNDOS</span><span class="en-label">HOODED EYES</span></button>
+            <button class="option-btn" onclick="setV(event,'face_features','wide-set luminous eyes','Ojos grandes separados luminosos','m4')"><span class="es-label">↔️ SEPARADOS</span><span class="en-label">WIDE-SET EYES</span></button>
+            <button class="option-btn" onclick="setV(event,'face_features','natural shaped eyebrow arch','Arco de cejas natural','m4')"><span class="es-label">〰️ CEJAS</span><span class="en-label">BROW ARCH</span></button>
+            <button class="option-btn" onclick="setV(event,'face_features','full natural lips defined','Labios naturales con volumen','m4')"><span class="es-label">💋 LABIOS</span><span class="en-label">FULL LIPS</span></button>
+            <button class="option-btn" onclick="setV(event,'face_features','sharp cupids bow lips','Arco de cupido marcado','m4')"><span class="es-label">🏹 ARCO CUPIDO</span><span class="en-label">CUPID'S BOW</span></button>
         </div>
     </div>
+</div>
 
-    <div class="module" id="m11">
-        <div class="mod-header">
-            <h3>🖼 M11: PLANOS SEGÚN DISTANCIA / SHOT SIZE</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+<div class="module" id="m5">
+    <div class="mod-header">
+        <h3>💇 M5 — CABELLO / HAIR</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Color</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'framing','extreme long shot','Plano general extremo','m11')"><span class="es-label">🌍 EXTREMO</span><span class="en-label">EXTREME LONG SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','long shot','Plano general','m11')"><span class="es-label">🏞 LONG SHOT</span><span class="en-label">LONG SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','full body shot','Cuerpo entero','m11')"><span class="es-label">🚶 CUERPO ENTERO</span><span class="en-label">FULL BODY SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','medium long shot','Plano americano largo','m11')"><span class="es-label">📏 MEDIUM LONG</span><span class="en-label">MEDIUM LONG SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','cowboy shot','Plano cowboy','m11')"><span class="es-label">🤠 COWBOY</span><span class="en-label">COWBOY SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','medium shot','Plano medio','m11')"><span class="es-label">🖼 MEDIO</span><span class="en-label">MEDIUM SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','medium close up','Plano medio corto','m11')"><span class="es-label">🔎 MEDIUM CLOSE</span><span class="en-label">MEDIUM CLOSE UP</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','close up shot','Primer plano','m11')"><span class="es-label">🔍 CLOSE UP</span><span class="en-label">CLOSE UP</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','extreme close up','Primerísimo primer plano','m11')"><span class="es-label">🧿 EXTREMO</span><span class="en-label">EXTREME CLOSE UP</span></button>
-            <button class="option-btn" onclick="setV(event,'framing','headshot portrait','Headshot profesional','m11')"><span class="es-label">🧑 HEADSHOT</span><span class="en-label">HEADSHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_color','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">BLACK SILKY</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_color','chestnut brown hair','Cabello castaño natural','m5')"><span class="es-label">🤎 CASTAÑO</span><span class="en-label">CHESTNUT BROWN</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_color','golden blonde hair','Cabello rubio dorado','m5')"><span class="es-label">💛 RUBIO DORADO</span><span class="en-label">GOLDEN BLONDE</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_color','platinum silver hair','Cabello plateado platino','m5')"><span class="es-label">🤍 PLATINO</span><span class="en-label">PLATINUM SILVER</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_color','auburn copper red hair','Cabello rojizo cobrizo','m5')"><span class="es-label">🔴 COBRIZO</span><span class="en-label">AUBURN COPPER</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_color','hair with subtle balayage highlights','Cabello con balayage sutil','m5')"><span class="es-label">🌟 BALAYAGE</span><span class="en-label">BALAYAGE</span></button>
         </div>
     </div>
 
-    <div class="module" id="m12">
-        <div class="mod-header">
-            <h3>🧠 M12: PERSPECTIVAS Y COMPOSICIÓN / PERSPECTIVE & COMPOSITION</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Textura & forma</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'comp','point of view shot','Punto de vista POV','m12')"><span class="es-label">👀 POV</span><span class="en-label">POINT OF VIEW</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','shot from behind','Toma desde atrás','m12')"><span class="es-label">🚶 DESDE ATRÁS</span><span class="en-label">SHOT FROM BEHIND</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','over the shoulder shot','Sobre el hombro','m12')"><span class="es-label">🫱 SOBRE HOMBRO</span><span class="en-label">OVER THE SHOULDER</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','front view composition','Vista frontal','m12')"><span class="es-label">🪞 FRONTAL</span><span class="en-label">FRONT VIEW</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','three quarter view','Vista tres cuartos','m12')"><span class="es-label">📐 3/4 VIEW</span><span class="en-label">THREE QUARTER VIEW</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','centered composition','Composición centrada','m12')"><span class="es-label">🎯 CENTRADA</span><span class="en-label">CENTERED COMPOSITION</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','symmetrical shot','Composición simétrica','m12')"><span class="es-label">🪟 SIMÉTRICA</span><span class="en-label">SYMMETRICAL SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','off center composition','Composición descentrada','m12')"><span class="es-label">↘️ OFF CENTER</span><span class="en-label">OFF CENTER SHOT</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','negative space composition','Espacio negativo','m12')"><span class="es-label">⬛ NEGATIVE SPACE</span><span class="en-label">NEGATIVE SPACE</span></button>
-            <button class="option-btn" onclick="setV(event,'comp','forced perspective shot','Perspectiva forzada','m12')"><span class="es-label">🪄 FORCED PERSPECTIVE</span><span class="en-label">FORCED PERSPECTIVE</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_texture','sleek straight hair polished','Lacio pulido impecable','m5')"><span class="es-label">✨ LACIO</span><span class="en-label">SLEEK STRAIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_texture','soft loose waves','Ondas sueltas suaves','m5')"><span class="es-label">〰️ ONDAS SUAVES</span><span class="en-label">LOOSE WAVES</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_texture','loose beach waves effortless','Ondas de playa espontáneas','m5')"><span class="es-label">🏖 BEACH WAVES</span><span class="en-label">BEACH WAVES</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_texture','defined spiral curls','Rizos en espiral definidos','m5')"><span class="es-label">🌀 RIZOS</span><span class="en-label">SPIRAL CURLS</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_texture','tight coils 4C hair voluminous','Coils 4C voluminosos','m5')"><span class="es-label">🌺 COILS 4C</span><span class="en-label">4C COILS</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_texture','natural afro full volume','Afro natural con volumen','m5')"><span class="es-label">🌸 AFRO</span><span class="en-label">NATURAL AFRO</span></button>
         </div>
     </div>
 
-    <div class="module" id="m13">
-        <div class="mod-header">
-            <h3>📺 M13: CALIDAD Y ACABADO / QUALITY & FINISH</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Peinado & estilo</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'qual','8k resolution','Resolución 8K','m13')"><span class="es-label">📺 8K HD</span><span class="en-label">8K RESOLUTION</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','highly detailed','Alta definición','m13')"><span class="es-label">✨ DETALLADO</span><span class="en-label">HIGH DETAIL</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','photorealistic','Fotorrealismo','m13')"><span class="es-label">📸 FOTO REAL</span><span class="en-label">PHOTOREALISTIC</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','ultra sharp focus','Ultra nitidez','m13')"><span class="es-label">🔪 ULTRA SHARP</span><span class="en-label">ULTRA SHARP</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','editorial retouch','Retoque editorial','m13')"><span class="es-label">📰 RETOQUE</span><span class="en-label">EDITORIAL RETOUCH</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','cinematic color grading','Color grading cinematográfico','m13')"><span class="es-label">🎞 COLOR CINE</span><span class="en-label">FILM GRADING</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','luxury commercial photography','Fotografía comercial de lujo','m13')"><span class="es-label">💼 COMERCIAL</span><span class="en-label">LUXURY COMMERCIAL</span></button>
-            <button class="option-btn" onclick="setV(event,'qual','magazine grade fashion photo','Foto de revista premium','m13')"><span class="es-label">💎 MAGAZINE</span><span class="en-label">MAGAZINE GRADE</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_style','long flowing hair windswept','Cabello largo suelto con movimiento','m5')"><span class="es-label">🌊 LARGO SUELTO</span><span class="en-label">LONG FLOWING</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_style','blunt cut bob precision','Bob recto de precisión','m5')"><span class="es-label">✂️ BOB</span><span class="en-label">BLUNT BOB</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_style','elegant twisted updo','Recogido trenzado elegante','m5')"><span class="es-label">🎀 RECOGIDO</span><span class="en-label">ELEGANT UPDO</span></button>
+            <button class="option-btn" onclick="setV(event,'hair_style','wet look slicked back hair','Wet look peinado hacia atrás','m5')"><span class="es-label">💧 WET LOOK</span><span class="en-label">WET LOOK</span></button>
         </div>
     </div>
+</div>
 
-    <div class="module" id="m14">
-        <div class="mod-header">
-            <h3>⚙️ M14: ASPECT RATIO / FORMATO</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+<div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">II · ESTILO & APARIENCIA</div>
+    <div class="section-divider-line"></div>
+</div>
+
+<div class="module" id="m6">
+    <div class="mod-header">
+        <h3>💄 M6 — MAQUILLAJE / MAKEUP</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Natural & base</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'ratio','--ar 1:1','Formato 1:1','m14')"><span class="es-label">◻️ 1:1</span><span class="en-label">SQUARE</span></button>
-            <button class="option-btn" onclick="setV(event,'ratio','--ar 4:5','Formato 4:5','m14')"><span class="es-label">📱 4:5</span><span class="en-label">PORTRAIT FEED</span></button>
-            <button class="option-btn" onclick="setV(event,'ratio','--ar 2:3','Formato 2:3','m14')"><span class="es-label">🖼 2:3</span><span class="en-label">CLASSIC PORTRAIT</span></button>
-            <button class="option-btn" onclick="setV(event,'ratio','--ar 3:4','Formato 3:4','m14')"><span class="es-label">📐 3:4</span><span class="en-label">PORTRAIT FRAME</span></button>
-            <button class="option-btn" onclick="setV(event,'ratio','--ar 16:9','Formato 16:9','m14')"><span class="es-label">🖥 16:9</span><span class="en-label">WIDESCREEN</span></button>
-            <button class="option-btn" onclick="setV(event,'ratio','--ar 9:16','Formato 9:16','m14')"><span class="es-label">📲 9:16</span><span class="en-label">VERTICAL</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_base','no makeup clean natural skin','Sin maquillaje piel limpia natural','m6')"><span class="es-label">🌿 SIN MAQUILLAJE</span><span class="en-label">NO MAKEUP</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_base','minimal fresh dewy makeup','Maquillaje fresco minimalista','m6')"><span class="es-label">💧 MINIMAL</span><span class="en-label">FRESH DEWY</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_base','glass skin luminous base','Base luminosa piel de vidrio','m6')"><span class="es-label">🪟 GLASS SKIN</span><span class="en-label">GLASS SKIN</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_base','soft glam neutral tones polished','Soft glam tonos neutros pulido','m6')"><span class="es-label">✨ SOFT GLAM</span><span class="en-label">SOFT GLAM</span></button>
         </div>
     </div>
 
-    <div class="module" id="m15">
-        <div class="mod-header">
-            <h3>🚀 M15: MOTOR / ENGINE</h3>
-            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
-        </div>
+    <div class="subgroup">
+        <div class="subgroup-label">Dramático & editorial</div>
         <div class="grid">
-            <button class="option-btn" onclick="setV(event,'eng','--v 6.1','Motor Midjourney 6.1','m15')"><span class="es-label">🚀 V6.1</span><span class="en-label">MJ ENGINE</span></button>
-            <button class="option-btn" onclick="setV(event,'eng','--style raw','Estilo Raw','m15')"><span class="es-label">📸 RAW</span><span class="en-label">RAW STYLE</span></button>
-            <button class="option-btn" onclick="setV(event,'eng','--q 2','Calidad alta','m15')"><span class="es-label">💎 Q2</span><span class="en-label">QUALITY 2</span></button>
-            <button class="option-btn" onclick="setV(event,'eng','--stylize 150','Stylize 150','m15')"><span class="es-label">🎨 STYLIZE</span><span class="en-label">STYLIZE 150</span></button>
-            <button class="option-btn" onclick="setV(event,'eng','--chaos 8','Chaos 8','m15')"><span class="es-label">⚡ CHAOS 8</span><span class="en-label">CHAOS MODE</span></button>
-            <button class="option-btn" onclick="setV(event,'eng','--s 250','Nivel de stylization 250','m15')"><span class="es-label">🧠 S 250</span><span class="en-label">STYLE FORCE</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_style','bold red lip classic Hollywood','Labio rojo clásico Hollywood','m6')"><span class="es-label">💋 LABIO ROJO</span><span class="en-label">BOLD RED LIP</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_style','smokey eye intense dramatic','Smokey eye intenso dramático','m6')"><span class="es-label">🌑 SMOKEY EYE</span><span class="en-label">SMOKEY EYE</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_style','cat eye graphic liner precise','Delineado cat eye gráfico preciso','m6')"><span class="es-label">😼 CAT EYE</span><span class="en-label">CAT EYE</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_style','bronzed sculpted glam','Bronceado esculpido glam','m6')"><span class="es-label">🟠 BRONZED</span><span class="en-label">BRONZED GLAM</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_style','editorial avant-garde art makeup','Maquillaje artístico editorial','m6')"><span class="es-label">🎨 EDITORIAL</span><span class="en-label">AVANT-GARDE</span></button>
+            <button class="option-btn" onclick="setV(event,'makeup_style','monochromatic all-pink tonal makeup','Look monocromático rosado tonal','m6')"><span class="es-label">🌸 MONOCROMÁTICO</span><span class="en-label">MONOCHROMATIC</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="module" id="m7">
+    <div class="mod-header">
+        <h3>👗 M7 — VESTIMENTA / WARDROBE</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Formal & premium</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'wardrobe_formal','elegant fitted black dress','Vestido negro ajustado elegante','m7')"><span class="es-label">🖤 VESTIDO NEGRO</span><span class="en-label">BLACK DRESS</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_formal','high fashion couture structured outfit','Couture alta moda estructurado','m7')"><span class="es-label">👗 COUTURE</span><span class="en-label">HIGH COUTURE</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_formal','sharp tailored power suit','Traje sastre de poder impecable','m7')"><span class="es-label">🧥 SASTRE</span><span class="en-label">POWER SUIT</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_formal','silk satin evening blouse','Blusa de seda y satén de noche','m7')"><span class="es-label">✨ SEDA</span><span class="en-label">SILK SATIN</span></button>
         </div>
     </div>
 
-    <div id="master-panel">
-        <div class="box-title"><span>🇪🇸</span> Prompt estructurado</div>
-        <textarea id="out-es" readonly placeholder="Construyendo prompt profesional..."></textarea>
-
-        <div class="box-title" style="color:var(--neon-blue);"><span>🇺🇸</span> Structured prompt</div>
-        <textarea id="out-en" readonly placeholder="Building professional prompt..."></textarea>
-
-        <div id="smart-note" class="smart-note"></div>
-
-        <div class="btn-actions">
-            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR</button>
-            <button class="btn-p btn-copy" onclick="copyPrompt()"><span>📋</span> COPIAR PROMPT</button>
+    <div class="subgroup">
+        <div class="subgroup-label">Profesional & lifestyle</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'wardrobe_lifestyle','business professional executive attire','Vestimenta ejecutiva profesional','m7')"><span class="es-label">💼 BUSINESS</span><span class="en-label">EXECUTIVE</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_lifestyle','white linen relaxed summer dress','Vestido lino blanco relajado verano','m7')"><span class="es-label">🤍 LINO BLANCO</span><span class="en-label">WHITE LINEN</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_lifestyle','casual minimalist clean outfit','Outfit casual minimalista limpio','m7')"><span class="es-label">👕 CASUAL</span><span class="en-label">CASUAL MINIMAL</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_lifestyle','sporty premium athletic wear','Ropa deportiva premium atlética','m7')"><span class="es-label">🏋️ DEPORTIVO</span><span class="en-label">PREMIUM SPORT</span></button>
         </div>
     </div>
 
-    <script>
-        let pD = {};
+    <div class="subgroup">
+        <div class="subgroup-label">Monocromático & efecto</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'wardrobe_palette','monochrome all-white tonal outfit','Outfit todo blanco monocromático','m7')"><span class="es-label">⬜ ALL WHITE</span><span class="en-label">ALL WHITE</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_palette','monochrome all-black sleek outfit','Outfit todo negro sleek','m7')"><span class="es-label">⬛ ALL BLACK</span><span class="en-label">ALL BLACK</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_palette','luxury swimwear editorial beachwear','Traje de baño editorial de lujo','m7')"><span class="es-label">👙 SWIMWEAR</span><span class="en-label">LUXURY SWIMWEAR</span></button>
+            <button class="option-btn" onclick="setV(event,'wardrobe_palette','vintage retro 70s styled look','Look vintage retro años 70','m7')"><span class="es-label">🕰 VINTAGE</span><span class="en-label">VINTAGE RETRO</span></button>
+        </div>
+    </div>
+</div>
 
-        const order = [
-            'id','eth','skin','face','hair',
-            'pose','scene','light','lens',
-            'angle','framing','comp',
-            'qual','ratio','eng'
-        ];
+<div class="module" id="m8">
+    <div class="mod-header">
+        <h3>💍 M8 — ACCESORIOS / ACCESSORIES</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
 
-        function setV(ev, key, en, es, groupId){
-            pD[key] = { en, es };
+    <div class="subgroup">
+        <div class="subgroup-label">Joyería</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'access_jewelry','no accessories clean look','Sin accesorios look limpio','m8')"><span class="es-label">🚫 SIN ACCESORIOS</span><span class="en-label">NO ACCESSORIES</span></button>
+            <button class="option-btn" onclick="setV(event,'access_jewelry','fine diamond jewelry elegant','Joyería fina con diamantes','m8')"><span class="es-label">💎 DIAMANTES</span><span class="en-label">DIAMOND JEWELRY</span></button>
+            <button class="option-btn" onclick="setV(event,'access_jewelry','bold gold statement jewelry','Joyería dorada llamativa','m8')"><span class="es-label">💛 ORO</span><span class="en-label">GOLD STATEMENT</span></button>
+            <button class="option-btn" onclick="setV(event,'access_jewelry','classic pearl necklace refined','Collar de perlas clásico refinado','m8')"><span class="es-label">🪬 PERLAS</span><span class="en-label">PEARL NECKLACE</span></button>
+            <button class="option-btn" onclick="setV(event,'access_jewelry','minimalist ring set stacked','Set de anillos minimalistas apilados','m8')"><span class="es-label">💍 ANILLOS</span><span class="en-label">RING SET</span></button>
+            <button class="option-btn" onclick="setV(event,'access_jewelry','large hoop earrings fashion','Aretes aro grandes fashion','m8')"><span class="es-label">⭕ AROS</span><span class="en-label">HOOP EARRINGS</span></button>
+        </div>
+    </div>
 
-            document.getElementById(groupId)
-                .querySelectorAll('.option-btn')
-                .forEach(btn => btn.classList.remove('active'));
+    <div class="subgroup">
+        <div class="subgroup-label">Complementos</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'access_extra','designer luxury handbag structured','Bolso de diseñador estructurado','m8')"><span class="es-label">👜 BOLSO LUJO</span><span class="en-label">DESIGNER BAG</span></button>
+            <button class="option-btn" onclick="setV(event,'access_extra','fashion forward sunglasses oversized','Gafas oversized vanguardistas','m8')"><span class="es-label">🕶 GAFAS</span><span class="en-label">SUNGLASSES</span></button>
+            <button class="option-btn" onclick="setV(event,'access_extra','silk scarf wrapped in hair','Pañuelo seda en cabello','m8')"><span class="es-label">🧣 PAÑUELO</span><span class="en-label">SILK SCARF</span></button>
+            <button class="option-btn" onclick="setV(event,'access_extra','layered stacked bracelets mixed metal','Pulseras apiladas metales mixtos','m8')"><span class="es-label">💪 PULSERAS</span><span class="en-label">STACKED BRACELETS</span></button>
+        </div>
+    </div>
+</div>
 
-            ev.currentTarget.classList.add('active');
-            update();
+<div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">III · ESCENA & POSE</div>
+    <div class="section-divider-line"></div>
+</div>
+
+<div class="module" id="m9">
+    <div class="mod-header">
+        <h3>🧘 M9 — POSE / POSING</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Dirección de mirada</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'pose_gaze','direct eye contact with camera','Contacto visual directo con cámara','m9')"><span class="es-label">👁 MIRADA DIRECTA</span><span class="en-label">EYE CONTACT</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_gaze','looking away dreamily off camera','Mirada soñadora fuera de cámara','m9')"><span class="es-label">🌙 FUERA DE CÁMARA</span><span class="en-label">LOOKING AWAY</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_gaze','over the shoulder glance','Mirada sobre el hombro','m9')"><span class="es-label">🔄 SOBRE HOMBRO</span><span class="en-label">SHOULDER GLANCE</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_gaze','chin slightly down coy look','Barbilla baja mirada coqueta','m9')"><span class="es-label">⬇️ BARBILLA</span><span class="en-label">CHIN DOWN</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Posición del cuerpo</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'pose_body','confident power stance upright','Postura erguida de poder','m9')"><span class="es-label">💪 PODER</span><span class="en-label">POWER STANCE</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_body','sitting elegantly legs crossed','Sentada elegantemente piernas cruzadas','m9')"><span class="es-label">🪑 SENTADA</span><span class="en-label">SITTING ELEGANT</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_body','editorial walking in motion','Caminata editorial en movimiento','m9')"><span class="es-label">🚶 EDITORIAL</span><span class="en-label">WALKING POSE</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_body','leaning against wall relaxed','Recostada en pared relajada','m9')"><span class="es-label">🧱 PARED</span><span class="en-label">WALL LEAN</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_body','reclining lying down graceful','Reclinada acostada con gracia','m9')"><span class="es-label">🛋 RECLINADA</span><span class="en-label">RECLINING</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Manos & detalle</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'pose_detail','hand on hip confident','Mano en cadera segura','m9')"><span class="es-label">🫱 CADERA</span><span class="en-label">HAND ON HIP</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_detail','hands gently crossed lap','Manos suavemente cruzadas','m9')"><span class="es-label">🤍 MANOS</span><span class="en-label">CROSSED HANDS</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_detail','three-quarter body turn elegant','Giro tres cuartos elegante','m9')"><span class="es-label">📐 3/4 GIRO</span><span class="en-label">3/4 TURN</span></button>
+            <button class="option-btn" onclick="setV(event,'pose_detail','arms above head sensual','Brazos sobre cabeza sensuales','m9')"><span class="es-label">🙌 BRAZOS ARRIBA</span><span class="en-label">ARMS RAISED</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="module" id="m10">
+    <div class="mod-header">
+        <h3>🏙 M10 — ESCENARIO / SCENE</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Estudio & controlado</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'scene','minimalist studio white backdrop','Estudio minimalista fondo blanco','m10')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">STUDIO</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','seamless neutral gray backdrop','Fondo neutro gris seamless','m10')"><span class="es-label">⬜ SEAMLESS</span><span class="en-label">NEUTRAL BACKDROP</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','soft blurred bokeh background','Fondo bokeh desenfocado suave','m10')"><span class="es-label">🌫 BOKEH</span><span class="en-label">BOKEH BG</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','luxury interior editorial set','Interior de lujo set editorial','m10')"><span class="es-label">✨ INTERIOR LUJO</span><span class="en-label">LUXURY INTERIOR</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Urbano & arquitectura</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'scene','upscale urban street background','Calle urbana de alto nivel','m10')"><span class="es-label">🏙 URBANO</span><span class="en-label">URBAN STREET</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','modern premium office environment','Oficina moderna premium','m10')"><span class="es-label">💼 OFICINA</span><span class="en-label">PREMIUM OFFICE</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','rooftop skyline sunset background','Azotea con skyline al atardecer','m10')"><span class="es-label">🌃 ROOFTOP</span><span class="en-label">ROOFTOP SKYLINE</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','night city neon lights cinematic','Ciudad nocturna luces neón','m10')"><span class="es-label">🌆 NEON CITY</span><span class="en-label">NEON CITY NIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','high fashion runway editorial backdrop','Pasarela editorial alta moda','m10')"><span class="es-label">👗 PASARELA</span><span class="en-label">RUNWAY</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Naturaleza & exterior</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'scene','tropical beach golden hour light','Playa tropical hora dorada','m10')"><span class="es-label">🌅 PLAYA</span><span class="en-label">TROPICAL BEACH</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','misty forest atmospheric green','Bosque neblinoso atmosférico','m10')"><span class="es-label">🌲 BOSQUE</span><span class="en-label">MISTY FOREST</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','golden desert dunes dramatic','Dunas doradas dramáticas','m10')"><span class="es-label">🏜 DESIERTO</span><span class="en-label">DESERT DUNES</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','lush nature landscape green','Paisaje de naturaleza exuberante','m10')"><span class="es-label">🌿 NATURALEZA</span><span class="en-label">NATURE LANDSCAPE</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">IV · TÉCNICA FOTOGRÁFICA</div>
+    <div class="section-divider-line"></div>
+</div>
+
+<div class="module" id="m11">
+    <div class="mod-header">
+        <h3>💡 M11 — LUZ / LIGHTING</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Esquemas clásicos de estudio</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'light_setup','butterfly lighting classic beauty','Luz butterfly clásica de belleza','m11')"><span class="es-label">🦋 BUTTERFLY</span><span class="en-label">BUTTERFLY LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_setup','Rembrandt lighting dramatic portrait','Iluminación Rembrandt dramática','m11')"><span class="es-label">🖼 REMBRANDT</span><span class="en-label">REMBRANDT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_setup','split lighting half face dramatic','Luz dividida mitad de rostro','m11')"><span class="es-label">⚡ SPLIT</span><span class="en-label">SPLIT LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_setup','beauty dish hard light glam','Luz beauty dish hard glam','m11')"><span class="es-label">💄 BEAUTY DISH</span><span class="en-label">BEAUTY DISH</span></button>
+            <button class="option-btn" onclick="setV(event,'light_setup','softbox large diffused light','Luz difusa de softbox grande','m11')"><span class="es-label">🔲 SOFTBOX</span><span class="en-label">SOFTBOX</span></button>
+            <button class="option-btn" onclick="setV(event,'light_setup','ring light with catchlight in eyes','Ring light con reflejo en iris','m11')"><span class="es-label">💍 RING LIGHT</span><span class="en-label">RING LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_setup','high-key bright studio lighting','Iluminación high key estudio brillante','m11')"><span class="es-label">⚪ HIGH KEY</span><span class="en-label">HIGH-KEY</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Luz natural & ambiente</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'light_natural','soft natural window light diffused','Luz natural suave de ventana difusa','m11')"><span class="es-label">🕯 VENTANA</span><span class="en-label">WINDOW LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_natural','golden hour warm backlight halo','Contraluz cálido hora dorada halo','m11')"><span class="es-label">🌇 HORA DORADA</span><span class="en-label">GOLDEN HOUR</span></button>
+            <button class="option-btn" onclick="setV(event,'light_natural','contre-jour silhouette backlit glow','Contraluz silueta luminosa','m11')"><span class="es-label">☀️ CONTRALUZ</span><span class="en-label">CONTRE-JOUR</span></button>
+            <button class="option-btn" onclick="setV(event,'light_natural','moonlight cold blue silver tones','Luz lunar tonos azul plata','m11')"><span class="es-label">🌕 LUNAR</span><span class="en-label">MOONLIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_natural','candlelight warm intimate glow','Luz de vela cálida íntima','m11')"><span class="es-label">🕯 VELA</span><span class="en-label">CANDLELIGHT</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Cinematográfico & estilizado</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'light_style','cinematic moody lighting film noir','Cinematográfica moody film noir','m11')"><span class="es-label">🎬 CINE NOIR</span><span class="en-label">CINEMATIC NOIR</span></button>
+            <button class="option-btn" onclick="setV(event,'light_style','rim light separation dramatic edge','Luz de contorno borde dramático','m11')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">RIM LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light_style','neon colored ambient light colored gels','Luz ambiental neón geles de color','m11')"><span class="es-label">🟣 NEÓN</span><span class="en-label">NEON GELS</span></button>
+            <button class="option-btn" onclick="setV(event,'light_style','moody low key contrast chiaroscuro','Bajo contraste dramático claroscuro','m11')"><span class="es-label">🌑 CLAROSCURO</span><span class="en-label">CHIAROSCURO</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="module" id="m12">
+    <div class="mod-header">
+        <h3>🎥 M12 — ÓPTICA / LENS & OPTICS</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Focal length</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'lens_focal','shot on 35mm lens environmental','Lente 35mm ambiental','m12')"><span class="es-label">🏙 35MM</span><span class="en-label">35MM</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_focal','shot on 50mm lens standard','Lente 50mm estándar','m12')"><span class="es-label">🎯 50MM</span><span class="en-label">50MM</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_focal','shot on 85mm portrait lens','Lente retrato 85mm','m12')"><span class="es-label">📸 85MM</span><span class="en-label">85MM</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_focal','shot on 135mm f2 telephoto portrait','Lente telefoto retrato 135mm f2','m12')"><span class="es-label">🔍 135MM F2</span><span class="en-label">135MM F2</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_focal','telephoto compression background isolation','Compresión telefoto aislamiento','m12')"><span class="es-label">🔭 TELEPHOTO</span><span class="en-label">TELEPHOTO</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_focal','shot on 105mm macro lens detail','Lente macro 105mm detalle','m12')"><span class="es-label">🔬 MACRO 105MM</span><span class="en-label">MACRO 105MM</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Apertura & DOF</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'lens_aperture','f1.4 wide open aperture bokeh','Apertura f1.4 bokeh amplio','m12')"><span class="es-label">🌟 F1.4</span><span class="en-label">F1.4 WIDE OPEN</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_aperture','f1.8 portrait aperture smooth bokeh','Apertura retrato f1.8 bokeh suave','m12')"><span class="es-label">💫 F1.8</span><span class="en-label">F1.8</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_aperture','f2.8 classic portrait aperture','Apertura clásica de retrato f2.8','m12')"><span class="es-label">📷 F2.8</span><span class="en-label">F2.8</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_aperture','shallow depth of field eyes sharp','DOF reducido ojos nítidos','m12')"><span class="es-label">🌫 SHALLOW DOF</span><span class="en-label">SHALLOW DOF</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_aperture','creamy smooth bokeh background','Bokeh cremoso fondo suave','m12')"><span class="es-label">✨ BOKEH CREMOSO</span><span class="en-label">CREAMY BOKEH</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Cámara & efectos ópticos</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'lens_camera','shot on Hasselblad medium format','Captura en Hasselblad formato medio','m12')"><span class="es-label">📸 HASSELBLAD</span><span class="en-label">HASSELBLAD MF</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_camera','shot on Sony A7R V mirrorless full frame','Sony A7R V full frame mirrorless','m12')"><span class="es-label">📷 SONY A7R V</span><span class="en-label">SONY A7R V</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_camera','anamorphic lens horizontal flare','Destello horizontal anamórfico','m12')"><span class="es-label">🎞 ANAMÓRFICO</span><span class="en-label">ANAMORPHIC</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_camera','tilt-shift miniature focus plane','Tilt-shift plano de foco selectivo','m12')"><span class="es-label">↕️ TILT-SHIFT</span><span class="en-label">TILT-SHIFT</span></button>
+            <button class="option-btn" onclick="setV(event,'lens_camera','ultra-realistic photographic render','Render fotográfico ultra realista','m12')"><span class="es-label">💎 ULTRA FOTO</span><span class="en-label">ULTRA REAL</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="module" id="m13">
+    <div class="mod-header">
+        <h3>📐 M13 — ÁNGULOS & PLANOS / ANGLE & FRAME</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Ángulo de cámara</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'angle','eye level neutral camera angle','Ángulo neutro a la altura de ojos','m13')"><span class="es-label">👁 EYE LEVEL</span><span class="en-label">EYE LEVEL</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','high angle shot flattering','Ángulo picado favorecedor','m13')"><span class="es-label">⬆️ PICADO</span><span class="en-label">HIGH ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','low angle shot empowering','Ángulo contrapicado empoderador','m13')"><span class="es-label">⬇️ CONTRAPICADO</span><span class="en-label">LOW ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','dutch angle dynamic tilt','Ángulo holandés dinámico','m13')"><span class="es-label">🌀 DUTCH</span><span class="en-label">DUTCH ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','overhead birds eye top-down','Vista cenital desde arriba','m13')"><span class="es-label">🦅 CENITAL</span><span class="en-label">BIRD'S EYE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','diagonal dynamic camera tilt','Inclinación diagonal dinámica','m13')"><span class="es-label">↗️ DIAGONAL</span><span class="en-label">DIAGONAL TILT</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Distancia de plano</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'framing','full body shot head to toe','Cuerpo entero de cabeza a pies','m13')"><span class="es-label">🚶 CUERPO ENTERO</span><span class="en-label">FULL BODY</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','cowboy shot thighs up','Plano cowboy muslos arriba','m13')"><span class="es-label">🤠 COWBOY</span><span class="en-label">COWBOY SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','medium shot waist up','Plano medio cintura arriba','m13')"><span class="es-label">🖼 MEDIO</span><span class="en-label">MEDIUM SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','bust shot chest shoulders','Busto pecho y hombros','m13')"><span class="es-label">👕 BUSTO</span><span class="en-label">BUST SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','close up face neck','Primer plano rostro cuello','m13')"><span class="es-label">🔍 CLOSE UP</span><span class="en-label">CLOSE UP</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','headshot professional portrait','Headshot retrato profesional','m13')"><span class="es-label">🧑 HEADSHOT</span><span class="en-label">HEADSHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','extreme close up eyes detail','Primerísimo plano detalle ojos','m13')"><span class="es-label">🧿 EXTREMO</span><span class="en-label">EXTREME CU</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Composición & perspectiva</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'comp','centered symmetrical composition','Composición centrada simétrica','m13')"><span class="es-label">🎯 CENTRADA</span><span class="en-label">CENTERED</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','rule of thirds dynamic composition','Regla de tercios dinámica','m13')"><span class="es-label">🔲 TERCIOS</span><span class="en-label">RULE OF THIRDS</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','negative space minimal composition','Espacio negativo minimalista','m13')"><span class="es-label">⬛ NEGATIVO</span><span class="en-label">NEGATIVE SPACE</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','frame within a frame composition','Encuadre dentro del encuadre','m13')"><span class="es-label">🖼 FRAME IN FRAME</span><span class="en-label">FRAME IN FRAME</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','leading lines guiding to subject','Líneas guía hacia el sujeto','m13')"><span class="es-label">➡️ LÍNEAS GUÍA</span><span class="en-label">LEADING LINES</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','golden ratio spiral organic','Espiral de proporción áurea','m13')"><span class="es-label">🌀 ÁUREA</span><span class="en-label">GOLDEN RATIO</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','point of view immersive POV','Punto de vista inmersivo POV','m13')"><span class="es-label">👀 POV</span><span class="en-label">POV SHOT</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">V · RENDER & EXPORTACIÓN</div>
+    <div class="section-divider-line"></div>
+</div>
+
+<div class="module" id="m14">
+    <div class="mod-header">
+        <h3>📺 M14 — CALIDAD & COLOR / QUALITY & GRADE</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Resolución & nitidez</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'qual_res','8K ultra high resolution','Resolución ultra alta 8K','m14')"><span class="es-label">📺 8K</span><span class="en-label">8K ULTRA HD</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_res','ultra sharp focus tack sharp','Nitidez total ultra nítido','m14')"><span class="es-label">🔪 ULTRA SHARP</span><span class="en-label">ULTRA SHARP</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_res','photorealistic hyperrealistic render','Fotorrealismo hiperrealista','m14')"><span class="es-label">📸 FOTO REAL</span><span class="en-label">PHOTOREALISTIC</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_res','HDR high dynamic range balanced','Alto rango dinámico balanceado','m14')"><span class="es-label">🌈 HDR</span><span class="en-label">HDR BALANCED</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_res','highly detailed intricate precision','Altamente detallado con precisión','m14')"><span class="es-label">✨ DETALLADO</span><span class="en-label">HIGH DETAIL</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Color grading</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'qual_grade','cinematic color grading Hollywood grade','Color grading cinematográfico Hollywood','m14')"><span class="es-label">🎞 CINE GRADE</span><span class="en-label">CINEMATIC GRADE</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_grade','warm analog vintage color grade','Corrección cálida analógica vintage','m14')"><span class="es-label">🟠 CÁLIDO ANALÓGICO</span><span class="en-label">WARM ANALOG</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_grade','teal and orange film color grade','Gradación teal y naranja fílmica','m14')"><span class="es-label">🩵 TEAL & ORANGE</span><span class="en-label">TEAL & ORANGE</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_grade','color calibrated neutral clean tones','Tonos neutros limpios calibrados','m14')"><span class="es-label">⬜ NEUTRO</span><span class="en-label">CALIBRATED NEUTRAL</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_grade','analog film grain 35mm Kodak','Grano de película analógica Kodak','m14')"><span class="es-label">🎞 FILM GRAIN</span><span class="en-label">FILM GRAIN</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_grade','RAW unprocessed natural authentic','Crudo sin procesar natural auténtico','m14')"><span class="es-label">📷 RAW</span><span class="en-label">RAW NATURAL</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Acabado editorial</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'qual_finish','luxury commercial photography campaign','Fotografía de campaña comercial lujo','m14')"><span class="es-label">💼 CAMPAÑA</span><span class="en-label">LUXURY CAMPAIGN</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_finish','Vogue magazine editorial quality','Calidad editorial de revista Vogue','m14')"><span class="es-label">💎 VOGUE QUALITY</span><span class="en-label">VOGUE EDITORIAL</span></button>
+            <button class="option-btn" onclick="setV(event,'qual_finish','clean professional editorial retouch','Retoque editorial limpio profesional','m14')"><span class="es-label">📰 RETOQUE</span><span class="en-label">EDITORIAL RETOUCH</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="module" id="m15">
+    <div class="mod-header">
+        <h3>⚙️ M15 — FORMATO & MOTOR / RATIO & ENGINE</h3>
+        <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Aspect ratio</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 1:1','Cuadrado 1:1','m15')"><span class="es-label">◻️ 1:1</span><span class="en-label">SQUARE</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 4:5','Feed retrato 4:5','m15')"><span class="es-label">📱 4:5</span><span class="en-label">PORTRAIT FEED</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 3:4','Marco retrato 3:4','m15')"><span class="es-label">📐 3:4</span><span class="en-label">PORTRAIT 3:4</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 2:3','Retrato clásico 2:3','m15')"><span class="es-label">🖼 2:3</span><span class="en-label">CLASSIC 2:3</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 3:2','Foto clásica 3:2','m15')"><span class="es-label">📷 3:2</span><span class="en-label">CLASSIC 3:2</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 9:16','Vertical stories 9:16','m15')"><span class="es-label">📲 9:16</span><span class="en-label">VERTICAL 9:16</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 16:9','Widescreen 16:9','m15')"><span class="es-label">🖥 16:9</span><span class="en-label">WIDESCREEN</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 21:9','Ultra ancho cine 21:9','m15')"><span class="es-label">🎬 21:9</span><span class="en-label">ULTRA WIDE</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Versión del motor</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'eng','--v 6.1 --style raw','Motor MJ v6.1 raw','m15')"><span class="es-label">🚀 V6.1 RAW</span><span class="en-label">MJ V6.1 RAW</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--v 6.1','Motor MJ v6.1','m15')"><span class="es-label">🛸 V6.1</span><span class="en-label">MJ V6.1</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--v 6.0','Motor MJ v6.0','m15')"><span class="es-label">🔵 V6.0</span><span class="en-label">MJ V6.0</span></button>
+        </div>
+    </div>
+
+    <div class="subgroup">
+        <div class="subgroup-label">Parámetros de render</div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'eng_s','--stylize 50','Stylize bajo — fiel','m15')"><span class="es-label">🎭 STYLIZE 50</span><span class="en-label">STYLIZE LOW</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_s','--stylize 150','Stylize medio','m15')"><span class="es-label">🎨 STYLIZE 150</span><span class="en-label">STYLIZE MED</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_s','--stylize 500','Stylize alto — artístico','m15')"><span class="es-label">🔥 STYLIZE 500</span><span class="en-label">STYLIZE HIGH</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_s','--stylize 750','Stylize máximo','m15')"><span class="es-label">💥 STYLIZE MAX</span><span class="en-label">STYLIZE MAX</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_c','--chaos 5','Chaos bajo 5','m15')"><span class="es-label">🌊 CHAOS 5</span><span class="en-label">CHAOS LOW</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_c','--chaos 20','Chaos medio 20','m15')"><span class="es-label">⚡ CHAOS 20</span><span class="en-label">CHAOS MED</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_c','--chaos 50','Chaos alto 50','m15')"><span class="es-label">🌀 CHAOS 50</span><span class="en-label">CHAOS HIGH</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_w','--weird 250','Weird mode moderado','m15')"><span class="es-label">🤪 WEIRD 250</span><span class="en-label">WEIRD 250</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_neg','--no blurry, distorted, watermark, text, artificial','Sin blur ni distorsión ni marcas','m15')"><span class="es-label">🚫 NEGATIVOS</span><span class="en-label">NEGATIVE PROMPT</span></button>
+            <button class="option-btn" onclick="setV(event,'eng_rep','--repeat 4','Genera 4 variantes','m15')"><span class="es-label">🔁 REPEAT ×4</span><span class="en-label">REPEAT 4</span></button>
+        </div>
+    </div>
+</div>
+
+<div id="master-panel">
+    <div class="panel-top">
+        <div class="panel-col">
+            <div class="box-title"><span class="lang-flag">🇪🇸</span> PROMPT ESTRUCTURADO</div>
+            <textarea id="out-es" readonly placeholder="Selecciona opciones para construir el prompt..."></textarea>
+        </div>
+        <div class="panel-col">
+            <div class="box-title" style="color:var(--neon-blue);"><span class="lang-flag">🇺🇸</span> STRUCTURED PROMPT · EN</div>
+            <textarea id="out-en" readonly placeholder="Select options to build the prompt..."></textarea>
+        </div>
+    </div>
+
+    <div id="smart-note" class="smart-note"></div>
+
+    <div class="btn-actions">
+        <div class="panel-counter">SELECCIONES ACTIVAS: <span id="active-count">0</span></div>
+        <div class="btn-group">
+            <button class="btn-p btn-del" onclick="resetAll()"><span>🗑</span> LIMPIAR</button>
+            <button class="btn-p btn-copy-es" onclick="copyPromptES()"><span>📋</span> COPIAR ES</button>
+            <button class="btn-p btn-copy" onclick="copyPromptEN()"><span>📋</span> COPIAR EN</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let pD = {};
+
+    const order = [
+        'id_ref','id_type','id_origin','id_age',
+        'eth',
+        'skin_tone','skin_texture','skin_tech',
+        'face_expr','face_structure','face_features',
+        'hair_color','hair_texture','hair_style',
+        'makeup_base','makeup_style',
+        'wardrobe_formal','wardrobe_lifestyle','wardrobe_palette',
+        'access_jewelry','access_extra',
+        'pose_gaze','pose_body','pose_detail',
+        'scene',
+        'light_setup','light_natural','light_style',
+        'lens_focal','lens_aperture','lens_camera',
+        'angle','framing','comp',
+        'qual_res','qual_grade','qual_finish',
+        'ratio','eng','eng_s','eng_c','eng_w','eng_neg','eng_rep'
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            const onclick = btn.getAttribute('onclick') || '';
+            const match = onclick.match(/setV\(event,'([^']+)'/);
+            if (match) btn.dataset.key = match[1];
+        });
+    });
+
+    function setV(ev, key, en, es, groupId){
+        pD[key] = { en, es };
+
+        document.getElementById(groupId)
+            .querySelectorAll('.option-btn')
+            .forEach(btn => {
+                if (btn.dataset.key === key) btn.classList.remove('active');
+            });
+
+        ev.currentTarget.classList.add('active');
+        update();
+    }
+
+    function autoResize(el){
+        el.style.height = 'auto';
+        el.style.height = Math.min(el.scrollHeight, 180) + 'px';
+    }
+
+    function resolveContradictions(data){
+        const d = JSON.parse(JSON.stringify(data));
+        const notes = [];
+
+        const gaze = d.pose_gaze?.en?.toLowerCase() || '';
+        const comp = d.comp?.en?.toLowerCase() || '';
+        const framing = d.framing?.en?.toLowerCase() || '';
+
+        if (gaze.includes('eye contact') && comp.includes('pov')) {
+            notes.push('Nota: POV y mirada directa pueden competir visualmente según el motor.');
         }
 
-        function naturalJoin(items, lang = 'es'){
-            const clean = items.filter(Boolean);
-            if (clean.length === 0) return '';
-            if (clean.length === 1) return clean[0];
-            if (clean.length === 2) {
-                return lang === 'es'
-                    ? `${clean[0]} y ${clean[1]}`
-                    : `${clean[0]} and ${clean[1]}`;
-            }
-            const arr = [...clean];
-            const last = arr.pop();
-            return lang === 'es'
-                ? `${arr.join(', ')} y ${last}`
-                : `${arr.join(', ')}, and ${last}`;
+        if (gaze.includes('eye contact') && comp.includes('from behind')) {
+            delete d.comp;
+            notes.push('Conflicto resuelto: "desde atrás" eliminado por incompatibilidad con "mirada directa".');
         }
 
-        function autoResizeTextarea(el){
-            el.style.height = 'auto';
-            el.style.height = Math.min(el.scrollHeight, 220) + 'px';
+        if ((framing.includes('full body') || framing.includes('cowboy') || framing.includes('medium shot')) && d.skin_tech) {
+            notes.push('Nota: planos abiertos pueden reducir la visibilidad de detalles microscópicos de piel.');
         }
 
-        function resolveContradictions(data){
-            const d = JSON.parse(JSON.stringify(data));
-            const notes = [];
+        return { cleanData: d, notes };
+    }
 
-            const pose = d.pose?.en?.toLowerCase() || '';
-            const comp = d.comp?.en?.toLowerCase() || '';
-            const framing = d.framing?.en?.toLowerCase() || '';
+    function buildEN(data){
+        const subjectDetails = [
+            data.id_ref?.en,
+            data.id_type?.en,
+            data.id_origin?.en,
+            data.id_age?.en,
+            data.eth?.en,
+            data.skin_tone?.en,
+            data.skin_texture?.en,
+            data.skin_tech?.en,
+            data.face_expr?.en,
+            data.face_structure?.en,
+            data.face_features?.en,
+            data.hair_color?.en,
+            data.hair_texture?.en,
+            data.hair_style?.en
+        ].filter(Boolean);
 
-            if (pose.includes('looking at camera') && comp.includes('shot from behind')) {
-                delete d.comp;
-                notes.push('Se eliminó "shot from behind" porque contradice "looking at camera".');
-            }
+        const styleDetails = [
+            data.makeup_base?.en,
+            data.makeup_style?.en,
+            data.wardrobe_formal?.en,
+            data.wardrobe_lifestyle?.en,
+            data.wardrobe_palette?.en,
+            data.access_jewelry?.en,
+            data.access_extra?.en
+        ].filter(Boolean);
 
-            if (
-                (framing.includes('long shot') || framing.includes('extreme long shot')) &&
-                (d.skin || d.face)
-            ) {
-                notes.push('El plano lejano puede reducir la visibilidad de detalles finos de piel y rostro.');
-            }
+        const sceneDetails = [
+            data.pose_gaze?.en,
+            data.pose_body?.en,
+            data.pose_detail?.en,
+            data.scene?.en
+        ].filter(Boolean);
 
-            return { cleanData: d, notes };
+        const captureDetails = [
+            data.angle?.en,
+            data.framing?.en,
+            data.comp?.en,
+            data.light_setup?.en,
+            data.light_natural?.en,
+            data.light_style?.en,
+            data.lens_focal?.en,
+            data.lens_aperture?.en,
+            data.lens_camera?.en
+        ].filter(Boolean);
+
+        const qualityDetails = [
+            data.qual_res?.en,
+            data.qual_grade?.en,
+            data.qual_finish?.en
+        ].filter(Boolean);
+
+        const params = [
+            data.ratio?.en,
+            data.eng?.en,
+            data.eng_s?.en,
+            data.eng_c?.en,
+            data.eng_w?.en,
+            data.eng_neg?.en,
+            data.eng_rep?.en
+        ].filter(Boolean);
+
+        const lines = [];
+
+        if (subjectDetails.length) {
+            lines.push(`Professional portrait of ${subjectDetails.join(', ')}.`);
+        } else {
+            lines.push(`Professional portrait of a subject.`);
         }
 
-        function buildPromptES(data){
-            const subject = data.id?.es || 'un sujeto';
-
-            const identity = naturalJoin([
-                data.eth?.es,
-                data.skin?.es,
-                data.face?.es,
-                data.hair?.es
-            ], 'es');
-
-            const poseScene = naturalJoin([
-                data.pose?.es,
-                data.scene?.es
-            ], 'es');
-
-            const capture = naturalJoin([
-                data.light?.es,
-                data.lens?.es,
-                data.angle?.es,
-                data.framing?.es,
-                data.comp?.es
-            ], 'es');
-
-            const quality = naturalJoin([
-                data.qual?.es
-            ], 'es');
-
-            const params = naturalJoin([
-                data.ratio?.en,
-                data.eng?.en
-            ], 'es');
-
-            const lines = [];
-
-            let line1 = `Retrato profesional de ${subject}`;
-            if (identity) line1 += ` con ${identity}`;
-            line1 += `.`;
-            lines.push(line1);
-
-            if (poseScene) {
-                lines.push(`La imagen presenta al sujeto con ${poseScene}.`);
-            }
-
-            if (capture) {
-                lines.push(`Iluminación y captura: ${capture}.`);
-            }
-
-            if (quality) {
-                lines.push(`Acabado visual: ${quality}.`);
-            }
-
-            if (params) {
-                lines.push(`Parámetros técnicos: ${params}.`);
-            }
-
-            return lines.join('\n');
+        if (styleDetails.length) {
+            lines.push(`Styled with ${styleDetails.join(', ')}.`);
         }
 
-        function buildPromptEN(data){
-            const subject = data.id?.en || 'a subject';
-
-            const identity = naturalJoin([
-                data.eth?.en,
-                data.skin?.en,
-                data.face?.en,
-                data.hair?.en
-            ], 'en');
-
-            const poseScene = naturalJoin([
-                data.pose?.en,
-                data.scene?.en
-            ], 'en');
-
-            const capture = naturalJoin([
-                data.light?.en,
-                data.lens?.en,
-                data.angle?.en,
-                data.framing?.en,
-                data.comp?.en
-            ], 'en');
-
-            const quality = naturalJoin([
-                data.qual?.en
-            ], 'en');
-
-            const params = naturalJoin([
-                data.ratio?.en,
-                data.eng?.en
-            ], 'en');
-
-            const lines = [];
-
-            let line1 = `Professional portrait of ${subject}`;
-            if (identity) line1 += ` with ${identity}`;
-            line1 += `.`;
-            lines.push(line1);
-
-            if (poseScene) {
-                lines.push(`The image presents the subject with ${poseScene}.`);
-            }
-
-            if (capture) {
-                lines.push(`Lighting and capture: ${capture}.`);
-            }
-
-            if (quality) {
-                lines.push(`Visual finish: ${quality}.`);
-            }
-
-            if (params) {
-                lines.push(`Technical parameters: ${params}.`);
-            }
-
-            return lines.join('\n');
+        if (sceneDetails.length) {
+            lines.push(`The subject is presented with ${sceneDetails.join(', ')}.`);
         }
 
-        function update(){
-            const { cleanData, notes } = resolveContradictions(pD);
-
-            const outES = document.getElementById('out-es');
-            const outEN = document.getElementById('out-en');
-            const smartNote = document.getElementById('smart-note');
-
-            outES.value = buildPromptES(cleanData);
-            outEN.value = buildPromptEN(cleanData);
-
-            autoResizeTextarea(outES);
-            autoResizeTextarea(outEN);
-
-            if (notes.length) {
-                smartNote.style.display = 'block';
-                smartNote.innerHTML = '⚠️ ' + notes.join('<br>⚠️ ');
-            } else {
-                smartNote.style.display = 'none';
-                smartNote.innerHTML = '';
-            }
+        if (captureDetails.length) {
+            lines.push(`Captured as ${captureDetails.join(', ')}.`);
         }
 
-        function resetAll(){
-            pD = {};
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('out-es').value = '';
-            document.getElementById('out-en').value = '';
-            document.getElementById('out-es').style.height = '78px';
-            document.getElementById('out-en').style.height = '78px';
-            document.getElementById('smart-note').style.display = 'none';
-            document.getElementById('smart-note').innerHTML = '';
+        if (qualityDetails.length) {
+            lines.push(`Visual finish: ${qualityDetails.join(', ')}.`);
         }
 
-        async function copyPrompt(){
-            const text = document.getElementById('out-en').value;
-            if (!text) return;
-
-            try{
-                await navigator.clipboard.writeText(text);
-                alert('✅ PROMPT COPIADO');
-            }catch(err){
-                const temp = document.getElementById('out-en');
-                temp.select();
-                document.execCommand('copy');
-                alert('✅ PROMPT COPIADO');
-            }
+        if (params.length) {
+            lines.push(params.join(' '));
         }
-    </script>
+
+        return lines.join('\n');
+    }
+
+    function buildES(data){
+        const subjectDetails = [
+            data.id_ref?.es,
+            data.id_type?.es,
+            data.id_origin?.es,
+            data.id_age?.es,
+            data.eth?.es,
+            data.skin_tone?.es,
+            data.skin_texture?.es,
+            data.skin_tech?.es,
+            data.face_expr?.es,
+            data.face_structure?.es,
+            data.face_features?.es,
+            data.hair_color?.es,
+            data.hair_texture?.es,
+            data.hair_style?.es
+        ].filter(Boolean);
+
+        const styleDetails = [
+            data.makeup_base?.es,
+            data.makeup_style?.es,
+            data.wardrobe_formal?.es,
+            data.wardrobe_lifestyle?.es,
+            data.wardrobe_palette?.es,
+            data.access_jewelry?.es,
+            data.access_extra?.es
+        ].filter(Boolean);
+
+        const sceneDetails = [
+            data.pose_gaze?.es,
+            data.pose_body?.es,
+            data.pose_detail?.es,
+            data.scene?.es
+        ].filter(Boolean);
+
+        const captureDetails = [
+            data.angle?.es,
+            data.framing?.es,
+            data.comp?.es,
+            data.light_setup?.es,
+            data.light_natural?.es,
+            data.light_style?.es,
+            data.lens_focal?.es,
+            data.lens_aperture?.es,
+            data.lens_camera?.es
+        ].filter(Boolean);
+
+        const qualityDetails = [
+            data.qual_res?.es,
+            data.qual_grade?.es,
+            data.qual_finish?.es
+        ].filter(Boolean);
+
+        const params = [
+            data.ratio?.en,
+            data.eng?.en,
+            data.eng_s?.en,
+            data.eng_c?.en,
+            data.eng_w?.en,
+            data.eng_neg?.en,
+            data.eng_rep?.en
+        ].filter(Boolean);
+
+        const lines = [];
+
+        if (subjectDetails.length) {
+            lines.push(`Retrato profesional de ${subjectDetails.join(', ')}.`);
+        } else {
+            lines.push(`Retrato profesional de un sujeto.`);
+        }
+
+        if (styleDetails.length) {
+            lines.push(`Estilizado con ${styleDetails.join(', ')}.`);
+        }
+
+        if (sceneDetails.length) {
+            lines.push(`El sujeto se presenta con ${sceneDetails.join(', ')}.`);
+        }
+
+        if (captureDetails.length) {
+            lines.push(`Capturado como ${captureDetails.join(', ')}.`);
+        }
+
+        if (qualityDetails.length) {
+            lines.push(`Acabado visual: ${qualityDetails.join(', ')}.`);
+        }
+
+        if (params.length) {
+            lines.push(params.join(' '));
+        }
+
+        return lines.join('\n');
+    }
+
+    function update(){
+        const { cleanData, notes } = resolveContradictions(pD);
+        const outES = document.getElementById('out-es');
+        const outEN = document.getElementById('out-en');
+        const note  = document.getElementById('smart-note');
+        const count = document.getElementById('active-count');
+
+        outES.value = buildES(cleanData);
+        outEN.value = buildEN(cleanData);
+        autoResize(outES);
+        autoResize(outEN);
+
+        count.textContent = Object.keys(pD).length;
+
+        if(notes.length){
+            note.style.display = 'block';
+            note.innerHTML = '⚠️ ' + notes.join('<br>⚠️ ');
+        } else {
+            note.style.display = 'none';
+            note.innerHTML = '';
+        }
+    }
+
+    function resetAll(){
+        pD = {};
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+        ['out-es','out-en'].forEach(id => {
+            const el = document.getElementById(id);
+            el.value = '';
+            el.style.height = '72px';
+        });
+        const note = document.getElementById('smart-note');
+        note.style.display = 'none';
+        note.innerHTML = '';
+        document.getElementById('active-count').textContent = '0';
+    }
+
+    async function copyText(text, label){
+        if(!text) return;
+        try{
+            await navigator.clipboard.writeText(text);
+        } catch(e){
+            const t = document.createElement('textarea');
+            t.value = text;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+        }
+        alert(`✅ ${label} COPIADO`);
+    }
+
+    function copyPromptEN(){ copyText(document.getElementById('out-en').value, 'PROMPT EN'); }
+    function copyPromptES(){ copyText(document.getElementById('out-es').value, 'PROMPT ES'); }
+</script>
 </body>
 </html>
+
 
 

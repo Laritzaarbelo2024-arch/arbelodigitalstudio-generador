@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -180,7 +181,7 @@
         button.option-btn{
             background:linear-gradient(145deg,#222,#050505) !important;
             border:1px solid #333 !important;
-            padding:11px 10px !important;
+            padding:14px 12px !important;
             border-radius:8px !important;
             cursor:pointer;
             transition:.22s ease;
@@ -188,8 +189,8 @@
             flex-direction:column;
             align-items:center;
             justify-content:center;
-            gap:5px;
-            min-height:70px;
+            gap:8px;
+            min-height:84px;
         }
         button.option-btn:hover{
             border-color:var(--neon-green) !important;
@@ -203,25 +204,28 @@
         }
         .es-label{
             color:#fff;
-            font-size:.72em;
-            font-weight:800;
+            font-size:.85em;
+            font-weight:900;
             text-transform:uppercase;
             text-align:center;
-            line-height:1.15;
+            line-height:1.22;
+            letter-spacing:.2px;
+            text-shadow:0 0 8px rgba(255,255,255,.04);
         }
         .en-label{
-            color:#b9f8ff;
-            font-size:.62em;
-            font-weight:700;
+            color:#d6fbff;
+            font-size:.73em;
+            font-weight:800;
             text-transform:uppercase;
             font-style:italic;
             text-align:center;
-            line-height:1.15;
-            text-shadow:0 0 12px rgba(0,243,255,.14);
-            opacity:.98;
+            line-height:1.22;
+            text-shadow:0 0 14px rgba(0,243,255,.16);
+            opacity:1;
+            letter-spacing:.2px;
         }
         button.option-btn.active .es-label{ color:var(--neon-green); }
-        button.option-btn.active .en-label{ color:#d9ffff; }
+        button.option-btn.active .en-label{ color:#ecffff; }
 
         #master-panel{
             position:fixed;
@@ -260,15 +264,15 @@
             background:rgba(0,0,0,.85);
             border:1px solid #222;
             border-radius:10px;
-            padding:10px 12px;
+            padding:12px 14px;
             color:#fff;
-            font-size:.84em;
+            font-size:1em;
             resize:none;
             outline:none;
-            min-height:72px;
+            min-height:90px;
             max-height:180px;
             font-family:'Inter',sans-serif;
-            line-height:1.5;
+            line-height:1.6;
             overflow:auto;
             transition:border-color .2s;
         }
@@ -1005,24 +1009,19 @@
 
 <script>
     let pD = {};
+    let selectionCounter = 0;
 
-    const order = [
-        'id_ref','id_type','id_origin','id_age',
-        'eth',
-        'skin_tone','skin_texture','skin_tech',
-        'face_expr','face_structure','face_features',
-        'hair_color','hair_texture','hair_style',
-        'makeup_base','makeup_style',
-        'wardrobe_formal','wardrobe_lifestyle','wardrobe_palette',
-        'access_jewelry','access_extra',
-        'pose_gaze','pose_body','pose_detail',
-        'scene',
-        'light_setup','light_natural','light_style',
-        'lens_focal','lens_aperture','lens_camera',
-        'angle','framing','comp',
-        'qual_res','qual_grade','qual_finish',
-        'ratio','eng','eng_s','eng_c','eng_w','eng_neg','eng_rep'
-    ];
+    const MULTI_KEYS = new Set([
+        'skin_texture',
+        'skin_tech',
+        'face_structure',
+        'face_features',
+        'access_jewelry',
+        'access_extra',
+        'pose_detail',
+        'qual_res',
+        'qual_finish'
+    ]);
 
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.option-btn').forEach(btn => {
@@ -1032,16 +1031,44 @@
         });
     });
 
+    function makeEntry(en, es){
+        selectionCounter += 1;
+        return { en, es, _ts: selectionCounter };
+    }
+
     function setV(ev, key, en, es, groupId){
-        pD[key] = { en, es };
+        const isMulti = MULTI_KEYS.has(key);
+        const button = ev.currentTarget;
 
-        document.getElementById(groupId)
-            .querySelectorAll('.option-btn')
-            .forEach(btn => {
-                if (btn.dataset.key === key) btn.classList.remove('active');
-            });
+        if(isMulti){
+            const current = Array.isArray(pD[key]) ? [...pD[key]] : [];
+            const existingIndex = current.findIndex(item => item.en === en && item.es === es);
 
-        ev.currentTarget.classList.add('active');
+            if(existingIndex >= 0){
+                current.splice(existingIndex, 1);
+                if(current.length){
+                    pD[key] = current;
+                } else {
+                    delete pD[key];
+                }
+                button.classList.remove('active');
+            } else {
+                current.push(makeEntry(en, es));
+                pD[key] = current;
+                button.classList.add('active');
+            }
+        } else {
+            pD[key] = makeEntry(en, es);
+
+            document.getElementById(groupId)
+                .querySelectorAll('.option-btn')
+                .forEach(btn => {
+                    if(btn.dataset.key === key) btn.classList.remove('active');
+                });
+
+            button.classList.add('active');
+        }
+
         update();
     }
 
@@ -1050,24 +1077,88 @@
         el.style.height = Math.min(el.scrollHeight, 180) + 'px';
     }
 
+    function getValues(data, key, lang){
+        const value = data[key];
+        if(!value) return [];
+        if(Array.isArray(value)) return value.map(item => item[lang]).filter(Boolean);
+        return value[lang] ? [value[lang]] : [];
+    }
+
+    function getEntries(data, key){
+        const value = data[key];
+        if(!value) return [];
+        return Array.isArray(value) ? value : [value];
+    }
+
+    function countActiveSelections(data){
+        return Object.values(data).reduce((acc, value) => {
+            if(Array.isArray(value)) return acc + value.length;
+            return acc + 1;
+        }, 0);
+    }
+
+    function keepLatestExclusive(entries, matchers){
+        const matched = [];
+        const unmatched = [];
+
+        entries.forEach(item => {
+            const text = (item.en || '').toLowerCase();
+            const isMatched = matchers.some(fn => fn(text));
+            if(isMatched) matched.push(item);
+            else unmatched.push(item);
+        });
+
+        if(matched.length <= 1) return entries;
+
+        matched.sort((a,b) => a._ts - b._ts);
+        return [...unmatched, matched[matched.length - 1]];
+    }
+
     function resolveContradictions(data){
         const d = JSON.parse(JSON.stringify(data));
         const notes = [];
 
-        const gaze = d.pose_gaze?.en?.toLowerCase() || '';
-        const comp = d.comp?.en?.toLowerCase() || '';
-        const framing = d.framing?.en?.toLowerCase() || '';
+        if(Array.isArray(d.skin_texture)){
+            const before = d.skin_texture.length;
+            d.skin_texture = keepLatestExclusive(d.skin_texture, [
+                txt => txt.includes('dewy'),
+                txt => txt.includes('matte')
+            ]);
+            if(d.skin_texture.length < before){
+                notes.push('Conflicto resuelto: se mantuvo solo el acabado de piel más reciente entre dewy y mate.');
+            }
+        }
 
-        if (gaze.includes('eye contact') && comp.includes('pov')) {
+        const jewelryEntries = getEntries(d, 'access_jewelry');
+        const extraEntries = getEntries(d, 'access_extra');
+        const noAccessoriesEntry = jewelryEntries.find(item => (item.en || '').toLowerCase().includes('no accessories'));
+
+        if(noAccessoriesEntry){
+            const latestOtherAccessory = [...jewelryEntries.filter(item => item !== noAccessoriesEntry), ...extraEntries]
+                .sort((a,b) => b._ts - a._ts)[0];
+
+            if(latestOtherAccessory){
+                if(noAccessoriesEntry._ts > latestOtherAccessory._ts){
+                    d.access_jewelry = [noAccessoriesEntry];
+                    delete d.access_extra;
+                    notes.push('Conflicto resuelto: se mantuvo "sin accesorios" y se eliminaron accesorios contradictorios.');
+                } else {
+                    d.access_jewelry = jewelryEntries.filter(item => item !== noAccessoriesEntry);
+                    notes.push('Conflicto resuelto: se eliminó "sin accesorios" porque luego se añadieron accesorios.');
+                    if(Array.isArray(d.access_jewelry) && d.access_jewelry.length === 0) delete d.access_jewelry;
+                }
+            }
+        }
+
+        const gaze = getValues(d, 'pose_gaze', 'en').join(' ').toLowerCase();
+        const comp = getValues(d, 'comp', 'en').join(' ').toLowerCase();
+        const framing = getValues(d, 'framing', 'en').join(' ').toLowerCase();
+
+        if(gaze.includes('eye contact') && comp.includes('pov')){
             notes.push('Nota: POV y mirada directa pueden competir visualmente según el motor.');
         }
 
-        if (gaze.includes('eye contact') && comp.includes('from behind')) {
-            delete d.comp;
-            notes.push('Conflicto resuelto: "desde atrás" eliminado por incompatibilidad con "mirada directa".');
-        }
-
-        if ((framing.includes('full body') || framing.includes('cowboy') || framing.includes('medium shot')) && d.skin_tech) {
+        if((framing.includes('full body') || framing.includes('cowboy') || framing.includes('medium shot')) && getValues(d, 'skin_tech', 'en').length){
             notes.push('Nota: planos abiertos pueden reducir la visibilidad de detalles microscópicos de piel.');
         }
 
@@ -1076,188 +1167,154 @@
 
     function buildEN(data){
         const subjectDetails = [
-            data.id_ref?.en,
-            data.id_type?.en,
-            data.id_origin?.en,
-            data.id_age?.en,
-            data.eth?.en,
-            data.skin_tone?.en,
-            data.skin_texture?.en,
-            data.skin_tech?.en,
-            data.face_expr?.en,
-            data.face_structure?.en,
-            data.face_features?.en,
-            data.hair_color?.en,
-            data.hair_texture?.en,
-            data.hair_style?.en
+            ...getValues(data,'id_ref','en'),
+            ...getValues(data,'id_type','en'),
+            ...getValues(data,'id_origin','en'),
+            ...getValues(data,'id_age','en'),
+            ...getValues(data,'eth','en'),
+            ...getValues(data,'skin_tone','en'),
+            ...getValues(data,'skin_texture','en'),
+            ...getValues(data,'skin_tech','en'),
+            ...getValues(data,'face_expr','en'),
+            ...getValues(data,'face_structure','en'),
+            ...getValues(data,'face_features','en'),
+            ...getValues(data,'hair_color','en'),
+            ...getValues(data,'hair_texture','en'),
+            ...getValues(data,'hair_style','en')
         ].filter(Boolean);
 
         const styleDetails = [
-            data.makeup_base?.en,
-            data.makeup_style?.en,
-            data.wardrobe_formal?.en,
-            data.wardrobe_lifestyle?.en,
-            data.wardrobe_palette?.en,
-            data.access_jewelry?.en,
-            data.access_extra?.en
+            ...getValues(data,'makeup_base','en'),
+            ...getValues(data,'makeup_style','en'),
+            ...getValues(data,'wardrobe_formal','en'),
+            ...getValues(data,'wardrobe_lifestyle','en'),
+            ...getValues(data,'wardrobe_palette','en'),
+            ...getValues(data,'access_jewelry','en'),
+            ...getValues(data,'access_extra','en')
         ].filter(Boolean);
 
         const sceneDetails = [
-            data.pose_gaze?.en,
-            data.pose_body?.en,
-            data.pose_detail?.en,
-            data.scene?.en
+            ...getValues(data,'pose_gaze','en'),
+            ...getValues(data,'pose_body','en'),
+            ...getValues(data,'pose_detail','en'),
+            ...getValues(data,'scene','en')
         ].filter(Boolean);
 
         const captureDetails = [
-            data.angle?.en,
-            data.framing?.en,
-            data.comp?.en,
-            data.light_setup?.en,
-            data.light_natural?.en,
-            data.light_style?.en,
-            data.lens_focal?.en,
-            data.lens_aperture?.en,
-            data.lens_camera?.en
+            ...getValues(data,'angle','en'),
+            ...getValues(data,'framing','en'),
+            ...getValues(data,'comp','en'),
+            ...getValues(data,'light_setup','en'),
+            ...getValues(data,'light_natural','en'),
+            ...getValues(data,'light_style','en'),
+            ...getValues(data,'lens_focal','en'),
+            ...getValues(data,'lens_aperture','en'),
+            ...getValues(data,'lens_camera','en')
         ].filter(Boolean);
 
         const qualityDetails = [
-            data.qual_res?.en,
-            data.qual_grade?.en,
-            data.qual_finish?.en
+            ...getValues(data,'qual_res','en'),
+            ...getValues(data,'qual_grade','en'),
+            ...getValues(data,'qual_finish','en')
         ].filter(Boolean);
 
         const params = [
-            data.ratio?.en,
-            data.eng?.en,
-            data.eng_s?.en,
-            data.eng_c?.en,
-            data.eng_w?.en,
-            data.eng_neg?.en,
-            data.eng_rep?.en
+            ...getValues(data,'ratio','en'),
+            ...getValues(data,'eng','en'),
+            ...getValues(data,'eng_s','en'),
+            ...getValues(data,'eng_c','en'),
+            ...getValues(data,'eng_w','en'),
+            ...getValues(data,'eng_neg','en'),
+            ...getValues(data,'eng_rep','en')
         ].filter(Boolean);
 
         const lines = [];
 
-        if (subjectDetails.length) {
-            lines.push(`Professional portrait of ${subjectDetails.join(', ')}.`);
-        } else {
-            lines.push(`Professional portrait of a subject.`);
-        }
+        if(subjectDetails.length) lines.push(`Professional portrait of ${subjectDetails.join(', ')}.`);
+        else lines.push(`Professional portrait of a subject.`);
 
-        if (styleDetails.length) {
-            lines.push(`Styled with ${styleDetails.join(', ')}.`);
-        }
-
-        if (sceneDetails.length) {
-            lines.push(`The subject is presented with ${sceneDetails.join(', ')}.`);
-        }
-
-        if (captureDetails.length) {
-            lines.push(`Captured as ${captureDetails.join(', ')}.`);
-        }
-
-        if (qualityDetails.length) {
-            lines.push(`Visual finish: ${qualityDetails.join(', ')}.`);
-        }
-
-        if (params.length) {
-            lines.push(params.join(' '));
-        }
+        if(styleDetails.length) lines.push(`Styled with ${styleDetails.join(', ')}.`);
+        if(sceneDetails.length) lines.push(`The subject is presented with ${sceneDetails.join(', ')}.`);
+        if(captureDetails.length) lines.push(`Captured as ${captureDetails.join(', ')}.`);
+        if(qualityDetails.length) lines.push(`Visual finish: ${qualityDetails.join(', ')}.`);
+        if(params.length) lines.push(params.join(' '));
 
         return lines.join('\n');
     }
 
     function buildES(data){
         const subjectDetails = [
-            data.id_ref?.es,
-            data.id_type?.es,
-            data.id_origin?.es,
-            data.id_age?.es,
-            data.eth?.es,
-            data.skin_tone?.es,
-            data.skin_texture?.es,
-            data.skin_tech?.es,
-            data.face_expr?.es,
-            data.face_structure?.es,
-            data.face_features?.es,
-            data.hair_color?.es,
-            data.hair_texture?.es,
-            data.hair_style?.es
+            ...getValues(data,'id_ref','es'),
+            ...getValues(data,'id_type','es'),
+            ...getValues(data,'id_origin','es'),
+            ...getValues(data,'id_age','es'),
+            ...getValues(data,'eth','es'),
+            ...getValues(data,'skin_tone','es'),
+            ...getValues(data,'skin_texture','es'),
+            ...getValues(data,'skin_tech','es'),
+            ...getValues(data,'face_expr','es'),
+            ...getValues(data,'face_structure','es'),
+            ...getValues(data,'face_features','es'),
+            ...getValues(data,'hair_color','es'),
+            ...getValues(data,'hair_texture','es'),
+            ...getValues(data,'hair_style','es')
         ].filter(Boolean);
 
         const styleDetails = [
-            data.makeup_base?.es,
-            data.makeup_style?.es,
-            data.wardrobe_formal?.es,
-            data.wardrobe_lifestyle?.es,
-            data.wardrobe_palette?.es,
-            data.access_jewelry?.es,
-            data.access_extra?.es
+            ...getValues(data,'makeup_base','es'),
+            ...getValues(data,'makeup_style','es'),
+            ...getValues(data,'wardrobe_formal','es'),
+            ...getValues(data,'wardrobe_lifestyle','es'),
+            ...getValues(data,'wardrobe_palette','es'),
+            ...getValues(data,'access_jewelry','es'),
+            ...getValues(data,'access_extra','es')
         ].filter(Boolean);
 
         const sceneDetails = [
-            data.pose_gaze?.es,
-            data.pose_body?.es,
-            data.pose_detail?.es,
-            data.scene?.es
+            ...getValues(data,'pose_gaze','es'),
+            ...getValues(data,'pose_body','es'),
+            ...getValues(data,'pose_detail','es'),
+            ...getValues(data,'scene','es')
         ].filter(Boolean);
 
         const captureDetails = [
-            data.angle?.es,
-            data.framing?.es,
-            data.comp?.es,
-            data.light_setup?.es,
-            data.light_natural?.es,
-            data.light_style?.es,
-            data.lens_focal?.es,
-            data.lens_aperture?.es,
-            data.lens_camera?.es
+            ...getValues(data,'angle','es'),
+            ...getValues(data,'framing','es'),
+            ...getValues(data,'comp','es'),
+            ...getValues(data,'light_setup','es'),
+            ...getValues(data,'light_natural','es'),
+            ...getValues(data,'light_style','es'),
+            ...getValues(data,'lens_focal','es'),
+            ...getValues(data,'lens_aperture','es'),
+            ...getValues(data,'lens_camera','es')
         ].filter(Boolean);
 
         const qualityDetails = [
-            data.qual_res?.es,
-            data.qual_grade?.es,
-            data.qual_finish?.es
+            ...getValues(data,'qual_res','es'),
+            ...getValues(data,'qual_grade','es'),
+            ...getValues(data,'qual_finish','es')
         ].filter(Boolean);
 
         const params = [
-            data.ratio?.en,
-            data.eng?.en,
-            data.eng_s?.en,
-            data.eng_c?.en,
-            data.eng_w?.en,
-            data.eng_neg?.en,
-            data.eng_rep?.en
+            ...getValues(data,'ratio','en'),
+            ...getValues(data,'eng','en'),
+            ...getValues(data,'eng_s','en'),
+            ...getValues(data,'eng_c','en'),
+            ...getValues(data,'eng_w','en'),
+            ...getValues(data,'eng_neg','en'),
+            ...getValues(data,'eng_rep','en')
         ].filter(Boolean);
 
         const lines = [];
 
-        if (subjectDetails.length) {
-            lines.push(`Retrato profesional de ${subjectDetails.join(', ')}.`);
-        } else {
-            lines.push(`Retrato profesional de un sujeto.`);
-        }
+        if(subjectDetails.length) lines.push(`Retrato profesional de ${subjectDetails.join(', ')}.`);
+        else lines.push(`Retrato profesional de un sujeto.`);
 
-        if (styleDetails.length) {
-            lines.push(`Estilizado con ${styleDetails.join(', ')}.`);
-        }
-
-        if (sceneDetails.length) {
-            lines.push(`El sujeto se presenta con ${sceneDetails.join(', ')}.`);
-        }
-
-        if (captureDetails.length) {
-            lines.push(`Capturado como ${captureDetails.join(', ')}.`);
-        }
-
-        if (qualityDetails.length) {
-            lines.push(`Acabado visual: ${qualityDetails.join(', ')}.`);
-        }
-
-        if (params.length) {
-            lines.push(params.join(' '));
-        }
+        if(styleDetails.length) lines.push(`Estilizado con ${styleDetails.join(', ')}.`);
+        if(sceneDetails.length) lines.push(`El sujeto se presenta con ${sceneDetails.join(', ')}.`);
+        if(captureDetails.length) lines.push(`Capturado como ${captureDetails.join(', ')}.`);
+        if(qualityDetails.length) lines.push(`Acabado visual: ${qualityDetails.join(', ')}.`);
+        if(params.length) lines.push(params.join(' '));
 
         return lines.join('\n');
     }
@@ -1274,7 +1331,7 @@
         autoResize(outES);
         autoResize(outEN);
 
-        count.textContent = Object.keys(pD).length;
+        count.textContent = countActiveSelections(pD);
 
         if(notes.length){
             note.style.display = 'block';
@@ -1319,6 +1376,4 @@
 </script>
 </body>
 </html>
-
-
 

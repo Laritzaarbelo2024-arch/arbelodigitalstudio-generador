@@ -1,273 +1,301 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital | Mastermind Elite Full 12 Blocks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Arbelo Digital | Prompt Mastermind Elite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-green: #00ff41;
-            --neon-blue: #00f3ff;
-            --bg-dark: #050505;
-            --card-bg: #111111;
+        :root{
+            --neon-green:#00ff41;
+            --neon-blue:#00f3ff;
+            --bg-dark:#050505;
+            --card-bg:#111111;
+            --card-line:#1f1f1f;
+            --soft-text:#d9d9d9;
         }
 
-        html { font-size: 13.2px; }
+        *{ box-sizing:border-box; }
 
-        body {
-            background-color: var(--bg-dark);
-            color: #E0E0E0;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 360px;
+        html{ font-size:13.2px; scroll-behavior:smooth; }
+
+        body{
+            background-color:var(--bg-dark);
+            color:#E0E0E0;
+            font-family:'Inter',sans-serif;
+            margin:0;
+            padding:10px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            padding-bottom:300px;
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 30px;
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
+        .hero-section{
+            text-align:center;
+            margin-bottom:28px;
+            width:100%;
+            max-width:1100px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:12px;
         }
 
-        .hero-kicker {
-            font-size: 0.85em;
-            font-weight: 800;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--neon-blue);
-            text-shadow: 0 0 14px rgba(0,243,255,0.45);
+        .hero-kicker{
+            font-size:0.86em;
+            font-weight:800;
+            letter-spacing:5px;
+            text-transform:uppercase;
+            color:var(--neon-blue);
+            text-shadow:0 0 14px rgba(0,243,255,.42);
         }
 
-        .hero-section h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2em;
-            margin: 0;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .hero-section h1{
+            font-family:'Playfair Display',serif;
+            font-size:3.25em;
+            margin:0;
+            line-height:1;
+            text-transform:uppercase;
+            letter-spacing:1px;
         }
 
-        .hero-section h1 .gradient-text {
-            background: linear-gradient(90deg, #ff59e8 0%, #b86cff 18%, #62d9ff 48%, #52f3ff 66%, #7dff7c 82%, #00ff41 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 18px rgba(98,217,255,0.16), 0 0 28px rgba(0,255,65,0.14);
+        .hero-section h1 .gradient-text{
+            background:linear-gradient(90deg,#ff5de7 0%,#cb6dff 20%,#6de6ff 48%,#4ef7ff 67%,#7fff83 84%,#00ff41 100%);
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+            text-shadow:0 0 18px rgba(98,217,255,0.18),0 0 28px rgba(0,255,65,0.15);
         }
 
-        .hero-section h1 .digital-word { font-style: italic; }
+        .hero-section h1 .digital-word{ font-style:italic; }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 320px;
-            padding: 10px 22px;
-            border-radius: 10px;
-            border: 1.5px solid rgba(0,243,255,0.6);
-            color: var(--neon-blue);
-            text-transform: uppercase;
-            font-size: 0.88em;
-            font-weight: 800;
-            letter-spacing: 3px;
-            background: rgba(0, 243, 255, 0.05);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 0 14px rgba(0,243,255,0.12);
+        .hero-badge{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-width:320px;
+            padding:10px 22px;
+            border-radius:10px;
+            border:1.5px solid rgba(0,243,255,.60);
+            color:var(--neon-blue);
+            text-transform:uppercase;
+            font-size:.88em;
+            font-weight:800;
+            letter-spacing:3px;
+            background:rgba(0,243,255,.05);
+            box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 0 14px rgba(0,243,255,.12);
         }
 
-        .module {
-            background: var(--card-bg);
-            border-left: 5px solid var(--neon-green);
-            padding: 20px;
-            margin: 15px 0;
-            width: 95%;
-            max-width: 1000px;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        .module{
+            background:var(--card-bg);
+            border-left:5px solid var(--neon-green);
+            padding:18px 18px 20px;
+            margin:12px 0;
+            width:95%;
+            max-width:1100px;
+            border-radius:0 12px 12px 0;
+            box-shadow:0 10px 30px rgba(0,0,0,.78);
         }
 
-        .mod-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #222;
-            padding-bottom: 12px;
-            margin-bottom: 15px;
+        .mod-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:12px;
+            border-bottom:1px solid var(--card-line);
+            padding-bottom:12px;
+            margin-bottom:14px;
         }
 
-        .mod-header h3 {
-            font-size: 0.9em;
-            text-transform: uppercase;
-            margin: 0;
-            color: #fff;
-            letter-spacing: 2px;
+        .mod-header h3{
+            font-size:.92em;
+            text-transform:uppercase;
+            margin:0;
+            color:#fff;
+            letter-spacing:2px;
         }
 
-        .bilingual-badge {
-            background: rgba(0, 243, 255, 0.1);
-            border: 1.5px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.6em;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .bilingual-badge{
+            background:rgba(0,243,255,.10);
+            border:1.5px solid var(--neon-blue);
+            color:var(--neon-blue);
+            padding:5px 12px;
+            border-radius:4px;
+            font-size:.60em;
+            font-weight:900;
+            text-transform:uppercase;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            white-space:nowrap;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
-            gap: 12px;
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(145px,1fr));
+            gap:12px;
         }
 
-        button {
-            background: linear-gradient(145deg, #222, #050505) !important;
-            border: 1px solid #333 !important;
-            padding: 14px 12px !important;
-            border-radius: 8px !important;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 74px;
+        button.option-btn{
+            background:linear-gradient(145deg,#222,#050505) !important;
+            border:1px solid #333 !important;
+            padding:12px 10px !important;
+            border-radius:8px !important;
+            cursor:pointer;
+            transition:.25s ease;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            gap:6px;
+            min-height:74px;
         }
 
-        button .es-label {
-            color: #fff;
-            font-size: 0.74em;
-            font-weight: 800;
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 1.15;
+        button.option-btn:hover{
+            border-color:var(--neon-green) !important;
+            transform:translateY(-1px);
         }
 
-        button .en-label {
-            color: #9defff;
-            font-size: 0.63em;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-style: italic;
-            text-align: center;
-            line-height: 1.15;
-            text-shadow: 0 0 12px rgba(0,243,255,0.18);
-            opacity: 0.95;
+        button.option-btn.active{
+            background:#000 !important;
+            border-color:var(--neon-green) !important;
+            box-shadow:0 0 15px rgba(0,255,65,.36) !important;
         }
 
-        button:hover {
-            border-color: var(--neon-green) !important;
-            transform: translateY(-1px);
+        .es-label{
+            color:#fff;
+            font-size:.73em;
+            font-weight:800;
+            text-transform:uppercase;
+            text-align:center;
+            line-height:1.15;
         }
 
-        button.active {
-            background: #000 !important;
-            border-color: var(--neon-green) !important;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.4) !important;
+        .en-label{
+            color:#b9f8ff;
+            font-size:.63em;
+            font-weight:700;
+            text-transform:uppercase;
+            font-style:italic;
+            text-align:center;
+            line-height:1.15;
+            text-shadow:0 0 12px rgba(0,243,255,.14);
+            opacity:.98;
         }
 
-        button.active .es-label { color: var(--neon-green); }
-        button.active .en-label { color: #c8ffff; }
+        button.option-btn.active .es-label{ color:var(--neon-green); }
+        button.option-btn.active .en-label{ color:#d9ffff; }
 
-        #master-panel {
-            position: fixed;
-            bottom: 12px;
-            width: 86%;
-            max-width: 780px;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(25px);
-            border: 2px solid var(--neon-blue);
-            padding: 16px 18px;
-            border-radius: 20px;
-            box-shadow: 0 -15px 60px rgba(0,0,0,1);
-            z-index: 9999;
+        #master-panel{
+            position:fixed;
+            bottom:12px;
+            width:84%;
+            max-width:760px;
+            background:rgba(10,10,10,.98);
+            backdrop-filter:blur(25px);
+            border:2px solid var(--neon-blue);
+            padding:15px 16px;
+            border-radius:18px;
+            box-shadow:0 -15px 60px rgba(0,0,0,1);
+            z-index:9999;
         }
 
-        .box-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.76em;
-            color: #fff;
-            margin-bottom: 5px;
-            font-weight: 800;
+        .box-title{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-size:.76em;
+            color:#fff;
+            margin-bottom:5px;
+            font-weight:800;
         }
 
-        textarea {
-            width: 96%;
-            background: rgba(0,0,0,0.8);
-            border: 1px solid #222;
-            border-radius: 10px;
-            padding: 10px 12px;
-            color: #fff;
-            font-size: 0.84em;
-            resize: none;
-            outline: none;
-            height: 38px;
-            margin-bottom: 9px;
+        textarea{
+            width:100%;
+            background:rgba(0,0,0,.82);
+            border:1px solid #222;
+            border-radius:10px;
+            padding:10px 12px;
+            color:#fff;
+            font-size:.84em;
+            resize:none;
+            outline:none;
+            height:40px;
+            margin-bottom:9px;
+            font-family:'Inter',sans-serif;
         }
 
-        #out-en {
-            color: var(--neon-blue);
-            font-weight: bold;
+        #out-en{
+            color:var(--neon-blue);
+            font-weight:700;
         }
 
-        .btn-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            border-top: 1px solid #222;
-            padding-top: 10px;
-            margin-top: 3px;
+        .btn-actions{
+            display:flex;
+            justify-content:flex-end;
+            gap:10px;
+            border-top:1px solid #222;
+            padding-top:10px;
+            margin-top:4px;
         }
 
-        .btn-p {
-            padding: 10px 22px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 800;
-            font-size: 0.72em;
-            text-transform: uppercase;
-            min-height: auto;
+        .btn-p{
+            padding:10px 20px;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:800;
+            font-size:.72em;
+            text-transform:uppercase;
+            min-height:auto !important;
         }
 
-        .btn-copy {
-            background: var(--neon-green) !important;
-            color: #000 !important;
-            border: none !important;
-            box-shadow: 0 0 25px var(--neon-green) !important;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .btn-copy{
+            background:var(--neon-green) !important;
+            color:#000 !important;
+            border:none !important;
+            box-shadow:0 0 25px var(--neon-green) !important;
+            display:flex;
+            align-items:center;
+            gap:8px;
         }
 
-        .btn-del {
-            background: #1a1a1a !important;
-            color: #ff4b4b !important;
-            border: 1px solid #333 !important;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .btn-del{
+            background:#1a1a1a !important;
+            color:#ff4b4b !important;
+            border:1px solid #333 !important;
+            display:flex;
+            align-items:center;
+            gap:8px;
         }
 
-        @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.5em; }
-            .hero-badge { min-width: auto; width: 90%; }
-            .mod-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            #master-panel { width: 92%; max-width: 92%; }
-            textarea { width: 94%; }
+        @media (max-width:900px){
+            .hero-section h1{ font-size:2.75em; }
+            .mod-header{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+        }
+
+        @media (max-width:768px){
+            body{ padding-bottom:325px; }
+            .hero-section h1{ font-size:2.35em; }
+            .hero-kicker{ font-size:.76em; letter-spacing:3px; }
+            .hero-badge{
+                min-width:auto;
+                width:92%;
+                text-align:center;
+                font-size:.78em;
+                letter-spacing:2px;
+            }
+            .grid{
+                grid-template-columns:repeat(auto-fill,minmax(132px,1fr));
+            }
+            #master-panel{
+                width:92%;
+                max-width:92%;
+            }
         }
     </style>
 </head>
@@ -279,183 +307,273 @@
         <div class="hero-badge">PROMPT MASTERMIND ELITE</div>
     </section>
 
+    <!-- M1 -->
     <div class="module" id="m1">
         <div class="mod-header">
             <h3>👤 M1: IDENTIDAD / IDENTITY</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('id','Mi Clon','[REF FACE]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">MY CLONE</span></button>
-            <button onclick="setV('id','Cubana','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">CUBAN WOMAN</span></button>
-            <button onclick="setV('id','Latina','Latina woman','Mujer Latina','m1')"><span class="es-label">💃 LATINA</span><span class="en-label">LATINA WOMAN</span></button>
-            <button onclick="setV('id','Americana','American woman','Mujer Americana','m1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">AMERICAN WOMAN</span></button>
-            <button onclick="setV('id','Europea','European woman','Mujer Europea','m1')"><span class="es-label">🇪🇺 EUROPEA</span><span class="en-label">EUROPEAN WOMAN</span></button>
-            <button onclick="setV('id','Afrocaribeña','Afro-Caribbean woman','Mujer Afrocaribeña','m1')"><span class="es-label">🌺 AFROCARIBEÑA</span><span class="en-label">AFRO-CARIBBEAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','[REF FACE]','Mi Clon','m1')"><span class="es-label">📍 MI CLON</span><span class="en-label">MY CLONE</span></button>
+            <button class="option-btn" onclick="setV(event,'id','Cuban woman','Mujer Cubana','m1')"><span class="es-label">🇨🇺 CUBANA</span><span class="en-label">CUBAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','Latina woman','Mujer Latina','m1')"><span class="es-label">💃 LATINA</span><span class="en-label">LATINA WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','American woman','Mujer Americana','m1')"><span class="es-label">🇺🇸 AMERICANA</span><span class="en-label">AMERICAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','European woman','Mujer Europea','m1')"><span class="es-label">🇪🇺 EUROPEA</span><span class="en-label">EUROPEAN WOMAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','Afro-Caribbean woman','Mujer Afrocaribeña','m1')"><span class="es-label">🌺 AFROCARIBEÑA</span><span class="en-label">AFRO-CARIBBEAN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','Middle Eastern woman','Mujer de Medio Oriente','m1')"><span class="es-label">🕌 MEDIO ORIENTE</span><span class="en-label">MIDDLE EASTERN</span></button>
+            <button class="option-btn" onclick="setV(event,'id','Asian woman','Mujer Asiática','m1')"><span class="es-label">🌸 ASIÁTICA</span><span class="en-label">ASIAN WOMAN</span></button>
         </div>
     </div>
 
+    <!-- M2 -->
     <div class="module" id="m2">
         <div class="mod-header">
             <h3>🧬 M2: ETNICIDAD / ETHNICITY</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('eth','Rasgos Latinos','Latina features','Rasgos Latinos','m2')"><span class="es-label">✨ LATINOS</span><span class="en-label">LATIN FEATURES</span></button>
-            <button onclick="setV('eth','Rasgos Afro','Afro-descendant features','Rasgos Afro','m2')"><span class="es-label">🏾 AFRO</span><span class="en-label">AFRO FEATURES</span></button>
-            <button onclick="setV('eth','Rasgos Nórdicos','Nordic features','Rasgos Nórdicos','m2')"><span class="es-label">❄️ NÓRDICOS</span><span class="en-label">NORDIC FEATURES</span></button>
-            <button onclick="setV('eth','Rasgos Mediterráneos','Mediterranean features','Rasgos Mediterráneos','m2')"><span class="es-label">🌊 MEDITERRÁNEOS</span><span class="en-label">MEDITERRANEAN</span></button>
-            <button onclick="setV('eth','Rasgos Mestizos','mestiza features','Rasgos Mestizos','m2')"><span class="es-label">🌎 MESTIZOS</span><span class="en-label">MESTIZA FEATURES</span></button>
-            <button onclick="setV('eth','Rasgos Asiáticos','Asian features','Rasgos Asiáticos','m2')"><span class="es-label">🌸 ASIÁTICOS</span><span class="en-label">ASIAN FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Latina features','Rasgos Latinos','m2')"><span class="es-label">✨ LATINOS</span><span class="en-label">LATIN FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Afro-descendant features','Rasgos Afro','m2')"><span class="es-label">🏾 AFRO</span><span class="en-label">AFRO FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Nordic features','Rasgos Nórdicos','m2')"><span class="es-label">❄️ NÓRDICOS</span><span class="en-label">NORDIC FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Mediterranean features','Rasgos Mediterráneos','m2')"><span class="es-label">🌊 MEDITERRÁNEOS</span><span class="en-label">MEDITERRANEAN</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Mestiza features','Rasgos Mestizos','m2')"><span class="es-label">🌎 MESTIZOS</span><span class="en-label">MESTIZA FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Asian facial structure','Estructura facial asiática','m2')"><span class="es-label">🪷 ESTRUCTURA ASIÁTICA</span><span class="en-label">ASIAN STRUCTURE</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Indigenous features','Rasgos Indígenas','m2')"><span class="es-label">🪶 INDÍGENAS</span><span class="en-label">INDIGENOUS FEATURES</span></button>
+            <button class="option-btn" onclick="setV(event,'eth','Mixed heritage features','Rasgos mixtos','m2')"><span class="es-label">🧩 MIXTOS</span><span class="en-label">MIXED HERITAGE</span></button>
         </div>
     </div>
 
+    <!-- M3 -->
     <div class="module" id="m3">
         <div class="mod-header">
             <h3>✨ M3: ADN PIEL / SKIN DNA</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('skin','Poros Detallados','hyper-detailed pores','Poros detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">DETAILED PORES</span></button>
-            <button onclick="setV('skin','Melanina Rica','rich melanin skin','Piel con melanina rica','m3')"><span class="es-label">🏾 MELANINA</span><span class="en-label">RICH MELANIN</span></button>
-            <button onclick="setV('skin','Textura Natural','natural skin texture','Textura de piel natural','m3')"><span class="es-label">📸 NATURAL</span><span class="en-label">NATURAL TEXTURE</span></button>
-            <button onclick="setV('skin','Imperfecciones Reales','realistic skin imperfections','Imperfecciones reales','m3')"><span class="es-label">🧪 IMPERFECCIONES</span><span class="en-label">REAL IMPERFECTIONS</span></button>
-            <button onclick="setV('skin','Pecas Sutiles','subtle freckles','Pecas sutiles','m3')"><span class="es-label">✨ PECAS</span><span class="en-label">SUBTLE FRECKLES</span></button>
-            <button onclick="setV('skin','Subsurface Scattering','realistic subsurface scattering','Dispersión de luz realista','m3')"><span class="es-label">💡 SUBSURFACE</span><span class="en-label">LIGHT SCATTERING</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','hyper-detailed pores','Poros detallados','m3')"><span class="es-label">🔬 POROS HD</span><span class="en-label">DETAILED PORES</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','rich melanin skin','Piel con melanina rica','m3')"><span class="es-label">🏾 MELANINA</span><span class="en-label">RICH MELANIN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','natural skin texture','Textura de piel natural','m3')"><span class="es-label">📸 NATURAL</span><span class="en-label">NATURAL TEXTURE</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','realistic skin imperfections','Imperfecciones reales','m3')"><span class="es-label">🧪 IMPERFECCIONES</span><span class="en-label">REAL IMPERFECTIONS</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','subtle freckles','Pecas sutiles','m3')"><span class="es-label">✨ PECAS</span><span class="en-label">SUBTLE FRECKLES</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','olive skin tone','Tono de piel oliva','m3')"><span class="es-label">🫒 OLIVA</span><span class="en-label">OLIVE SKIN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','porcelain fair skin','Piel porcelana','m3')"><span class="es-label">🤍 PORCELANA</span><span class="en-label">PORCELAIN SKIN</span></button>
+            <button class="option-btn" onclick="setV(event,'skin','realistic subsurface scattering','Dispersión de luz realista','m3')"><span class="es-label">💡 SUBSURFACE</span><span class="en-label">LIGHT SCATTERING</span></button>
         </div>
     </div>
 
+    <!-- M4 -->
     <div class="module" id="m4">
         <div class="mod-header">
             <h3>😊 M4: ROSTRO / FACE</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('face','Simétrico','symmetrical face','Rostro simétrico','m4')"><span class="es-label">📐 SIMÉTRICO</span><span class="en-label">SYMMETRICAL</span></button>
-            <button onclick="setV('face','Expresión Neutra','neutral expression','Expresión neutra','m4')"><span class="es-label">😐 NEUTRO</span><span class="en-label">NEUTRAL</span></button>
-            <button onclick="setV('face','Sonrisa','subtle smile','Sonrisa sutil','m4')"><span class="es-label">😊 SONRISA</span><span class="en-label">SUBTLE SMILE</span></button>
-            <button onclick="setV('face','Mirada Intensa','intense confident gaze','Mirada intensa','m4')"><span class="es-label">🔥 MIRADA INTENSA</span><span class="en-label">INTENSE GAZE</span></button>
-            <button onclick="setV('face','Pómulos Definidos','defined cheekbones','Pómulos definidos','m4')"><span class="es-label">💎 PÓMULOS</span><span class="en-label">DEFINED CHEEKBONES</span></button>
-            <button onclick="setV('face','Mandíbula Suave','soft jawline','Mandíbula suave','m4')"><span class="es-label">🌙 MANDÍBULA</span><span class="en-label">SOFT JAWLINE</span></button>
+            <button class="option-btn" onclick="setV(event,'face','symmetrical face','Rostro simétrico','m4')"><span class="es-label">📐 SIMÉTRICO</span><span class="en-label">SYMMETRICAL</span></button>
+            <button class="option-btn" onclick="setV(event,'face','neutral expression','Expresión neutra','m4')"><span class="es-label">😐 NEUTRO</span><span class="en-label">NEUTRAL</span></button>
+            <button class="option-btn" onclick="setV(event,'face','subtle smile','Sonrisa sutil','m4')"><span class="es-label">😊 SONRISA</span><span class="en-label">SUBTLE SMILE</span></button>
+            <button class="option-btn" onclick="setV(event,'face','intense confident gaze','Mirada intensa','m4')"><span class="es-label">🔥 MIRADA INTENSA</span><span class="en-label">INTENSE GAZE</span></button>
+            <button class="option-btn" onclick="setV(event,'face','defined cheekbones','Pómulos definidos','m4')"><span class="es-label">💎 PÓMULOS</span><span class="en-label">DEFINED CHEEKBONES</span></button>
+            <button class="option-btn" onclick="setV(event,'face','soft jawline','Mandíbula suave','m4')"><span class="es-label">🌙 MANDÍBULA</span><span class="en-label">SOFT JAWLINE</span></button>
+            <button class="option-btn" onclick="setV(event,'face','almond-shaped eyes','Ojos almendrados','m4')"><span class="es-label">👁 OJOS ALMENDRADOS</span><span class="en-label">ALMOND EYES</span></button>
+            <button class="option-btn" onclick="setV(event,'face','full natural lips','Labios naturales definidos','m4')"><span class="es-label">💋 LABIOS</span><span class="en-label">FULL LIPS</span></button>
         </div>
     </div>
 
+    <!-- M5 -->
     <div class="module" id="m5">
         <div class="mod-header">
             <h3>💇 M5: CABELLO / HAIR</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('hair','Negro Sedoso','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">BLACK SILKY</span></button>
-            <button onclick="setV('hair','Castaño','chestnut brown hair','Cabello castaño','m5')"><span class="es-label">🤎 CASTAÑO</span><span class="en-label">BROWN HAIR</span></button>
-            <button onclick="setV('hair','Rubio','golden blonde hair','Cabello rubio dorado','m5')"><span class="es-label">💛 RUBIO</span><span class="en-label">GOLDEN BLONDE</span></button>
-            <button onclick="setV('hair','Ondas Suaves','soft loose waves','Ondas suaves','m5')"><span class="es-label">〰️ ONDAS</span><span class="en-label">SOFT WAVES</span></button>
-            <button onclick="setV('hair','Lacio Pulido','sleek straight hair','Lacio pulido','m5')"><span class="es-label">✨ LACIO PULIDO</span><span class="en-label">SLEEK STRAIGHT</span></button>
-            <button onclick="setV('hair','Recogido Elegante','elegant updo','Recogido elegante','m5')"><span class="es-label">🎀 RECOGIDO</span><span class="en-label">ELEGANT UPDO</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','black silky hair','Cabello negro sedoso','m5')"><span class="es-label">🖤 NEGRO</span><span class="en-label">BLACK SILKY</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','chestnut brown hair','Cabello castaño','m5')"><span class="es-label">🤎 CASTAÑO</span><span class="en-label">BROWN HAIR</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','golden blonde hair','Cabello rubio dorado','m5')"><span class="es-label">💛 RUBIO</span><span class="en-label">GOLDEN BLONDE</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','soft loose waves','Ondas suaves','m5')"><span class="es-label">〰️ ONDAS</span><span class="en-label">SOFT WAVES</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','sleek straight hair','Lacio pulido','m5')"><span class="es-label">✨ LACIO PULIDO</span><span class="en-label">SLEEK STRAIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','elegant updo','Recogido elegante','m5')"><span class="es-label">🎀 RECOGIDO</span><span class="en-label">ELEGANT UPDO</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','defined curls','Rizos definidos','m5')"><span class="es-label">🌀 RIZOS</span><span class="en-label">DEFINED CURLS</span></button>
+            <button class="option-btn" onclick="setV(event,'hair','wet look hair','Efecto wet look','m5')"><span class="es-label">💧 WET LOOK</span><span class="en-label">WET LOOK</span></button>
         </div>
     </div>
 
+    <!-- M6 -->
     <div class="module" id="m6">
         <div class="mod-header">
             <h3>🧘 M6: POSE / POSING</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('pose','Mirando Cámara','looking at camera','Mirando a cámara','m6')"><span class="es-label">👁 MIRADA</span><span class="en-label">EYE CONTACT</span></button>
-            <button onclick="setV('pose','Perfil','side profile','Perfil','m6')"><span class="es-label">👤 PERFIL</span><span class="en-label">PROFILE</span></button>
-            <button onclick="setV('pose','Sentada','sitting elegantly','Sentada elegantemente','m6')"><span class="es-label">🪑 SENTADA</span><span class="en-label">SITTING</span></button>
-            <button onclick="setV('pose','Tres Cuartos','three-quarter pose','Pose tres cuartos','m6')"><span class="es-label">📐 3/4</span><span class="en-label">THREE QUARTER</span></button>
-            <button onclick="setV('pose','Manos Cruzadas','hands gently crossed','Manos cruzadas','m6')"><span class="es-label">🤍 MANOS CRUZADAS</span><span class="en-label">CROSSED HANDS</span></button>
-            <button onclick="setV('pose','Caminar Editorial','editorial walking pose','Caminar editorial','m6')"><span class="es-label">🚶 EDITORIAL</span><span class="en-label">WALKING POSE</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','looking at camera','Mirando a cámara','m6')"><span class="es-label">👁 MIRADA</span><span class="en-label">EYE CONTACT</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','side profile','Perfil','m6')"><span class="es-label">👤 PERFIL</span><span class="en-label">PROFILE</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','sitting elegantly','Sentada elegantemente','m6')"><span class="es-label">🪑 SENTADA</span><span class="en-label">SITTING</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','three-quarter pose','Pose tres cuartos','m6')"><span class="es-label">📐 3/4</span><span class="en-label">THREE QUARTER</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','hands gently crossed','Manos cruzadas','m6')"><span class="es-label">🤍 MANOS CRUZADAS</span><span class="en-label">CROSSED HANDS</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','editorial walking pose','Caminar editorial','m6')"><span class="es-label">🚶 EDITORIAL</span><span class="en-label">WALKING POSE</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','hand on waist pose','Mano en cintura','m6')"><span class="es-label">🫱 CINTURA</span><span class="en-label">HAND ON WAIST</span></button>
+            <button class="option-btn" onclick="setV(event,'pose','over the shoulder pose','Pose sobre hombro','m6')"><span class="es-label">🔄 SOBRE HOMBRO</span><span class="en-label">OVER SHOULDER</span></button>
         </div>
     </div>
 
+    <!-- M7 -->
     <div class="module" id="m7">
         <div class="mod-header">
             <h3>🏙 M7: ESCENARIO / SCENE</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('scene','Estudio Minimalista','minimalist studio background','Estudio minimalista','m7')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">STUDIO</span></button>
-            <button onclick="setV('scene','Urbano','urban street background','Fondo urbano','m7')"><span class="es-label">🏙 URBANO</span><span class="en-label">URBAN</span></button>
-            <button onclick="setV('scene','Naturaleza','nature landscape','Fondo de naturaleza','m7')"><span class="es-label">🌿 NATURALEZA</span><span class="en-label">NATURE</span></button>
-            <button onclick="setV('scene','Seamless Gris','seamless gray backdrop','Fondo gris seamless','m7')"><span class="es-label">⬜ SEAMLESS</span><span class="en-label">GRAY BACKDROP</span></button>
-            <button onclick="setV('scene','Interior de Lujo','luxury interior set','Interior de lujo','m7')"><span class="es-label">✨ LUJO</span><span class="en-label">LUXURY INTERIOR</span></button>
-            <button onclick="setV('scene','Oficina Premium','modern premium office','Oficina premium','m7')"><span class="es-label">💼 OFICINA</span><span class="en-label">PREMIUM OFFICE</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','minimalist studio background','Estudio minimalista','m7')"><span class="es-label">🏢 ESTUDIO</span><span class="en-label">STUDIO</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','seamless gray backdrop','Fondo gris seamless','m7')"><span class="es-label">⬜ SEAMLESS</span><span class="en-label">GRAY BACKDROP</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','luxury interior set','Interior de lujo','m7')"><span class="es-label">✨ LUJO</span><span class="en-label">LUXURY INTERIOR</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','urban street background','Fondo urbano','m7')"><span class="es-label">🏙 URBANO</span><span class="en-label">URBAN</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','nature landscape','Fondo de naturaleza','m7')"><span class="es-label">🌿 NATURALEZA</span><span class="en-label">NATURE</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','modern premium office','Oficina premium','m7')"><span class="es-label">💼 OFICINA</span><span class="en-label">PREMIUM OFFICE</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','rooftop skyline background','Azotea con skyline','m7')"><span class="es-label">🌃 ROOFTOP</span><span class="en-label">ROOFTOP SKYLINE</span></button>
+            <button class="option-btn" onclick="setV(event,'scene','soft blurred bokeh background','Fondo bokeh suave','m7')"><span class="es-label">🌫 BOKEH</span><span class="en-label">SOFT BOKEH</span></button>
         </div>
     </div>
 
+    <!-- M8 -->
     <div class="module" id="m8">
         <div class="mod-header">
             <h3>💡 M8: LUZ / LIGHTING</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('light','Luz Contorno','rim lighting','Luz de contorno','m8')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">RIM LIGHTING</span></button>
-            <button onclick="setV('light','Suave','soft window lighting','Luz suave de ventana','m8')"><span class="es-label">🕯 SUAVE</span><span class="en-label">SOFT LIGHT</span></button>
-            <button onclick="setV('light','Cinematográfica','cinematic lighting','Iluminación cinematográfica','m8')"><span class="es-label">🎬 CINE</span><span class="en-label">CINEMATIC</span></button>
-            <button onclick="setV('light','Beauty Dish','beauty dish lighting','Luz beauty dish','m8')"><span class="es-label">💄 BEAUTY DISH</span><span class="en-label">BEAUTY DISH</span></button>
-            <button onclick="setV('light','High Key','high-key studio lighting','Iluminación high key','m8')"><span class="es-label">⚪ HIGH KEY</span><span class="en-label">HIGH-KEY LIGHT</span></button>
-            <button onclick="setV('light','Contraste Dramático','moody contrast lighting','Contraste dramático','m8')"><span class="es-label">🌑 CONTRASTE</span><span class="en-label">MOODY CONTRAST</span></button>
+            <button class="option-btn" onclick="setV(event,'light','soft window lighting','Luz suave de ventana','m8')"><span class="es-label">🕯 SUAVE</span><span class="en-label">SOFT LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light','rim lighting','Luz de contorno','m8')"><span class="es-label">📸 RIM LIGHT</span><span class="en-label">RIM LIGHTING</span></button>
+            <button class="option-btn" onclick="setV(event,'light','cinematic lighting','Iluminación cinematográfica','m8')"><span class="es-label">🎬 CINE</span><span class="en-label">CINEMATIC</span></button>
+            <button class="option-btn" onclick="setV(event,'light','beauty dish lighting','Luz beauty dish','m8')"><span class="es-label">💄 BEAUTY DISH</span><span class="en-label">BEAUTY DISH</span></button>
+            <button class="option-btn" onclick="setV(event,'light','high-key studio lighting','Iluminación high key','m8')"><span class="es-label">⚪ HIGH KEY</span><span class="en-label">HIGH-KEY LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light','moody contrast lighting','Contraste dramático','m8')"><span class="es-label">🌑 CONTRASTE</span><span class="en-label">MOODY CONTRAST</span></button>
+            <button class="option-btn" onclick="setV(event,'light','Rembrandt lighting','Iluminación Rembrandt','m8')"><span class="es-label">🖼 REMBRANDT</span><span class="en-label">REMBRANDT LIGHT</span></button>
+            <button class="option-btn" onclick="setV(event,'light','butterfly lighting','Iluminación butterfly','m8')"><span class="es-label">🦋 BUTTERFLY</span><span class="en-label">BUTTERFLY LIGHT</span></button>
         </div>
     </div>
 
+    <!-- M9 -->
     <div class="module" id="m9">
         <div class="mod-header">
-            <h3>🎥 M9: CÁMARA / CAMERA</h3>
+            <h3>🎥 M9: ÓPTICA / LENS & OPTICS</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('cam','Lente 85mm','shot on 85mm lens','Lente 85mm','m9')"><span class="es-label">📸 85MM</span><span class="en-label">85MM LENS</span></button>
-            <button onclick="setV('cam','Lente 35mm','shot on 35mm lens','Lente 35mm','m9')"><span class="es-label">🏙 35MM</span><span class="en-label">35MM LENS</span></button>
-            <button onclick="setV('cam','Realista','ultra-realistic photo','Foto ultra-realista','m9')"><span class="es-label">💎 REALISTA</span><span class="en-label">REALISTIC</span></button>
-            <button onclick="setV('cam','Profundidad de Campo','shallow depth of field','Profundidad de campo reducida','m9')"><span class="es-label">🌫 DOF</span><span class="en-label">SHALLOW DOF</span></button>
-            <button onclick="setV('cam','Enfoque en Ojos','sharp focus on eyes','Enfoque en ojos','m9')"><span class="es-label">👀 ENFOQUE OJOS</span><span class="en-label">SHARP EYES</span></button>
-            <button onclick="setV('cam','Ángulo Bajo','low angle shot','Ángulo bajo','m9')"><span class="es-label">⬇️ ÁNGULO BAJO</span><span class="en-label">LOW ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','shot on 85mm lens','Lente 85mm','m9')"><span class="es-label">📸 85MM</span><span class="en-label">85MM LENS</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','shot on 50mm lens','Lente 50mm','m9')"><span class="es-label">🎯 50MM</span><span class="en-label">50MM LENS</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','shot on 35mm lens','Lente 35mm','m9')"><span class="es-label">🏙 35MM</span><span class="en-label">35MM LENS</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','telephoto lens compression','Compresión telefoto','m9')"><span class="es-label">🔭 TELEPHOTO</span><span class="en-label">TELE COMPRESSION</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','shallow depth of field','Profundidad de campo reducida','m9')"><span class="es-label">🌫 DOF</span><span class="en-label">SHALLOW DOF</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','sharp focus on eyes','Enfoque en ojos','m9')"><span class="es-label">👀 OJOS NÍTIDOS</span><span class="en-label">SHARP EYES</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','creamy bokeh','Bokeh cremoso','m9')"><span class="es-label">✨ BOKEH</span><span class="en-label">CREAMY BOKEH</span></button>
+            <button class="option-btn" onclick="setV(event,'lens','ultra-realistic photo','Foto ultra realista','m9')"><span class="es-label">💎 REALISTA</span><span class="en-label">ULTRA REALISTIC</span></button>
         </div>
     </div>
 
+    <!-- M10 -->
     <div class="module" id="m10">
         <div class="mod-header">
-            <h3>📐 M10: COMPOSICIÓN / COMP</h3>
+            <h3>📐 M10: ÁNGULOS DE CÁMARA / CAMERA ANGLES</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('comp','Plano Medio','medium shot','Plano medio','m10')"><span class="es-label">🖼 MEDIO</span><span class="en-label">MEDIUM SHOT</span></button>
-            <button onclick="setV('comp','Primer Plano','close-up shot','Primer plano','m10')"><span class="es-label">🔍 CERCANO</span><span class="en-label">CLOSE-UP</span></button>
-            <button onclick="setV('comp','Cuerpo Entero','full body shot','Cuerpo entero','m10')"><span class="es-label">🚶 ENTERO</span><span class="en-label">FULL BODY</span></button>
-            <button onclick="setV('comp','Composición Centrada','centered composition','Composición centrada','m10')"><span class="es-label">🎯 CENTRADA</span><span class="en-label">CENTERED</span></button>
-            <button onclick="setV('comp','Regla de Tercios','rule of thirds framing','Regla de tercios','m10')"><span class="es-label">📏 TERCIOS</span><span class="en-label">RULE OF THIRDS</span></button>
-            <button onclick="setV('comp','Espacio Negativo','negative space composition','Espacio negativo','m10')"><span class="es-label">⬛ NEGATIVO</span><span class="en-label">NEGATIVE SPACE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','eye level shot','Ángulo a la altura de los ojos','m10')"><span class="es-label">👁 EYE LEVEL</span><span class="en-label">EYE LEVEL SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','high angle shot','Ángulo picado','m10')"><span class="es-label">⬆️ PICADO</span><span class="en-label">HIGH ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','low angle shot','Ángulo contrapicado','m10')"><span class="es-label">⬇️ CONTRAPICADO</span><span class="en-label">LOW ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','birds eye view','Vista cenital','m10')"><span class="es-label">🦅 CENITAL</span><span class="en-label">BIRD'S EYE VIEW</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','worms eye view','Vista nadir','m10')"><span class="es-label">🪲 NADIR</span><span class="en-label">WORM'S EYE VIEW</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','dutch angle shot','Ángulo holandés','m10')"><span class="es-label">🌀 DUTCH ANGLE</span><span class="en-label">DUTCH ANGLE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','side profile shot','Toma de perfil lateral','m10')"><span class="es-label">👤 PERFIL LATERAL</span><span class="en-label">SIDE PROFILE</span></button>
+            <button class="option-btn" onclick="setV(event,'angle','quarter turn shot','Giro de cuarto','m10')"><span class="es-label">🔄 QUARTER TURN</span><span class="en-label">QUARTER TURN</span></button>
         </div>
     </div>
 
+    <!-- M11 -->
     <div class="module" id="m11">
         <div class="mod-header">
-            <h3>📺 M11: CALIDAD / QUALITY</h3>
+            <h3>🖼 M11: PLANOS SEGÚN DISTANCIA / SHOT SIZE</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('qual','Resolución 8K','8k resolution','Resolución 8K','m11')"><span class="es-label">📺 8K HD</span><span class="en-label">8K RES</span></button>
-            <button onclick="setV('qual','Alta Definición','highly detailed','Alta definición','m11')"><span class="es-label">✨ DETALLADO</span><span class="en-label">HIGH DETAIL</span></button>
-            <button onclick="setV('qual','Fotorrealismo','photorealistic','Fotorrealismo','m11')"><span class="es-label">📸 FOTO</span><span class="en-label">PHOTO REAL</span></button>
-            <button onclick="setV('qual','Ultra Sharp','ultra-sharp focus','Ultra nitidez','m11')"><span class="es-label">🔪 ULTRA SHARP</span><span class="en-label">ULTRA SHARP</span></button>
-            <button onclick="setV('qual','Retoque Editorial','magazine-grade retouch','Retoque editorial','m11')"><span class="es-label">📰 RETOQUE</span><span class="en-label">EDITORIAL RETOUCH</span></button>
-            <button onclick="setV('qual','Color Grading Cine','cinematic color grading','Color grading cinematográfico','m11')"><span class="es-label">🎞 COLOR CINE</span><span class="en-label">FILM GRADING</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','extreme long shot','Plano general extremo','m11')"><span class="es-label">🌍 EXTREMO</span><span class="en-label">EXTREME LONG SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','long shot','Plano general','m11')"><span class="es-label">🏞 LONG SHOT</span><span class="en-label">LONG SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','full body shot','Cuerpo entero','m11')"><span class="es-label">🚶 CUERPO ENTERO</span><span class="en-label">FULL BODY SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','medium long shot','Plano americano largo','m11')"><span class="es-label">📏 MEDIUM LONG</span><span class="en-label">MEDIUM LONG SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','cowboy shot','Plano cowboy','m11')"><span class="es-label">🤠 COWBOY</span><span class="en-label">COWBOY SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','medium shot','Plano medio','m11')"><span class="es-label">🖼 MEDIO</span><span class="en-label">MEDIUM SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','medium close up','Plano medio corto','m11')"><span class="es-label">🔎 MEDIUM CLOSE</span><span class="en-label">MEDIUM CLOSE UP</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','close up shot','Primer plano','m11')"><span class="es-label">🔍 CLOSE UP</span><span class="en-label">CLOSE UP</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','extreme close up','Primerísimo primer plano','m11')"><span class="es-label">🧿 EXTREMO</span><span class="en-label">EXTREME CLOSE UP</span></button>
+            <button class="option-btn" onclick="setV(event,'framing','headshot portrait','Headshot profesional','m11')"><span class="es-label">🧑 HEADSHOT</span><span class="en-label">HEADSHOT</span></button>
         </div>
     </div>
 
+    <!-- M12 -->
     <div class="module" id="m12">
         <div class="mod-header">
-            <h3>⚙️ M12: MOTOR / ENGINE</h3>
+            <h3>🧠 M12: PERSPECTIVAS Y COMPOSICIÓN / PERSPECTIVE & COMPOSITION</h3>
             <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
         </div>
         <div class="grid">
-            <button onclick="setV('eng','Motor Midjourney 6.1','--v 6.1','Motor Midjourney 6.1','m12')"><span class="es-label">🚀 V6.1</span><span class="en-label">MJ ENGINE</span></button>
-            <button onclick="setV('eng','Realismo MJ','--style raw','Estilo realista Raw','m12')"><span class="es-label">📸 RAW</span><span class="en-label">RAW STYLE</span></button>
-            <button onclick="setV('eng','Calidad Alta','--q 2','Calidad alta v2','m12')"><span class="es-label">💎 Q2</span><span class="en-label">QUALITY 2</span></button>
-            <button onclick="setV('eng','Aspect Ratio 2:3','--ar 2:3','Aspect ratio 2:3','m12')"><span class="es-label">📐 AR 2:3</span><span class="en-label">ASPECT RATIO</span></button>
-            <button onclick="setV('eng','Stylize 150','--stylize 150','Stylize 150','m12')"><span class="es-label">🎨 STYLIZE</span><span class="en-label">STYLIZE 150</span></button>
-            <button onclick="setV('eng','Chaos 8','--chaos 8','Chaos 8','m12')"><span class="es-label">⚡ CHAOS 8</span><span class="en-label">CHAOS MODE</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','point of view shot','Punto de vista POV','m12')"><span class="es-label">👀 POV</span><span class="en-label">POINT OF VIEW</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','shot from behind','Toma desde atrás','m12')"><span class="es-label">🚶 DESDE ATRÁS</span><span class="en-label">SHOT FROM BEHIND</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','over the shoulder shot','Sobre el hombro','m12')"><span class="es-label">🫱 SOBRE HOMBRO</span><span class="en-label">OVER THE SHOULDER</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','front view composition','Vista frontal','m12')"><span class="es-label">🪞 FRONTAL</span><span class="en-label">FRONT VIEW</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','three quarter view','Vista tres cuartos','m12')"><span class="es-label">📐 3/4 VIEW</span><span class="en-label">THREE QUARTER VIEW</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','centered composition','Composición centrada','m12')"><span class="es-label">🎯 CENTRADA</span><span class="en-label">CENTERED COMPOSITION</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','symmetrical shot','Composición simétrica','m12')"><span class="es-label">🪟 SIMÉTRICA</span><span class="en-label">SYMMETRICAL SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','off center composition','Composición descentrada','m12')"><span class="es-label">↘️ OFF CENTER</span><span class="en-label">OFF CENTER SHOT</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','negative space composition','Espacio negativo','m12')"><span class="es-label">⬛ NEGATIVE SPACE</span><span class="en-label">NEGATIVE SPACE</span></button>
+            <button class="option-btn" onclick="setV(event,'comp','forced perspective shot','Perspectiva forzada','m12')"><span class="es-label">🪄 FORCED PERSPECTIVE</span><span class="en-label">FORCED PERSPECTIVE</span></button>
+        </div>
+    </div>
+
+    <!-- M13 -->
+    <div class="module" id="m13">
+        <div class="mod-header">
+            <h3>📺 M13: CALIDAD Y ACABADO / QUALITY & FINISH</h3>
+            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+        </div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'qual','8k resolution','Resolución 8K','m13')"><span class="es-label">📺 8K HD</span><span class="en-label">8K RESOLUTION</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','highly detailed','Alta definición','m13')"><span class="es-label">✨ DETALLADO</span><span class="en-label">HIGH DETAIL</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','photorealistic','Fotorrealismo','m13')"><span class="es-label">📸 FOTO REAL</span><span class="en-label">PHOTOREALISTIC</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','ultra sharp focus','Ultra nitidez','m13')"><span class="es-label">🔪 ULTRA SHARP</span><span class="en-label">ULTRA SHARP</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','editorial retouch','Retoque editorial','m13')"><span class="es-label">📰 RETOQUE</span><span class="en-label">EDITORIAL RETOUCH</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','cinematic color grading','Color grading cinematográfico','m13')"><span class="es-label">🎞 COLOR CINE</span><span class="en-label">FILM GRADING</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','luxury commercial photography','Fotografía comercial de lujo','m13')"><span class="es-label">💼 COMERCIAL</span><span class="en-label">LUXURY COMMERCIAL</span></button>
+            <button class="option-btn" onclick="setV(event,'qual','magazine grade fashion photo','Foto de revista premium','m13')"><span class="es-label">💎 MAGAZINE</span><span class="en-label">MAGAZINE GRADE</span></button>
+        </div>
+    </div>
+
+    <!-- M14 -->
+    <div class="module" id="m14">
+        <div class="mod-header">
+            <h3>⚙️ M14: ASPECT RATIO / FORMATO</h3>
+            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+        </div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 1:1','Formato 1:1','m14')"><span class="es-label">◻️ 1:1</span><span class="en-label">SQUARE</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 4:5','Formato 4:5','m14')"><span class="es-label">📱 4:5</span><span class="en-label">PORTRAIT FEED</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 2:3','Formato 2:3','m14')"><span class="es-label">🖼 2:3</span><span class="en-label">CLASSIC PORTRAIT</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 3:4','Formato 3:4','m14')"><span class="es-label">📐 3:4</span><span class="en-label">PORTRAIT FRAME</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 16:9','Formato 16:9','m14')"><span class="es-label">🖥 16:9</span><span class="en-label">WIDESCREEN</span></button>
+            <button class="option-btn" onclick="setV(event,'ratio','--ar 9:16','Formato 9:16','m14')"><span class="es-label">📲 9:16</span><span class="en-label">VERTICAL</span></button>
+        </div>
+    </div>
+
+    <!-- M15 -->
+    <div class="module" id="m15">
+        <div class="mod-header">
+            <h3>🚀 M15: MOTOR / ENGINE</h3>
+            <div class="bilingual-badge"><span>🌐</span> BILINGUAL</div>
+        </div>
+        <div class="grid">
+            <button class="option-btn" onclick="setV(event,'eng','--v 6.1','Motor Midjourney 6.1','m15')"><span class="es-label">🚀 V6.1</span><span class="en-label">MJ ENGINE</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--style raw','Estilo Raw','m15')"><span class="es-label">📸 RAW</span><span class="en-label">RAW STYLE</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--q 2','Calidad alta','m15')"><span class="es-label">💎 Q2</span><span class="en-label">QUALITY 2</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--stylize 150','Stylize 150','m15')"><span class="es-label">🎨 STYLIZE</span><span class="en-label">STYLIZE 150</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--chaos 8','Chaos 8','m15')"><span class="es-label">⚡ CHAOS 8</span><span class="en-label">CHAOS MODE</span></button>
+            <button class="option-btn" onclick="setV(event,'eng','--s 250','Nivel de stylization 250','m15')"><span class="es-label">🧠 S 250</span><span class="en-label">STYLE FORCE</span></button>
         </div>
     </div>
 
@@ -474,37 +592,49 @@
 
     <script>
         let pD = {};
-        const order = ['id','eth','skin','face','hair','pose','scene','light','cam','comp','qual','eng'];
+        const order = ['id','eth','skin','face','hair','pose','scene','light','lens','angle','framing','comp','qual','ratio','eng'];
 
-        function setV(m, n, en, es, g) {
-            pD[m] = { en, es };
+        function setV(ev, key, en, es, groupId){
+            pD[key] = { en, es };
             update();
-            document.getElementById(g).querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            event.target.closest('button').classList.add('active');
+            document.getElementById(groupId).querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+            ev.currentTarget.classList.add('active');
         }
 
-        function update() {
-            let e = [], s = [];
-            order.forEach(k => {
-                if (pD[k]) {
-                    e.push(pD[k].en);
-                    s.push(pD[k].es);
+        function update(){
+            let enParts = [];
+            let esParts = [];
+
+            order.forEach(key => {
+                if(pD[key]){
+                    enParts.push(pD[key].en);
+                    esParts.push(pD[key].es);
                 }
             });
-            document.getElementById('out-en').value = e.join(', ');
-            document.getElementById('out-es').value = s.join(', ');
+
+            document.getElementById('out-en').value = enParts.join(', ');
+            document.getElementById('out-es').value = esParts.join(', ');
         }
 
-        function resetAll() {
-            location.reload();
+        function resetAll(){
+            pD = {};
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('out-en').value = '';
+            document.getElementById('out-es').value = '';
         }
 
-        function copyPrompt() {
-            let e = document.getElementById("out-en");
-            if (e.value) {
-                e.select();
-                document.execCommand("copy");
-                alert("✅ PROMPT COPIADO");
+        async function copyPrompt(){
+            const text = document.getElementById('out-en').value;
+            if(!text) return;
+
+            try{
+                await navigator.clipboard.writeText(text);
+                alert('✅ PROMPT COPIADO');
+            }catch(err){
+                const temp = document.getElementById('out-en');
+                temp.select();
+                document.execCommand('copy');
+                alert('✅ PROMPT COPIADO');
             }
         }
     </script>

@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,6 @@
             --bg-dark:#050505;
             --card-bg:#111111;
             --card-line:#1f1f1f;
-            --soft-text:#d9d9d9;
         }
 
         *{ box-sizing:border-box; }
@@ -29,7 +30,7 @@
             display:flex;
             flex-direction:column;
             align-items:center;
-            padding-bottom:300px;
+            padding-bottom:430px;
         }
 
         .hero-section{
@@ -191,12 +192,12 @@
         #master-panel{
             position:fixed;
             bottom:12px;
-            width:84%;
-            max-width:760px;
+            width:88%;
+            max-width:860px;
             background:rgba(10,10,10,.98);
             backdrop-filter:blur(25px);
             border:2px solid var(--neon-blue);
-            padding:15px 16px;
+            padding:16px 18px;
             border-radius:18px;
             box-shadow:0 -15px 60px rgba(0,0,0,1);
             z-index:9999;
@@ -208,7 +209,7 @@
             gap:8px;
             font-size:.76em;
             color:#fff;
-            margin-bottom:5px;
+            margin-bottom:6px;
             font-weight:800;
         }
 
@@ -217,19 +218,34 @@
             background:rgba(0,0,0,.82);
             border:1px solid #222;
             border-radius:10px;
-            padding:10px 12px;
+            padding:11px 12px;
             color:#fff;
-            font-size:.84em;
+            font-size:.86em;
             resize:none;
             outline:none;
-            height:40px;
-            margin-bottom:9px;
+            min-height:78px;
+            max-height:220px;
+            margin-bottom:10px;
             font-family:'Inter',sans-serif;
+            line-height:1.45;
+            overflow:auto;
         }
 
         #out-en{
             color:var(--neon-blue);
             font-weight:700;
+        }
+
+        .smart-note{
+            display:none;
+            margin:0 0 10px 0;
+            padding:10px 12px;
+            border:1px solid rgba(0,243,255,.28);
+            background:rgba(0,243,255,.06);
+            border-radius:10px;
+            color:#cfffff;
+            font-size:.74em;
+            line-height:1.35;
         }
 
         .btn-actions{
@@ -279,7 +295,7 @@
         }
 
         @media (max-width:768px){
-            body{ padding-bottom:325px; }
+            body{ padding-bottom:430px; }
             .hero-section h1{ font-size:2.35em; }
             .hero-kicker{ font-size:.76em; letter-spacing:3px; }
             .hero-badge{
@@ -307,7 +323,6 @@
         <div class="hero-badge">PROMPT MASTERMIND ELITE</div>
     </section>
 
-    <!-- M1 -->
     <div class="module" id="m1">
         <div class="mod-header">
             <h3>👤 M1: IDENTIDAD / IDENTITY</h3>
@@ -325,7 +340,6 @@
         </div>
     </div>
 
-    <!-- M2 -->
     <div class="module" id="m2">
         <div class="mod-header">
             <h3>🧬 M2: ETNICIDAD / ETHNICITY</h3>
@@ -343,7 +357,6 @@
         </div>
     </div>
 
-    <!-- M3 -->
     <div class="module" id="m3">
         <div class="mod-header">
             <h3>✨ M3: ADN PIEL / SKIN DNA</h3>
@@ -361,7 +374,6 @@
         </div>
     </div>
 
-    <!-- M4 -->
     <div class="module" id="m4">
         <div class="mod-header">
             <h3>😊 M4: ROSTRO / FACE</h3>
@@ -379,7 +391,6 @@
         </div>
     </div>
 
-    <!-- M5 -->
     <div class="module" id="m5">
         <div class="mod-header">
             <h3>💇 M5: CABELLO / HAIR</h3>
@@ -397,7 +408,6 @@
         </div>
     </div>
 
-    <!-- M6 -->
     <div class="module" id="m6">
         <div class="mod-header">
             <h3>🧘 M6: POSE / POSING</h3>
@@ -415,7 +425,6 @@
         </div>
     </div>
 
-    <!-- M7 -->
     <div class="module" id="m7">
         <div class="mod-header">
             <h3>🏙 M7: ESCENARIO / SCENE</h3>
@@ -433,7 +442,6 @@
         </div>
     </div>
 
-    <!-- M8 -->
     <div class="module" id="m8">
         <div class="mod-header">
             <h3>💡 M8: LUZ / LIGHTING</h3>
@@ -451,7 +459,6 @@
         </div>
     </div>
 
-    <!-- M9 -->
     <div class="module" id="m9">
         <div class="mod-header">
             <h3>🎥 M9: ÓPTICA / LENS & OPTICS</h3>
@@ -469,7 +476,6 @@
         </div>
     </div>
 
-    <!-- M10 -->
     <div class="module" id="m10">
         <div class="mod-header">
             <h3>📐 M10: ÁNGULOS DE CÁMARA / CAMERA ANGLES</h3>
@@ -487,7 +493,6 @@
         </div>
     </div>
 
-    <!-- M11 -->
     <div class="module" id="m11">
         <div class="mod-header">
             <h3>🖼 M11: PLANOS SEGÚN DISTANCIA / SHOT SIZE</h3>
@@ -507,7 +512,6 @@
         </div>
     </div>
 
-    <!-- M12 -->
     <div class="module" id="m12">
         <div class="mod-header">
             <h3>🧠 M12: PERSPECTIVAS Y COMPOSICIÓN / PERSPECTIVE & COMPOSITION</h3>
@@ -527,7 +531,6 @@
         </div>
     </div>
 
-    <!-- M13 -->
     <div class="module" id="m13">
         <div class="mod-header">
             <h3>📺 M13: CALIDAD Y ACABADO / QUALITY & FINISH</h3>
@@ -545,7 +548,6 @@
         </div>
     </div>
 
-    <!-- M14 -->
     <div class="module" id="m14">
         <div class="mod-header">
             <h3>⚙️ M14: ASPECT RATIO / FORMATO</h3>
@@ -561,7 +563,6 @@
         </div>
     </div>
 
-    <!-- M15 -->
     <div class="module" id="m15">
         <div class="mod-header">
             <h3>🚀 M15: MOTOR / ENGINE</h3>
@@ -578,11 +579,13 @@
     </div>
 
     <div id="master-panel">
-        <div class="box-title"><span>🇪🇸</span> Concepto Visual</div>
-        <textarea id="out-es" readonly placeholder="Construyendo..."></textarea>
+        <div class="box-title"><span>🇪🇸</span> Prompt estructurado</div>
+        <textarea id="out-es" readonly placeholder="Construyendo prompt profesional..."></textarea>
 
-        <div class="box-title" style="color:var(--neon-blue);"><span>🇺🇸</span> Mensaje maestro</div>
-        <textarea id="out-en" readonly placeholder="Ready to copy..."></textarea>
+        <div class="box-title" style="color:var(--neon-blue);"><span>🇺🇸</span> Structured prompt</div>
+        <textarea id="out-en" readonly placeholder="Building professional prompt..."></textarea>
+
+        <div id="smart-note" class="smart-note"></div>
 
         <div class="btn-actions">
             <button class="btn-p btn-del" onclick="resetAll()"><span>🗑️</span> LIMPIAR</button>
@@ -592,40 +595,221 @@
 
     <script>
         let pD = {};
-        const order = ['id','eth','skin','face','hair','pose','scene','light','lens','angle','framing','comp','qual','ratio','eng'];
+
+        const order = [
+            'id','eth','skin','face','hair',
+            'pose','scene','light','lens',
+            'angle','framing','comp',
+            'qual','ratio','eng'
+        ];
 
         function setV(ev, key, en, es, groupId){
             pD[key] = { en, es };
-            update();
-            document.getElementById(groupId).querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(groupId)
+                .querySelectorAll('.option-btn')
+                .forEach(btn => btn.classList.remove('active'));
+
             ev.currentTarget.classList.add('active');
+            update();
+        }
+
+        function naturalJoin(items, lang = 'es'){
+            const clean = items.filter(Boolean);
+            if (clean.length === 0) return '';
+            if (clean.length === 1) return clean[0];
+            if (clean.length === 2) {
+                return lang === 'es'
+                    ? `${clean[0]} y ${clean[1]}`
+                    : `${clean[0]} and ${clean[1]}`;
+            }
+            const arr = [...clean];
+            const last = arr.pop();
+            return lang === 'es'
+                ? `${arr.join(', ')} y ${last}`
+                : `${arr.join(', ')}, and ${last}`;
+        }
+
+        function autoResizeTextarea(el){
+            el.style.height = 'auto';
+            el.style.height = Math.min(el.scrollHeight, 220) + 'px';
+        }
+
+        function resolveContradictions(data){
+            const d = JSON.parse(JSON.stringify(data));
+            const notes = [];
+
+            const pose = d.pose?.en?.toLowerCase() || '';
+            const comp = d.comp?.en?.toLowerCase() || '';
+            const framing = d.framing?.en?.toLowerCase() || '';
+
+            if (pose.includes('looking at camera') && comp.includes('shot from behind')) {
+                delete d.comp;
+                notes.push('Se eliminó "shot from behind" porque contradice "looking at camera".');
+            }
+
+            if (
+                (framing.includes('long shot') || framing.includes('extreme long shot')) &&
+                (d.skin || d.face)
+            ) {
+                notes.push('El plano lejano puede reducir la visibilidad de detalles finos de piel y rostro.');
+            }
+
+            return { cleanData: d, notes };
+        }
+
+        function buildPromptES(data){
+            const subject = data.id?.es || 'un sujeto';
+
+            const identity = naturalJoin([
+                data.eth?.es,
+                data.skin?.es,
+                data.face?.es,
+                data.hair?.es
+            ], 'es');
+
+            const poseScene = naturalJoin([
+                data.pose?.es,
+                data.scene?.es
+            ], 'es');
+
+            const capture = naturalJoin([
+                data.light?.es,
+                data.lens?.es,
+                data.angle?.es,
+                data.framing?.es,
+                data.comp?.es
+            ], 'es');
+
+            const quality = naturalJoin([
+                data.qual?.es
+            ], 'es');
+
+            const params = naturalJoin([
+                data.ratio?.en,
+                data.eng?.en
+            ], 'es');
+
+            const lines = [];
+
+            let line1 = `Retrato profesional de ${subject}`;
+            if (identity) line1 += ` con ${identity}`;
+            line1 += `.`;
+            lines.push(line1);
+
+            if (poseScene) {
+                lines.push(`La imagen presenta al sujeto con ${poseScene}.`);
+            }
+
+            if (capture) {
+                lines.push(`Iluminación y captura: ${capture}.`);
+            }
+
+            if (quality) {
+                lines.push(`Acabado visual: ${quality}.`);
+            }
+
+            if (params) {
+                lines.push(`Parámetros técnicos: ${params}.`);
+            }
+
+            return lines.join('\n');
+        }
+
+        function buildPromptEN(data){
+            const subject = data.id?.en || 'a subject';
+
+            const identity = naturalJoin([
+                data.eth?.en,
+                data.skin?.en,
+                data.face?.en,
+                data.hair?.en
+            ], 'en');
+
+            const poseScene = naturalJoin([
+                data.pose?.en,
+                data.scene?.en
+            ], 'en');
+
+            const capture = naturalJoin([
+                data.light?.en,
+                data.lens?.en,
+                data.angle?.en,
+                data.framing?.en,
+                data.comp?.en
+            ], 'en');
+
+            const quality = naturalJoin([
+                data.qual?.en
+            ], 'en');
+
+            const params = naturalJoin([
+                data.ratio?.en,
+                data.eng?.en
+            ], 'en');
+
+            const lines = [];
+
+            let line1 = `Professional portrait of ${subject}`;
+            if (identity) line1 += ` with ${identity}`;
+            line1 += `.`;
+            lines.push(line1);
+
+            if (poseScene) {
+                lines.push(`The image presents the subject with ${poseScene}.`);
+            }
+
+            if (capture) {
+                lines.push(`Lighting and capture: ${capture}.`);
+            }
+
+            if (quality) {
+                lines.push(`Visual finish: ${quality}.`);
+            }
+
+            if (params) {
+                lines.push(`Technical parameters: ${params}.`);
+            }
+
+            return lines.join('\n');
         }
 
         function update(){
-            let enParts = [];
-            let esParts = [];
+            const { cleanData, notes } = resolveContradictions(pD);
 
-            order.forEach(key => {
-                if(pD[key]){
-                    enParts.push(pD[key].en);
-                    esParts.push(pD[key].es);
-                }
-            });
+            const outES = document.getElementById('out-es');
+            const outEN = document.getElementById('out-en');
+            const smartNote = document.getElementById('smart-note');
 
-            document.getElementById('out-en').value = enParts.join(', ');
-            document.getElementById('out-es').value = esParts.join(', ');
+            outES.value = buildPromptES(cleanData);
+            outEN.value = buildPromptEN(cleanData);
+
+            autoResizeTextarea(outES);
+            autoResizeTextarea(outEN);
+
+            if (notes.length) {
+                smartNote.style.display = 'block';
+                smartNote.innerHTML = '⚠️ ' + notes.join('<br>⚠️ ');
+            } else {
+                smartNote.style.display = 'none';
+                smartNote.innerHTML = '';
+            }
         }
 
         function resetAll(){
             pD = {};
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('out-en').value = '';
             document.getElementById('out-es').value = '';
+            document.getElementById('out-en').value = '';
+            document.getElementById('out-es').style.height = '78px';
+            document.getElementById('out-en').style.height = '78px';
+            document.getElementById('smart-note').style.display = 'none';
+            document.getElementById('smart-note').innerHTML = '';
         }
 
         async function copyPrompt(){
             const text = document.getElementById('out-en').value;
-            if(!text) return;
+            if (!text) return;
 
             try{
                 await navigator.clipboard.writeText(text);
@@ -640,3 +824,5 @@
     </script>
 </body>
 </html>
+
+

@@ -3,39 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbelo Digital Studio | Centro de Herramientas IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Arbelo Digital Muse - Art Prompt Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --verde: #2d5a27; --fondo: #f4f9f1; --blanco: #ffffff; }
-        body { font-family: 'Inter', sans-serif; background: var(--fondo); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: var(--blanco); padding: 3rem; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); max-width: 450px; text-align: center; border-top: 8px solid var(--verde); }
-        h1 { color: var(--verde); margin-bottom: 5px; }
-        .subtitle { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: #666; margin-bottom: 40px; }
-        .btn-card { display: flex; align-items: center; text-decoration: none; background: #fff; border: 1px solid #eee; padding: 20px; margin-bottom: 15px; border-radius: 15px; transition: 0.3s; text-align: left; }
-        .btn-card:hover { transform: translateY(-3px); border-color: var(--verde); box-shadow: 0 5px 15px rgba(45, 90, 39, 0.1); }
-        .icon { font-size: 1.8rem; margin-right: 20px; }
-        .info h3 { margin: 0; font-size: 1.1rem; color: var(--verde); }
-        .info p { margin: 5px 0 0; font-size: 0.85rem; color: #777; }
-        .disabled { opacity: 0.5; pointer-events: none; }
+        :root {
+            --bg-dark: #0d0624;
+            --bg-card: #1a0940;
+            --accent-purple: #7c3aed;
+            --accent-pink: #db2777;
+            --text-light: #e9d5ff;
+            --gold: #fde68a;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #07021a 100%);
+            color: var(--text-light);
+            margin: 0;
+            padding-bottom: 40px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4c1d95 0%, #831843 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-purple);
+            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.4);
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            color: var(--gold);
+            margin: 0;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #0f0628 100%);
+            border: 1.5px solid #4c1d95;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 14px;
+            color: #c084fc;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .chip-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            padding: 8px 14px;
+            border-radius: 25px;
+            border: 1.5px solid #3f2d5c;
+            background: #1e1040;
+            color: #a78bfa;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .chip.active {
+            border: 2px solid #e879f9;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 0 12px rgba(232, 121, 249, 0.4);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            border: 1.5px solid #4c1d95;
+            background: #120a2e;
+            color: white;
+            margin-top: 10px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .btn-random { background: linear-gradient(135deg, #0891b2, #7c3aed); }
+        .btn-clear { background: linear-gradient(135deg, #be185d, #7f1d1d); }
+
+        .result-box {
+            background: linear-gradient(135deg, #1e1040, #0f0628);
+            border: 2px solid var(--accent-purple);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+        }
+
+        .prompt-display {
+            background: #0a0520;
+            border-radius: 12px;
+            padding: 15px;
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            border: 1px solid #3b0764;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            float: right;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Arbelo Digital Studio</h1>
-    <div class="subtitle">ESTRATEGIA, MARKETING & IA</div>
 
-    <a href="diseno.html" class="btn-card">
-        <span class="icon">🌿</span>
-        <div class="info">
-            <h3>Diseño Aesthetic & Canva</h3>
-            <p>Prompts para imágenes de lujo y estilo editorial premium.</p>
-        </div>
-    </a>
-
-    <div class="btn-card disabled">
-        <span class="icon">📈</span>
-        <div class="info"><h3>Generador de Contenido</h3><p>Próximamente...</p></div>
-    </div>
+<div class="header">
+    <h1>Arbelo Digital Muse ✨</h1>
+    <div style="color: #ddd6fe; font-size: 14px; margin-top: 5px;">Tu Musa para Crear Prompts de Arte con IA</div>
 </div>
+
+<div class="container">
+    <div id="app"></div>
+</div>
+
+<script>
+    // Configuración de Datos (Simplificada para el ejemplo, pero completa)
+    const DATA = {
+        styles: [
+            { id: "chibi3d_shiny", label: "Chibi 3D Brillante", en: "shiny chibi 3D illustration", es: "ilustración estilo chibi 3D brillante ultra exagerado" },
+            { id: "doll_hyperreal", label: "Muñeca 3D Hiperreal", en: "hyperrealistic 3D doll", es: "muñeca 3D hiperrealista" },
+            { id: "octane", label: "Render Octane 3D", en: "Octane render 3D", es: "render Octane 3D" },
+            { id: "cinematic", label: "Cinematográfica", en: "cinematic lighting 3D render", es: "render 3D con iluminación cinematográfica" }
+        ],
+        characters: [
+            { id: "girl", label: "Chica", icon: "👧" },
+            { id: "woman", label: "Mujer", icon: "👩" },
+            { id: "fairy", label: "Hada", icon: "🧚" },
+            { id: "cat", label: "Gato", icon: "🐱" }
+        ],
+        backgrounds: [
+            { id: "transparent", label: "PNG Transparente", en: "transparent background" },
+            { id: "pastel", label: "Degradado Pastel", en: "soft pastel gradient background" }
+        ]
+    };
+
+    let state = {
+        style: 'chibi3d_shiny',
+        character: 'woman',
+        background: 'pastel',
+        customAction: ''
+    };
+
+    function render() {
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <div class="card">
+                <div class="section-title">🎨 Estilo Visual</div>
+                <div class="chip-grid">
+                    ${DATA.styles.map(s => `<div class="chip ${state.style === s.id ? 'active' : ''}" onclick="update('style', '${s.id}')">${s.label}</div>`).join('')}
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">👤 Personaje</div>
+                <div class="chip-grid">
+                    ${DATA.characters.map(c => `<div class="chip ${state.character === c.id ? 'active' : ''}" onclick="update('character', '${c.id}')"><span>${c.icon}</span> ${c.label}</div>`).join('')}
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-title">🎬 Acción Personalizada</div>
+                <input type="text" placeholder="Ej: sosteniendo una varita mágica..." oninput="update('customAction', this.value)" value="${state.customAction}">
+            </div>
+
+            <div class="result-box">
+                <div class="section-title" style="color: var(--gold); text-align:center">✨ Tu Prompt de Arbelo Muse</div>
+                <div class="prompt-display" id="prompt-output">
+                    Generando inspiración...
+                </div>
+                <button class="btn btn-random" style="margin-top:15px; width:100%" onclick="copyPrompt()">COPIAR PROMPT</button>
+            </div>
+        `;
+        generatePrompt();
+    }
+
+    function update(key, val) {
+        state[key] = val;
+        render();
+    }
+
+    function generatePrompt() {
+        const styleObj = DATA.styles.find(s => s.id === state.style);
+        const charObj = DATA.characters.find(c => c.id === state.character);
+        const prompt = `Professional 3D render, ${styleObj.en} of a ${charObj.id}, ${state.customAction}, high detail, bold outlines, Arbelo Digital Muse style, 8k resolution.`;
+        document.getElementById('prompt-output').innerText = prompt;
+    }
+
+    function copyPrompt() {
+        const text = document.getElementById('prompt-output').innerText;
+        navigator.clipboard.writeText(text);
+        alert("¡Copiado a tu portapapeles, Musa!");
+    }
+
+    render();
+</script>
+
 </body>
-</html>        
+</html>

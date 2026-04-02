@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbelo Visual Studio | Digital Alchemy Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Syne:wght@700;800&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060608;
+            --card: rgba(14, 14, 18, 0.97);
+            --card2: rgba(20, 20, 28, 0.9);
+            --border: rgba(255,255,255,0.08);
+            --border-active: rgba(0,243,255,0.5);
+            --accent: #00f3ff;
+            --neon: #e879f9;
+            --gold: #fbbf24;
+            --green: #4ade80;
+            --text: #f0f0f5;
+            --text-muted: rgba(240,240,245,0.5);
+            --text-dim: rgba(240,240,245,0.3);
+            --panel-h: 220px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding-bottom: calc(var(--panel-h) + 40px);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: -1;
+            background: 
+                radial-gradient(ellipse 80% 50% at 90% 10%, rgba(232,121,249,0.07), transparent),
+                radial-gradient(ellipse 60% 40% at 10% 80%, rgba(0,243,255,0.06), transparent),
+                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(251,191,36,0.02), transparent);
+        }
+
+        /* NAV */
+        .top-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 24px; background: rgba(6,6,8,0.9);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .back-btn {
+            text-decoration: none; color: var(--accent); font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; border: 1px solid rgba(0,243,255,0.3);
+            padding: 7px 14px; border-radius: 6px; transition: all 0.2s;
+        }
+        .back-btn:hover { background: rgba(0,243,255,0.1); }
+        .nav-badge {
+            font-size: 9px; letter-spacing: 3px; font-weight: 700; color: var(--accent);
+            opacity: 0.7;
+        }
+        .stats-bar {
+            display: flex; gap: 16px; align-items: center;
+        }
+        .stat-pill {
+            font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted);
+            padding: 4px 10px; background: rgba(255,255,255,0.04); border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        .stat-pill span { color: var(--gold); font-weight: 700; }
+
+        /* HEADER */
+        header { padding: 36px 20px 20px; text-align: center; }
+        .studio-logo {
+            font-family: 'Syne', sans-serif; font-size: 42px;
+            background: linear-gradient(100deg, #fff 20%, var(--accent) 55%, var(--neon) 90%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin: 0 0 8px; font-weight: 800; letter-spacing: -1px;
+        }
+        .studio-sub {
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--text-dim); font-weight: 600;
+        }
+
+        /* CONTAINER */
+        .container { max-width: 820px; margin: 0 auto; padding: 0 14px; }
+
+        /* CARD */
+        .glass-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 20px; padding: 22px; margin-bottom: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            transition: border-color 0.3s;
+        }
+        .glass-card:hover { border-color: rgba(255,255,255,0.12); }
+
+        /* LABELS */
+        .section-label {
+            font-size: 10px; text-transform: uppercase; letter-spacing: 2.5px;
+            color: var(--accent); margin-bottom: 14px; font-weight: 700;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-label::after { content: ''; height: 1px; flex: 1; background: var(--border); }
+        .section-label.neon { color: var(--neon); }
+        .section-label.gold { color: var(--gold); }
+        .section-label.green { color: var(--green); }
+        .sub-label {
+            font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--text-dim); margin: 16px 0 10px; font-weight: 600;
+        }
+
+        /* CHIPS */
+        .grid { display: flex; flex-wrap: wrap; gap: 6px; }
+        .chip {
+            padding: 8px 14px; border-radius: 9px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02); color: var(--text-muted);
+            font-size: 12px; cursor: pointer; transition: all 0.18s; font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500; user-select: none;
+        }
+        .chip:hover { border-color: rgba(0,243,255,0.4); color: #fff; background: rgba(0,243,255,0.05); }
+        .chip.active {
+            background: var(--accent); color: #000; font-weight: 700;
+            border-color: var(--accent); box-shadow: 0 0 14px rgba(0,243,255,0.3);
+        }
+        .chip.active-neon {
+            background: var(--neon); color: #000; font-weight: 700;
+            border-color: var(--neon); box-shadow: 0 0 14px rgba(232,121,249,0.3);
+        }
+        .chip.active-gold {
+            background: var(--gold); color: #000; font-weight: 700;
+            border-color: var(--gold); box-shadow: 0 0 14px rgba(251,191,36,0.3);
+        }
+
+        /* INPUTS */
+        .text-input {
+            width: 100%; padding: 13px 16px; border-radius: 10px;
+            border: 1px solid var(--border); background: rgba(0,0,0,0.4);
+            color: #fff; margin-top: 12px; outline: none;
+            font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+            transition: border-color 0.2s;
+        }
+        .text-input:focus { border-color: rgba(0,243,255,0.4); }
+        .text-input::placeholder { color: var(--text-dim); }
+
+        /* RANGE SLIDER */
+        .slider-wrap { margin-top: 12px; }
+        .slider-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+        .slider-label strong { color: var(--accent); font-family: 'DM Mono', monospace; }
+        input[type=range] {
+            width: 100%; -webkit-appearance: none; height: 4px;
+            background: rgba(255,255,255,0.1); border-radius: 4px; outline: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
+            box-shadow: 0 0 8px rgba(0,243,255,0.5);
+        }
+
+        /* TOGGLE ROW */
+        .toggle-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid var(--border);
+        }
+        .toggle-row:last-child { border-bottom: none; }
+        .toggle-label { font-size: 12px; color: var(--text-muted); }
+        .toggle {
+            width: 36px; height: 20px; border-radius: 10px; background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border); cursor: pointer; position: relative; transition: 0.2s;
+        }
+        .toggle.on { background: var(--accent); border-color: var(--accent); }
+        .toggle::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.5);
+            transition: 0.2s;
+        }
+        .toggle.on::after { left: 18px; background: #000; }
+
+        /* COLOR PALETTE */
+        .palette { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .swatch {
+            width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
+            border: 2px solid transparent; transition: 0.2s;
+        }
+        .swatch:hover, .swatch.active { border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.3); transform: scale(1.1); }
+
+        /* MASTER PANEL */
+        .master-panel {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+            background: rgba(6,6,8,0.98); border-top: 1px solid rgba(0,243,255,0.2);
+            padding: 16px 16px 20px; backdrop-filter: blur(30px);
+            box-shadow: 0 -20px 60px rgba(0,0,0,0.8);
+        }
+        .panel-inner { max-width: 820px; margin: 0 auto; }
+        .res-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .res-box {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px; padding: 12px 15px;
+            font-family: 'DM Mono', monospace; font-size: 11px; color: #ccc;
+            max-height: 80px; overflow-y: auto; line-height: 1.6; cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .res-box:hover { border-color: rgba(0,243,255,0.2); }
+        .res-meta { display: flex; gap: 12px; margin-top: 6px; }
+        .meta-pill {
+            font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-dim);
+            padding: 3px 8px; background: rgba(255,255,255,0.04);
+            border-radius: 4px; border: 1px solid var(--border);
+        }
+        .meta-pill span { color: var(--green); }
+        .actions { display: flex; gap: 8px; margin-top: 10px; }
+        .btn {
+            flex: 1; padding: 13px 8px; border-radius: 12px; border: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 11px; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: all 0.2s;
+        }
+        .btn:hover { transform: translateY(-1px); opacity: 0.9; }
+        .btn:active { transform: translateY(0); }
+        .btn-alchemy { background: linear-gradient(135deg, var(--neon) 0%, #9333ea 100%); color: #fff; }
+        .btn-copy { background: var(--accent); color: #000; }
+        .btn-clear { background: rgba(255,255,255,0.07); color: #fff; border: 1px solid var(--border); }
+        .btn-hist { background: rgba(251,191,36,0.15); color: var(--gold); border: 1px solid rgba(251,191,36,0.3); }
+        .btn-mid { background: linear-gradient(135deg, #1a1a2e, #16213e); color: var(--accent); border: 1px solid var(--border-active); }
+
+        /* HISTORY PANEL */
+        .hist-panel {
+            display: none; max-width: 820px; margin: 0 auto 12px;
+            background: var(--card2); border: 1px solid var(--border);
+            border-radius: 14px; padding: 14px; max-height: 160px; overflow-y: auto;
+        }
+        .hist-panel.open { display: block; }
+        .hist-item {
+            font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted);
+            padding: 8px 10px; border-radius: 8px; margin-bottom: 4px;
+            background: rgba(255,255,255,0.03); cursor: pointer; transition: 0.15s;
+            border: 1px solid transparent;
+        }
+        .hist-item:hover { border-color: var(--border-active); color: #fff; }
+
+        /* TOAST */
+        .toast {
+            position: fixed; top: 70px; left: 50%; transform: translateX(-50%) translateY(-10px);
+            background: var(--green); color: #000; padding: 10px 20px;
+            border-radius: 8px; font-weight: 700; font-size: 12px; z-index: 9999;
+            opacity: 0; transition: all 0.3s; pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        /* GLOW DIVIDER */
+        .glow-div { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,243,255,0.2), transparent); margin: 16px 0; }
+
+        /* SECTION BADGE */
+        .badge {
+            display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9px;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-left: 6px;
+        }
+        .badge-new { background: var(--green); color: #000; }
+        .badge-hot { background: #ef4444; color: #fff; }
+
+        /* OPTIONAL EXTRA INPUT */
+        .extra-row { display: flex; gap: 8px; }
+        .extra-row .text-input { margin-top: 0; }
+
+        /* MIDJOURNEY PARAMS */
+        .mj-params { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .param-chip {
+            padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02); color: var(--text-dim);
+            font-family: 'DM Mono', monospace; font-size: 11px; cursor: pointer;
+            transition: all 0.15s;
+        }
+        .param-chip:hover { border-color: var(--neon); color: var(--neon); }
+        .param-chip.active {
+            background: rgba(232,121,249,0.1); border-color: var(--neon);
+            color: var(--neon); font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="index.html" class="back-btn">← Menú</a>
+    <div class="nav-badge">Arbelo Digital Studio</div>
+    <div class="stats-bar">
+        <div class="stat-pill">Palabras: <span id="word-count">0</span></div>
+        <div class="stat-pill">Tokens: <span id="token-count">~0</span></div>
+    </div>
+</nav>
+
+<header>
+    <div class="studio-logo">Arbelo Visual Studio</div>
+    <div class="studio-sub">Digital Alchemy · Prompt Engineering Master</div>
+</header>
+
+<div class="container">
+
+    <!-- BLOQUE 0: CONFIGURACIÓN -->
+    <div class="glass-card">
+        <div class="section-label">⚙️ Configuración & Motor</div>
+        <div class="sub-label">Idioma del Prompt</div>
+        <div class="grid">
+            <button class="chip active" id="l-en" onclick="setL('en')">🇬🇧 English Engine</button>
+            <button class="chip" id="l-es" onclick="setL('es')">🇪🇸 Motor Español</button>
+        </div>
+        <div class="sub-label">Plataforma de Destino</div>
+        <div class="grid" id="g-platform"></div>
+        <div class="sub-label">Tipo de Activo / Producto</div>
+        <div class="grid" id="g-product"></div>
+        <div class="sub-label">Formato de Prompt <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-fmt"></div>
+    </div>
+
+    <!-- BLOQUE 1: RASGOS Y PERSONAJE -->
+    <div class="glass-card">
+        <div class="section-label">01 · Rasgos, Etnia & Personaje</div>
+        <div class="sub-label">Tono de Piel & Etnia</div>
+        <div class="grid" id="g-skin"></div>
+        <div class="sub-label">Tono de Color de Ojos</div>
+        <div class="grid" id="g-eyes"></div>
+        <div class="glow-div"></div>
+        <div class="sub-label">Casting de Personaje</div>
+        <div class="grid" id="g-char"></div>
+        <div class="sub-label">Expresión Facial <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-expr"></div>
+        <div class="glow-div"></div>
+        <div class="sub-label">Intensidad de Detalles</div>
+        <div class="slider-wrap">
+            <div class="slider-label"><span>Simple</span><strong id="detail-val">7</strong><span>Ultra detallado</span></div>
+            <input type="range" min="1" max="10" value="7" id="s-detail" oninput="update()">
+        </div>
+    </div>
+
+    <!-- BLOQUE 2: ESTILO VISUAL -->
+    <div class="glass-card">
+        <div class="section-label neon">02 · Estilo Visual & Alquimia</div>
+        <div class="sub-label">Estilo Principal</div>
+        <div class="grid" id="g-style"></div>
+        <div class="sub-label">Técnica de Renderizado <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-render"></div>
+        <div class="sub-label">Paleta de Color / Mood <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-color"></div>
+        <div class="sub-label">Iluminación <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-light"></div>
+        <div class="sub-label">Efectos Especiales <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-fx"></div>
+        <div class="sub-label">Artistas de Referencia <span class="badge badge-hot">HOT</span></div>
+        <div class="grid" id="g-artist"></div>
+    </div>
+
+    <!-- BLOQUE 3: VESTIMENTA -->
+    <div class="glass-card">
+        <div class="section-label gold">03 · Vestimenta & Moda</div>
+        <div class="grid" style="margin-bottom:14px;">
+            <button class="chip active" id="m-pre" onclick="setM('pre')">Looks Completos</button>
+            <button class="chip" id="m-ind" onclick="setM('ind')">Prendas Individuales</button>
+        </div>
+        <div id="c-pre" class="grid" id="g-preset"></div>
+        <div id="c-ind" style="display:none;">
+            <div class="sub-label">Parte Superior</div>
+            <div class="grid" id="g-top"></div>
+            <div class="sub-label">Parte Inferior</div>
+            <div class="grid" id="g-bot"></div>
+            <div class="sub-label">Calzado</div>
+            <div class="grid" id="g-shoe"></div>
+        </div>
+        <div class="sub-label">Color de Ropa <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-cloth-col"></div>
+        <div class="sub-label">Material / Textura <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-material"></div>
+        <input type="text" class="text-input" id="i-out" placeholder="✏️ Outfit personalizado o descripción libre..." oninput="update()">
+    </div>
+
+    <!-- BLOQUE 4: PEINADO & MAQUILLAJE -->
+    <div class="glass-card">
+        <div class="section-label">04 · Peinado, Maquillaje & Pose</div>
+        <div class="sub-label">Peinado</div>
+        <div class="grid" id="g-hair"></div>
+        <div class="sub-label">Color de Cabello <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-haircolor"></div>
+        <div class="sub-label">Maquillaje <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-makeup"></div>
+        <div class="glow-div"></div>
+        <div class="sub-label">Pose y Actitud</div>
+        <div class="grid" id="g-pose"></div>
+        <div class="sub-label">Lenguaje Corporal <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-body"></div>
+    </div>
+
+    <!-- BLOQUE 5: ESCENA & CÁMARA -->
+    <div class="glass-card">
+        <div class="section-label">05 · Escena, Ambiente & Cámara</div>
+        <div class="sub-label">Fondo / Escenario</div>
+        <div class="grid" id="g-bg"></div>
+        <div class="sub-label">Ambiente / Época <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-ambient"></div>
+        <div class="sub-label">Ángulo de Cámara</div>
+        <div class="grid" id="g-cam"></div>
+        <div class="sub-label">Tipo de Plano <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-shot"></div>
+        <div class="sub-label">Hora del Día <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-time"></div>
+    </div>
+
+    <!-- BLOQUE 6: CALIDAD & TÉCNICO -->
+    <div class="glass-card">
+        <div class="section-label">06 · Calidad, Ratio & Parámetros Técnicos</div>
+        <div class="sub-label">Calidad de Render</div>
+        <div class="grid" id="g-print"></div>
+        <div class="sub-label">Relación de Aspecto</div>
+        <div class="grid" id="g-ratio"></div>
+        <div class="sub-label">Parámetros Midjourney <span class="badge badge-new">NUEVO</span></div>
+        <div class="mj-params" id="g-mjparams"></div>
+        <div class="sub-label">Peso del Estilo (Stylize) <span class="badge badge-new">NUEVO</span></div>
+        <div class="slider-wrap">
+            <div class="slider-label"><span>Natural</span><strong id="stylize-val">250</strong><span>Muy estilizado</span></div>
+            <input type="range" min="0" max="1000" value="250" step="50" id="s-stylize" oninput="update()">
+        </div>
+        <div class="sub-label">Calidad MJ (--q) <span class="badge badge-new">NUEVO</span></div>
+        <div class="slider-wrap">
+            <div class="slider-label"><span>Rápido</span><strong id="qual-val">1</strong><span>Ultra calidad</span></div>
+            <input type="range" min="0.25" max="2" value="1" step="0.25" id="s-qual" oninput="update()">
+        </div>
+        <div class="sub-label">Negativos (Excluir) <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-neg"></div>
+    </div>
+
+    <!-- BLOQUE 7: ACCESORIOS -->
+    <div class="glass-card">
+        <div class="section-label">07 · Accesorios (Múltiple)</div>
+        <div class="sub-label">Joyería & Cabeza</div>
+        <div class="grid" id="g-acc-jew"></div>
+        <div class="sub-label">Complementos & Props <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-acc-props"></div>
+        <div class="sub-label">Tech & Estilo <span class="badge badge-new">NUEVO</span></div>
+        <div class="grid" id="g-acc-tech"></div>
+    </div>
+
+    <!-- BLOQUE 8: EXTRAS & MOOD -->
+    <div class="glass-card">
+        <div class="section-label neon">08 · Mood, Narrativa & Extras <span class="badge badge-new">NUEVO</span></div>
+        <div class="sub-label">Mood / Emoción</div>
+        <div class="grid" id="g-mood"></div>
+        <div class="sub-label">Palabras Clave de Impacto</div>
+        <div class="grid" id="g-impact"></div>
+        <div class="glow-div"></div>
+        <div class="sub-label">Texto Personalizado Adicional</div>
+        <div class="extra-row">
+            <input type="text" class="text-input" id="i-extra" placeholder="🎯 Contexto extra, detalle especial, escena narrativa..." oninput="update()" style="margin-top:0;">
+        </div>
+        <div class="sub-label">Sujeto Personalizado</div>
+        <input type="text" class="text-input" id="i-subject" placeholder="👤 Describe el sujeto en detalle..." oninput="update()">
+    </div>
+
+</div>
+
+<!-- MASTER PANEL -->
+<div class="master-panel">
+    <div class="panel-inner">
+        <div class="hist-panel" id="hist-panel"></div>
+        <div class="res-header">
+            <div class="section-label neon" style="margin-bottom:0;">⚗️ Prompt Alquimizado</div>
+            <div class="res-meta">
+                <div class="meta-pill">Palabras: <span id="wc2">0</span></div>
+                <div class="meta-pill">Chars: <span id="cc2">0</span></div>
+            </div>
+        </div>
+        <div class="res-box" id="res" onclick="copy()" title="Click para copiar">Configura tu fórmula y verás el prompt aquí...</div>
+        <div class="actions">
+            <button class="btn btn-clear" onclick="confirmClear()">🗑 Limpiar</button>
+            <button class="btn btn-alchemy" onclick="alchemy()">⚗️ Aleatorio</button>
+            <button class="btn btn-mid" onclick="insertMJformat()">🎨 MJ Format</button>
+            <button class="btn btn-hist" onclick="toggleHist()">📋 Historial</button>
+            <button class="btn btn-copy" onclick="copy()">📋 Copiar</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===================== DATA =====================
+
+const PLATFORMS = [
+    {id:"midjourney", label:"🎨 Midjourney", en:"--v 6.1", es:""},
+    {id:"dalle", label:"🤖 DALL·E 3", en:"", es:""},
+    {id:"stable", label:"🌊 Stable Diffusion", en:"(masterpiece)", es:"(obra maestra)"},
+    {id:"firefly", label:"🔥 Adobe Firefly", en:"", es:""},
+    {id:"ideogram", label:"💡 Ideogram", en:"", es:""},
+    {id:"leonardo", label:"🦁 Leonardo AI", en:"", es:""},
+];
+
+const FMTS = [
+    {id:"standard", label:"📝 Estándar", en:"", es:""},
+    {id:"detailed", label:"🔍 Detallado", en:"", es:""},
+    {id:"cinematic", label:"🎬 Cinemático", en:"", es:""},
+    {id:"minimal", label:"✂️ Minimalista", en:"", es:""},
+];
+
+const PRODUCTS = [
+    {id:"3d", label:"3️⃣ 3D Asset", en:"3D render illustration", es:"ilustración 3D renderizada"},
+    {id:"notebook", label:"📓 Cuaderno", en:"notebook cover art", es:"portada de cuaderno"},
+    {id:"coloring", label:"🖌️ Coloreado", en:"detailed coloring page", es:"página para colorear detallada"},
+    {id:"logo", label:"🎨 Logo", en:"minimalist vector logo", es:"logotipo minimalista vectorial"},
+    {id:"sticker", label:"🏷️ Sticker", en:"cute die-cut sticker sheet", es:"pliego de stickers recortables"},
+    {id:"poster", label:"🎭 Póster", en:"artistic poster design", es:"diseño de póster artístico"},
+    {id:"tshirt", label:"👕 Camiseta", en:"t-shirt graphic design", es:"diseño para camiseta"},
+    {id:"card", label:"🃏 Tarjeta", en:"greeting card illustration", es:"ilustración para tarjeta"},
+    {id:"print", label:"🖼️ Fine Art Print", en:"fine art print illustration", es:"impresión de arte fino"},
+    {id:"pattern", label:"🌸 Patrón", en:"seamless repeat pattern", es:"patrón sin fin repetible"},
+    {id:"icon", label:"📱 Icono App", en:"mobile app icon", es:"icono de aplicación móvil"},
+    {id:"clip", label:"✂️ Clipart", en:"clipart vector illustration", es:"clipart vectorial"},
+];
+
+const SKINS = [
+    {id:"latina", label:"Latina Bronceada", en:"Latina woman with warm caramel skin tone", es:"mujer latina con piel bronceada cálida"},
+    {id:"african", label:"Piel Ébano", en:"woman with deep melanin-rich ebony skin", es:"mujer con piel ébano rica en melanina"},
+    {id:"asian", label:"Piel Asiática", en:"Asian woman with porcelain smooth skin", es:"mujer asiática con piel porcelana suave"},
+    {id:"brown", label:"Morena Media", en:"woman with medium brown olive skin", es:"mujer con piel morena oliva media"},
+    {id:"fair", label:"Piel Clara", en:"woman with fair porcelain skin and rosy cheeks", es:"mujer de piel clara con mejillas rosadas"},
+    {id:"mixed", label:"Mixta", en:"mixed-race woman with golden tan skin", es:"mujer de raza mixta con piel dorada"},
+    {id:"freckles", label:"Con Pecas", en:"woman with light freckles across nose and cheeks", es:"mujer con pecas ligeras en nariz y mejillas"},
+];
+
+const EYES = [
+    {id:"brown", label:"Café", en:"warm brown eyes", es:"ojos café cálidos"},
+    {id:"green", label:"Verde", en:"striking green eyes", es:"ojos verdes llamativos"},
+    {id:"blue", label:"Azul", en:"deep blue eyes", es:"ojos azules profundos"},
+    {id:"hazel", label:"Avellana", en:"hazel eyes", es:"ojos avellana"},
+    {id:"amber", label:"Ámbar", en:"golden amber eyes", es:"ojos dorados ámbar"},
+    {id:"gray", label:"Gris", en:"silver-gray eyes", es:"ojos plateados grises"},
+    {id:"black", label:"Negro intenso", en:"deep dark eyes", es:"ojos oscuros intensos"},
+];
+
+const CHARS = [
+    {id:"woman", label:"👩 Mujer", en:"young woman", es:"mujer joven"},
+    {id:"girl", label:"🧒 Niña", en:"cute little girl", es:"niña adorable"},
+    {id:"teen", label:"🧑 Adolescente", en:"teenage girl", es:"chica adolescente"},
+    {id:"elder", label:"👵 Mujer Mayor", en:"elegant elder woman", es:"mujer mayor elegante"},
+    {id:"fairy", label:"🧚 Hada", en:"magical fairy", es:"hada mágica"},
+    {id:"boss", label:"💼 Jefa CEO", en:"powerful business woman CEO", es:"mujer de negocios CEO poderosa"},
+    {id:"chef", label:"🎂 Repostera", en:"charming pastry chef", es:"repostera encantadora"},
+    {id:"witch", label:"🔮 Bruja", en:"mystical witch", es:"bruja mística"},
+    {id:"mermaid", label:"🧜 Sirena", en:"ethereal mermaid", es:"sirena etérea"},
+    {id:"warrior", label:"⚔️ Guerrera", en:"fierce warrior woman", es:"guerrera feroz"},
+    {id:"angel", label:"😇 Ángel", en:"heavenly angel", es:"ángel celestial"},
+    {id:"aries", label:"♈ Aries", en:"fierce Aries zodiac goddess", es:"diosa zodiacal Aries feroz"},
+    {id:"leo", label:"♌ Leo", en:"majestic Leo zodiac queen", es:"reina zodiacal Leo majestuosa"},
+    {id:"scorpio", label:"♏ Escorpio", en:"mysterious Scorpio goddess", es:"diosa misteriosa Escorpio"},
+    {id:"libra", label:"⚖️ Libra", en:"balanced Libra enchantress", es:"encantadora Libra equilibrada"},
+    {id:"spring", label:"🌸 Primavera", en:"radiant spring goddess", es:"diosa primaveral radiante"},
+    {id:"summer", label:"☀️ Verano", en:"blazing summer goddess", es:"diosa ardiente del verano"},
+    {id:"fenix", label:"🔥 Fénix", en:"mythical rising phoenix", es:"fénix mítico renaciente"},
+    {id:"dragon", label:"🐲 Dragón", en:"powerful dragon spirit", es:"espíritu dragón poderoso"},
+    {id:"catgirl", label:"🐱 Cat Girl", en:"kawaii cat girl", es:"chica gato kawaii"},
+];
+
+const EXPRS = [
+    {id:"smile", label:"Sonrisa Suave", en:"soft warm smile", es:"sonrisa suave cálida"},
+    {id:"fierce", label:"Intensa / Fierce", en:"fierce confident gaze", es:"mirada feroz y segura"},
+    {id:"dreamy", label:"Soñadora", en:"dreamy faraway look", es:"mirada soñadora distante"},
+    {id:"playful", label:"Juguetona", en:"playful mischievous grin", es:"sonrisa traviesa juguetona"},
+    {id:"serious", label:"Seria / Power", en:"serious powerful expression", es:"expresión seria y poderosa"},
+    {id:"laugh", label:"Risa Abierta", en:"open joyful laugh", es:"risa abierta y alegre"},
+    {id:"sultry", label:"Seductora", en:"sultry smoldering look", es:"mirada seductora ardiente"},
+    {id:"innocent", label:"Inocente", en:"innocent sweet expression", es:"expresión inocente y dulce"},
+];
+
+const STYLES = [
+    {id:"chibi", label:"✨ Chibi 3D", en:"shiny glossy chibi 3D render", es:"chibi 3D brillante y glaseado"},
+    {id:"doll", label:"🪆 Muñeca 3D", en:"hyperrealistic 3D doll render", es:"muñeca 3D hiperreal"},
+    {id:"octane", label:"💎 Octane Render", en:"photorealistic Octane 3D render", es:"renderizado Octane fotorrealista"},
+    {id:"clay", label:"🫶 Clay / Plastilina", en:"soft clay animation style", es:"estilo animación plastilina suave"},
+    {id:"anime", label:"🌸 Anime Premium", en:"premium anime illustration style", es:"estilo ilustración anime premium"},
+    {id:"pixar", label:"🎬 Estilo Pixar", en:"Pixar animation movie style", es:"estilo película animación Pixar"},
+    {id:"cartoon", label:"🎨 Cartoon 2D", en:"vivid 2D cartoon illustration", es:"ilustración cartoon 2D vívida"},
+    {id:"realism", label:"📸 Hiperrealismo", en:"hyperrealistic photorealistic", es:"hiperrealista fotorrealista"},
+    {id:"watercolor", label:"🎨 Acuarela", en:"soft watercolor painting", es:"pintura acuarela suave"},
+    {id:"comic", label:"💥 Cómic / Pop Art", en:"bold comic book pop art", es:"cómic pop art audaz"},
+    {id:"glitter", label:"✨ Glitter Luxe", en:"glitter luxury sparkle illustration", es:"ilustración glitter brillante de lujo"},
+    {id:"neon", label:"🌙 Neon Cyberpunk", en:"neon cyberpunk digital art", es:"arte digital neon cyberpunk"},
+    {id:"retrowave", label:"🌊 Retrowave", en:"retrowave synthwave aesthetic", es:"estética retrowave synthwave"},
+    {id:"boho", label:"🌿 Boho Art", en:"boho artistic illustration", es:"ilustración artística boho"},
+];
+
+const RENDERS = [
+    {id:"blender", label:"Blender", en:"Blender 3D render", es:"renderizado Blender 3D"},
+    {id:"unreal", label:"Unreal Engine 5", en:"Unreal Engine 5 render", es:"render Unreal Engine 5"},
+    {id:"zbrush", label:"ZBrush", en:"ZBrush sculpt", es:"escultura ZBrush"},
+    {id:"cinema4d", label:"Cinema 4D", en:"Cinema 4D render", es:"render Cinema 4D"},
+    {id:"substancepainter", label:"Substance", en:"Substance Painter textures", es:"texturas Substance Painter"},
+    {id:"procreate", label:"Procreate", en:"Procreate digital painting", es:"pintura digital Procreate"},
+];
+
+const COLORS = [
+    {id:"pastel", label:"🍭 Pastel Dulce", en:"soft pastel color palette", es:"paleta pastel suave"},
+    {id:"vivid", label:"🎆 Vibrante", en:"vivid saturated color palette", es:"paleta de colores saturados vibrantes"},
+    {id:"earth", label:"🌍 Tierra", en:"earthy warm tones", es:"tonos tierra cálidos"},
+    {id:"dark", label:"🌑 Dark Moody", en:"dark moody palette", es:"paleta oscura y dramática"},
+    {id:"rainbow", label:"🌈 Arcoíris", en:"rainbow gradient palette", es:"paleta gradiente arcoíris"},
+    {id:"monochrome", label:"🖤 Monocromático", en:"monochromatic color scheme", es:"esquema monocromático"},
+    {id:"gold-black", label:"🏆 Dorado & Negro", en:"luxurious gold and black palette", es:"paleta lujosa dorado y negro"},
+    {id:"pink-purp", label:"💜 Pink & Purple", en:"pink and purple gradient palette", es:"paleta gradiente rosa y morado"},
+    {id:"mint-gold", label:"🌿 Mint & Gold", en:"mint green and gold palette", es:"paleta verde menta y dorado"},
+    {id:"cherry", label:"🍒 Cherry Red", en:"bold cherry red palette", es:"paleta rojo cereza"},
+];
+
+const LIGHTS = [
+    {id:"soft", label:"Luz Suave", en:"soft diffused studio lighting", es:"luz suave difusa de estudio"},
+    {id:"rim", label:"Rim Light", en:"dramatic rim lighting", es:"iluminación rim dramática"},
+    {id:"golden", label:"Hora Dorada", en:"golden hour warm sunlight", es:"luz cálida hora dorada"},
+    {id:"neon-light", label:"Luz Neon", en:"neon RGB lighting", es:"iluminación RGB neón"},
+    {id:"cinematic", label:"Cinemática", en:"cinematic Rembrandt lighting", es:"luz Rembrandt cinematográfica"},
+    {id:"backlit", label:"Contraluz", en:"dramatic backlight glow", es:"resplandor de contraluz dramático"},
+    {id:"fairy-light", label:"Fairy Lights", en:"fairy lights bokeh", es:"bokeh de lucecitas mágicas"},
+    {id:"volumetric", label:"Volumétrica", en:"volumetric god rays lighting", es:"rayos de luz volumétricos"},
+];
+
+const FX = [
+    {id:"sparkles", label:"✨ Destellos", en:"magical sparkles and stars", es:"destellos mágicos y estrellas"},
+    {id:"petals", label:"🌸 Pétalos", en:"floating flower petals", es:"pétalos de flores flotando"},
+    {id:"butterflies", label:"🦋 Mariposas", en:"iridescent butterflies", es:"mariposas iridiscentes"},
+    {id:"fire", label:"🔥 Fuego", en:"fire and ember particles", es:"partículas de fuego y brasas"},
+    {id:"smoke", label:"🌫️ Humo", en:"ethereal smoke wisps", es:"volutas etéreas de humo"},
+    {id:"crystals", label:"💎 Cristales", en:"crystal shards and gems", es:"fragmentos de cristal y gemas"},
+    {id:"galaxy", label:"🌌 Galaxia", en:"galaxy and stardust", es:"galaxia y polvo de estrellas"},
+    {id:"lightning", label:"⚡ Rayos", en:"electric lightning bolts", es:"rayos eléctricos"},
+    {id:"bloom", label:"🌟 Bloom", en:"soft lens bloom glow", es:"resplandor bloom suave de lente"},
+    {id:"leaves", label:"🍃 Hojas", en:"falling autumn leaves", es:"hojas de otoño cayendo"},
+];
+
+const ARTISTS = [
+    {id:"artgerm", label:"Artgerm", en:"Artgerm style", es:"estilo Artgerm"},
+    {id:"wlop", label:"WLOP", en:"WLOP digital painting style", es:"estilo pintura digital WLOP"},
+    {id:"loish", label:"Loish", en:"Loish illustration style", es:"estilo ilustración Loish"},
+    {id:"mucha", label:"Alphonse Mucha", en:"Alphonse Mucha Art Nouveau", es:"Art Nouveau Alphonse Mucha"},
+    {id:"sakimichan", label:"Sakimichan", en:"Sakimichan style", es:"estilo Sakimichan"},
+    {id:"rossdraws", label:"Rossdraws", en:"Rossdraws style", es:"estilo Rossdraws"},
+    {id:"charlie", label:"Charlie Bowater", en:"Charlie Bowater style", es:"estilo Charlie Bowater"},
+];
+
+const PRESETS = [
+    {id:"trendy", label:"👗 A la Moda", en:"trendy streetwear youth outfit", es:"outfit callejero de moda juvenil"},
+    {id:"boss", label:"💼 Jefa", en:"stylish boss lady power suit", es:"traje de poder jefa elegante"},
+    {id:"diva", label:"✨ Diva Glam", en:"glamorous red carpet gown", es:"vestido glamuroso de alfombra roja"},
+    {id:"boho", label:"🌿 Boho Chic", en:"boho chic flowy dress with layers", es:"vestido boho chic con capas fluidas"},
+    {id:"fantasy", label:"🧝 Fantasy", en:"elaborate fantasy costume", es:"elaborado traje fantástico"},
+    {id:"sporty", label:"🏃 Sporty", en:"athletic sporty outfit", es:"outfit deportivo atlético"},
+    {id:"pastel-girl", label:"🩷 Pastel Girl", en:"cute pastel aesthetic outfit", es:"outfit estético pastel adorable"},
+    {id:"cottagecore", label:"🌻 Cottagecore", en:"cottagecore floral dress", es:"vestido floral cottagecore"},
+    {id:"dark-goth", label:"🖤 Dark Goth", en:"gothic dark fashion", es:"moda gótica oscura"},
+    {id:"princess", label:"👑 Princesa", en:"princess ball gown with tiara", es:"vestido de princesa con tiara"},
+    {id:"swimwear", label:"🏖️ Playa", en:"stylish swimwear beach look", es:"look de playa con bañador estiloso"},
+    {id:"kimono", label:"🎎 Kimono", en:"elegant traditional Japanese kimono", es:"kimono tradicional japonés elegante"},
+];
+
+const TOPS = [
+    {id:"crop", label:"Crop Top", en:"stylish crop top", es:"crop top estiloso"},
+    {id:"hoodie", label:"Hoodie", en:"cozy oversized hoodie", es:"hoodie holgado cómodo"},
+    {id:"blazer", label:"Blazer", en:"fitted blazer", es:"blazer ajustado"},
+    {id:"corset", label:"Corsé", en:"elegant corset top", es:"corsé top elegante"},
+    {id:"tshirt", label:"Camiseta", en:"graphic t-shirt", es:"camiseta gráfica"},
+    {id:"off-shoulder", label:"Off Shoulder", en:"off-shoulder top", es:"top off shoulder"},
+];
+
+const BOTS = [
+    {id:"jeans", label:"Jeans", en:"high-waist skinny jeans", es:"jeans pitillo de cintura alta"},
+    {id:"skirt", label:"Falda Mini", en:"flirty mini skirt", es:"falda mini coqueta"},
+    {id:"shorts", label:"Shorts", en:"denim shorts", es:"shorts de mezclilla"},
+    {id:"cargo", label:"Cargo", en:"baggy cargo pants", es:"pantalones cargo holgados"},
+    {id:"leggings", label:"Leggings", en:"sleek leggings", es:"leggings ajustados"},
+    {id:"maxi", label:"Maxi Falda", en:"flowy maxi skirt", es:"falda maxi fluida"},
+];
+
+const SHOES = [
+    {id:"heels", label:"Tacones", en:"strappy high heels", es:"tacones de tiras altos"},
+    {id:"sneakers", label:"Sneakers", en:"chunky platform sneakers", es:"sneakers con plataforma gruesa"},
+    {id:"boots", label:"Botas", en:"knee-high boots", es:"botas hasta la rodilla"},
+    {id:"sandals", label:"Sandalias", en:"elegant strappy sandals", es:"sandalias elegantes de tiras"},
+    {id:"loafers", label:"Mocasines", en:"chunky loafers", es:"mocasines gruesos"},
+    {id:"barefoot", label:"Descalza", en:"barefoot with anklet", es:"descalza con tobillera"},
+    {id:"platforms", label:"Plataformas", en:"bold platform shoes", es:"zapatos de plataforma audaces"},
+    {id:"cowboy", label:"Cowboy Boots", en:"western cowboy boots", es:"botas cowboy western"},
+];
+
+const CLOTH_COLS = [
+    {id:"all-black", label:"All Black", en:"all black outfit", es:"conjunto todo negro"},
+    {id:"all-white", label:"All White", en:"all white pristine outfit", es:"conjunto todo blanco prístino"},
+    {id:"hot-pink", label:"Rosa Hot", en:"hot pink outfit", es:"conjunto rosa intenso"},
+    {id:"lavender", label:"Lavanda", en:"soft lavender outfit", es:"conjunto lavanda suave"},
+    {id:"red", label:"Rojo Pasión", en:"passionate red outfit", es:"conjunto rojo pasión"},
+    {id:"gold-oufit", label:"Dorado", en:"golden metallic outfit", es:"conjunto dorado metálico"},
+    {id:"multicolor", label:"Multicolor", en:"vibrant multicolor pattern outfit", es:"conjunto estampado multicolor vibrante"},
+    {id:"neutral", label:"Neutros", en:"neutral earthy tones outfit", es:"conjunto en tonos neutros tierra"},
+];
+
+const MATERIALS = [
+    {id:"satin", label:"Satén", en:"luxurious satin fabric", es:"tela satén lujosa"},
+    {id:"lace", label:"Encaje", en:"delicate lace detail", es:"detalle de encaje delicado"},
+    {id:"velvet", label:"Terciopelo", en:"rich velvet texture", es:"textura terciopelo rico"},
+    {id:"denim", label:"Denim", en:"classic denim fabric", es:"tela denim clásica"},
+    {id:"leather", label:"Cuero", en:"sleek faux leather", es:"cuero sintético brillante"},
+    {id:"sequin", label:"Lentejuelas", en:"sparkling sequin embellishments", es:"adornos de lentejuelas brillantes"},
+    {id:"silk", label:"Seda", en:"flowing silk fabric", es:"tela de seda fluida"},
+    {id:"knit", label:"Tejido", en:"cozy knit sweater texture", es:"textura de suéter tejido acogedor"},
+];
+
+const HAIRS = [
+    {id:"long-straight", label:"Liso Largo", en:"long straight silky hair", es:"cabello largo liso sedoso"},
+    {id:"curly", label:"Rizado Voluminoso", en:"big voluminous curly hair", es:"cabello rizado voluminoso"},
+    {id:"wavy", label:"Ondulado", en:"soft wavy hair", es:"cabello ondulado suave"},
+    {id:"bun", label:"Moño Alto", en:"elegant high bun", es:"moño alto elegante"},
+    {id:"ponytail", label:"Cola Alta", en:"high ponytail", es:"cola de caballo alta"},
+    {id:"braids", label:"Trenzas", en:"braided hair with accessories", es:"cabello trenzado con accesorios"},
+    {id:"bob", label:"Bob", en:"sleek bob haircut", es:"corte bob sleek"},
+    {id:"afro", label:"Afro", en:"beautiful afro natural hair", es:"hermoso cabello afro natural"},
+    {id:"pixie", label:"Pixie Cut", en:"edgy pixie cut", es:"corte pixie atrevido"},
+    {id:"space-buns", label:"Space Buns", en:"cute space buns", es:"space buns adorables"},
+    {id:"loose", label:"Suelto Natural", en:"loose natural flowing hair", es:"cabello suelto natural fluido"},
+    {id:"half-up", label:"Medio Recogido", en:"half-up half-down style", es:"estilo medio recogido"},
+];
+
+const HAIRCOLORS = [
+    {id:"black", label:"Negro", en:"jet black hair", es:"cabello negro azabache"},
+    {id:"brown", label:"Castaño", en:"rich brown hair", es:"cabello castaño rico"},
+    {id:"blonde", label:"Rubio Dorado", en:"golden blonde hair", es:"cabello rubio dorado"},
+    {id:"red-hair", label:"Rojizo", en:"vibrant red hair", es:"cabello rojizo vibrante"},
+    {id:"pink-hair", label:"Rosa Pastel", en:"pastel pink hair", es:"cabello rosa pastel"},
+    {id:"lavender-hair", label:"Lavanda", en:"lavender purple hair", es:"cabello lavanda morado"},
+    {id:"blue-hair", label:"Azul", en:"electric blue hair", es:"cabello azul eléctrico"},
+    {id:"rainbow-hair", label:"Arcoíris", en:"rainbow colored hair", es:"cabello de colores arcoíris"},
+    {id:"silver-hair", label:"Platino", en:"silver platinum hair", es:"cabello plateado platino"},
+    {id:"ombre", label:"Ombré", en:"beautiful ombré hair", es:"hermoso cabello ombré"},
+];
+
+const MAKEUPS = [
+    {id:"natural", label:"Natural", en:"natural no-makeup look", es:"look natural sin maquillaje"},
+    {id:"glam", label:"Glam", en:"full glam makeup", es:"maquillaje glam completo"},
+    {id:"smokey", label:"Smokey Eye", en:"dramatic smokey eye", es:"smokey eye dramático"},
+    {id:"bold-lip", label:"Labio Rojo", en:"bold red lip", es:"labio rojo audaz"},
+    {id:"dewy", label:"Dewy / Glass Skin", en:"dewy glass skin glow", es:"piel dewy efecto cristal"},
+    {id:"glitter-make", label:"Glitter", en:"glitter eye makeup", es:"maquillaje con glitter en ojos"},
+    {id:"neon-make", label:"Neon", en:"neon eyeliner makeup", es:"maquillaje con delineado neón"},
+];
+
+const POSES = [
+    {id:"sassy", label:"👊 Sassy Stand", en:"confident sassy power pose", es:"pose poderosa sassy segura"},
+    {id:"walking", label:"🚶 Caminando", en:"walking forward with confidence", es:"caminando hacia adelante con confianza"},
+    {id:"sitting", label:"🪑 Sentada", en:"elegantly seated pose", es:"pose sentada elegante"},
+    {id:"arms-up", label:"🙌 Brazos Arriba", en:"arms raised in celebration", es:"brazos levantados celebrando"},
+    {id:"side-profile", label:"↩️ Perfil", en:"graceful side profile pose", es:"pose de perfil grácil"},
+    {id:"looking-back", label:"↙️ Mirada Atrás", en:"looking back over shoulder", es:"mirando sobre el hombro"},
+    {id:"flying", label:"🦅 Volando", en:"dynamic flying levitation pose", es:"pose dinámica levitando volando"},
+    {id:"action", label:"⚡ Acción", en:"dynamic action pose", es:"pose de acción dinámica"},
+    {id:"crossed-arms", label:"🤞 Brazos Cruzados", en:"arms crossed power stance", es:"brazos cruzados pose de poder"},
+    {id:"lotus", label:"🧘 Meditación", en:"seated lotus meditation pose", es:"pose meditación loto sentada"},
+];
+
+const BODIES = [
+    {id:"elegant", label:"Elegante", en:"elegant graceful body language", es:"lenguaje corporal elegante y grácil"},
+    {id:"fierce", label:"Feroz", en:"fierce powerful stance", es:"postura feroz y poderosa"},
+    {id:"playful", label:"Juguetona", en:"playful fun body language", es:"lenguaje corporal juguetón"},
+    {id:"relaxed", label:"Relajada", en:"relaxed casual posture", es:"postura relajada casual"},
+    {id:"dynamic", label:"Dinámica", en:"energetic dynamic motion blur", es:"movimiento dinámico energético"},
+];
+
+const BGS = [
+    {id:"png", label:"PNG Transparente", en:"isolated transparent background", es:"fondo transparente aislado"},
+    {id:"white", label:"Blanco Limpio", en:"clean white background", es:"fondo blanco limpio"},
+    {id:"gradient", label:"Gradiente", en:"smooth gradient background", es:"fondo gradiente suave"},
+    {id:"city", label:"🌆 Ciudad", en:"modern city skyline backdrop", es:"fondo horizonte ciudad moderna"},
+    {id:"nature", label:"🌿 Naturaleza", en:"lush green nature background", es:"fondo naturaleza verde exuberante"},
+    {id:"studio", label:"📸 Estudio", en:"professional studio background", es:"fondo profesional de estudio"},
+    {id:"flower-field", label:"🌸 Campo Flores", en:"blooming flower field", es:"campo de flores en flor"},
+    {id:"beach", label:"🏖️ Playa", en:"tropical beach sunset", es:"atardecer playa tropical"},
+    {id:"space", label:"🌌 Espacio", en:"outer space nebula background", es:"fondo nebulosa espacio exterior"},
+    {id:"magic-forest", label:"🌲 Bosque Mágico", en:"enchanted magical forest", es:"bosque mágico encantado"},
+    {id:"luxury-interior", label:"🏛️ Interior Lujo", en:"luxury interior design backdrop", es:"fondo interior de lujo"},
+    {id:"rooftop", label:"🌇 Rooftop", en:"urban rooftop at night", es:"azotea urbana de noche"},
+    {id:"abstract", label:"🎨 Abstracto", en:"colorful abstract art background", es:"fondo arte abstracto colorido"},
+];
+
+const AMBIENTS = [
+    {id:"futuristic", label:"🚀 Futurista", en:"futuristic cyberpunk ambiance", es:"ambiente futurista cyberpunk"},
+    {id:"medieval", label:"⚔️ Medieval", en:"medieval fantasy kingdom", es:"reino medieval fantástico"},
+    {id:"vintage", label:"📺 Vintage", en:"vintage retro 1970s aesthetic", es:"estética vintage retro de los 70s"},
+    {id:"modern", label:"🏙️ Moderno", en:"modern contemporary setting", es:"ambientación contemporánea moderna"},
+    {id:"mystical", label:"🔮 Místico", en:"mystical magical realm", es:"reino místico y mágico"},
+    {id:"underwater", label:"🌊 Submarino", en:"underwater ocean world", es:"mundo oceánico submarino"},
+    {id:"celestial", label:"⭐ Celestial", en:"celestial heavenly realm", es:"reino celestial y divino"},
+];
+
+const CAMS = [
+    {id:"front", label:"Frontal", en:"straight-on front view", es:"vista frontal directa"},
+    {id:"3quarter", label:"¾ Perfil", en:"three-quarter view", es:"vista de tres cuartos"},
+    {id:"low-angle", label:"Ángulo Bajo", en:"dramatic low-angle shot", es:"toma dramática ángulo bajo"},
+    {id:"high-angle", label:"Ángulo Alto", en:"elegant high-angle overhead", es:"ángulo alto elegante cenital"},
+    {id:"dutch", label:"Dutch Angle", en:"dramatic dutch angle tilt", es:"ángulo holandés dramático"},
+    {id:"side", label:"Lateral", en:"clean side profile", es:"perfil lateral limpio"},
+];
+
+const SHOTS = [
+    {id:"full", label:"Full Body", en:"full body shot", es:"plano cuerpo completo"},
+    {id:"waist-up", label:"Medio Cuerpo", en:"waist-up medium shot", es:"plano medio cintura arriba"},
+    {id:"portrait", label:"Retrato", en:"close-up portrait shot", es:"plano retrato close-up"},
+    {id:"head", label:"Headshot", en:"tight headshot", es:"headshot apretado"},
+    {id:"fashion", label:"Fashion Editorial", en:"full-length fashion editorial shot", es:"plano editorial de moda cuerpo entero"},
+];
+
+const TIMES = [
+    {id:"golden-h", label:"🌅 Hora Dorada", en:"golden hour soft sunlight", es:"hora dorada luz solar suave"},
+    {id:"blue-h", label:"🌆 Hora Azul", en:"blue hour twilight", es:"hora azul crepúsculo"},
+    {id:"midnight", label:"🌙 Medianoche", en:"midnight moonlit scene", es:"escena iluminada a medianoche"},
+    {id:"noon", label:"☀️ Mediodía", en:"bright midday sunlight", es:"luz brillante mediodía"},
+    {id:"dawn", label:"🌄 Amanecer", en:"early dawn misty morning", es:"madrugada brumosa temprana"},
+    {id:"dusk", label:"🌇 Atardecer", en:"warm sunset dusk", es:"atardecer cálido"},
+];
+
+const PRINTS = [
+    {id:"8k", label:"💎 Ultra HD 8K", en:"8K ultra HD resolution, sharp focus, ultra-detailed", es:"resolución ultra HD 8K, enfoque nítido, ultra detallado"},
+    {id:"4k", label:"🖥️ 4K Crisp", en:"4K crisp resolution, best quality", es:"resolución 4K nítida, mejor calidad"},
+    {id:"vector", label:"✏️ Vectorial SVG", en:"clean vector lines, scalable SVG style", es:"líneas vectoriales limpias, estilo SVG escalable"},
+    {id:"print-ready", label:"🖨️ Print Ready", en:"print-ready 300dpi CMYK", es:"listo para impresión 300ppp CMYK"},
+];
+
+const RATIOS = [
+    {id:"sq", label:"🟦 1:1 Cuadrado", en:"--ar 1:1", es:"--ar 1:1"},
+    {id:"port", label:"📱 9:16 Vertical", en:"--ar 9:16", es:"--ar 9:16"},
+    {id:"land", label:"🖥️ 16:9 Horizontal", en:"--ar 16:9", es:"--ar 16:9"},
+    {id:"port43", label:"📷 3:4", en:"--ar 3:4", es:"--ar 3:4"},
+    {id:"land169", label:"📐 4:3", en:"--ar 4:3", es:"--ar 4:3"},
+    {id:"wide", label:"🎬 21:9 Cinemático", en:"--ar 21:9", es:"--ar 21:9"},
+    {id:"print-ratio", label:"🖨️ A4 Vertical", en:"--ar 210:297", es:"--ar 210:297"},
+];
+
+const MJPARAMS = [
+    {id:"mj6", label:"--v 6.1", en:"--v 6.1", es:"--v 6.1"},
+    {id:"niji6", label:"--niji 6", en:"--niji 6", es:"--niji 6"},
+    {id:"chaos20", label:"--chaos 20", en:"--chaos 20", es:"--chaos 20"},
+    {id:"chaos50", label:"--chaos 50", en:"--chaos 50", es:"--chaos 50"},
+    {id:"tile", label:"--tile", en:"--tile", es:"--tile"},
+    {id:"weird", label:"--weird 500", en:"--weird 500", es:"--weird 500"},
+    {id:"turbo", label:"--turbo", en:"--turbo", es:"--turbo"},
+    {id:"raw", label:"--style raw", en:"--style raw", es:"--style raw"},
+];
+
+const NEGS = [
+    {id:"blurry", label:"Sin blur", en:"blurry, out of focus", es:"borroso, desenfocado"},
+    {id:"bad-hands", label:"Sin manos raras", en:"bad hands, extra fingers, deformed hands", es:"manos malas, dedos extra, manos deformes"},
+    {id:"watermark", label:"Sin marca", en:"watermark, signature, text", es:"marca de agua, firma, texto"},
+    {id:"ugly", label:"Sin fealdad", en:"ugly, distorted, deformed face", es:"feo, distorsionado, cara deforme"},
+    {id:"low-quality", label:"Sin baja cal.", en:"low quality, low resolution, pixelated", es:"baja calidad, baja resolución, pixelado"},
+    {id:"nsfw", label:"SFW only", en:"nsfw, explicit", es:"nsfw, explícito"},
+    {id:"duplicate", label:"Sin duplicados", en:"duplicate, clone, multiple subjects", es:"duplicado, clon, múltiples sujetos"},
+];
+
+const ACCS_JEW = [
+    {id:"crown", label:"👑 Corona", en:"golden crown", es:"corona dorada"},
+    {id:"tiara", label:"💍 Tiara", en:"diamond tiara", es:"tiara de diamantes"},
+    {id:"earrings", label:"💎 Aretes", en:"statement earrings", es:"aretes llamativos"},
+    {id:"necklace", label:"📿 Collar", en:"elegant necklace", es:"collar elegante"},
+    {id:"choker", label:"🖤 Choker", en:"velvet choker", es:"choker de terciopelo"},
+    {id:"bracelet", label:"⭕ Pulseras", en:"stacked bracelets", es:"pulseras apiladas"},
+    {id:"ring", label:"💍 Anillo", en:"cocktail ring", es:"anillo de cóctel"},
+    {id:"headband", label:"🌸 Diadema", en:"floral headband", es:"diadema floral"},
+];
+
+const ACCS_PROPS = [
+    {id:"bag", label:"👜 Bolso", en:"designer handbag", es:"bolso de diseñador"},
+    {id:"flowers", label:"🌹 Flores", en:"bouquet of flowers", es:"ramo de flores"},
+    {id:"book", label:"📚 Libro", en:"holding an open book", es:"sosteniendo un libro abierto"},
+    {id:"coffee", label:"☕ Café", en:"holding a coffee cup", es:"sosteniendo una taza de café"},
+    {id:"umbrella", label:"☂️ Paraguas", en:"elegant umbrella", es:"paraguas elegante"},
+    {id:"sword", label:"⚔️ Espada", en:"glowing magical sword", es:"espada mágica brillante"},
+    {id:"wand", label:"🪄 Varita", en:"sparkling magic wand", es:"varita mágica brillante"},
+    {id:"fan", label:"🪭 Abanico", en:"ornate decorative fan", es:"abanico decorativo ornamentado"},
+    {id:"balloon", label:"🎈 Globos", en:"colorful balloons", es:"globos de colores"},
+];
+
+const ACCS_TECH = [
+    {id:"glasses", label:"👓 Gafas", en:"stylish glasses frames", es:"armazón de gafas estiloso"},
+    {id:"sunglasses", label:"🕶️ Lentes Sol", en:"oversized sunglasses", es:"gafas de sol oversized"},
+    {id:"headphones", label:"🎧 Headphones", en:"wireless headphones", es:"audífonos inalámbricos"},
+    {id:"camera", label:"📷 Cámara", en:"retro film camera", es:"cámara de película retro"},
+    {id:"phone", label:"📱 Celular", en:"smartphone", es:"teléfono inteligente"},
+    {id:"hat", label:"🎩 Sombrero", en:"fashionable hat", es:"sombrero de moda"},
+    {id:"beret", label:"🎨 Boina", en:"artist beret", es:"boina de artista"},
+    {id:"backpack", label:"🎒 Mochila", en:"stylish backpack", es:"mochila estilosa"},
+];
+
+const MOODS = [
+    {id:"empowering", label:"💪 Empoderadora", en:"empowering and uplifting mood", es:"ambiente empoderador y elevador"},
+    {id:"romantic", label:"💕 Romántica", en:"romantic and dreamy mood", es:"ambiente romántico y soñador"},
+    {id:"mysterious", label:"🌑 Misteriosa", en:"mysterious and ethereal mood", es:"ambiente misterioso y etéreo"},
+    {id:"joyful", label:"🎉 Alegre", en:"joyful celebratory mood", es:"ambiente alegre y celebratorio"},
+    {id:"fierce", label:"🔥 Feroz / Bold", en:"fierce bold powerful mood", es:"ambiente feroz poderoso y audaz"},
+    {id:"peaceful", label:"🌿 Tranquila", en:"peaceful serene mood", es:"ambiente tranquilo y sereno"},
+    {id:"luxurious", label:"👑 Lujosa", en:"luxurious opulent mood", es:"ambiente lujoso y opulento"},
+    {id:"magical", label:"✨ Mágica", en:"whimsical magical mood", es:"ambiente mágico fantástico"},
+];
+
+const IMPACTS = [
+    {id:"masterpiece", label:"Masterpiece", en:"masterpiece", es:"obra maestra"},
+    {id:"award-winning", label:"Award Winning", en:"award-winning illustration", es:"ilustración premiada"},
+    {id:"trending", label:"Trending Art", en:"trending on ArtStation", es:"tendencia en ArtStation"},
+    {id:"professional", label:"Professional", en:"professional quality", es:"calidad profesional"},
+    {id:"stunning", label:"Stunning", en:"stunning breathtaking", es:"impresionante y asombroso"},
+    {id:"ultra-detailed", label:"Ultra Detail", en:"ultra-detailed intricate details", es:"ultra detallado con detalles intrincados"},
+    {id:"cinematic-q", label:"Cinematic", en:"cinematic quality", es:"calidad cinematográfica"},
+    {id:"editorial", label:"Editorial", en:"editorial magazine quality", es:"calidad revista editorial"},
+];
+
+// ===================== STATE =====================
+let st = {
+    l:'en', platform:'midjourney', prod:'3d', fmt:'detailed',
+    skin:'latina', eyes:'brown', char:'woman', style:'chibi', expr:'smile',
+    render:[], color:'vivid', light:'soft', fx:[], artist:[],
+    m:'pre', pre:'trendy', top:'crop', bot:'jeans', shoe:'sneakers',
+    clothcol:'all-black', material:[],
+    hair:'long-straight', haircolor:'black', makeup:'glam',
+    pose:'sassy', body:'elegant',
+    bg:'png', ambient:'modern', cam:'front', shot:'full', time:'golden-h',
+    pr:'8k', ra:'sq', mjparams:[], stylize:250, qual:1, neg:[],
+    accs_jew:[], accs_props:[], accs_tech:[],
+    mood:'empowering', impact:['masterpiece'],
+    detail:7,
+};
+
+let history = [];
+let histOpen = false;
+
+// ===================== INIT =====================
+function init() {
+    renderS('g-platform', PLATFORMS, 'platform');
+    renderS('g-fmt', FMTS, 'fmt');
+    renderS('g-product', PRODUCTS, 'prod');
+    renderS('g-skin', SKINS, 'skin');
+    renderS('g-eyes', EYES, 'eyes');
+    renderS('g-char', CHARS, 'char');
+    renderS('g-expr', EXPRS, 'expr');
+    renderS('g-style', STYLES, 'style');
+    renderM('g-render', RENDERS, 'render');
+    renderS('g-color', COLORS, 'color');
+    renderS('g-light', LIGHTS, 'light');
+    renderM('g-fx', FX, 'fx');
+    renderM('g-artist', ARTISTS, 'artist');
+    renderS('c-pre', PRESETS, 'pre');
+    renderS('g-top', TOPS, 'top');
+    renderS('g-bot', BOTS, 'bot');
+    renderS('g-shoe', SHOES, 'shoe');
+    renderS('g-cloth-col', CLOTH_COLS, 'clothcol');
+    renderM('g-material', MATERIALS, 'material');
+    renderS('g-hair', HAIRS, 'hair');
+    renderS('g-haircolor', HAIRCOLORS, 'haircolor');
+    renderS('g-makeup', MAKEUPS, 'makeup');
+    renderS('g-pose', POSES, 'pose');
+    renderS('g-body', BODIES, 'body');
+    renderS('g-bg', BGS, 'bg');
+    renderS('g-ambient', AMBIENTS, 'ambient');
+    renderS('g-cam', CAMS, 'cam');
+    renderS('g-shot', SHOTS, 'shot');
+    renderS('g-time', TIMES, 'time');
+    renderS('g-print', PRINTS, 'pr');
+    renderS('g-ratio', RATIOS, 'ra');
+    renderParam('g-mjparams', MJPARAMS);
+    renderS('g-neg', NEGS, 'neg'); // treat as multi
+    renderM('g-acc-jew', ACCS_JEW, 'accs_jew');
+    renderM('g-acc-props', ACCS_PROPS, 'accs_props');
+    renderM('g-acc-tech', ACCS_TECH, 'accs_tech');
+    renderS('g-mood', MOODS, 'mood');
+    renderM('g-impact', IMPACTS, 'impact');
+    document.getElementById('s-detail').addEventListener('input', function(){ document.getElementById('detail-val').innerText = this.value; update(); });
+    document.getElementById('s-stylize').addEventListener('input', function(){ document.getElementById('stylize-val').innerText = this.value; update(); });
+    document.getElementById('s-qual').addEventListener('input', function(){ document.getElementById('qual-val').innerText = this.value; update(); });
+    update();
+}
+
+function renderS(id, d, k) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isArr = Array.isArray(st[k]);
+    el.innerHTML = d.map(i => `<button class="chip ${isArr ? (st[k].includes(i.id) ? 'active' : '') : (st[k] === i.id ? 'active' : '')}" onclick="selS('${k}', '${i.id}', this)">${i.label}</button>`).join('');
+}
+
+function renderM(id, d, k) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = d.map(i => `<button class="chip ${st[k].includes(i.id) ? 'active' : ''}" onclick="togM('${k}', '${i.id}', this)">${i.label}</button>`).join('');
+}
+
+function renderParam(id, d) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = d.map(i => `<button class="param-chip ${st.mjparams.includes(i.id) ? 'active' : ''}" onclick="togParam('${i.id}', this)">${i.label}</button>`).join('');
+}
+
+function selS(k, id, el) {
+    if (Array.isArray(st[k])) {
+        if (st[k].includes(id)) st[k] = st[k].filter(x => x !== id);
+        else st[k].push(id);
+        el.classList.toggle('active');
+    } else {
+        st[k] = id;
+        el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+    }
+    update();
+}
+
+function togM(k, id, el) {
+    if (st[k].includes(id)) st[k] = st[k].filter(x => x !== id);
+    else st[k].push(id);
+    el.classList.toggle('active');
+    update();
+}
+
+function togParam(id, el) {
+    if (st.mjparams.includes(id)) st.mjparams = st.mjparams.filter(x => x !== id);
+    else st.mjparams.push(id);
+    el.classList.toggle('active');
+    update();
+}
+
+function setL(l) {
+    st.l = l;
+    document.getElementById('l-en').classList.toggle('active', l === 'en');
+    document.getElementById('l-es').classList.toggle('active', l === 'es');
+    update();
+}
+
+function setM(m) {
+    st.m = m;
+    document.getElementById('m-pre').classList.toggle('active', m === 'pre');
+    document.getElementById('m-ind').classList.toggle('active', m === 'ind');
+    document.getElementById('c-pre').style.display = m === 'pre' ? 'flex' : 'none';
+    document.getElementById('c-ind').style.display = m === 'ind' ? 'block' : 'none';
+    update();
+}
+
+// ===================== PROMPT BUILDER =====================
+function G(arr, key) {
+    if (!arr || !key) return '';
+    const l = st.l;
+    const found = arr.find(x => x.id === key);
+    return found ? (found[l] || '') : '';
+}
+
+function GM(arr, ids) {
+    return ids.map(id => G(arr, id)).filter(Boolean).join(', ');
+}
+
+function buildPrompt() {
+    const l = st.l;
+    const detail = parseInt(document.getElementById('s-detail').value);
+    const stylize = document.getElementById('s-stylize').value;
+    const qual = document.getElementById('s-qual').value;
+
+    const subject = document.getElementById('i-subject').value.trim();
+    const customOut = document.getElementById('i-out').value.trim();
+    const extra = document.getElementById('i-extra').value.trim();
+
+    const prod = G(PRODUCTS, st.prod);
+    const char = subject || G(CHARS, st.char);
+    const skin = G(SKINS, st.skin);
+    const eyes = G(EYES, st.eyes);
+    const expr = G(EXPRS, st.expr);
+    const styleMain = G(STYLES, st.style);
+    const renderTech = GM(RENDERS, st.render);
+    const colorPal = G(COLORS, st.color);
+    const lighting = G(LIGHTS, st.light);
+    const fxList = GM(FX, st.fx);
+    const artistRef = GM(ARTISTS, st.artist);
+    const hair = G(HAIRS, st.hair);
+    const hairCol = G(HAIRCOLORS, st.haircolor);
+    const makeup = G(MAKEUPS, st.makeup);
+    const outfit = customOut || (st.m === 'pre' ? G(PRESETS, st.pre) : `${G(TOPS, st.top)}, ${G(BOTS, st.bot)}`);
+    const shoes = st.m === 'ind' ? G(SHOES, st.shoe) : '';
+    const clothCol = G(CLOTH_COLS, st.clothcol);
+    const mats = GM(MATERIALS, st.material);
+    const pose = G(POSES, st.pose);
+    const bodyLang = G(BODIES, st.body);
+    const bg = G(BGS, st.bg);
+    const ambient = G(AMBIENTS, st.ambient);
+    const cam = G(CAMS, st.cam);
+    const shot = G(SHOTS, st.shot);
+    const time = G(TIMES, st.time);
+    const pr = G(PRINTS, st.pr);
+    const ra = G(RATIOS, st.ra);
+    const mood = G(MOODS, st.mood);
+    const impacts = GM(IMPACTS, st.impact);
+    const accsJew = GM(ACCS_JEW, st.accs_jew);
+    const accsProps = GM(ACCS_PROPS, st.accs_props);
+    const accsTech = GM(ACCS_TECH, st.accs_tech);
+    const allAccs = [accsJew, accsProps, accsTech].filter(Boolean).join(', ');
+    const negs = GM(NEGS, st.neg);
+    const mjParams = st.mjparams.map(id => {
+        const p = MJPARAMS.find(x => x.id === id);
+        return p ? p[l] : '';
+    }).filter(Boolean).join(' ');
+
+    let parts = [];
+
+    if (l === 'en') {
+        parts.push(`${styleMain} of ${char}`);
+        if (skin) parts.push(`with ${skin}`);
+        if (eyes) parts.push(`and ${eyes}`);
+        if (expr) parts.push(expr);
+        if (detail >= 7) {
+            if (hair && hairCol) parts.push(`${hairCol}, ${hair}`);
+            if (makeup) parts.push(makeup);
+        }
+        parts.push(`for ${prod}`);
+        if (outfit) parts.push(`wearing ${outfit}`);
+        if (clothCol && !customOut) parts.push(clothCol);
+        if (mats) parts.push(`in ${mats}`);
+        if (shoes) parts.push(`with ${shoes}`);
+        if (allAccs) parts.push(`accessories: ${allAccs}`);
+        parts.push(`${pose}, ${bodyLang}`);
+        parts.push(`${shot}, ${cam}`);
+        if (ambient) parts.push(`${ambient}`);
+        if (bg) parts.push(bg);
+        if (time) parts.push(time);
+        parts.push(lighting);
+        if (colorPal) parts.push(colorPal);
+        if (fxList) parts.push(fxList);
+        if (mood) parts.push(mood);
+        if (renderTech) parts.push(renderTech);
+        if (artistRef) parts.push(`inspired by ${artistRef}`);
+        if (impacts) parts.push(impacts);
+        parts.push(pr);
+        if (extra) parts.push(extra);
+        let prompt = parts.filter(Boolean).join(', ');
+        if (negs) prompt += ` --no ${negs}`;
+        if (ra) prompt += ` ${ra}`;
+        if (stylize !== '250') prompt += ` --s ${stylize}`;
+        if (qual !== '1') prompt += ` --q ${qual}`;
+        if (mjParams) prompt += ` ${mjParams}`;
+        return prompt;
+    } else {
+        parts.push(`${styleMain} de ${char}`);
+        if (skin) parts.push(`con ${skin}`);
+        if (eyes) parts.push(`y ${eyes}`);
+        if (expr) parts.push(expr);
+        if (detail >= 7) {
+            if (hair && hairCol) parts.push(`${hairCol}, ${hair}`);
+            if (makeup) parts.push(makeup);
+        }
+        parts.push(`para ${prod}`);
+        if (outfit) parts.push(`vistiendo ${outfit}`);
+        if (clothCol && !customOut) parts.push(clothCol);
+        if (mats) parts.push(`en ${mats}`);
+        if (shoes) parts.push(`con ${shoes}`);
+        if (allAccs) parts.push(`accesorios: ${allAccs}`);
+        parts.push(`${pose}, ${bodyLang}`);
+        parts.push(`${shot}, ${cam}`);
+        if (ambient) parts.push(ambient);
+        if (bg) parts.push(bg);
+        if (time) parts.push(time);
+        parts.push(lighting);
+        if (colorPal) parts.push(colorPal);
+        if (fxList) parts.push(fxList);
+        if (mood) parts.push(mood);
+        if (renderTech) parts.push(renderTech);
+        if (artistRef) parts.push(`inspirado en ${artistRef}`);
+        if (impacts) parts.push(impacts);
+        parts.push(pr);
+        if (extra) parts.push(extra);
+        let prompt = parts.filter(Boolean).join(', ');
+        if (negs) prompt += ` --no ${negs}`;
+        if (ra) prompt += ` ${ra}`;
+        if (stylize !== '250') prompt += ` --s ${stylize}`;
+        if (qual !== '1') prompt += ` --q ${qual}`;
+        if (mjParams) prompt += ` ${mjParams}`;
+        return prompt;
+    }
+}
+
+function update() {
+    const prompt = buildPrompt();
+    document.getElementById('res').innerText = prompt || 'Configura tu fórmula...';
+    const words = prompt.split(/\s+/).filter(Boolean).length;
+    const chars = prompt.length;
+    const tokens = Math.round(words * 1.3);
+    document.getElementById('word-count').innerText = words;
+    document.getElementById('token-count').innerText = `~${tokens}`;
+    document.getElementById('wc2').innerText = words;
+    document.getElementById('cc2').innerText = chars;
+}
+
+function alchemy() {
+    const rnd = (arr) => arr[Math.floor(Math.random() * arr.length)].id;
+    const rndMulti = (arr, n) => {
+        const shuffled = [...arr].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, n).map(x => x.id);
+    };
+    st.char = rnd(CHARS);
+    st.skin = rnd(SKINS);
+    st.eyes = rnd(EYES);
+    st.expr = rnd(EXPRS);
+    st.style = rnd(STYLES);
+    st.color = rnd(COLORS);
+    st.light = rnd(LIGHTS);
+    st.fx = rndMulti(FX, 2);
+    st.prod = rnd(PRODUCTS);
+    st.pre = rnd(PRESETS);
+    st.hair = rnd(HAIRS);
+    st.haircolor = rnd(HAIRCOLORS);
+    st.makeup = rnd(MAKEUPS);
+    st.pose = rnd(POSES);
+    st.bg = rnd(BGS);
+    st.ambient = rnd(AMBIENTS);
+    st.time = rnd(TIMES);
+    st.mood = rnd(MOODS);
+    st.accs_jew = rndMulti(ACCS_JEW, 2);
+    init();
+    showToast('⚗️ ¡Fórmula aleatoria generada!');
+}
+
+function copy() {
+    const txt = document.getElementById('res').innerText;
+    if (!txt || txt === 'Configura tu fórmula...') return;
+    navigator.clipboard.writeText(txt).then(() => {
+        history.unshift({ time: new Date().toLocaleTimeString(), text: txt.substring(0, 80) + '...' });
+        if (history.length > 10) history.pop();
+        showToast('✅ ¡Prompt copiado al portapapeles!');
+    });
+}
+
+function insertMJformat() {
+    const prompt = document.getElementById('res').innerText;
+    if (!prompt) return;
+    const withMJ = `/imagine prompt: ${prompt}`;
+    navigator.clipboard.writeText(withMJ);
+    showToast('🎨 ¡Formato Midjourney copiado!');
+}
+
+function confirmClear() {
+    if (confirm('¿Reiniciar todos los ajustes?')) {
+        location.reload();
+    }
+}
+
+function toggleHist() {
+    histOpen = !histOpen;
+    const panel = document.getElementById('hist-panel');
+    panel.classList.toggle('open', histOpen);
+    if (histOpen) {
+        panel.innerHTML = history.length === 0
+            ? '<div style="font-size:11px;color:var(--text-dim);padding:8px;">No hay historial aún. Copia un prompt para guardarlo.</div>'
+            : history.map((h, i) => `<div class="hist-item" onclick="loadHist(${i})"><span style="color:var(--accent);">${h.time}</span> — ${h.text}</div>`).join('');
+    }
+}
+
+function loadHist(i) {
+    showToast('📋 Prompt del historial copiado');
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+init();
+</script>
+</body>
+</html>

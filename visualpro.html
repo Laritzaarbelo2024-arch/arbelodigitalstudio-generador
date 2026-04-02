@@ -1241,9 +1241,15 @@ function insertMJformat() {
 
 function confirmClear() {
     if (confirm('¿Reiniciar todos los ajustes?')) {
+        localStorage.clear();
         location.reload();
     }
 }
+    
+
+    
+
+
 
 function toggleHist() {
     histOpen = !histOpen;

@@ -221,7 +221,7 @@
         .btn-copy { background: var(--accent); color: #000; }
         .btn-clear { background: rgba(255,255,255,0.07); color: #fff; border: 1px solid var(--border); }
         .btn-hist { background: rgba(251,191,36,0.15); color: var(--gold); border: 1px solid rgba(251,191,36,0.3); }
-        .btn-mid { background: linear-gradient(135deg, #1a1a2e, #16213e); color: var(--accent); border: 1px solid var(--border-active); }
+        .btn-universal { background: linear-gradient(135deg, #1a2a1a, #0d1f0d); color: var(--green); border: 1px solid rgba(74,222,128,0.4); }
 
         /* HISTORY PANEL */
         .hist-panel {
@@ -295,7 +295,7 @@
 
 <header>
     <div class="studio-logo">Arbelo Visual Studio</div>
-    <div class="studio-sub">Digital Alchemy · Prompt Engineering Master</div>
+    <div class="studio-sub">Construye Prompts Visuales · Compatible con Toda IA Generativa</div>
 </header>
 
 <div class="container">
@@ -474,7 +474,7 @@
         <div class="actions">
             <button class="btn btn-clear" onclick="confirmClear()">🗑 Limpiar</button>
             <button class="btn btn-alchemy" onclick="alchemy()">⚗️ Aleatorio</button>
-            <button class="btn btn-mid" onclick="insertMJformat()">🎨 MJ Format</button>
+            <button class="btn btn-universal" onclick="copyUniversal()">🌐 Universal AI</button>
             <button class="btn btn-hist" onclick="toggleHist()">📋 Historial</button>
             <button class="btn btn-copy" onclick="copy()">📋 Copiar</button>
         </div>
@@ -1231,19 +1231,43 @@ function copy() {
     });
 }
 
-function insertMJformat() {
-    const prompt = document.getElementById('res').innerText;
-    if (!prompt) return;
-    const withMJ = `/imagine prompt: ${prompt}`;
-    navigator.clipboard.writeText(withMJ);
-    showToast('🎨 ¡Formato Midjourney copiado!');
+function copyUniversal() {
+    // Build a clean prompt stripping any platform-specific parameters (--v, --ar, --s, --q, --no, --niji, --chaos, --tile, --weird, --turbo, --style raw)
+    let prompt = buildPrompt();
+    // Remove MJ-specific flags
+    prompt = prompt.replace(/\s*--(?:v|s|q|ar|no|niji|chaos|tile|weird|turbo|style\s+raw)[^\s,]*/g, '').trim();
+    // Remove trailing commas or double spaces
+    prompt = prompt.replace(/,\s*,/g, ',').replace(/\s{2,}/g, ' ').replace(/,\s*$/, '').trim();
+    navigator.clipboard.writeText(prompt);
+    showToast('🌐 ¡Prompt universal copiado! Úsalo en cualquier IA');
 }
 
 function confirmClear() {
-    if (confirm('¿Reiniciar todos los ajustes?')) { 
-       localStorage.clear(); 
-        location.reload();
-    }
+    st = {
+        l: st.l, platform:'midjourney', prod:'3d', fmt:'detailed',
+        skin:'latina', eyes:'brown', char:'woman', style:'chibi', expr:'smile',
+        render:[], color:'vivid', light:'soft', fx:[], artist:[],
+        m:'pre', pre:'trendy', top:'crop', bot:'jeans', shoe:'sneakers',
+        clothcol:'all-black', material:[],
+        hair:'long-straight', haircolor:'black', makeup:'glam',
+        pose:'sassy', body:'elegant',
+        bg:'png', ambient:'modern', cam:'front', shot:'full', time:'golden-h',
+        pr:'8k', ra:'sq', mjparams:[], stylize:250, qual:1, neg:[],
+        accs_jew:[], accs_props:[], accs_tech:[],
+        mood:'empowering', impact:['masterpiece'],
+        detail:7,
+    };
+    document.getElementById('i-subject').value = '';
+    document.getElementById('i-out').value = '';
+    document.getElementById('i-extra').value = '';
+    document.getElementById('s-detail').value = 7;
+    document.getElementById('detail-val').innerText = 7;
+    document.getElementById('s-stylize').value = 250;
+    document.getElementById('stylize-val').innerText = 250;
+    document.getElementById('s-qual').value = 1;
+    document.getElementById('qual-val').innerText = 1;
+    init();
+    showToast('🗑 ¡Todo limpiado correctamente!');
 }
 
 function toggleHist() {

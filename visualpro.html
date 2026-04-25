@@ -1,3 +1,4 @@
+
 <!-- file: index.html -->
 <!DOCTYPE html>
 <html lang="es">
@@ -23,6 +24,23 @@
       --placeholder-ink: #8d6a73;
       --active-glow: 0 0 0 3px rgba(255,255,255,0.88), 0 0 22px rgba(255,215,0,0.55);
       --panel-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 18px rgba(0,0,0,0.16);
+
+      /* Footer vars */
+      --gold-main: #e0b968;
+      --gold-soft: #f4de9d;
+      --gold-deep: #c6912e;
+      --gold-burnt: #8a5a17;
+      --text-brown: #5b3a12;
+      --footer-rose: #C58989;
+      --footer-rose-light: #D39B9B;
+      --footer-rose-dark: #A86F6F;
+      --footer-rose-deep: #7B5656;
+      --btn-green: #12f0a1;
+      --btn-blue: #1fc8ff;
+      --btn-gold: #ffd400;
+      --btn-pink: #ff00c8;
+      --btn-purple: #a21fff;
+      --btn-red: #ff4638;
     }
 
     * { box-sizing: border-box; }
@@ -37,6 +55,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
     }
 
     button, input {
@@ -83,7 +102,7 @@
     .brand-name {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(1.28rem, 2.25vw, 1.95rem);
+      font-size: clamp(1.15rem, 2vw, 1.75rem);
       font-weight: 700;
       line-height: 1.08;
       letter-spacing: 0.03em;
@@ -95,7 +114,7 @@
     .tool-name {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(1rem, 1.6vw, 1.34rem);
+      font-size: clamp(0.88rem, 1.4vw, 1.18rem);
       font-weight: 700;
       line-height: 1.15;
       letter-spacing: 0.08em;
@@ -277,7 +296,7 @@
       margin: 0 0 12px;
       color: var(--text-soft);
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(1.8rem, 2.8vw, 2.45rem);
+      font-size: clamp(1.55rem, 2.5vw, 2.2rem);
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
@@ -782,26 +801,37 @@
 
     @media (max-width: 768px) {
       body {
-        padding: 28px 14px;
+        padding: 18px 10px;
       }
 
       .header-nav {
         flex-direction: column;
         align-items: stretch;
-        gap: 16px;
-        margin-bottom: 34px;
+        gap: 12px;
+        margin-bottom: 24px;
         padding: 0;
       }
 
-      .home-link,
-      .lang-switcher {
+      .home-link {
         width: 100%;
         text-align: center;
+        padding: 10px 18px;
+        font-size: 0.8rem;
+      }
+
+      .lang-switcher {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 8px;
       }
 
       .brand-block {
         order: -1;
         width: 100%;
+        padding: 6px 10px 8px;
+        min-width: unset;
       }
 
       .section-block {
@@ -811,7 +841,8 @@
 
       .card-inner {
         border-radius: 30px;
-        padding: 24px 16px;
+        padding: 20px 14px;
+        min-height: unset;
       }
 
       .grid-25,
@@ -827,63 +858,156 @@
       .input-luxe-group button {
         padding: 14px 18px;
       }
+
+      .app-viewport {
+        gap: 22px;
+      }
+
+      .subblock-tabs {
+        gap: 7px;
+      }
+
+      .chip-grid {
+        gap: 7px;
+      }
+
+      .footer-terminal .header-wrap,
+      .footer-terminal .body-wrap {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .footer-terminal .screen-grid,
+      .footer-terminal .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-terminal .status-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .footer-terminal .status-bar {
+        padding: 18px 14px;
+      }
+
+      .footer-terminal .main-title {
+        font-size: 1.55rem;
+        letter-spacing: 3px;
+      }
+
+      .footer-terminal .screen-body {
+        font-size: 0.92rem;
+      }
+
+      .footer-terminal .footer-btn {
+        min-height: 80px;
+        font-size: 1.25rem;
+        padding: 14px 20px;
+      }
+
+      .footer-terminal .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 12px;
+      }
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 480px) {
+      body {
+        padding: 12px 8px;
+      }
+
+      .header-nav {
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .brand-block {
+        gap: 6px;
+      }
+
+      .lang-btn {
+        min-width: 80px;
+        padding: 8px 10px;
+        font-size: 0.66rem;
+      }
+
+      .section-block {
+        border-radius: 24px;
+        padding: 5px;
+      }
+
+      .card-inner {
+        border-radius: 20px;
+        padding: 16px 10px;
+      }
+
       .grid-25,
       .gem-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+      }
+
+      .gem-ia {
+        width: 46px;
+        height: 46px;
+      }
+
+      .btn-pearl {
+        font-size: 0.58rem;
+        padding: 10px 6px;
+        min-height: 40px;
+      }
+
+      .footer-terminal .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 8px;
+      }
+
+      .footer-terminal .footer-btn {
+        min-height: 72px;
+        font-size: 1.1rem;
+        padding: 12px 14px;
+        gap: 10px;
+      }
+
+      .footer-terminal .icon-wrap {
+        width: 40px;
+        height: 40px;
+      }
+
+      .footer-terminal .title-wrap {
+        padding: 22px 14px 16px;
+      }
+
+      .footer-terminal .content-panel {
+        margin: 0 10px 18px;
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .grid-25,
+      .gem-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .footer-terminal .footer-grid {
         grid-template-columns: 1fr;
       }
     }
   
 /* Footer integrado */
 
-    :root {
-      --gold-main: #e0b968;
-      --gold-soft: #f4de9d;
-      --gold-deep: #c6912e;
-      --gold-burnt: #8a5a17;
-
-      --text-brown: #5b3a12;
-      --green: #2bff72;
-      --yellow: #ffff33;
-      --pink: #ff00ff;
-
-      --footer-rose: #C58989;
-      --footer-rose-light: #D39B9B;
-      --footer-rose-dark: #A86F6F;
-      --footer-rose-deep: #7B5656;
-
-      --dusty-rose-1: #d6a1ad;
-      --dusty-rose-2: #c78f9d;
-
-      --btn-green: #12f0a1;
-      --btn-blue: #1fc8ff;
-      --btn-gold: #ffd400;
-      --btn-pink: #ff00c8;
-      --btn-purple: #a21fff;
-      --btn-red: #ff4638;
-
-      --text-soft: #f7eeee;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      padding: 30px;
-      background: linear-gradient(180deg, #0f1517, #060809);
-      font-family: Arial, Helvetica, sans-serif;
-      color: white;
-    }
-
     .footer-terminal {
       width: min(1280px, 100%);
       margin: 0 auto;
+      overflow: hidden;
     }
 
     .footer-terminal .header-wrap {
-      margin: 28px 76px 0;
+      margin: 28px clamp(10px, 6vw, 76px) 0;
       position: relative;
       z-index: 3;
     }
@@ -896,7 +1020,7 @@
       border: 3px solid rgba(122, 82, 26, 0.96);
       border-radius: 20px 20px 40px 40px;
       min-height: 132px;
-      padding: 18px 48px 20px;
+      padding: clamp(14px, 3vw, 18px) clamp(14px, 4vw, 48px) clamp(16px, 3vw, 20px);
       box-shadow:
         0 16px 30px rgba(0,0,0,0.35),
         0 0 14px rgba(224,185,104,0.26),
@@ -1058,7 +1182,7 @@
 
     .footer-terminal .body-wrap {
       position: relative;
-      margin: -10px 76px 0;
+      margin: -10px clamp(10px, 6vw, 76px) 0;
       border-radius: 20px 20px 34px 34px;
       background:
         linear-gradient(180deg, #ffb2de 0%, #f46ab8 34%, #d81b8a 68%, #8f0f56 100%);
@@ -1079,7 +1203,7 @@
       font-family: Arial, Helvetica, sans-serif;
       color: #0F8F43;
       font-weight: 700;
-      font-size: clamp(2rem, 3.8vw, 3.8rem);
+      font-size: clamp(1.75rem, 3.5vw, 3.55rem);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-shadow:
@@ -1253,7 +1377,7 @@
 
     .footer-terminal .footer-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 30px 24px;
       align-items: start;
     }
@@ -1284,7 +1408,7 @@
       cursor: pointer;
       text-transform: uppercase;
       font-weight: 950;
-      font-size: clamp(1.45rem, 2.2vw, 2.35rem);
+      font-size: clamp(1.25rem, 2vw, 2.15rem);
       letter-spacing: 0.5px;
       box-shadow:
         0 0 0 2px rgba(255,255,255,0.05) inset,
@@ -1433,49 +1557,22 @@
     }
 
     @media (max-width: 1100px) {
-      .footer-terminal .header-wrap,
-      .footer-terminal .body-wrap {
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-
       .footer-terminal .screen-grid,
       .footer-terminal .footer-grid {
         grid-template-columns: 1fr;
       }
-
+      .footer-terminal .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .footer-terminal .main-title {
-        letter-spacing: 6px;
+        letter-spacing: 5px;
       }
     }
 
-    @media (max-width: 760px) {
-      .footer-terminal .status-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-      }
-
-      .footer-terminal .status-bar {
-        padding: 20px 18px;
-      }
-
-      .footer-terminal .main-title {
-        font-size: 1.8rem;
-        letter-spacing: 4px;
-      }
-
-      .footer-terminal .screen-body {
-        font-size: 1rem;
-      }
-
-      .footer-terminal .footer-btn {
-        min-height: 90px;
-        font-size: 1.45rem;
-      }
-    }
+    /* Responsive footer handled in unified media queries above */
   
   .arbelo-rights{max-width:min(98%,1200px);margin:18px auto 0;text-align:center;color:#DEBC61;display:grid;gap:6px;padding:0 14px 22px;}
-  .arbelo-rights .brand{font-family: Arial, Helvetica, sans-serif;font-size:clamp(1.2rem,2vw,1.8rem);font-weight:700;letter-spacing:.04em;color:#DEBC61;}
+  .arbelo-rights .brand{font-family: Arial, Helvetica, sans-serif;font-size:clamp(1rem,1.75vw,1.6rem);font-weight:700;letter-spacing:.04em;color:#DEBC61;}
   .arbelo-rights .rights{font-size:.86rem;color:#4EEDCA;opacity:.95;}
 </style>
 </head>
@@ -3709,9 +3806,7 @@
     }
 
     renderApp();
-  renderBtn.onclick = () => window.location.href = 'alchemy.html';
-saveBtn.onclick = () => window.location.href = 'studio.html';
-</script>
+  </script>
 
 <section class="footer-terminal">
     <section class="header-wrap">
@@ -4176,8 +4271,6 @@ saveBtn.onclick = () => window.location.href = 'studio.html';
   bindFooter();
   buildPrompts();
 })();
-renderBtn.onclick = () => window.location.href = 'alchemy.html';
-saveBtn.onclick = () => window.location.href = 'studio.html';
 </script>
 
 </body>
